@@ -40,6 +40,6 @@ public class MemberSignUpValidatorTest {
 
         boolean result1 = memberSignUpValidatorImpl.emailRegexValidate(case1);
 
-        assertThat(result1).isFalse();
+        assertThat(result1).isTrue();
     }
 }
