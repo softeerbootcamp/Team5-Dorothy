@@ -1,13 +1,13 @@
 package dev.be.dorothy.member.service;
 
-public class SignUpDto {
+public class SignUpReqDto {
     private final String memberId;
     private final String password;
     private final String passwordCheck;
     private final String name;
     private final String email;
 
-    public SignUpDto(String memberId, String password, String passwordCheck, String name, String email) {
+    public SignUpReqDto(String memberId, String password, String passwordCheck, String name, String email) {
         this.memberId = memberId;
         this.password = password;
         this.passwordCheck = passwordCheck;
