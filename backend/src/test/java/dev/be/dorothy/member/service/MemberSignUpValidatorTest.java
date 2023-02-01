@@ -82,4 +82,54 @@ public class MemberSignUpValidatorTest {
                 () -> assertThrows(BadRequestException.class, () -> memberSignUpValidatorImpl.validateId(case6))
         );
     }
+
+    @Test
+    @DisplayName("비밀번호가 정규식에 부합하는지 테스트 - 실패 케이스")
+    void validatePasswordRegex() {
+        //'숫자', '문자', '특수문자' 무조건 1개 이상, 비밀번호 '최소 8자에서 최대 16자'까지 허용
+        String case1 = "";
+        String case2 = "한글";
+        String case3 = "abcdefgh";
+        String case4 = "12345678";
+        String case5 = "a1234567";
+        String case6 = "abcd12!";
+        String case7 = "abcdefg123456789!";
+        String case8 = "!@#$%^&*";
+        String case9 = "abcd!@#$";
+        String case10 = "1234!@#$";
+
+        assertAll(
+                () -> assertThrows(BadRequestException.class, () -> memberSignUpValidatorImpl.validatePassword(case1, case1)),
+                () -> assertThrows(BadRequestException.class, () -> memberSignUpValidatorImpl.validatePassword(case2, case2)),
+                () -> assertThrows(BadRequestException.class, () -> memberSignUpValidatorImpl.validatePassword(case3, case3)),
+                () -> assertThrows(BadRequestException.class, () -> memberSignUpValidatorImpl.validatePassword(case4, case4)),
+                () -> assertThrows(BadRequestException.class, () -> memberSignUpValidatorImpl.validatePassword(case5, case5)),
+                () -> assertThrows(BadRequestException.class, () -> memberSignUpValidatorImpl.validatePassword(case6, case6)),
+                () -> assertThrows(BadRequestException.class, () -> memberSignUpValidatorImpl.validatePassword(case7, case7)),
+                () -> assertThrows(BadRequestException.class, () -> memberSignUpValidatorImpl.validatePassword(case8, case8)),
+                () -> assertThrows(BadRequestException.class, () -> memberSignUpValidatorImpl.validatePassword(case9, case9)),
+                () -> assertThrows(BadRequestException.class, () -> memberSignUpValidatorImpl.validatePassword(case10, case10))
+        );
+    }
+
+    @Test
+    @DisplayName("비밀번호와 확인 비밀번호가 일치하는지 테스트 - 실패 케이스")
+    void validatePasswordCheck() {
+        String password = "a123467!";
+        String passwordCheck = "b1234567!";
+
+        assertThrows(
+                BadRequestException.class,
+                () -> memberSignUpValidatorImpl.validatePassword(password, passwordCheck)
+        );
+    }
+
+    @Test
+    @DisplayName("비밀먼호가 정규식에 부합하고 확인 비밀번호와 일치하는지 테스트 - 성공 케이스")
+    void validatePasswordSuccessTest() {
+        String password = "a123467!";
+        String passwordCheck = "a1234567!";
+
+        assertDoesNotThrow(() -> memberSignUpValidatorImpl.validatePassword(password, passwordCheck));
+    }
 }
