@@ -115,19 +115,21 @@ public class MemberSignUpValidatorTest {
     @Test
     @DisplayName("비밀번호와 확인 비밀번호가 일치하는지 테스트 - 실패 케이스")
     void validatePasswordCheck() {
-        String password = "a123467!";
+        String password = "a1234567!";
         String passwordCheck = "b1234567!";
 
-        assertThrows(
+        BadRequestException exception = assertThrows(
                 BadRequestException.class,
                 () -> memberSignUpValidatorImpl.validatePassword(password, passwordCheck)
         );
+
+        assertThat(exception.getMessage()).isEqualTo("비밀번호가 확인 비밀번호와 일치하지 않습니다.");
     }
 
     @Test
     @DisplayName("비밀먼호가 정규식에 부합하고 확인 비밀번호와 일치하는지 테스트 - 성공 케이스")
     void validatePasswordSuccessTest() {
-        String password = "a123467!";
+        String password = "a1234567!";
         String passwordCheck = "a1234567!";
 
         assertDoesNotThrow(() -> memberSignUpValidatorImpl.validatePassword(password, passwordCheck));
