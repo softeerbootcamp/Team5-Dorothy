@@ -28,6 +28,13 @@ public class MemberSignUpValidatorImpl implements MemberSignUpValidator {
 
     @Override
     public void validatePassword(String password, String passwordCheck) {
+        String regex = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[~!@#$%^&*()+|=])[A-Za-z\\d~!@#$%^&*()+|=]{8,16}$";
+        validateRegex(regex, password);
+        boolean isEquals = password.equals(passwordCheck);
+
+        if (!isEquals) {
+            throw new BadRequestException("비밀번호가 확인 비밀번호와 일치하지 않습니다.");
+        }
     }
 
     private void validateDuplicatedId(String memberId) {
