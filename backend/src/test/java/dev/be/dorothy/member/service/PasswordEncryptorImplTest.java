@@ -1,5 +1,6 @@
 package dev.be.dorothy.member.service;
 
+import dev.be.dorothy.exception.BadRequestException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -7,7 +8,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.*;
 
 class PasswordEncryptorImplTest {
     MessageDigest messageDigest;
@@ -36,6 +37,26 @@ class PasswordEncryptorImplTest {
     }
 
     @Test
-    void match() {
+    @DisplayName("디비에 저장된 패스워드, 사용자 보낸 비밀번호 간 매치 테스트 - 실패 케이스")
+    void matchFailTest() {
+        String password = "a1234567!";
+        String hashedPassword = "45a49cbdfe0e5b676579f409c96f58759b44cfc907e78d4cbc3qe38a9c67b0ca";
+
+        BadRequestException exception = assertThrows(
+                BadRequestException.class,
+                () -> passwordEncryptorImpl.match(password, hashedPassword)
+        );
+
+        assertThat(exception.getMessage()).isEqualTo("입력 정보가 올바르지 않습니다.");
+    }
+
+
+    @Test
+    @DisplayName("디비에 저장된 패스워드, 사용자 보낸 비밀번호 간 매치 테스트 - 성공 케이스")
+    void matchSuccessTest() {
+        String password = "a1234567!";
+        String hashedPassword = "45a49cbdfe0e5b676579f409c96f58759b44cfc907e78d6c2c3fe38a9c67b0cf";
+
+        assertDoesNotThrow(() -> passwordEncryptorImpl.match(password, hashedPassword));
     }
 }
