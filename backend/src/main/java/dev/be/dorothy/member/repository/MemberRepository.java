@@ -20,7 +20,7 @@ public interface MemberRepository extends CrudRepository<Member, Long> {
             @Param("is_deleted") boolean isDeleted,
             @Param("role") String role);
 
-    @Query("select count(*) from member where memberId = :memberId")
+    @Query("select count(*) from member where member_id = :memberId;")
     int countByMemberId(
             @Param("memberId") String memberId
     );
