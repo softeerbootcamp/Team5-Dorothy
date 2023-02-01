@@ -1,5 +1,7 @@
 package dev.be.dorothy.member.service;
 
+import dev.be.dorothy.exception.BadRequestException;
+
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 
@@ -23,6 +25,10 @@ public class PasswordEncryptorImpl implements PasswordEncryptor {
 
     @Override
     public void match(String password, String hashedPassword) {
-
+        String requestedPassword = encrypt(password);
+        boolean equals = requestedPassword.equals(hashedPassword);
+        if (!equals) {
+            throw new BadRequestException("입력 정보가 올바르지 않습니다.");
+        }
     }
 }
