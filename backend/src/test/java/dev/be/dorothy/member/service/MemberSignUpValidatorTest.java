@@ -11,7 +11,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 
@@ -32,18 +32,12 @@ public class MemberSignUpValidatorTest {
         String case4 = "example@";
         String case5 = "example@abcd";
 
-        boolean result1 = memberSignUpValidatorImpl.emailRegexValidate(case1);
-        boolean result2 = memberSignUpValidatorImpl.emailRegexValidate(case2);
-        boolean result3 = memberSignUpValidatorImpl.emailRegexValidate(case3);
-        boolean result4 = memberSignUpValidatorImpl.emailRegexValidate(case4);
-        boolean result5 = memberSignUpValidatorImpl.emailRegexValidate(case5);
-
         assertAll(
-                () -> assertThat(result1).isFalse(),
-                () -> assertThat(result2).isFalse(),
-                () -> assertThat(result3).isFalse(),
-                () -> assertThat(result4).isFalse(),
-                () -> assertThat(result5).isFalse()
+                () -> assertThrows(BadRequestException.class, () -> memberSignUpValidatorImpl.validateEmailRegex(case1)),
+                () -> assertThrows(BadRequestException.class, () -> memberSignUpValidatorImpl.validateEmailRegex(case2)),
+                () -> assertThrows(BadRequestException.class, () -> memberSignUpValidatorImpl.validateEmailRegex(case3)),
+                () -> assertThrows(BadRequestException.class, () -> memberSignUpValidatorImpl.validateEmailRegex(case4)),
+                () -> assertThrows(BadRequestException.class, () -> memberSignUpValidatorImpl.validateEmailRegex(case5))
         );
     }
 
@@ -52,9 +46,7 @@ public class MemberSignUpValidatorTest {
     void emailRegexValidateSuccessTest() {
         String case1 = "example@abcd.com";
 
-        boolean result1 = memberSignUpValidatorImpl.emailRegexValidate(case1);
-
-        assertThat(result1).isTrue();
+        assertDoesNotThrow(() -> memberSignUpValidatorImpl.validateEmailRegex(case1));
     }
 
     @Test
@@ -65,7 +57,7 @@ public class MemberSignUpValidatorTest {
 
         BadRequestException badRequestException =
                 Assertions.assertThrows(BadRequestException.class, () ->
-                memberSignUpValidatorImpl.idValidate(case1));
+                memberSignUpValidatorImpl.validateId(case1));
 
         assertThat(badRequestException.getMessage()).isEqualTo("중복된 ID입니다.");
     }
@@ -81,20 +73,13 @@ public class MemberSignUpValidatorTest {
         String case6 = "1234abcd";
         given(memberRepository.countByMemberId(any())).willReturn(0);
 
-        boolean result1 = memberSignUpValidatorImpl.idValidate(case1);
-        boolean result2 = memberSignUpValidatorImpl.idValidate(case2);
-        boolean result3 = memberSignUpValidatorImpl.idValidate(case3);
-        boolean result4 = memberSignUpValidatorImpl.idValidate(case4);
-        boolean result5 = memberSignUpValidatorImpl.idValidate(case5);
-        boolean result6 = memberSignUpValidatorImpl.idValidate(case6);
-
         assertAll(
-                () -> assertThat(result1).isFalse(),
-                () -> assertThat(result2).isFalse(),
-                () -> assertThat(result3).isFalse(),
-                () -> assertThat(result4).isFalse(),
-                () -> assertThat(result5).isFalse(),
-                () -> assertThat(result6).isFalse()
+                () -> assertThrows(BadRequestException.class, () -> memberSignUpValidatorImpl.validateId(case1)),
+                () -> assertThrows(BadRequestException.class, () -> memberSignUpValidatorImpl.validateId(case2)),
+                () -> assertThrows(BadRequestException.class, () -> memberSignUpValidatorImpl.validateId(case3)),
+                () -> assertThrows(BadRequestException.class, () -> memberSignUpValidatorImpl.validateId(case4)),
+                () -> assertThrows(BadRequestException.class, () -> memberSignUpValidatorImpl.validateId(case5)),
+                () -> assertThrows(BadRequestException.class, () -> memberSignUpValidatorImpl.validateId(case6))
         );
     }
 }

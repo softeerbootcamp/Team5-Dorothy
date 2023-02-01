@@ -14,23 +14,20 @@ public class MemberSignUpValidatorImpl implements MemberSignUpValidator {
     }
 
     @Override
-    public boolean emailRegexValidate(String email) {
+    public void validateEmailRegex(String email) {
         String regex = "^[_a-z0-9-]+(.[_a-z0-9-]+)*@(?:\\w+\\.)+\\w+$";
         validateRegex(regex, email);
-        return true;
     }
 
     @Override
-    public boolean idValidate(String memberId) {
+    public void validateId(String memberId) {
         validateDuplicatedId(memberId);
         String regex = "^[a-zA-Z]{1}[a-zA-Z0-9_]{4,11}$";
         validateRegex(regex, memberId);
-        return true;
     }
 
     @Override
-    public boolean passwordValidate(String password, String passwordCheck) {
-        return false;
+    public void validatePassword(String password, String passwordCheck) {
     }
 
     private void validateDuplicatedId(String memberId) {
