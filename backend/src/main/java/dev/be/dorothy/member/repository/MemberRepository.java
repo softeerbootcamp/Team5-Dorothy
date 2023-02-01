@@ -19,4 +19,9 @@ public interface MemberRepository extends CrudRepository<Member, Long> {
             @Param("updated_at") String updatedAt,
             @Param("is_deleted") boolean isDeleted,
             @Param("role") String role);
+
+    @Query("select count(*) from member where memberId = :memberId")
+    int countByMemberId(
+            @Param("memberId") String memberId
+    );
 }
