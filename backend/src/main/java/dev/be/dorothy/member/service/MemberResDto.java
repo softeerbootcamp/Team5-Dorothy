@@ -32,4 +32,32 @@ public class MemberResDto {
                 member.getRole().name()
         );
     }
+
+    public Long getIdx() {
+        return idx;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public String getCreatedAt() {
+        return createdAt;
+    }
+
+    public String getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public String getRole() {
+        return role;
+    }
 }
