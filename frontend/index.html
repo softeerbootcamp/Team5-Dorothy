@@ -3,10 +3,32 @@
     <head>
         <meta charset="UTF-8" />
         <link rel="icon" type="image/svg+xml" href="/src/assets/vite.svg" />
+        <link rel="stylesheet" href="src/styles/common.css" />
+        <link rel="stylesheet" href="src/styles/home.css" />
+        <link rel="stylesheet" href="src/styles/joinin.css" />
+        <link rel="stylesheet" href="src/styles/login.css" />
+        <link rel="stylesheet" href="src/styles/reset.css" />
+        <link rel="stylesheet" href="src/styles/style.css" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Fontdiner+Swanky&display=swap"
+            rel="stylesheet"
+        />
+        <link
+            href="//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css"
+            rel="stylesheet"
+            type="text/css"
+        />
+        <script
+            src="https://kit.fontawesome.com/55809f1341.js"
+            crossorigin="anonymous"
+        ></script>
         <title>DOROTHY</title>
     </head>
     <body>
+        <noscript>자바스크립트 활성화가 필요합니다.</noscript>
         <nav class="nav">
             <a href="/main" class="nav__link" data-link>MAIN</a>
             <a href="/attend" class="nav__link" data-link>ATTEND</a>
@@ -14,7 +36,15 @@
             <a href="/notice" class="nav__link" data-link>NOTICE</a>
             <a href="/" class="nav__link" data-link>LOGOUT</a>
         </nav>
+        <div class="hamburger">
+            <span class="line"></span>
+            <span class="line"></span>
+            <span class="line"></span>
+        </div>
         <div id="app"></div>
         <script type="module" src="/src/router.js"></script>
+        <script type="module" src="src/home.js"></script>
+        <script type="module" src="src/joinin.js"></script>
+        <script type="module" src="src/login.js"></script>
     </body>
 </html>

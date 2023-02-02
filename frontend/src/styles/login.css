@@ -1,0 +1,166 @@
+.login-btn {
+    width: 10vw;
+    height: 6vh;
+    background-color: transparent;
+    border: 0.25vw solid #fff;
+    box-shadow: 0.25vw 0.25vh 0.5vw rgba(0, 0, 0, 0.5);
+    color: #fff;
+    font-weight: 700;
+    font-size: large;
+    cursor: pointer;
+    border-radius: 1vw;
+}
+
+.login-btn:hover {
+    transition: all 0.5s;
+    color: #000;
+    background-color: #fff;
+}
+
+.login-btn.hide {
+    visibility: hidden;
+}
+
+.login-container {
+    position: absolute;
+    display: flex;
+    visibility: hidden;
+    flex-direction: column;
+    filter: blur(1vw);
+    transition: all 0.5s;
+    opacity: 0;
+    left: 60%;
+    top: 0;
+    width: 30%;
+    height: 80vh;
+    background-color: #fff;
+    box-shadow: -1vw 0 1vw rgba(0, 0, 0, 0.5);
+    padding: 10vh 5vw 10vh 5vw;
+    justify-content: center;
+}
+
+.login-container.On {
+    opacity: 1;
+    visibility: visible;
+    filter: blur(0);
+}
+
+.login-container > .fa-x {
+    position: absolute;
+    left: 35vw;
+    top: 5vh;
+    cursor: pointer;
+}
+
+.login-title > h2 {
+    color: #000;
+    font-size: 2vw;
+    font-weight: 700;
+}
+
+.login-input-wrapper {
+    margin-top: 2.5vh;
+    margin-bottom: 2.5vh;
+    display: flex;
+    flex-direction: column;
+    align-content: space-between;
+    justify-content: center;
+    font-size: 1.25vw;
+    font-weight: 500;
+}
+
+.login-input-wrapper > input {
+    margin-top: 2.5vh;
+    margin-bottom: 2.5vh;
+    width: 30vw;
+    height: 4vh;
+    border: 1px solid #000;
+    border-radius: 1vh;
+    font-size: 1vw;
+}
+
+.login-input-wrapper > #LoginPassword {
+    position: relative;
+}
+
+#LoginPassword > input {
+    margin-top: 2.5vh;
+    margin-bottom: 2.5vh;
+    width: 30vw;
+    height: 4vh;
+    border: 1px solid #000;
+    border-radius: 1vh;
+    font-size: 1vw;
+}
+
+.login-input-wrapper > input {
+    margin-top: 2.5vh;
+    margin-bottom: 2.5vh;
+    width: 30vw;
+    height: 4vh;
+    border: 1px solid #000;
+    border-radius: 1vh;
+    font-size: 1vw;
+}
+
+#LoginPassword > .fa-eye {
+    position: absolute;
+    left: 28vw;
+    top: 3.5vh;
+    color: #b8b8b8;
+    cursor: pointer;
+    visibility: hidden;
+}
+
+#LoginPassword > .fa-eye.show {
+    visibility: visible;
+}
+
+#LoginPassword > .fa-eye-slash {
+    position: absolute;
+    left: 28vw;
+    top: 3.5vh;
+    color: #b8b8b8;
+    cursor: pointer;
+    visibility: hidden;
+}
+
+#LoginPassword > .fa-eye-slash.show {
+    visibility: visible;
+}
+
+.login-btn-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-content: space-between;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-btn-wrapper > button {
+    width: 30vw;
+    height: 5vh;
+    background-color: #2b90d9;
+    border-radius: 1vw;
+    color: #fff;
+    font-size: 1vw;
+    font-weight: 700;
+    cursor: pointer;
+    margin-bottom: 2vh;
+}
+
+.login-txt-wrapper {
+    display: flex;
+    width: 30vw;
+    justify-content: space-between;
+}
+
+.link-to-join {
+    cursor: pointer;
+    transition: all 0.5s;
+}
+
+.link-to-join:hover {
+    color: #8ec0e4;
+    text-decoration: underline;
+}

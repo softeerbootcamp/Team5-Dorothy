@@ -1,0 +1,136 @@
+.container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(-45deg, #282c37, #9baec8, #d9e1e8, #2b90d9);
+    background-size: 400% 400%;
+    animation: gradient 10s ease infinite;
+}
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.main-wrapper {
+    position: relative;
+}
+
+.title-wrapper {
+    position: relative;
+    left: 10vw;
+    top: 40vh;
+    width: 50vw;
+    color: #fff;
+    user-select: none;
+    font-family: 'Fontdiner Swanky', cursive;
+    font-size: 7.5vw;
+    text-shadow: 0.25vw 0.25vh 0.5vw rgba(0, 0, 0, 0.5);
+}
+
+.title-wrapper.Mini {
+    transition: all 1s;
+    transform: translate(-24vw, -40vh) scale(0.36);
+}
+.container.Start {
+    animation: inonecolor 1s linear;
+    background: #9baec8;
+}
+@keyframes inonecolor {
+    0% {
+        background: #fff;
+    }
+    100% {
+        background: #9baec8;
+    }
+}
+
+.btn-wrapper {
+    position: relative;
+    left: 10vw;
+    top: 40vh;
+    display: inline-flex;
+    justify-content: space-between;
+    width: 25vw;
+    margin-top: 5vh;
+    transition: all 0.5s;
+}
+
+.btn-wrapper.Hidden {
+    visibility: hidden;
+    filter: blur(1vw);
+}
+
+.hamburger {
+    position: absolute;
+    visibility: hidden;
+    left: 95vw;
+    top: 5vh;
+    height: 2vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    cursor: pointer;
+}
+.hamburger.show {
+    visibility: visible;
+}
+
+.line {
+    width: 2.5vw;
+    height: 0.5vh;
+    background-color: #fff;
+    box-shadow: 0.1vw 0.1vw 0.1vw rgba(0, 0, 0, 0.5);
+    border-radius: 1vw;
+    transition: all 0.5s;
+}
+
+.hamburger.menuon .line:nth-child(1) {
+    transform: rotate(45deg) translate(0, 1vh);
+}
+.hamburger.menuon .line:nth-child(2) {
+    transform: rotate(-45deg) translate(0, -1vh);
+}
+.hamburger.menuon .line:nth-child(3) {
+    border-radius: 0;
+    box-shadow: 0vw 0.1vw 0.1vw rgba(0, 0, 0, 0.5);
+    transform: scale(22.5, 1) translate(-1.475vw, 1vh);
+}
+
+.nav {
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    left: 40vw;
+    top: 5vh;
+    width: 50vw;
+    justify-content: space-between;
+    visibility: hidden;
+    transition: all 0.25s ease-in-out;
+    visibility: hidden;
+    transform: scale(1, 0) translate(0, 5vh);
+}
+
+.nav.menuon {
+    transform: scale(1, 1) translate(0, 0);
+    visibility: visible;
+}
+
+.nav > a {
+    color: #fff;
+    font-size: 1.625vw;
+    text-shadow: 0.125vw 0.125vh 0.125vw rgba(0, 0, 0, 0.5);
+    transition: all 0.25s;
+    cursor: pointer;
+}
+
+.navbar > a:hover {
+    transform: scale(1.25);
+}
