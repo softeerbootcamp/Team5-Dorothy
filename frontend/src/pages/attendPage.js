@@ -1,12 +1,12 @@
 import AbstractView from './AbstractView.js';
 
-export default class homePage extends AbstractView {
+export default class attendPage extends AbstractView {
     constructor() {
         super();
     }
     async getHtml() {
         return `
-        <p>home</p>
+        <p>attend</p>
         `;
     }
 }

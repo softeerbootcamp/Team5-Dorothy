@@ -1,5 +1,8 @@
 import homePage from './pages/homePage.js';
 import mainPage from './pages/mainPage.js';
+import rentalPage from './pages/rentalPage.js';
+import noticePage from './pages/noticePage.js';
+import attendPage from './pages/attendPage.js';
 
 const navigateTo = (url) => {
     history.pushState(null, null, url);
@@ -8,11 +11,11 @@ const navigateTo = (url) => {
 
 const router = async () => {
     const routes = [
-        { path: '/', view: mainPage },
+        { path: '/', view: homePage },
         { path: '/main', view: mainPage },
-        { path: '/rental', view: mainPage },
-        { path: '/attend', view: mainPage },
-        { path: '/notice', view: mainPage },
+        { path: '/rental', view: rentalPage },
+        { path: '/attend', view: attendPage },
+        { path: '/notice', view: noticePage },
     ];
     // 현재 route와 현재 페이지 경로가 일치하는지 테스트
     const potentialMatches = routes.map((route) => {
