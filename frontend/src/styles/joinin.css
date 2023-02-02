@@ -1,0 +1,163 @@
+.join-btn {
+    width: 10vw;
+    height: 6vh;
+    background-color: transparent;
+    border: 0.25vw solid #fff;
+    box-shadow: 0.25vw 0.25vh 0.5vw rgba(0, 0, 0, 0.5);
+    color: #fff;
+    font-weight: 700;
+    font-size: large;
+    cursor: pointer;
+    border-radius: 1vw;
+}
+
+.join-btn:hover {
+    transition: all 0.5s;
+    color: #000;
+    background-color: #fff;
+}
+
+.join-btn.hide {
+    visibility: hidden;
+}
+
+.join-container {
+    position: absolute;
+    display: flex;
+    visibility: hidden;
+    flex-direction: column;
+    filter: blur(1vw);
+    transition: all 0.5s;
+    opacity: 0;
+    left: 60%;
+    top: 0;
+    width: 30%;
+    height: 80vh;
+    background-color: #fff;
+    box-shadow: -1vw 0 1vw rgba(0, 0, 0, 0.5);
+    padding: 10vh 5vw 10vh 5vw;
+    justify-content: center;
+}
+
+.join-container.On {
+    opacity: 1;
+    visibility: visible;
+    filter: blur(0);
+}
+
+.join-container > .fa-x {
+    position: absolute;
+    left: 35vw;
+    top: 5vh;
+    cursor: pointer;
+}
+
+.join-title > h2 {
+    color: #000;
+    font-size: 2vw;
+    font-weight: 700;
+}
+
+.join-form-wrapper {
+    margin-top: 2.5vh;
+    margin-bottom: 2.5vh;
+    display: flex;
+    flex-direction: column;
+    align-content: space-between;
+    justify-content: center;
+    font-size: 1.25vw;
+    font-weight: 500;
+}
+
+.join-input-wrapper {
+    position: relative;
+}
+
+.join-input-wrapper > input {
+    display: inline-flex;
+    margin-top: 1.5vh;
+    margin-bottom: 2.5vh;
+    width: 27vw;
+    height: 4vh;
+    border: 1px solid #000;
+    border-radius: 1vh;
+    font-size: 1vw;
+}
+
+.join-input-wrapper > .fa-eye {
+    position: absolute;
+    left: 25vw;
+    top: 2.5vh;
+    color: #b8b8b8;
+    visibility: hidden;
+}
+
+.join-input-wrapper > .fa-eye.show {
+    visibility: visible;
+}
+
+.join-input-wrapper > .fa-eye-slash {
+    position: absolute;
+    left: 25vw;
+    top: 2.5vh;
+    color: #b8b8b8;
+    visibility: hidden;
+    user-select: none;
+}
+
+.join-input-wrapper > .fa-eye-slash.show {
+    visibility: visible;
+}
+
+.join-input-wrapper > .fa-check {
+    display: inline-flex;
+    margin-left: 1vw;
+    background-color: #b8b8b8;
+    align-items: center;
+    justify-content: center;
+    width: 1.5vw;
+    height: 1.5vw;
+    border-radius: 1vw;
+    color: #fff;
+}
+
+.join-btn-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-content: space-between;
+    align-items: center;
+    justify-content: center;
+}
+
+.join-btn-wrapper > button {
+    width: 30vw;
+    height: 5vh;
+    background-color: #2b90d9;
+    border-radius: 1vw;
+    color: #fff;
+    font-size: 1vw;
+    font-weight: 700;
+    cursor: pointer;
+    margin-bottom: 2vh;
+}
+
+.join-btn-wrapper > button:disabled {
+    background-color: #b8b8b8;
+    cursor: default;
+}
+
+.join-txt-wrapper {
+    display: flex;
+    width: 30vw;
+    justify-content: space-between;
+}
+
+.link-to-login {
+    cursor: pointer;
+    transition: all 0.5s;
+}
+
+.link-to-login:hover {
+    color: #2b90d9;
+    text-decoration: underline;
+}
