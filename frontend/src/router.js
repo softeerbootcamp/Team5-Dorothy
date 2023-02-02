@@ -1,8 +1,27 @@
 import homePage from './pages/homePage.js';
 import mainPage from './pages/mainPage.js';
 import rentalPage from './pages/rentalPage.js';
-import noticePage from './pages/noticePage.js';
+import rentalDetailPage from './pages/rentalDetailPage.js';
 import attendPage from './pages/attendPage.js';
+import noticePage from './pages/noticePage.js';
+
+// 정규식으로 파라미터 나누기
+const pathToRegex = (path) =>
+    new RegExp('^' + path.replace(/\//g, '\\/').replace(/:\w+/g, '(.+)') + '$');
+
+// 활성화된 페이지의 파라미터 가져와 배열에 담기
+const getParams = (match) => {
+    const values = match.result.slice(1);
+    const keys = Array.from(match.route.path.matchAll(/:(\w+)/g)).map(
+        (result) => result[1],
+    );
+
+    return Object.fromEntries(
+        keys.map((key, i) => {
+            return [key, values[i]];
+        }),
+    );
+};
 
 const navigateTo = (url) => {
     history.pushState(null, null, url);
@@ -14,6 +33,8 @@ const router = async () => {
         { path: '/', view: homePage },
         { path: '/main', view: mainPage },
         { path: '/rental', view: rentalPage },
+        // 파라미터가 추가됐을 경우 route 추가
+        { path: '/rental/:id', view: rentalDetailPage },
         { path: '/attend', view: attendPage },
         { path: '/notice', view: noticePage },
     ];
@@ -21,15 +42,16 @@ const router = async () => {
     const potentialMatches = routes.map((route) => {
         return {
             route: route,
-            isMatch: location.pathname === route.path,
+            //정규식과 일치하는 pathname을 담는다
+            result: location.pathname.match(pathToRegex(route.path)),
         };
     });
 
     // find 메서드를 사용해 isMatch가 true인 객체를 찾는다.
     let match = potentialMatches.find(
-        (potentialMatch) => potentialMatch.isMatch,
+        (potentialMatch) => potentialMatch.result !== null,
     );
-    const view = new match.route.view();
+    const view = new match.route.view(getParams(match));
     console.log(view);
     document.querySelector('#app').innerHTML = await view.getHtml();
 };
