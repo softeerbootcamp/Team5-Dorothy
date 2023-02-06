@@ -1,0 +1,20 @@
+.mth-calendar-container {
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    top: 20vh;
+    left: 10vw;
+    width: 80vw;
+    height: 70vh;
+    background-color: #fff;
+    border-radius: 25px;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.5);
+    box-sizing: border-box;
+    padding-left: 10vw;
+    padding-right: 10vw;
+}
+
+canvas {
+    border: 1px solid black;
+}
