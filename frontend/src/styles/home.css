@@ -30,7 +30,7 @@
     color: #fff;
     user-select: none;
     font-family: 'Fontdiner Swanky', cursive;
-    font-size: 7.5vw;
+    font-size: 128px;
     text-shadow: 0.25vw 0.25vh 0.5vw rgba(0, 0, 0, 0.5);
 }
 
@@ -69,10 +69,10 @@
 
 .hamburger {
     position: absolute;
-    visibility: hidden;
+    /* visibility: hidden; */
     left: 95vw;
     top: 5vh;
-    height: 2vw;
+    height: 40px;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -84,8 +84,8 @@
 }
 
 .line {
-    width: 2.5vw;
-    height: 0.5vh;
+    width: 44px;
+    height: 5px;
     background-color: #fff;
     box-shadow: 0.1vw 0.1vw 0.1vw rgba(0, 0, 0, 0.5);
     border-radius: 1vw;
@@ -94,9 +94,11 @@
 
 .hamburger.menuon .line:nth-child(1) {
     transform: rotate(45deg) translate(0, 1vh);
+    box-shadow: none;
 }
 .hamburger.menuon .line:nth-child(2) {
     transform: rotate(-45deg) translate(0, -1vh);
+    box-shadow: none;
 }
 .hamburger.menuon .line:nth-child(3) {
     border-radius: 0;
@@ -126,6 +128,7 @@
 .nav > a {
     color: #fff;
     font-size: 1.625vw;
+    text-decoration: none;
     text-shadow: 0.125vw 0.125vh 0.125vw rgba(0, 0, 0, 0.5);
     transition: all 0.25s;
     cursor: pointer;
