@@ -27,10 +27,17 @@ export default class mainPage extends AbstractView {
                     <div class="contour"></div>
                     <div class="rental-wrapper">> 내 공간대여현황
                         <div class="rental-card-wrapper">
-                            <div class="rental"><div class="rental-icon"><i class="fa-solid fa-gamepad"></i></div>15:00~15:30</div>
-                            <div class="rental"><div class="rental-icon"><i class="fa-solid fa-couch"></i></div>16:00~17:00</div>
+                            <div class="rental"><div class="rental-icon"><img class="place-icon" src="/src/assets/game.svg"></img></div>15:00~15:30</div>
+                            <div class="rental"><div class="rental-icon"><img class="place-icon" src="/src/assets/room.svg"></img></div>16:00~17:00</div>
                         </div>
                     </div>
+                    <div class="contour"></div>
+                    <div class="rental-wrapper">> 전체 출석현황
+                        <div class="attend-ratio-wrapper">
+                            <div id="attend-ratio"></div>
+                        </div>
+                    </div>
+                    <div class="contour"></div>
                 </div>
                 <div class="profile-container">
                     <div class="image-container"></div>

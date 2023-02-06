@@ -8,26 +8,39 @@ export default class rentalPage extends AbstractView {
     }
     async getHtml() {
         return `
-        ${pageTitleTamplate('공간대여 하실 건가요?')}
-        <div class="places-container">
-            <figure class="place-wrapper">
-                <img class="place-image" src="/src/assets/chair.svg"></img>
-                <figcaption class="place-name">휴식실</figcaption>
-            </figure>
-            <figure class="place-wrapper">
-                <img class="place-image" src="/src/assets/room.svg"></img>
-                <figcaption class="place-name">교실</figcaption>
-            </figure>
-            <figure class="place-wrapper">
-                <img class="place-image" src="/src/assets/soundless.svg"></img>
-                <figcaption class="place-name">방음부스</figcaption>
-            </figure>
-
-            
-            <figure class="place-wrapper">
-                <img class="place-image" src="/src/assets/game.svg"></img>
-                <figcaption class="place-name">플레이스테이션</figcaption>
-            </figure>
+        <div class="container Start">
+            <div class="main-wrapper">
+                <div class="title-wrapper Mini"><h1>DOROTHY</h1></div>
+                <div class="name-wrapper">
+                    ${pageTitleTamplate('공간대여 하실 건가요?')}
+                </div>
+                <div class="content-container">
+                </div>
+                <div class="mth-calendar-container">
+                    <div class="place-container">
+                        <figure class="place-wrapper">
+                            <img class="place-image" src="/src/assets/chair.svg"></img>
+                            <figcaption class="place-name">휴식실</figcaption>
+                        </figure>
+                        <figure class="place-wrapper">
+                            <img class="place-image" src="/src/assets/room.svg"></img>
+                            <figcaption class="place-name">교실</figcaption>
+                        </figure>
+                        <figure class="place-wrapper">
+                            <img class="place-image" src="/src/assets/soundless.svg"></img>
+                            <figcaption class="place-name">방음부스</figcaption>
+                        </figure>
+                        <figure class="place-wrapper">
+                            <img class="place-image" src="/src/assets/game.svg"></img>
+                            <figcaption class="place-name">플레이스테이션</figcaption>
+                        </figure>
+                        <figure class="place-wrapper">
+                            <img class="place-image" src="/src/assets/coffee.svg"></img>
+                            <figcaption class="place-name">커피메이커</figcaption>
+                        </figure>
+                    </div>
+                </div>
+            </div>
         </div>
         `;
     }

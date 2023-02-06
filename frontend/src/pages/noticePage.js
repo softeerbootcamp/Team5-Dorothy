@@ -10,7 +10,7 @@ export default class noticePage extends AbstractView {
             <div class="main-wrapper">
                 <div class="title-wrapper Mini"><h1>DOROTHY</h1></div>
                 <div class="name-wrapper">
-                    <h2>안녕하세요, 사용자님! 이곳은 공지페이지입니다</h2>
+                    <h2>공지사항</h2>
                 </div>
                 <div class="content-container">
                 </div>
