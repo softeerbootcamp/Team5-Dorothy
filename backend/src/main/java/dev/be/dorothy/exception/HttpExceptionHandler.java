@@ -15,4 +15,12 @@ public class HttpExceptionHandler {
                 .badRequest()
                 .body(body);
     }
+
+    @ExceptionHandler(InternalServerErrorException.class)
+    public ResponseEntity<CommonResponse> handle(InternalServerErrorException e) {
+        CommonResponse body = new CommonResponse(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage(), null);
+        return ResponseEntity
+                .internalServerError()
+                .body(body);
+    }
 }
