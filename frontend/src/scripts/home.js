@@ -7,6 +7,7 @@ function setHomeEvent() {
     container.addEventListener('click', (e) => {
         toggleLoginForm(e.target);
         toggleRegisterForm(e.target);
+        clickLoginButton(e);
     });
     loginPW.addEventListener('input', (e) => {
         showPassword(e);
@@ -52,4 +53,14 @@ const showPassword = (e) => {
     }
 };
 
+const clickLoginButton = (e) => {
+    if (!e.target.classList.includes('login')) return;
+    const container = document.querySelector('.home-container');
+    const loginForm = container.querySelector('.login-container');
+    const maintitle = container.querySelector('.title-wrapper');
+    loginForm.classList.toggle('On');
+    maintitle.classList.add('Mini');
+    document.body.querySelector('.hamburger').classList.add('show');
+    document.body.querySelector('.home-container').classList.add('Start');
+};
 export default setHomeEvent;

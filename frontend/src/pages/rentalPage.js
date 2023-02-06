@@ -1,4 +1,4 @@
-import AbstractView from './AbstractView.js';
+import AbstractView from './pageTemplate';
 import placeData from '../components/placeInfo.js';
 import { pageTitleTamplate } from '../components/pageTitle.js';
 

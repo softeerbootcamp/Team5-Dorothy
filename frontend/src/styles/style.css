@@ -1,11 +1,11 @@
-@import './attend.css';
+@import './attend.scss';
 @import './common.scss';
-@import './home.css';
-@import './joinin.css';
-@import './reset.css';
+@import './home.scss';
+@import './joinin.scss';
+@import './reset.scss';
 @import './rental.scss';
-@import './login.css';
-@import './main.css';
+@import './login.scss';
+@import './main.scss';
 
 .hidden {
     visibility: hidden;

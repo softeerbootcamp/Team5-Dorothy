@@ -7,7 +7,4 @@ export default class {
     async getHtml() {
         return '';
     }
-    async getScript() {
-        return;
-    }
 }

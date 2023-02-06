@@ -1,4 +1,4 @@
-import AbstractView from './AbstractView.js';
+import AbstractView from './pageTemplate.js';
 
 export default class attendPage extends AbstractView {
     constructor() {

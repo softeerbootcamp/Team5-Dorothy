@@ -79,11 +79,11 @@
     font-size: 1vw;
 }
 
-.login-input-wrapper > #LoginPassword {
+.login-input-wrapper > #login-password-wrapper {
     position: relative;
 }
 
-#LoginPassword > input {
+#login-password-wrapper > input {
     margin-top: 2.5vh;
     margin-bottom: 2.5vh;
     width: 30vw;

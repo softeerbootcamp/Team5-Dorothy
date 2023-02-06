@@ -1,4 +1,4 @@
-import AbstractView from './AbstractView.js';
+import AbstractView from './pageTemplate';
 import { pageTitleTamplate } from '../components/pageTitle.js';
 export default class rentalDetailPage extends AbstractView {
     // params 값 전달받기

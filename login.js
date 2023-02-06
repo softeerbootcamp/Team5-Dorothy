@@ -11,16 +11,6 @@ const loginbutton = document.body
   .querySelector(".LoginCnxt")
   .querySelector("button");
 
-loginbtn.addEventListener("click", (e) => {
-  btngroup.classList.toggle("Hidden");
-  loginform.classList.toggle("On");
-});
-
-loginx.addEventListener("click", (e) => {
-  btngroup.classList.toggle("Hidden");
-  loginform.classList.toggle("On");
-});
-
 loginpassword.addEventListener("input", (e) => {
   if (loginpwhide.classList.contains("show")) {
     return;
@@ -44,10 +34,10 @@ loginpwhide.addEventListener("mouseout", (e) => {
   loginpwshow.classList.toggle("show");
 });
 
-loginbutton.addEventListener("click", (e) => {
-  loginform.classList.toggle("On");
-  maintitle.classList.add("Mini");
-  document.body.querySelector(".hamburger").classList.add("show");
-  document.body.querySelector(".MainBox").classList.add("Start");
-  console.log(document.body.querySelector(".MainBox"));
-});
+// loginbutton.addEventListener("click", (e) => {
+//   loginform.classList.toggle("On");
+//   maintitle.classList.add("Mini");
+//   document.body.querySelector(".hamburger").classList.add("show");
+//   document.body.querySelector(".MainBox").classList.add("Start");
+//   console.log(document.body.querySelector(".MainBox"));
+// });
