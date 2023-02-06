@@ -5,6 +5,8 @@ import rentalDetailPage from './pages/rentalDetailPage.js';
 import attendPage from './pages/attendPage.js';
 import noticePage from './pages/noticePage.js';
 import trackPage from './pages/trackPage.js';
+import homeScript from './scripts/home.js';
+import eventdelegator from './main.js';
 
 const pathToRegex = (path) =>
     new RegExp('^' + path.replace(/\//g, '\\/').replace(/:\w+/g, '(.+)') + '$');
@@ -49,12 +51,13 @@ const router = async () => {
         (potentialMatch) => potentialMatch.result !== null,
     );
     const view = new match.route.view(getParams(match));
-    console.log(view);
     document.querySelector('#app').innerHTML = await view.getHtml();
+
+    eventdelegator(match.route.path);
 };
 
 document.addEventListener('DOMContentLoaded', () => {
-    router();
+    router(getParams(match));
 });
 
 window.addEventListener('popstate', router);

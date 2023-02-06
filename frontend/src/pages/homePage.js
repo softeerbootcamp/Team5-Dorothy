@@ -87,4 +87,9 @@ export default class homePage extends AbstractView {
         </div>
         `;
     }
+    async getScript() {
+        const loginbtn = document.body.querySelector('.login-btn');
+        console.log('click');
+        loginbtn.addEventListener('click', console.log('home'));
+    }
 }
