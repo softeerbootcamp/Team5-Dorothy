@@ -35,7 +35,7 @@ public class MemberControllerTest {
     ObjectMapper objectMapper = new ObjectMapper();
 
     @Test
-    @DisplayName("로그인 성공 시, 정상적으로 LoginReqDto 반환하는지 테스트")
+    @DisplayName("로그인 성공 시, 정상적으로 MemberReqDto 반환하는지 테스트")
     void login() throws Exception {
         // given
         LoginReqDto loginReqDto = new LoginReqDto();
