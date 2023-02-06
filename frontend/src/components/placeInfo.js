@@ -19,8 +19,8 @@ export default [
     },
     {
         id: 4,
-        name: '휴게실',
+        name: '휴식실',
         img: '/src/assets/chair.svg',
-        alt: '휴게실',
+        alt: '휴식실',
     },
 ];
