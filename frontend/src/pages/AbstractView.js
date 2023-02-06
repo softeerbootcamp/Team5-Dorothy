@@ -4,8 +4,10 @@ export default class {
         console.log(this.params);
     }
 
-    // 뿌려질 Html
     async getHtml() {
         return '';
+    }
+    async getScript() {
+        return;
     }
 }
