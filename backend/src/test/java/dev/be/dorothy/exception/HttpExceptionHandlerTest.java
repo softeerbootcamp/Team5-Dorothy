@@ -31,4 +31,20 @@ public class HttpExceptionHandlerTest {
                 () -> assertThat(Objects.requireNonNull(response.getBody()).getMessage()).isEqualTo("이것은 배드 리퀘스트야")
         );
     }
+
+    @Test
+    @DisplayName("InternalServerError handle Test")
+    void internalServerError() {
+        // given
+        InternalServerErrorException exception = new InternalServerErrorException("서버에서 알 수 없는 에러가 발생했단말이야,,");
+
+        // when
+        ResponseEntity<CommonResponse> response = handler.handle(exception);
+
+        // then
+        assertAll(
+                () -> assertThat(response.getStatusCode()).isEqualTo(HttpStatus.INTERNAL_SERVER_ERROR),
+                () -> assertThat(Objects.requireNonNull(response.getBody()).getMessage()).isEqualTo("서버에서 알 수 없는 에러가 발생했단말이야,,")
+        );
+    }
 }
