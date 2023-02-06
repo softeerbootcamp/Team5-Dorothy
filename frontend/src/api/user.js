@@ -1,6 +1,4 @@
 // 로그아웃
-import UserService from './services/userservice';
-
 export const Logout = () => {
     alert('세션 만료, 다시 로그인해주세요.');
     UserService.logout();

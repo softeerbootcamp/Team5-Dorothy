@@ -1,9 +1,8 @@
-import homeScript from './scripts/home.js';
-
+import setHomeEvent from './scripts/home.js';
 const eventdelegator = (root) => {
     switch (root) {
         case '/':
-            homeScript();
+            setHomeEvent();
             break;
         case '/main':
             console.log('main');

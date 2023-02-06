@@ -5,7 +5,6 @@ import rentalDetailPage from './pages/rentalDetailPage.js';
 import attendPage from './pages/attendPage.js';
 import noticePage from './pages/noticePage.js';
 import trackPage from './pages/trackPage.js';
-import homeScript from './scripts/home.js';
 import eventdelegator from './main.js';
 
 const pathToRegex = (path) =>
@@ -50,9 +49,9 @@ const router = async () => {
     let match = potentialMatches.find(
         (potentialMatch) => potentialMatch.result !== null,
     );
+
     const view = new match.route.view(getParams(match));
     document.querySelector('#app').innerHTML = await view.getHtml();
-
     eventdelegator(match.route.path);
 };
 
