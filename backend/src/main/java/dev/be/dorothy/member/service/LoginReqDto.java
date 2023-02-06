@@ -1,5 +1,7 @@
 package dev.be.dorothy.member.service;
 
+import java.util.Objects;
+
 public class LoginReqDto {
     private String memberId;
     private String password;
@@ -18,5 +20,18 @@ public class LoginReqDto {
 
     public String getPassword() {
         return password;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        LoginReqDto that = (LoginReqDto) o;
+        return Objects.equals(memberId, that.memberId) && Objects.equals(password, that.password);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(memberId, password);
     }
 }
