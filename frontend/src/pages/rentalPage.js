@@ -16,7 +16,7 @@ export default class rentalPage extends AbstractView {
                 </div>
                 <div class="content-container">
                 </div>
-                <div class="mth-calendar-container">
+                <section class="big-content-container">
                     <div class="place-container">
                         <figure class="place-wrapper">
                             <img class="place-image" src="/src/assets/chair.svg"></img>
@@ -38,8 +38,12 @@ export default class rentalPage extends AbstractView {
                             <img class="place-image" src="/src/assets/coffee.svg"></img>
                             <figcaption class="place-name">커피메이커</figcaption>
                         </figure>
+                        <figure class="place-wrapper">
+                            <img class="place-image" src="/src/assets/bookshelf.svg"></img>
+                            <figcaption class="place-name">전문서적</figcaption>
+                        </figure>
                     </div>
-                </div>
+                </section>
             </div>
         </div>
         `;

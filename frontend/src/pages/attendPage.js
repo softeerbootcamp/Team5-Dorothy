@@ -1,4 +1,5 @@
 import AbstractView from './AbstractView.js';
+import { pageTitleTamplate } from '../components/pageTitle.js';
 
 export default class attendPage extends AbstractView {
     constructor() {
@@ -10,14 +11,13 @@ export default class attendPage extends AbstractView {
             <div class="main-wrapper">
                 <div class="title-wrapper Mini"><h1>DOROTHY</h1></div>
                 <div class="name-wrapper">
-                    <h2>출석 체크</h2>
+                    ${pageTitleTamplate('월간 출석체크')}
                 </div>
                 <div class="content-container">
                 </div>
-                <div class="mth-calendar-container">
-                    <canvas class="attend-chart">
-                    </canvas>
-                </div>
+                <section class="big-content-container">
+                    
+                </section>
             </div>
         </div>
         `;

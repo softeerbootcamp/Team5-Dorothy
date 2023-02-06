@@ -1,9 +1,6 @@
 import AbstractView from './AbstractView.js';
 
 export default class mainPage extends AbstractView {
-    constructor() {
-        super();
-    }
     async getHtml() {
         return `
         <div class="container Start">
@@ -15,13 +12,13 @@ export default class mainPage extends AbstractView {
                 <div class="content-container">
                     <div class="attendance-wrapper"><span>> 내 출석현황</span>
                         <div class="calendar-wrapper">
-                            <div class="calendar"><div class="calendar-header">5<span class="day">Sun</span></div></div>
-                            <div class="calendar"><div class="calendar-header">6<span class="day">Mon</span></div></div>
-                            <div class="calendar"><div class="calendar-header">7<span class="day">Tue</span></div></div>
-                            <div class="calendar"><div class="calendar-header">8<span class="day">Wed</span></div></div>
-                            <div class="calendar"><div class="calendar-header">9<span class="day">Thu</span></div></div>
-                            <div class="calendar"><div class="calendar-header">10<span class="day">Fri</span></div></div>
-                            <div class="calendar"><div class="calendar-header">11<span class="day">Sat</span></div></div>
+                            <article class="calendar"><div class="calendar-header">5<span class="day">Sun</span></div></article>
+                            <article class="calendar"><div class="calendar-header">6<span class="day">Mon</span></div></article>
+                            <article class="calendar"><div class="calendar-header">7<span class="day">Tue</span></div></article>
+                            <article class="calendar"><div class="calendar-header">8<span class="day">Wed</span></div></article>
+                            <article class="calendar"><div class="calendar-header">9<span class="day">Thu</span></div></article>
+                            <article class="calendar"><div class="calendar-header">10<span class="day">Fri</span></div></article>
+                            <article class="calendar"><div class="calendar-header">11<span class="day">Sat</span></div></article>
                         </div>
                     </div>
                     <div class="contour"></div>
@@ -34,6 +31,9 @@ export default class mainPage extends AbstractView {
                     <div class="contour"></div>
                     <div class="chart-wrapper">> 전체 출석현황
                         <div class="attend-ratio-wrapper">
+                            <div class="block"></div>
+                            <div class="block"></div>
+                            <div class="block"></div>
                         </div>
                         <ul class="legend">
                             <li>출석</li>
@@ -42,8 +42,8 @@ export default class mainPage extends AbstractView {
                         </ul>
                     </div>
                 </div>
-                <div class="profile-container">
-                    <div class="image-container"></div>
+                <section class="profile-container">
+                    <div class="image-container"><img src="" alt="my-profile"></div>
                     <div class="department-container">
                         <select class="track-container">
                             <option value="1">현대자동차그룹 소프티어 부트캠프 2023</option>
@@ -52,7 +52,7 @@ export default class mainPage extends AbstractView {
                         </select>
                         <div class="team-container">웹 프론트엔드</div>
                     </div>
-                </div>
+                </section>
             </div>
         </div>
         `;

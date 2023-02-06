@@ -29,4 +29,10 @@ export default [
         img: '/src/assets/coffee.svg',
         alt: '커피머신',
     },
+    {
+        id: 6,
+        name: '전문서적',
+        img: '/src/assets/bookshelf.svg',
+        alt: '전문서적',
+    },
 ];

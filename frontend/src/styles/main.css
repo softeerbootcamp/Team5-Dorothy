@@ -38,11 +38,19 @@
 }
 
 .image-container {
+    display: flex;
     width: 196px;
     height: 196px;
-    background-color: aqua;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
     border-radius: 98px;
-    box-shadow: inset 0 1vh 0.25vh rgba(0, 0, 0, 0.25);
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.25);
+}
+
+.image-container > img {
+    width: 196px;
+    pointer-events: none;
 }
 
 .department-container {

@@ -1,21 +1,20 @@
 import AbstractView from './AbstractView.js';
+import { pageTitleTamplate } from '../components/pageTitle.js';
 
 export default class noticePage extends AbstractView {
-    constructor() {
-        super();
-    }
     async getHtml() {
         return `
         <div class="container Start">
             <div class="main-wrapper">
                 <div class="title-wrapper Mini"><h1>DOROTHY</h1></div>
                 <div class="name-wrapper">
-                    <h2>공지사항</h2>
+                    ${pageTitleTamplate('공지사항')}
                 </div>
                 <div class="content-container">
                 </div>
-                <div class="mth-calendar-container">
-                </div>
+                <section class="big-content-container">
+                    
+                </section>
             </div>
         </div>
         `;
