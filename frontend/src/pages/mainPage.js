@@ -32,12 +32,15 @@ export default class mainPage extends AbstractView {
                         </div>
                     </div>
                     <div class="contour"></div>
-                    <div class="rental-wrapper">> 전체 출석현황
+                    <div class="chart-wrapper">> 전체 출석현황
                         <div class="attend-ratio-wrapper">
-                            <div id="attend-ratio"></div>
                         </div>
+                        <ul class="legend">
+                            <li>출석</li>
+                            <li>지각</li>
+                            <li>결석</li>
+                        </ul>
                     </div>
-                    <div class="contour"></div>
                 </div>
                 <div class="profile-container">
                     <div class="image-container"></div>
