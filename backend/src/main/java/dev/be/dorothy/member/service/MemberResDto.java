@@ -4,6 +4,7 @@ import dev.be.dorothy.member.Member;
 
 public class MemberResDto {
     private final Long idx;
+    private final String memberId;
     private final String name;
     private final String email;
     private final String image;
@@ -11,8 +12,9 @@ public class MemberResDto {
     private final String updatedAt;
     private final String role;
 
-    private MemberResDto(Long idx, String name, String email, String image, String createdAt, String updatedAt, String role) {
+    private MemberResDto(Long idx, String memberId, String name, String email, String image, String createdAt, String updatedAt, String role) {
         this.idx = idx;
+        this.memberId = memberId;
         this.name = name;
         this.email = email;
         this.image = image;
@@ -24,6 +26,7 @@ public class MemberResDto {
     public static MemberResDto from(Member member) {
         return new MemberResDto(
                 member.getIdx(),
+                member.getMemberId(),
                 member.getName(),
                 member.getEmail(),
                 member.getImage(),
@@ -35,6 +38,10 @@ public class MemberResDto {
 
     public Long getIdx() {
         return idx;
+    }
+
+    public String getMemberId() {
+        return memberId;
     }
 
     public String getName() {

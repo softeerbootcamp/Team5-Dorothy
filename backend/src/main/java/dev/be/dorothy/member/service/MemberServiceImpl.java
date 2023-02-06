@@ -42,4 +42,9 @@ public class MemberServiceImpl implements MemberService {
         Member member = optionalMember.orElseThrow(InternalServerErrorException::new);
         return MemberResDto.from(member);
     }
+
+    @Override
+    public MemberResDto login(LoginReqDto loginReqDto) {
+        return null;
+    }
 }
