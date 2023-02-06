@@ -1,6 +1,7 @@
 package dev.be.dorothy.member.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import dev.be.dorothy.exception.BadRequestException;
 import dev.be.dorothy.member.Member;
 import dev.be.dorothy.member.MemberRole;
 import dev.be.dorothy.member.service.LoginReqDto;
@@ -56,5 +57,26 @@ public class MemberControllerTest {
                 .andExpect(jsonPath("$.data.memberId").value("sol"))
                 .andExpect(jsonPath("$.data.name").value("sol"))
                 .andExpect(jsonPath("$.data.role").value("MEMBER"));
+    }
+
+    @Test
+    @DisplayName("로그인에 실패하여 발생하는 예외를 정상적으로 처리하는지 테스트")
+    void loginFail() throws Exception {
+        // given
+        LoginReqDto loginReqDto = new LoginReqDto();
+        loginReqDto.setMemberId("sol"); loginReqDto.setPassword("1234");
+        String content = objectMapper.writeValueAsString(loginReqDto);
+        given(memberService.login(loginReqDto)).willThrow(new BadRequestException("입력 정보가 올바르지 않습니다."));
+
+        // when
+        ResultActions perform = mockMvc.perform(
+                post("/member/login")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(content));
+
+        // then
+        perform
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.message").value("입력 정보가 올바르지 않습니다."));
     }
 }
