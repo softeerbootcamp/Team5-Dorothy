@@ -20,11 +20,11 @@ public class SecurityFilter implements Filter {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         HttpServletRequest req = (HttpServletRequest) request;
-        HttpSession session = req.getSession(false);
-        if(session == null){
+        HttpSession sessionId = req.getSession(false);
+        if(sessionId == null){
             throw new BadRequestException("세션이 존재하지 않습니다.");
         }
-        doFilter(request, response, chain);
+        chain.doFilter(request, response);
     }
 
     @Override
