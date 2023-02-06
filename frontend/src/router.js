@@ -29,14 +29,14 @@ const navigateTo = (url) => {
 
 const router = async () => {
     const routes = [
-        { path: '/', view: homePage, script: homePage },
-        { path: '/main', view: mainPage, script: homePage },
-        { path: '/track', view: trackPage, script: homePage },
-        { path: '/rental', view: rentalPage, script: homePage },
-        { path: '/rental/:id', view: rentalDetailPage, script: homePage },
-        { path: '/attend', view: attendPage, script: homePage },
-        { path: '/notice', view: noticePage, script: homePage },
-        { path: '/track', view: trackPage, script: homePage },
+        { path: '/', view: homePage },
+        { path: '/main', view: mainPage },
+        { path: '/track', view: trackPage },
+        { path: '/rental', view: rentalPage },
+        { path: '/rental/:id', view: rentalDetailPage },
+        { path: '/attend', view: attendPage },
+        { path: '/notice', view: noticePage },
+        { path: '/track', view: trackPage },
     ];
     const potentialMatches = routes.map((route) => {
         return {
@@ -49,10 +49,8 @@ const router = async () => {
         (potentialMatch) => potentialMatch.result !== null,
     );
     const view = new match.route.view(getParams(match));
-    const script = new match.route.script(getParams(match));
     console.log(view);
     document.querySelector('#app').innerHTML = await view.getHtml();
-    match.route.script();
 };
 
 document.addEventListener('DOMContentLoaded', () => {
