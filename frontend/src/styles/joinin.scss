@@ -74,28 +74,7 @@
     font-size: 1vw;
 }
 
-.join-input-wrapper > .fa-eye {
-    position: absolute;
-    left: 25vw;
-    top: 2.5vh;
-    color: #b8b8b8;
-    visibility: hidden;
-}
-
-.join-input-wrapper > .fa-eye.show {
-    visibility: visible;
-}
-
-.join-input-wrapper > .fa-eye-slash {
-    position: absolute;
-    left: 25vw;
-    top: 2.5vh;
-    color: #b8b8b8;
-    visibility: hidden;
-    user-select: none;
-}
-
-.join-input-wrapper > .fa-eye-slash.show {
+.show {
     visibility: visible;
 }
 

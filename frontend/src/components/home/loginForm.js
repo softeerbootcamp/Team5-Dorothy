@@ -10,7 +10,7 @@ const loginForm = () => {
             <input type="text" />
             <h3>비밀번호</h3>
             <div class="login-password-wrapper">
-                <input class="login-password-input" type="password"/>
+                <input class="login-password-input password-input" type="password"/>
                 <i class="fa-solid fa-eye hidden"></i>
                 <i class="fa-solid fa-eye-slash hidden"></i>
             </div>

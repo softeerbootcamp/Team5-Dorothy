@@ -3,15 +3,14 @@ import { navigateTo } from '../router';
 function setHomeEvent() {
     const container = document.querySelector('.home-container');
     const hamburgerbtn = document.querySelector('.hamburger');
-    const loginPW = container.querySelector('.login-password-input');
-    // const loginpwhide = document.querySelectorAll('.fa-eye-slash');
-    const loginpwshow = document.querySelector('.fa-eye');
+    const passwordInputs = container.querySelectorAll('.password-input');
+    const hidePasswordEyeIcons = document.querySelectorAll('.fa-eye-slash');
+    const showPasswordEyeIcons = document.querySelectorAll('.fa-eye');
     const joinemail = document.querySelector('.join-email-input');
     const registerPassword = document.querySelector('.join-password-input');
     const registerPasswordCheck = document.querySelector(
         '.join-passwordcheck-input',
     );
-    const registerPasswordShow = document.querySelector('.join-password-show');
 
     hamburgerbtn.classList.add('hidden');
 
@@ -19,15 +18,26 @@ function setHomeEvent() {
         toggleLoginForm(e.target);
         toggleRegisterForm(e.target);
         clickLoginButton(e.target);
+        clickRegisterButton(e.target);
+        linkToLogin(e.target);
+        linkToRegister(e.target);
     });
-    loginPW.addEventListener('input', (e) => {
-        showPassword(e.target);
+
+    passwordInputs.forEach((passwordInput) => {
+        passwordInput.addEventListener('input', (e) => {
+            showEyeIcon(e.target);
+        });
     });
-    loginpwshow.addEventListener('mouseover', (e) => {
-        showPasswordValue(e.target);
+
+    showPasswordEyeIcons.forEach((eye) => {
+        eye.addEventListener('mouseover', (e) => {
+            showPasswordValue(e.target);
+        });
     });
-    loginpwshow.addEventListener('mouseout', (e) => {
-        hidePasswordValue(e.target);
+    showPasswordEyeIcons.forEach((eye) => {
+        eye.addEventListener('mouseout', (e) => {
+            hidePasswordValue(e.target);
+        });
     });
     joinemail.addEventListener('input', (e) => {
         validateJoinEmail(e);
@@ -38,8 +48,28 @@ function setHomeEvent() {
     registerPasswordCheck.addEventListener('input', (e) => {
         validateJoinPasswordCheck(e);
     });
-    registerPasswordShow.addEventListener('mouseover', (e) => {});
 }
+
+const linkToLogin = (target) => {
+    if (!target.classList.contains('link-to-login')) return;
+    const loginForm = document.querySelector('.login-container');
+    const joinForm = document.querySelector('.join-container');
+    loginForm.classList.toggle('On');
+    joinForm.classList.toggle('On');
+};
+
+const linkToRegister = (target) => {
+    if (!target.classList.contains('link-to-join')) return;
+    const loginForm = document.querySelector('.login-container');
+    const joinForm = document.querySelector('.join-container');
+    joinForm.classList.toggle('On');
+    loginForm.classList.toggle('On');
+};
+
+const clickRegisterButton = (target) => {
+    if (!target.classList.contains('register-btn')) return;
+    navigateTo('/track');
+};
 
 const validateJoinPasswordCheck = (e) => {
     const passwordreq =
@@ -68,8 +98,7 @@ const validateJoinPasswordCheck = (e) => {
 
 const validateJoinEmail = (e) => {
     const joinemail = document.querySelector('#join-email-wrapper');
-    const emailreq =
-        /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+    const emailreq = /^[_a-z0-9-]+(.[_a-z0-9-]+)*@(?:\\w+\\.)+\\w+$/i;
     joinemail.querySelector('.fa-solid').style.backgroundColor = emailreq.test(
         e.target.value,
     )
@@ -103,9 +132,9 @@ const toggleRegisterForm = (target) => {
     btnWrapper.classList.toggle('Hidden');
 };
 
-const showPassword = (target) => {
-    const loginpwhide = document.querySelector('.fa-eye-slash');
-    const loginpwshow = document.querySelector('.fa-eye');
+const showEyeIcon = (target) => {
+    const loginpwhide = target.closest('div').querySelector('.fa-eye-slash');
+    const loginpwshow = target.closest('div').querySelector('.fa-eye');
     if (target.value.length > 0) {
         loginpwshow.classList.add('show');
         loginpwshow.classList.remove('hidden');
@@ -117,15 +146,16 @@ const showPassword = (target) => {
 };
 
 const showPasswordValue = (target) => {
-    const password = target.closest('div').querySelector('input');
-    const loginPW = document.querySelector('.login-password-input');
-    loginPW.type = 'text';
-    target.classList.remove('show');
+    const passwordWrapper = target.closest('div');
+    const passwordInput = passwordWrapper.querySelector('input');
+    passwordInput.type = 'text';
+    target.classList.add('show');
 };
 
 const hidePasswordValue = (target) => {
-    const loginPW = document.querySelector('.login-password-input');
-    loginPW.type = 'password';
+    const passwordWrapper = target.closest('div');
+    const passwordInput = passwordWrapper.querySelector('input');
+    passwordInput.type = 'password';
     target.classList.toggle('show');
 };
 
