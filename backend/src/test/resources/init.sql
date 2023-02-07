@@ -1,4 +1,6 @@
-CREATE TABLE IF NOT EXISTS `test`.`member`
+USE `test`;
+
+CREATE TABLE IF NOT EXISTS `member`
 (
     `idx`        INT                 NOT NULL AUTO_INCREMENT,
     `member_id`  VARCHAR(100) UNIQUE NOT NULL,
@@ -33,10 +35,10 @@ CREATE TABLE `track_member`
     `is_deleted` BIT(1)       NOT NULL DEFAULT 0 COMMENT '0: not deleted, 1: deleted'
 );
 
-ALTER TABLE track_member
+ALTER TABLE `track_member`
     ADD CONSTRAINT `FK_Member_TO_TrackMember_1` FOREIGN KEY (`member_idx`)
         REFERENCES `member` (`idx`);
 
-ALTER TABLE track_member
+ALTER TABLE `track_member`
     ADD CONSTRAINT `FK_Track_TO_TrackMember_1` FOREIGN KEY (`track_idx`)
-        REFERENCES track (`idx`);
+        REFERENCES `track` (`idx`);
