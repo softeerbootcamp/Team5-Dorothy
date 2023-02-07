@@ -1,29 +1,27 @@
 package dev.be.dorothy.auth;
 
-import dev.be.dorothy.exception.BadRequestException;
+import dev.be.dorothy.auth.authorization.HttpSecurity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.core.annotation.Order;
-import org.springframework.stereotype.Component;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@Component
-@Order(1)
-public class SecurityFilter implements Filter {
+public class AuthorizationFilter implements Filter {
 
-    private static final Logger logger = LoggerFactory.getLogger(SecurityFilter.class);
+    private static final Logger logger = LoggerFactory.getLogger(AuthenticationFilter.class);
+    private final HttpSecurity httpSecurity;
+
+    public AuthorizationFilter(HttpSecurity httpSecurity) {
+        this.httpSecurity = httpSecurity;
+    }
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         HttpServletRequest req = (HttpServletRequest) request;
-        HttpSession sessionId = req.getSession(false);
-        if(sessionId == null){
-            throw new BadRequestException("세션이 존재하지 않습니다.");
-        }
+        String url = req.getRequestURI();
+        httpSecurity.validateRequest((MemberDetail)ContextHolder.getContext().getPrincipal(), url);
         chain.doFilter(request, response);
     }
 
