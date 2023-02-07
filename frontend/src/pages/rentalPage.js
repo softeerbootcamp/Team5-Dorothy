@@ -3,9 +3,6 @@ import placeData from '../components/placeInfo.js';
 import { pageTitleTamplate } from '../components/pageTitle.js';
 
 export default class rentalPage extends AbstractView {
-    constructor() {
-        super();
-    }
     async getHtml() {
         return `
         <div class="container Start">

@@ -12,13 +12,13 @@ export default class mainPage extends AbstractView {
                 <div class="content-container">
                     <div class="attendance-wrapper"><span>> 내 출석현황</span>
                         <div class="calendar-wrapper">
-                            <article class="calendar"><div class="calendar-header">5<span class="day">Sun</span></div></article>
-                            <article class="calendar"><div class="calendar-header">6<span class="day">Mon</span></div></article>
-                            <article class="calendar"><div class="calendar-header">7<span class="day">Tue</span></div></article>
-                            <article class="calendar"><div class="calendar-header">8<span class="day">Wed</span></div></article>
-                            <article class="calendar"><div class="calendar-header">9<span class="day">Thu</span></div></article>
-                            <article class="calendar"><div class="calendar-header">10<span class="day">Fri</span></div></article>
-                            <article class="calendar"><div class="calendar-header">11<span class="day">Sat</span></div></article>
+                            <article class="calendar"><div class="calendar-head">5<span class="day">Sun</span></div></article>
+                            <article class="calendar"><div class="calendar-head">6<span class="day">Mon</span></div></article>
+                            <article class="calendar"><div class="calendar-head">7<span class="day">Tue</span></div></article>
+                            <article class="calendar"><div class="calendar-head">8<span class="day">Wed</span></div></article>
+                            <article class="calendar"><div class="calendar-head">9<span class="day">Thu</span></div></article>
+                            <article class="calendar"><div class="calendar-head">10<span class="day">Fri</span></div></article>
+                            <article class="calendar"><div class="calendar-head">11<span class="day">Sat</span></div></article>
                         </div>
                     </div>
                     <div class="contour"></div>

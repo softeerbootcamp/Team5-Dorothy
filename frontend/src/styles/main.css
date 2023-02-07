@@ -115,11 +115,11 @@
     margin-bottom: 0.5vh;
 }
 
-.calendar-header {
+.calendar-head {
     display: flex;
 }
 
-.calendar-header .day {
+.calendar-head .day {
     margin-left: auto;
 }
 
