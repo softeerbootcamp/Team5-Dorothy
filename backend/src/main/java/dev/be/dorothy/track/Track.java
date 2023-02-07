@@ -30,10 +30,14 @@ public class Track {
     }
 
     @MappedCollection(idColumn = "track_idx", keyColumn = "idx")
-    private final List<TrackMember> trackMembers = new ArrayList<>();
+    private List<TrackMember> trackMembers = new ArrayList<>();
 
     @Transient
     private final List<Member> members = new ArrayList<>();
+
+    private void setTrackMembers(List<TrackMember> trackMembers) {
+        this.trackMembers = trackMembers;
+    }
 
     public void addTrackMember(Member member) {
         trackMembers.add(new TrackMember(member.getIdx(), member.getRole(), LocalDateTime.now(), false));
