@@ -47,8 +47,8 @@ public class TrackRepositoryTest {
 
     @AfterAll
     void clear() {
-        memberRepository.deleteAll();
         trackRepository.deleteAll();
+        memberRepository.deleteAll();
     }
 
     @Test
