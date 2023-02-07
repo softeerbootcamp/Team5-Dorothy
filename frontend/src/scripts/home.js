@@ -2,17 +2,24 @@ function setHomeEvent() {
     const container = document.querySelector('.home-container');
     const hamburgerbtn = document.querySelector('.hamburger');
     const loginPW = container.querySelector('.login-password-input');
+    const loginpwhide = document.querySelectorAll('.fa-eye-slash');
+    const loginpwshow = document.querySelector('.fa-eye');
+
     hamburgerbtn.classList.add('hidden');
 
     container.addEventListener('click', (e) => {
         toggleLoginForm(e.target);
         toggleRegisterForm(e.target);
-        // clickLoginButton(e);
-        console.log(e.target);
+        // clickLoginButton(e.target);
     });
     loginPW.addEventListener('input', (e) => {
-        showPassword(e);
-        console.log(e.target);
+        showPassword(e.target);
+    });
+    loginpwshow.addEventListener('mouseover', (e) => {
+        showPasswordValue(e.target);
+    });
+    loginpwshow.addEventListener('mouseout', (e) => {
+        hidePasswordValue(e.target);
     });
 }
 
@@ -42,10 +49,10 @@ const toggleRegisterForm = (target) => {
     btnWrapper.classList.toggle('Hidden');
 };
 
-const showPassword = (e) => {
+const showPassword = (target) => {
     const loginpwhide = document.querySelector('.fa-eye-slash');
     const loginpwshow = document.querySelector('.fa-eye');
-    if (e.target.value.length > 0) {
+    if (target.value.length > 0) {
         loginpwshow.classList.add('show');
         loginpwshow.classList.remove('hidden');
     } else {
@@ -53,10 +60,23 @@ const showPassword = (e) => {
         loginpwshow.classList.remove('show');
         loginpwhide.classList.remove('show');
     }
+    loginpwhide;
 };
 
-// const clickLoginButton = (e) => {
-//     if (!e.target.classList.includes('login')) return;
+const showPasswordValue = (target) => {
+    const loginPW = document.querySelector('.login-password-input');
+    loginPW.type = 'text';
+    target.classList.remove('show');
+};
+
+const hidePasswordValue = (target) => {
+    const loginPW = document.querySelector('.login-password-input');
+    loginPW.type = 'password';
+    target.classList.toggle('show');
+};
+
+// const clickLoginButton = (target) => {
+//     if (!target.classList.includes('login-btn')) return;
 //     const container = document.querySelector('.home-container');
 //     const loginForm = container.querySelector('.login-container');
 //     const maintitle = container.querySelector('.title-wrapper');

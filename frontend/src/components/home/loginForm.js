@@ -16,7 +16,7 @@ const loginForm = () => {
             </div>
         </div>
         <div class="login-btn-wrapper">
-            <button="login">로그인하기</button>
+            <button="login-btn">로그인하기</button>
             <div class="login-txt-wrapper">
                 <span>아직 회원이 아니신가요?</span>
                 <span class="link-to-join">회원가입 하기 ></span>
