@@ -1,13 +1,9 @@
 package dev.be.dorothy.member.service;
 
-import dev.be.dorothy.exception.InternalServerErrorException;
 import dev.be.dorothy.member.Member;
 import dev.be.dorothy.member.MemberRole;
 import dev.be.dorothy.member.repository.MemberRepository;
 import org.springframework.stereotype.Service;
-
-import java.time.LocalDateTime;
-import java.util.Optional;
 
 @Service
 public class MemberServiceImpl implements MemberService {
@@ -26,20 +22,16 @@ public class MemberServiceImpl implements MemberService {
         memberSignUpValidator.validateId(signUpReqDto.getMemberId());
         memberSignUpValidator.validateEmailRegex(signUpReqDto.getEmail());
         memberSignUpValidator.validatePassword(signUpReqDto.getPassword(), signUpReqDto.getPasswordCheck());
-        memberRepository.insert(
+
+        Member member = Member.of(
                 signUpReqDto.getMemberId(),
                 passwordEncryptor.encrypt(signUpReqDto.getPassword()),
                 signUpReqDto.getName(),
                 signUpReqDto.getEmail(),
-                "",
-                LocalDateTime.now().toString(),
-                LocalDateTime.now().toString(),
-                false,
-                MemberRole.MEMBER.name()
+                MemberRole.MEMBER
         );
+        member = memberRepository.save(member);
 
-        Optional<Member> optionalMember = memberRepository.findByMemberId(signUpReqDto.getMemberId());
-        Member member = optionalMember.orElseThrow(InternalServerErrorException::new);
         return MemberResDto.from(member);
     }
 
