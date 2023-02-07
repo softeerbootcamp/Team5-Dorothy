@@ -39,7 +39,7 @@ const registerForm = () => {
         </div>
     </div>
     <div class="join-btn-wrapper">
-        <button disabled="true">회원가입하기</button>
+        <button disabled="true" class='register-btn'>회원가입하기</button>
         <div class="join-txt-wrapper">
             <span>이미 회원이신가요?</span>
             <span class="link-to-login">로그인 하기 ></span>

@@ -11,17 +11,18 @@ const loginbutton = document.body
   .querySelector(".LoginCnxt")
   .querySelector("button");
 
-loginpassword.addEventListener("input", (e) => {
-  if (loginpwhide.classList.contains("show")) {
-    return;
-  }
-  if (e.target.value.length > 0) {
-    loginpwshow.classList.add("show");
-  } else {
-    loginpwshow.classList.remove("show");
-    loginpwhide.classList.remove("show");
-  }
-});
+// loginpassword.addEventListener("input", (e) => {
+//   if (loginpwhide.classList.contains("show")) {
+//     return;
+//   }
+//   if (e.target.value.length > 0) {
+//     loginpwshow.classList.add("show");
+//   } else {
+//     loginpwshow.classList.remove("show");
+//     loginpwhide.classList.remove("show");
+//   }
+// });
+
 loginpwshow.addEventListener("mouseover", (e) => {
   loginpassword.type = "text";
   e.target.classList.toggle("show");

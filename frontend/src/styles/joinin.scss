@@ -1,4 +1,4 @@
-.join-btn {
+.home-join-btn {
     width: 10vw;
     height: 6vh;
     background-color: transparent;
@@ -9,16 +9,6 @@
     font-size: large;
     cursor: pointer;
     border-radius: 1vw;
-}
-
-.join-btn:hover {
-    transition: all 0.5s;
-    color: #000;
-    background-color: #fff;
-}
-
-.join-btn.hide {
-    visibility: hidden;
 }
 
 .join-container {

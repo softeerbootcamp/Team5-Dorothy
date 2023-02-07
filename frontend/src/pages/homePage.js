@@ -13,8 +13,8 @@ export default class homePage extends AbstractView {
             <div class="main-wrapper">
               <div class="title-wrapper"><h1>DOROTHY</h1></div>
               <div class="btn-wrapper">
-                <button class="login-btn">로그인</button>
-                <button class="join-btn">회원가입</button>
+                <button class="home-login-btn home-btn">로그인</button>
+                <button class="home-join-btn home-btn">회원가입</button>
               </div>
             </div>
           </div>

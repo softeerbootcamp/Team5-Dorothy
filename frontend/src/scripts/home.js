@@ -7,10 +7,12 @@ function setHomeEvent() {
     container.addEventListener('click', (e) => {
         toggleLoginForm(e.target);
         toggleRegisterForm(e.target);
-        clickLoginButton(e);
+        // clickLoginButton(e);
+        console.log(e.target);
     });
     loginPW.addEventListener('input', (e) => {
         showPassword(e);
+        console.log(e.target);
     });
 }
 
@@ -42,25 +44,26 @@ const toggleRegisterForm = (target) => {
 
 const showPassword = (e) => {
     const loginpwhide = document.querySelector('.fa-eye-slash');
-    if (loginpwhide.classList.contains('show')) {
-        return;
-    }
+    const loginpwshow = document.querySelector('.fa-eye');
     if (e.target.value.length > 0) {
         loginpwshow.classList.add('show');
+        loginpwshow.classList.remove('hidden');
     } else {
+        loginpwshow.classList.add('hidden');
         loginpwshow.classList.remove('show');
         loginpwhide.classList.remove('show');
     }
 };
 
-const clickLoginButton = (e) => {
-    if (!e.target.classList.includes('login')) return;
-    const container = document.querySelector('.home-container');
-    const loginForm = container.querySelector('.login-container');
-    const maintitle = container.querySelector('.title-wrapper');
-    loginForm.classList.toggle('On');
-    maintitle.classList.add('Mini');
-    document.body.querySelector('.hamburger').classList.add('show');
-    document.body.querySelector('.home-container').classList.add('Start');
-};
+// const clickLoginButton = (e) => {
+//     if (!e.target.classList.includes('login')) return;
+//     const container = document.querySelector('.home-container');
+//     const loginForm = container.querySelector('.login-container');
+//     const maintitle = container.querySelector('.title-wrapper');
+//     loginForm.classList.toggle('On');
+//     maintitle.classList.add('Mini');
+//     document.body.querySelector('.hamburger').classList.add('show');
+//     document.body.querySelector('.home-container').classList.add('Start');
+// };
+
 export default setHomeEvent;

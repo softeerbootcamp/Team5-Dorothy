@@ -1,4 +1,4 @@
-.login-btn {
+.home-login-btn {
     width: 10vw;
     height: 6vh;
     background-color: transparent;
@@ -11,14 +11,10 @@
     border-radius: 1vw;
 }
 
-.login-btn:hover {
+.home-btn:hover {
     transition: all 0.5s;
     color: #000;
     background-color: #fff;
-}
-
-.login-btn.hide {
-    visibility: hidden;
 }
 
 .login-container {
@@ -79,11 +75,11 @@
     font-size: 1vw;
 }
 
-.login-input-wrapper > #login-password-wrapper {
+.login-input-wrapper > .login-password-wrapper {
     position: relative;
 }
 
-#login-password-wrapper > input {
+.login-password-wrapper > input {
     margin-top: 2.5vh;
     margin-bottom: 2.5vh;
     width: 30vw;
@@ -103,30 +99,25 @@
     font-size: 1vw;
 }
 
-#LoginPassword > .fa-eye {
+.login-password-wrapper > .fa-eye {
+    position: absolute;
+    left: 28vw;
+    top: 3.5vh;
+    color: #b8b8b8;
+    cursor: pointer;
+}
+
+.show {
+    visibility: visible;
+}
+
+.login-password-wrapper > .fa-eye-slash {
     position: absolute;
     left: 28vw;
     top: 3.5vh;
     color: #b8b8b8;
     cursor: pointer;
     visibility: hidden;
-}
-
-#LoginPassword > .fa-eye.show {
-    visibility: visible;
-}
-
-#LoginPassword > .fa-eye-slash {
-    position: absolute;
-    left: 28vw;
-    top: 3.5vh;
-    color: #b8b8b8;
-    cursor: pointer;
-    visibility: hidden;
-}
-
-#LoginPassword > .fa-eye-slash.show {
-    visibility: visible;
 }
 
 .login-btn-wrapper {

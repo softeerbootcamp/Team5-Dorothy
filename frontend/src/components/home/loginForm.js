@@ -9,14 +9,14 @@ const loginForm = () => {
             <h3>아이디</h3>
             <input type="text" />
             <h3>비밀번호</h3>
-            <div id="login-password-wrapper">
-                <input type="password"/>
-                <i class="fa-solid fa-eye"></i>
-                <i class="fa-solid fa-eye-slash"></i>
+            <div class="login-password-wrapper">
+                <input class="login-password-input" type="password"/>
+                <i class="fa-solid fa-eye hidden"></i>
+                <i class="fa-solid fa-eye-slash hidden"></i>
             </div>
         </div>
         <div class="login-btn-wrapper">
-            <button="login">로그인하기</button=>
+            <button="login">로그인하기</button>
             <div class="login-txt-wrapper">
                 <span>아직 회원이 아니신가요?</span>
                 <span class="link-to-join">회원가입 하기 ></span>

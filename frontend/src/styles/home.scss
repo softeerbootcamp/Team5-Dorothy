@@ -6,6 +6,7 @@
     background-size: 400% 400%;
     animation: gradient 10s ease infinite;
 }
+
 @keyframes gradient {
     0% {
         background-position: 0% 50%;
@@ -42,6 +43,7 @@
     animation: inonecolor 1s linear;
     background: #9baec8;
 }
+
 @keyframes inonecolor {
     0% {
         background: #fff;
@@ -78,9 +80,6 @@
     justify-content: space-around;
     align-items: center;
     cursor: pointer;
-}
-.hamburger.show {
-    visibility: visible;
 }
 
 .line {
