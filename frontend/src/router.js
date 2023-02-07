@@ -71,3 +71,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
     router();
 });
+
+export { navigateTo };
