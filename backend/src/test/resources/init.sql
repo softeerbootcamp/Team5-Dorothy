@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS `member`
     PRIMARY KEY (`idx`)
 );
 
-CREATE TABLE `track`
+CREATE TABLE IF NOT EXISTS `track`
 (
     `idx`        int          NOT NULL auto_increment primary key,
     `name`       varchar(100) NOT NULL,
@@ -25,7 +25,7 @@ CREATE TABLE `track`
     `is_deleted` BIT(1)       NOT NULL DEFAULT 0 COMMENT '0: not deleted, 1: deleted'
 );
 
-CREATE TABLE `track_member`
+CREATE TABLE IF NOT EXISTS `track_member`
 (
     `idx`        int          NOT NULL auto_increment primary key,
     `member_idx` int          NOT NULL,
@@ -34,6 +34,12 @@ CREATE TABLE `track_member`
     `joined_at`  datetime     NOT NULL DEFAULT current_timestamp,
     `is_deleted` BIT(1)       NOT NULL DEFAULT 0 COMMENT '0: not deleted, 1: deleted'
 );
+
+ALTER TABLE `track_member`
+    DROP CONSTRAINT `FK_Member_TO_TrackMember_1`;
+
+ALTER TABLE `track_member`
+    DROP CONSTRAINT `FK_Track_TO_TrackMember_1`;
 
 ALTER TABLE `track_member`
     ADD CONSTRAINT `FK_Member_TO_TrackMember_1` FOREIGN KEY (`member_idx`)
