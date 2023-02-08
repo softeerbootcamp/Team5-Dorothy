@@ -2,6 +2,7 @@ package dev.be.dorothy.member.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import dev.be.dorothy.auth.AuthenticationFilter;
+import dev.be.dorothy.auth.AuthorizationFilter;
 import dev.be.dorothy.auth.authentication.UsernameAndPasswordTokenProvider;
 import dev.be.dorothy.exception.BadRequestException;
 import dev.be.dorothy.member.Member;
@@ -11,9 +12,12 @@ import dev.be.dorothy.member.service.MemberResDto;
 import dev.be.dorothy.member.service.MemberService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.FilterType;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
@@ -22,7 +26,9 @@ import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-@WebMvcTest({MemberController.class, UsernameAndPasswordTokenProvider.class, AuthenticationFilter.class})
+@WebMvcTest(controllers = MemberController.class, excludeFilters = {
+        @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = {AuthenticationFilter.class, AuthorizationFilter.class})})
+
 @DisplayName("MemberController Test")
 public class MemberControllerTest {
     @Autowired
@@ -77,3 +83,4 @@ public class MemberControllerTest {
                 .andExpect(jsonPath("$.message").value("입력 정보가 올바르지 않습니다."));
     }
 }
+
