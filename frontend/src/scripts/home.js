@@ -4,7 +4,6 @@ function setHomeEvent() {
     const container = document.querySelector('.home-container');
     const hamburgerbtn = document.querySelector('.hamburger');
     const passwordInputs = container.querySelectorAll('.password-input');
-    const hidePasswordEyeIcons = document.querySelectorAll('.fa-eye-slash');
     const showPasswordEyeIcons = document.querySelectorAll('.fa-eye');
     const joinemail = document.querySelector('.join-email-input');
     const registerPassword = document.querySelector('.join-password-input');
@@ -12,6 +11,7 @@ function setHomeEvent() {
         '.join-passwordcheck-input',
     );
 
+    validateJoinPasswordCheck();
     hamburgerbtn.classList.add('hidden');
 
     container.addEventListener('click', (e) => {
@@ -72,24 +72,27 @@ const clickRegisterButton = (target) => {
     navigateTo('/track');
 };
 
-const validateJoinPasswordCheck = (e) => {
+const validateJoinPasswordCheck = () => {
+    console.log('check');
     const passwordreq =
         /^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-z])(?=.*[!@#$%^&+=]).*$/;
     const joinpwcheckWrapper = document.querySelector(
         '#join-passwordcheck-wrapper',
     );
     const joinpassword = document.querySelector('.join-password-input');
+    const joinpasswordcheck = document.querySelector(
+        '.join-passwordcheck-input',
+    );
     const joinpwcheckshow = joinpwcheckWrapper.querySelector('.fa-eye');
     joinpwcheckWrapper.querySelector('.fa-check').style.backgroundColor =
-        joinpassword.value === e.target.value &&
-        passwordreq.test(e.target.value)
+        joinpassword.value === joinpasswordcheck.value &&
+        passwordreq.test(joinpasswordcheck.value)
             ? `#2b90d9`
             : `#b8b8b8`;
-    if (e.target.value.length > 0) {
+    if (joinpasswordcheck.value.length > 0) {
         joinpwcheckshow.classList.add('show');
     } else {
         joinpwcheckshow.classList.remove('show');
-        joinpwcheckhide.classList.remove('show');
     }
 };
 
@@ -130,7 +133,6 @@ const toggleRegisterForm = (target) => {
 };
 
 const showEyeIcon = (target) => {
-    const loginpwhide = target.closest('div').querySelector('.fa-eye-slash');
     const loginpwshow = target.closest('div').querySelector('.fa-eye');
     if (target.value.length > 0) {
         loginpwshow.classList.add('show');
@@ -138,7 +140,6 @@ const showEyeIcon = (target) => {
     } else {
         loginpwshow.classList.add('hidden');
         loginpwshow.classList.remove('show');
-        loginpwhide.classList.remove('show');
     }
 };
 
@@ -171,21 +172,17 @@ const clickLoginButton = (target) => {
 };
 
 const validateJoinPassword = (e) => {
+    validateJoinPasswordCheck();
     const passwordreq =
         /^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-z])(?=.*[!@#$%^&+=]).*$/;
     const registerPassword = document.querySelector('#join-password-wrapper');
     registerPassword.querySelector('.fa-check').style.backgroundColor =
         passwordreq.test(e.target.value) ? `#2b90d9` : `#b8b8b8`;
-    const joinpasswordhide = registerPassword.querySelector('.fa-eye-slash');
     const joinpasswordshow = registerPassword.querySelector('.fa-eye');
-    if (joinpasswordhide.classList.contains('show')) {
-        return;
-    }
     if (e.target.value.length > 0) {
         joinpasswordshow.classList.add('show');
     } else {
         joinpasswordshow.classList.remove('show');
-        joinpasswordhide.classList.remove('show');
     }
 };
 
