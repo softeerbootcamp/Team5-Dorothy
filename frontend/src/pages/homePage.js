@@ -1,9 +1,6 @@
 import AbstractView from './AbstractView.js';
 
 export default class homePage extends AbstractView {
-    constructor() {
-        super();
-    }
     async getHtml() {
         return `
         <div class="container">
@@ -16,7 +13,7 @@ export default class homePage extends AbstractView {
             </div>
         </div>
         
-        <div class="login-container">
+        <section class="login-container">
             <i class="fa-solid fa-x fa-2x login-close-btn"></i>
             <div class="login-title">
                 <h2>로그인</h2>
@@ -37,9 +34,9 @@ export default class homePage extends AbstractView {
                     <span class="link-to-join">회원가입 하기 ></span>
                 </div>
             </div>
-        </div>
+        </section>
 
-        <div class="join-container">
+        <section class="join-container">
           <i class="fa-solid fa-x fa-2x join-close-btn"></i>
           <div class="join-title">
             <h2>회원가입</h2>
@@ -84,7 +81,7 @@ export default class homePage extends AbstractView {
               <span class="link-to-login">로그인 하기 ></span>
             </div>
           </div>
-        </div>
+        </section>
         `;
     }
 }
