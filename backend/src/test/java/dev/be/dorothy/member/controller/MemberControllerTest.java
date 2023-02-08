@@ -1,7 +1,6 @@
 package dev.be.dorothy.member.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import dev.be.dorothy.auth.AuthenticationFilter;
 import dev.be.dorothy.auth.authentication.UsernameAndPasswordTokenProvider;
 import dev.be.dorothy.exception.BadRequestException;
 import dev.be.dorothy.member.Member;
@@ -22,7 +21,7 @@ import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-@WebMvcTest({MemberController.class, UsernameAndPasswordTokenProvider.class, AuthenticationFilter.class})
+@WebMvcTest
 @DisplayName("MemberController Test")
 public class MemberControllerTest {
     @Autowired
@@ -30,6 +29,9 @@ public class MemberControllerTest {
 
     @MockBean
     MemberService memberService;
+
+    @MockBean
+    UsernameAndPasswordTokenProvider usernameAndPasswordTokenProvider;
 
     ObjectMapper objectMapper = new ObjectMapper();
 
@@ -44,7 +46,7 @@ public class MemberControllerTest {
 
         // when
         ResultActions perform = mockMvc.perform(
-                post("/member/login")
+                post("/api/v1/member/login")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(content));
 
@@ -67,7 +69,7 @@ public class MemberControllerTest {
 
         // when
         ResultActions perform = mockMvc.perform(
-                post("/member/login")
+                post("/api/v1/member/login")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(content));
 
