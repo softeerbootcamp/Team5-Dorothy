@@ -38,8 +38,7 @@ public class MemberControllerTest {
     @DisplayName("로그인 성공 시, 정상적으로 MemberReqDto 반환하는지 테스트")
     void login() throws Exception {
         // given
-        LoginReqDto loginReqDto = new LoginReqDto();
-        loginReqDto.setMemberId("sol"); loginReqDto.setPassword("1234");
+        LoginReqDto loginReqDto = new LoginReqDto("sol", "1234");
         String content = objectMapper.writeValueAsString(loginReqDto);
         Member member = new Member("sol", "1234", "sol", "", "", LocalDateTime.now(), LocalDateTime.now(), false, MemberRole.MEMBER);
         given(memberService.login(loginReqDto)).willReturn(MemberResDto.from(member));
@@ -63,8 +62,7 @@ public class MemberControllerTest {
     @DisplayName("로그인에 실패하여 발생하는 예외를 정상적으로 처리하는지 테스트")
     void loginFail() throws Exception {
         // given
-        LoginReqDto loginReqDto = new LoginReqDto();
-        loginReqDto.setMemberId("sol"); loginReqDto.setPassword("1234");
+        LoginReqDto loginReqDto = new LoginReqDto("sol", "1234");
         String content = objectMapper.writeValueAsString(loginReqDto);
         given(memberService.login(loginReqDto)).willThrow(new BadRequestException("입력 정보가 올바르지 않습니다."));
 
