@@ -24,6 +24,7 @@ public class MemberRepositoryTest {
         Member member1 = Member.of(
                 "dorothy",
                 "abcd1234",
+                "2p7VxertGPCkNfnr",
                 "dorothy",
                 "dorothy@example.com",
                 MemberRole.MEMBER
@@ -32,6 +33,7 @@ public class MemberRepositoryTest {
         Member member2 = Member.of(
                 "lucas",
                 "abcd1234",
+                "RCDlu97BoefSufzH",
                 "lucas",
                 "lucas@example.com",
                 MemberRole.MEMBER
@@ -40,6 +42,7 @@ public class MemberRepositoryTest {
         Member member3 = Member.of(
                 "skywalker",
                 "abcd1234",
+                "N27TS6t8Vj9JrzAz",
                 "skywalker",
                 "skywalker@example.com",
                 MemberRole.MEMBER
