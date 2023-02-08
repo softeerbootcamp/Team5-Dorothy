@@ -1,6 +1,7 @@
 package dev.be.dorothy.member.controller;
 
 import dev.be.dorothy.common.CommonResponse;
+import dev.be.dorothy.member.service.LoginReqDto;
 import dev.be.dorothy.member.service.MemberResDto;
 import dev.be.dorothy.member.service.MemberService;
 import dev.be.dorothy.member.service.SignUpReqDto;
@@ -10,6 +11,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 @RestController
 @RequestMapping("/member")
@@ -22,10 +26,30 @@ public class MemberController {
     }
 
     @PostMapping("")
-    public ResponseEntity<CommonResponse> signUp(@RequestBody SignUpReqDto signUpReqDto) {
+    public ResponseEntity<CommonResponse> signUp(
+            HttpServletRequest request,
+            @RequestBody SignUpReqDto signUpReqDto
+    ) {
         MemberResDto memberResDto = memberService.signUp(signUpReqDto);
         CommonResponse commonResponse = new CommonResponse(HttpStatus.CREATED, "회원가입이 완료되었습니다.", memberResDto);
-        // TODO: 세션 등록 및 쿠키 발급
+
+        HttpSession session = request.getSession(true);
+        session.setAttribute("member", memberResDto);
+
         return new ResponseEntity<>(commonResponse, HttpStatus.CREATED);
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<CommonResponse> login(
+            HttpServletRequest request,
+            @RequestBody LoginReqDto loginReqDto
+    ) {
+        MemberResDto memberResDto = memberService.login(loginReqDto);
+
+        HttpSession session = request.getSession(true);
+        session.setAttribute("member", memberResDto);
+
+        CommonResponse commonResponse = new CommonResponse(HttpStatus.OK, "로그인에 성공하였습니다.", memberResDto);
+        return new ResponseEntity<>(commonResponse, HttpStatus.OK);
     }
 }

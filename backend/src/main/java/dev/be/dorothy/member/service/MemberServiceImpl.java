@@ -1,5 +1,7 @@
 package dev.be.dorothy.member.service;
 
+import dev.be.dorothy.exception.BadRequestException;
+import dev.be.dorothy.exception.InternalServerErrorException;
 import dev.be.dorothy.member.Member;
 import dev.be.dorothy.member.MemberRole;
 import dev.be.dorothy.member.repository.MemberRepository;
@@ -41,6 +43,10 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public MemberResDto login(LoginReqDto loginReqDto) {
-        return null;
+        Member member = memberRepository.findByMemberId(loginReqDto.getMemberId())
+                .orElseThrow(() -> new BadRequestException("입력 정보가 올바르지 않습니다."));
+        passwordEncryptor.match(loginReqDto.getPassword(), member.getPassword());
+
+        return MemberResDto.from(member);
     }
 }
