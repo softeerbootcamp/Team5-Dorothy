@@ -1,8 +1,6 @@
 const canvas = document.body.querySelector('canvas');
-const cxt = canvas.getContext('2d');
-const labels = ['Category 1', 'Category 2', 'Category 3', 'Category 4'];
-const values = [25, 35, 20, 20];
-const color = ['#282c37', '#9baec8', '#d9e1e8', '#2b90d9'];
+
+const CheckTime = [];
 
 // Total of all values
 const total = data.values.reduce((a, b) => a + b, 0);

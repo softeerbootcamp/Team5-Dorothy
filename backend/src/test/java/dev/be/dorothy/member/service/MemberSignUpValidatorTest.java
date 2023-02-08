@@ -25,7 +25,7 @@ public class MemberSignUpValidatorTest {
 
     @Test
     @DisplayName("이메일이 정규식에 부합하는지 테스트 - 실패 케이스")
-    void emailRegexValidateFailTest() {
+    void validateEmailRegexFailTest() {
         String case1 = "";
         String case2 = "example";
         String case3 = "@";
@@ -43,7 +43,7 @@ public class MemberSignUpValidatorTest {
 
     @Test
     @DisplayName("이메일이 정규식에 부합하는지 테스트 - 성공 케이스")
-    void emailRegexValidateSuccessTest() {
+    void validateEmailRegexSuccessTest() {
         String case1 = "example@abcd.com";
 
         assertDoesNotThrow(() -> memberSignUpValidatorImpl.validateEmailRegex(case1));
@@ -51,7 +51,7 @@ public class MemberSignUpValidatorTest {
 
     @Test
     @DisplayName("ID 중복 체크 - 중복인 경우")
-    void idDuplicateValidate() {
+    void validateDuplicatedId() {
         String case1 = "abcd1234";
         given(memberRepository.countByMemberId(case1)).willReturn(1);
 
@@ -64,7 +64,7 @@ public class MemberSignUpValidatorTest {
 
     @Test
     @DisplayName("ID가 정규식에 부합하는지 테스트 - 실패 케이스")
-    void idRegexValidate() {
+    void validateIdRegex() {
         String case1 = "";
         String case2 = "한글";
         String case3 = "???";

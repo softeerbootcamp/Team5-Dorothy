@@ -62,7 +62,7 @@
 
 .Mini {
     transition: all 1s;
-    transform: translate(-24vw, -40vh) scale(0.36);
+    transform: translate(-24vw, -40vh) scale(0.25);
 }
 
 .Start {
@@ -153,7 +153,7 @@
 .nav > a {
     color: #fff;
     font-size: 1.625vw;
-    text-decoration: none;
+    text-decoration-line: none;
     text-shadow: 0.125vw 0.125vh 0.125vw rgba(0, 0, 0, 0.5);
     transition: all 0.25s;
     cursor: pointer;

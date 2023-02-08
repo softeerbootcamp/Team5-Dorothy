@@ -17,7 +17,6 @@ public class MemberSignUpValidatorImpl implements MemberSignUpValidator {
 
     @Override
     public void validateEmailRegex(String email) {
-        // TODO regex -> ^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$
         String regex = "^[_a-z0-9-]+(.[_a-z0-9-]+)*@(?:\\w+\\.)+\\w+$";
         validateRegex(regex, email);
     }
@@ -31,7 +30,6 @@ public class MemberSignUpValidatorImpl implements MemberSignUpValidator {
 
     @Override
     public void validatePassword(String password, String passwordCheck) {
-        // TODO regex -> ^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&+=]).*$
         String regex = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[~!@#$%^&*()+|=])[A-Za-z\\d~!@#$%^&*()+|=]{8,16}$";
         validateRegex(regex, password);
         boolean isEquals = password.equals(passwordCheck);

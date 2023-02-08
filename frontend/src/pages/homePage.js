@@ -3,9 +3,6 @@ import { loginForm } from '../components/home/loginForm.js';
 import { registerForm } from '../components/home/registerForm.js';
 
 export default class homePage extends AbstractView {
-    constructor() {
-        super();
-    }
     async getHtml() {
         return `
         <div class="home-container">
