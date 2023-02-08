@@ -63,6 +63,7 @@ const router = async () => {
     console.log(view);
     document.querySelector('#app').innerHTML = await view.getHtml();
     eventdelegator(match.path);
+
 };
 
 document.addEventListener('DOMContentLoaded', () => {

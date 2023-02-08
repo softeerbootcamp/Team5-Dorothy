@@ -76,6 +76,7 @@ const validateJoinPasswordCheck = () => {
     console.log('check');
     const passwordreq =
         /^(?=.*[A-Za-z])(?=.*\d)(?=.*[~!@#$%^&*()+|=])[A-Za-z\d~!@#$%^&*()+|=]{8,16}$/;
+
     const joinpwcheckWrapper = document.querySelector(
         '#join-passwordcheck-wrapper',
     );
@@ -100,7 +101,6 @@ const validateJoinEmail = (e) => {
     const joinemail = document.querySelector('#join-email-wrapper');
     const checkIcon = joinemail.querySelector('.fa-check');
     const emailreq = /^[_a-z0-9-]+([._a-z0-9-]+)*@(\w+\.)+\w+$/;
-    console.log(emailreq.test(e.target.value));
 
     checkIcon.style.backgroundColor = emailreq.test(e.target.value)
         ? `#2b90d9`
@@ -176,6 +176,7 @@ const validateJoinPassword = (e) => {
     validateJoinPasswordCheck();
     const passwordreq =
         /^(?=.*[A-Za-z])(?=.*\d)(?=.*[~!@#$%^&*()+|=])[A-Za-z\d~!@#$%^&*()+|=]{8,16}$/;
+
     const registerPassword = document.querySelector('#join-password-wrapper');
     registerPassword.querySelector('.fa-check').style.backgroundColor =
         passwordreq.test(e.target.value) ? `#2b90d9` : `#b8b8b8`;
