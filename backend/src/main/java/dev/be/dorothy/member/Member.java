@@ -1,9 +1,11 @@
 package dev.be.dorothy.member;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Table;
 
 import java.time.LocalDateTime;
 
+@Table("member")
 public class Member {
     @Id
     private Long idx;
