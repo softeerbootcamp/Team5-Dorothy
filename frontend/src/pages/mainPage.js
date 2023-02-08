@@ -1,4 +1,4 @@
-import AbstractView from './AbstractView.js';
+import AbstractView from './pageTemplate';
 
 export default class mainPage extends AbstractView {
     async getHtml() {

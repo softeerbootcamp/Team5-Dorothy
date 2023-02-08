@@ -1,9 +1,19 @@
-import AbstractView from './AbstractView.js';
+import AbstractView from './pageTemplate';
 import { pageTitleTamplate } from '../components/pageTitle.js';
 
 export default class rentalDetailPage extends AbstractView {
     async getHtml() {
         return `
+        ${pageTitleTamplate('공간대여 하실 건가요?')}
+        <div class="places-container">
+            <p class='place-name'>공간대여</p>
+            <p class="meridiem">오전</p>
+            
+            <p class="meridiem">오후</p>
+
+        </p>
+
+
         <div class="container Start">
             <div class="main-wrapper">
                 <div class="title-wrapper Mini"><h1>DOROTHY</h1></div>

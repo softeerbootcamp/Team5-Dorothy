@@ -60,10 +60,11 @@ const router = async () => {
     const view = match ? new match.view() : new notFoundPage(location.pathname);
     console.log(view);
     document.querySelector('#app').innerHTML = await view.getHtml();
+    eventdelegator(match.route.path);
 };
 
 document.addEventListener('DOMContentLoaded', () => {
-    router();
+    router(getParams(match));
 });
 
 window.addEventListener('popstate', router);
@@ -78,3 +79,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
     router();
 });
+
+export { navigateTo };
