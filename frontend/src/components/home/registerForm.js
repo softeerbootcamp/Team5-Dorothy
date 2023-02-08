@@ -1,7 +1,7 @@
 const registerForm = () => {
     const registerFormTemplate = `
     <div class="join-container">
-        <i class="fa-solid fa-x fa-2x join-close-btn"></i>
+        <i class="fa-solid fa-x join-close-btn"></i>
         <div class="join-title">
             <h2>회원가입</h2>
         </div>

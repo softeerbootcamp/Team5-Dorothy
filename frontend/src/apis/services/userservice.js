@@ -7,8 +7,6 @@ const UserService = {
     // 로그아웃
     logout: () => {
         console.log('로그아웃 되었습니다.');
-        window.localStorage.removeItem('token');
-        window.location.href = '';
     },
 
     //로그인

@@ -1,3 +1,35 @@
+@media screen and (max-width: 767px) {
+    .login-container {
+        margin: 0 auto;
+    }
+}
+
+.login-wrapper {
+    position: fixed;
+    visibility: hidden;
+    filter: blur(1vw);
+    transition: all 0.5s;
+    opacity: 0;
+    left: 60%;
+    top: 0;
+    width: 30%;
+    height: 80vh;
+    background-color: #fff;
+    box-shadow: -1vw 0 1vw rgba(63, 61, 61, 0.5);
+    padding: 10vh 5vw 10vh 5vw;
+    z-index: 2;
+}
+
+.fa-x {
+    font-size: 22px;
+    float: right;
+    cursor: pointer;
+}
+
+.login-container {
+    margin: 30% auto;
+}
+
 .home-login-btn {
     width: 10vw;
     height: 6vh;
@@ -17,41 +49,18 @@
     background-color: #fff;
 }
 
-.login-container {
-    position: absolute;
-    display: flex;
-    visibility: hidden;
-    flex-direction: column;
-    filter: blur(1vw);
-    transition: all 0.5s;
-    opacity: 0;
-    left: 60%;
-    top: 0;
-    width: 30%;
-    height: 80vh;
-    background-color: #fff;
-    box-shadow: -1vw 0 1vw rgba(0, 0, 0, 0.5);
-    padding: 10vh 5vw 10vh 5vw;
-    justify-content: center;
-}
-
-.login-container.On {
+.On {
     opacity: 1;
     visibility: visible;
     filter: blur(0);
 }
 
-.login-container > .fa-x {
-    position: absolute;
-    left: 35vw;
-    top: 5vh;
-    cursor: pointer;
-}
-
-.login-title > h2 {
+.login-title {
     color: #000;
-    font-size: 2vw;
+    font-size: 1.5em;
     font-weight: 700;
+    width: fit-content;
+    background-color: red;
 }
 
 .login-input-wrapper {
@@ -105,10 +114,6 @@
     top: 3.5vh;
     color: #b8b8b8;
     cursor: pointer;
-}
-
-.show {
-    visibility: visible;
 }
 
 .login-password-wrapper > .fa-eye-slash {

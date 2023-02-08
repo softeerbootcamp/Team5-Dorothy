@@ -15,6 +15,7 @@ function setHomeEvent() {
     hamburgerbtn.classList.add('hidden');
 
     container.addEventListener('click', (e) => {
+        console.log(e.target.classList);
         toggleLoginForm(e.target);
         toggleRegisterForm(e.target);
         clickLoginButton(e.target);
@@ -52,7 +53,7 @@ function setHomeEvent() {
 
 const linkToLogin = (target) => {
     if (!target.classList.contains('link-to-login')) return;
-    const loginForm = document.querySelector('.login-container');
+    const loginForm = document.querySelector('.login-wrapper');
     const joinForm = document.querySelector('.join-container');
     loginForm.classList.toggle('On');
     joinForm.classList.toggle('On');
@@ -60,7 +61,7 @@ const linkToLogin = (target) => {
 
 const linkToRegister = (target) => {
     if (!target.classList.contains('link-to-join')) return;
-    const loginForm = document.querySelector('.login-container');
+    const loginForm = document.querySelector('.login-wrapper');
     const joinForm = document.querySelector('.join-container');
     joinForm.classList.toggle('On');
     loginForm.classList.toggle('On');
@@ -81,7 +82,6 @@ const validateJoinPasswordCheck = (e) => {
     const joinpassword = document.querySelector('.join-password-input');
     const joinpwcheckhide = joinpwcheckWrapper.querySelector('.fa-eye-slash');
     const joinpwcheckshow = joinpwcheckWrapper.querySelector('.fa-eye');
-    console.log(joinpwcheck);
     joinpwcheckWrapper.querySelector('.fa-check').style.backgroundColor =
         joinpassword.value === e.target.value &&
         passwordreq.test(e.target.value)
@@ -113,7 +113,7 @@ const toggleLoginForm = (target) => {
     )
         return;
     const container = document.querySelector('.home-container');
-    const loginForm = container.querySelector('.login-container');
+    const loginForm = container.querySelector('.login-wrapper');
     const btnWrapper = container.querySelector('.btn-wrapper');
     loginForm.classList.toggle('On');
     btnWrapper.classList.toggle('Hidden');
@@ -125,8 +125,9 @@ const toggleRegisterForm = (target) => {
         !target.className.includes('join-close-btn')
     )
         return;
+    console.log(11111);
     const container = document.querySelector('.home-container');
-    const registerForm = container.querySelector('.join-container');
+    const registerForm = document.querySelector('.join-container');
     const btnWrapper = container.querySelector('.btn-wrapper');
     registerForm.classList.toggle('On');
     btnWrapper.classList.toggle('Hidden');
@@ -149,7 +150,7 @@ const showPasswordValue = (target) => {
     const passwordWrapper = target.closest('div');
     const passwordInput = passwordWrapper.querySelector('input');
     passwordInput.type = 'text';
-    target.classList.add('show');
+    target.classList.toggle('show');
 };
 
 const hidePasswordValue = (target) => {
@@ -162,7 +163,7 @@ const hidePasswordValue = (target) => {
 const clickLoginButton = (target) => {
     if (!target.classList.contains('login-btn')) return;
     const container = document.querySelector('.home-container');
-    const loginForm = container.querySelector('.login-container');
+    const loginForm = container.querySelector('.login-wrapper');
     const maintitle = container.querySelector('.title-wrapper');
     loginForm.classList.toggle('On');
     maintitle.classList.add('Mini');
