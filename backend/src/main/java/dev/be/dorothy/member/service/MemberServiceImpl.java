@@ -23,9 +23,13 @@ public class MemberServiceImpl implements MemberService {
         memberSignUpValidator.validateEmailRegex(signUpReqDto.getEmail());
         memberSignUpValidator.validatePassword(signUpReqDto.getPassword(), signUpReqDto.getPasswordCheck());
 
+        String salt = passwordEncryptor.getSalt();
+        String hashedPassword = passwordEncryptor.encrypt(signUpReqDto.getPassword(), salt);
+
         Member member = Member.of(
                 signUpReqDto.getMemberId(),
-                passwordEncryptor.encrypt(signUpReqDto.getPassword()),
+                hashedPassword,
+                salt,
                 signUpReqDto.getName(),
                 signUpReqDto.getEmail(),
                 MemberRole.MEMBER
