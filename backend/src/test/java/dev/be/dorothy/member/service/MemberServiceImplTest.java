@@ -44,11 +44,12 @@ public class MemberServiceImplTest {
     @DisplayName("로그인 테스트 - 실패 케이스(password가 일치하지 않는 경우)")
     void validatePassword() {
         LoginReqDto loginReqDto = new LoginReqDto("abcd1234", "a1234567!");
+        String salt = "2p7VxertGPCkNfnr";
         String hashedPassword = "45a49cbdfe0e5b676579f409c96f58759b44cfc907e78d6c2c3fe38a9c67b0cf";
 
         lenient().doThrow(BadRequestException.class)
                 .when(passwordEncryptor)
-                .match(loginReqDto.getPassword(), hashedPassword);
+                .match(loginReqDto.getPassword(), salt, hashedPassword);
 
         BadRequestException badRequestException =
                 Assertions.assertThrows(BadRequestException.class, () ->

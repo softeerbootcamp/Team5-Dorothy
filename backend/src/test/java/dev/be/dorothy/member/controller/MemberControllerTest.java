@@ -1,6 +1,8 @@
 package dev.be.dorothy.member.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import dev.be.dorothy.auth.AuthenticationFilter;
+import dev.be.dorothy.auth.authentication.UsernameAndPasswordTokenProvider;
 import dev.be.dorothy.exception.BadRequestException;
 import dev.be.dorothy.member.Member;
 import dev.be.dorothy.member.MemberRole;
@@ -16,16 +18,13 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 
-import java.time.LocalDateTime;
-
 import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-@WebMvcTest(controllers = MemberController.class)
+@WebMvcTest({MemberController.class, UsernameAndPasswordTokenProvider.class, AuthenticationFilter.class})
 @DisplayName("MemberController Test")
 public class MemberControllerTest {
-
     @Autowired
     MockMvc mockMvc;
 
@@ -40,7 +39,7 @@ public class MemberControllerTest {
         // given
         LoginReqDto loginReqDto = new LoginReqDto("sol", "1234");
         String content = objectMapper.writeValueAsString(loginReqDto);
-        Member member = new Member("sol", "1234", "sol", "", "", LocalDateTime.now(), LocalDateTime.now(), false, MemberRole.MEMBER);
+        Member member = Member.of("sol", "1234", "2p7VxertGPCkNfnr", "sol", "", MemberRole.MEMBER);
         given(memberService.login(loginReqDto)).willReturn(MemberResDto.from(member));
 
         // when

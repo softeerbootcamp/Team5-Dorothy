@@ -1,14 +1,10 @@
 package dev.be.dorothy.member.service;
 
 import dev.be.dorothy.exception.BadRequestException;
-import dev.be.dorothy.exception.InternalServerErrorException;
 import dev.be.dorothy.member.Member;
 import dev.be.dorothy.member.MemberRole;
 import dev.be.dorothy.member.repository.MemberRepository;
 import org.springframework.stereotype.Service;
-
-import java.time.LocalDateTime;
-import java.util.Optional;
 
 @Service
 public class MemberServiceImpl implements MemberService {
@@ -27,20 +23,20 @@ public class MemberServiceImpl implements MemberService {
         memberSignUpValidator.validateId(signUpReqDto.getMemberId());
         memberSignUpValidator.validateEmailRegex(signUpReqDto.getEmail());
         memberSignUpValidator.validatePassword(signUpReqDto.getPassword(), signUpReqDto.getPasswordCheck());
-        memberRepository.insert(
+
+        String salt = passwordEncryptor.getSalt();
+        String hashedPassword = passwordEncryptor.encrypt(signUpReqDto.getPassword(), salt);
+
+        Member member = Member.of(
                 signUpReqDto.getMemberId(),
-                passwordEncryptor.encrypt(signUpReqDto.getPassword()),
+                hashedPassword,
+                salt,
                 signUpReqDto.getName(),
                 signUpReqDto.getEmail(),
-                "",
-                LocalDateTime.now().toString(),
-                LocalDateTime.now().toString(),
-                false,
-                MemberRole.MEMBER.name()
+                MemberRole.MEMBER
         );
+        member = memberRepository.save(member);
 
-        Optional<Member> optionalMember = memberRepository.findByMemberId(signUpReqDto.getMemberId());
-        Member member = optionalMember.orElseThrow(InternalServerErrorException::new);
         return MemberResDto.from(member);
     }
 
@@ -48,7 +44,7 @@ public class MemberServiceImpl implements MemberService {
     public MemberResDto login(LoginReqDto loginReqDto) {
         Member member = memberRepository.findByMemberId(loginReqDto.getMemberId())
                 .orElseThrow(() -> new BadRequestException("입력 정보가 올바르지 않습니다."));
-        passwordEncryptor.match(loginReqDto.getPassword(), member.getPassword());
+        passwordEncryptor.match(loginReqDto.getPassword(), member.getSalt(), member.getPassword());
 
         return MemberResDto.from(member);
     }

@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.data.jdbc.DataJdbcTest;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,57 +21,36 @@ public class MemberRepositoryTest {
 
     @BeforeAll
     void insertMembers() {
-        Member member1 = new Member(
+        Member member1 = Member.of(
                 "dorothy",
                 "abcd1234",
+                "2p7VxertGPCkNfnr",
                 "dorothy",
                 "dorothy@example.com",
-                "",
-                LocalDateTime.now(),
-                LocalDateTime.now(),
-                false,
                 MemberRole.MEMBER
         );
 
-        Member member2 = new Member(
+        Member member2 = Member.of(
                 "lucas",
                 "abcd1234",
+                "RCDlu97BoefSufzH",
                 "lucas",
                 "lucas@example.com",
-                "",
-                LocalDateTime.now(),
-                LocalDateTime.now(),
-                false,
                 MemberRole.MEMBER
         );
 
-        Member member3 = new Member(
+        Member member3 = Member.of(
                 "skywalker",
                 "abcd1234",
+                "N27TS6t8Vj9JrzAz",
                 "skywalker",
                 "skywalker@example.com",
-                "",
-                LocalDateTime.now(),
-                LocalDateTime.now(),
-                false,
                 MemberRole.MEMBER
         );
 
         List<Member> members = List.of(member1, member2, member3);
 
-        for (Member member: members) {
-            memberRepository.insert(
-                    member.getMemberId(),
-                    member.getPassword(),
-                    member.getName(),
-                    member.getEmail(),
-                    member.getImage(),
-                    member.getCreatedAt().toString(),
-                    member.getUpdatedAt().toString(),
-                    member.isDeleted(),
-                    member.getRole().name()
-            );
-        }
+        memberRepository.saveAll(members);
     }
 
     @AfterAll

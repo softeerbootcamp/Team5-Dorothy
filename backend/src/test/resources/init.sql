@@ -9,6 +9,7 @@ CREATE TABLE IF NOT EXISTS `member`
     `idx`        INT                 NOT NULL AUTO_INCREMENT,
     `member_id`  VARCHAR(100) UNIQUE NOT NULL,
     `password`   VARCHAR(100)        NOT NULL,
+    `salt`       VARCHAR(100)        NOT NULL,
     `name`       VARCHAR(100)        NOT NULL,
     `email`      VARCHAR(100)        NOT NULL,
     `image`      TEXT                NOT NULL,

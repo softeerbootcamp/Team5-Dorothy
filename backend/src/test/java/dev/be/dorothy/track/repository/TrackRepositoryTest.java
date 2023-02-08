@@ -9,8 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.data.jdbc.DataJdbcTest;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 
-import java.time.LocalDateTime;
-
 @DataJdbcTest
 @AutoConfigureTestDatabase(replace= AutoConfigureTestDatabase.Replace.NONE)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
@@ -22,15 +20,12 @@ public class TrackRepositoryTest {
 
     @BeforeAll
     void insert() {
-        Member member = new Member(
+        Member member = Member.of(
                 "dorothy",
                 "abcd1234",
+                "2p7VxertGPCkNfnr",
                 "dorothy",
                 "dorothy@example.com",
-                "",
-                LocalDateTime.now(),
-                LocalDateTime.now(),
-                false,
                 MemberRole.MEMBER
         );
 
