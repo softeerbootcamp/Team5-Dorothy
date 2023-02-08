@@ -122,7 +122,6 @@ const toggleRegisterForm = (target) => {
         !target.className.includes('join-close-btn')
     )
         return;
-    console.log(11111);
     const container = document.querySelector('.home-container');
     const registerForm = document.querySelector('.join-container');
     const btnWrapper = document.querySelector('.btn-wrapper');
