@@ -1,6 +1,7 @@
 package dev.be.dorothy.track;
 
 import dev.be.dorothy.member.Member;
+import dev.be.dorothy.member.MemberRole;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Transient;
 import org.springframework.data.relational.core.mapping.MappedCollection;
@@ -41,6 +42,10 @@ public class Track {
 
     public void addTrackMember(Member member) {
         trackMembers.add(new TrackMember(member.getIdx(), member.getRole(), LocalDateTime.now(), false));
+    }
+
+    public void addTrackMember(Long memberIdx, MemberRole role) {
+        trackMembers.add(new TrackMember(memberIdx, role, LocalDateTime.now(), false));
     }
 
     public List<Long> getMemberIds() {
