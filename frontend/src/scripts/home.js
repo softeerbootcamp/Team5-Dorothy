@@ -78,16 +78,13 @@ const validateJoinPasswordCheck = (e) => {
     const joinpwcheckWrapper = document.querySelector(
         '#join-passwordcheck-wrapper',
     );
-    const joinpwcheck = joinpwcheckWrapper.querySelector('.fa-eye-slash');
     const joinpassword = document.querySelector('.join-password-input');
-    const joinpwcheckhide = joinpwcheckWrapper.querySelector('.fa-eye-slash');
     const joinpwcheckshow = joinpwcheckWrapper.querySelector('.fa-eye');
     joinpwcheckWrapper.querySelector('.fa-check').style.backgroundColor =
         joinpassword.value === e.target.value &&
         passwordreq.test(e.target.value)
             ? `#2b90d9`
             : `#b8b8b8`;
-
     if (e.target.value.length > 0) {
         joinpwcheckshow.classList.add('show');
     } else {
@@ -128,7 +125,7 @@ const toggleRegisterForm = (target) => {
     console.log(11111);
     const container = document.querySelector('.home-container');
     const registerForm = document.querySelector('.join-container');
-    const btnWrapper = container.querySelector('.btn-wrapper');
+    const btnWrapper = document.querySelector('.btn-wrapper');
     registerForm.classList.toggle('On');
     btnWrapper.classList.toggle('Hidden');
 };

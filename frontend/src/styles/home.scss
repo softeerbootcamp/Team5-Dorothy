@@ -3,7 +3,6 @@
         left: 10vw;
         top: 40vh;
         width: 50vw;
-        color: #fff;
         user-select: none;
         font-family: 'Fontdiner Swanky', cursive;
         font-size: 3.5em;
@@ -31,7 +30,24 @@
         background-position: 0% 50%;
     }
 }
-
+.home-login-btn,
+.home-join-btn {
+    width: 10vw;
+    height: 6vh;
+    background-color: transparent;
+    border: 0.25vw solid #fff;
+    box-shadow: 0.25vw 0.25vh 0.5vw rgba(0, 0, 0, 0.5);
+    color: #fff;
+    font-weight: 700;
+    font-size: large;
+    cursor: pointer;
+    border-radius: 1vw;
+}
+.home-btn:hover {
+    transition: all 0.5s;
+    color: #000;
+    background-color: #fff;
+}
 .title-wrapper {
     position: relative;
     left: 10vw;
