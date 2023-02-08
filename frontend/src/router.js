@@ -7,6 +7,8 @@ import noticePage from './pages/noticePage.js';
 import trackPage from './pages/trackPage.js';
 import notFoundPage from './pages/notFoundPage.js';
 
+import eventdelegator from './main.js';
+
 const pathToRegex = (path) =>
     new RegExp('^' + path.replace(/\//g, '\\/').replace(/:\w+/g, '(.+)') + '$');
 
@@ -60,7 +62,8 @@ const router = async () => {
     const view = match ? new match.view() : new notFoundPage(location.pathname);
     console.log(view);
     document.querySelector('#app').innerHTML = await view.getHtml();
-    eventdelegator(match.route.path);
+    eventdelegator(match.path);
+
 };
 
 document.addEventListener('DOMContentLoaded', () => {
