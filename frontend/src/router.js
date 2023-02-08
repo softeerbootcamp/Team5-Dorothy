@@ -37,6 +37,7 @@ const routes = [
     { path: '/attend', view: attendPage },
     { path: '/notice', view: noticePage },
     { path: '/track', view: trackPage },
+    { path: '/tempt', view: rentalDetailPage },
 ];
 
 const router = async () => {

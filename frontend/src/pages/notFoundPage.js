@@ -8,7 +8,7 @@ export default class noticePage extends AbstractView {
             <div class="main-wrapper">
                 <div class="title-wrapper Mini"><h1>DOROTHY</h1></div>
                 <div class="name-wrapper">
-                    ${pageTitleTamplate('404')}
+                    ${pageTitleTamplate('404-Not Found')}
                 </div>
                 <div class="content-container">
                 </div>

@@ -2,8 +2,10 @@
     width: 200px;
     height: 200px;
     position: relative;
+    top: 10vh;
     transform-style: preserve-3d;
     transition: 1s;
+    font-weight: 700;
     user-select: none;
     transform: rotateX(35deg) rotateY(45deg);
 }
