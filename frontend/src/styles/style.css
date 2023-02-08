@@ -5,6 +5,10 @@
 @import './rental.scss';
 @import './login.scss';
 @import './main.scss';
+@import './404.scss';
+@import './chart.scss';
+@import './rentalDetail.scss';
+@import './track.scss';
 
 .hidden {
     visibility: hidden;

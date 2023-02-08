@@ -1,4 +1,4 @@
-import AbstractView from './AbstractView.js';
+import AbstractView from './pageTemplate.js';
 import { pageTitleTamplate } from '../components/pageTitle.js';
 
 export default class attendPage extends AbstractView {
