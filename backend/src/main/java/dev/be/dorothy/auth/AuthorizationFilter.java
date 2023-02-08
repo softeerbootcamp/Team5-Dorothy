@@ -20,8 +20,8 @@ public class AuthorizationFilter implements Filter {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         HttpServletRequest req = (HttpServletRequest) request;
-        String url = req.getRequestURI();
-        httpSecurity.validateRequest((MemberDetail)ContextHolder.getContext().getPrincipal(), url);
+/*        String url = req.getRequestURI();
+        httpSecurity.validateRequest((MemberDetail)ContextHolder.getContext().getPrincipal(), url); */
         chain.doFilter(request, response);
     }
 
