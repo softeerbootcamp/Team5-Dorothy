@@ -1,4 +1,5 @@
 import setHomeEvent from './scripts/home.js';
+import setMainEvent from './scripts/main.js';
 const eventdelegator = (root) => {
     switch (root) {
         case '/':
@@ -6,6 +7,7 @@ const eventdelegator = (root) => {
             break;
         case '/main':
             console.log('main');
+            setMainEvent();
             break;
         case '/track':
             console.log('track');

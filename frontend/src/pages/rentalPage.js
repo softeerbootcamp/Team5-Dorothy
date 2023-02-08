@@ -1,6 +1,7 @@
 import AbstractView from './pageTemplate';
 import placeData from '../components/placeInfo.js';
 import { pageTitleTamplate } from '../components/pageTitle.js';
+import { placeCard } from '../components/rental/placeCard.js';
 
 export default class rentalPage extends AbstractView {
     async getHtml() {
@@ -15,30 +16,9 @@ export default class rentalPage extends AbstractView {
                 </div>
                 <section class="big-content-container">
                     <div class="place-container">
-                        <figure class="place-wrapper">
-                            <img class="place-image" src="/src/assets/chair.svg"></img>
-                            <figcaption class="place-name">휴식실</figcaption>
-                        </figure>
-                        <figure class="place-wrapper">
-                            <img class="place-image" src="/src/assets/room.svg"></img>
-                            <figcaption class="place-name">교실</figcaption>
-                        </figure>
-                        <figure class="place-wrapper">
-                            <img class="place-image" src="/src/assets/soundless.svg"></img>
-                            <figcaption class="place-name">방음부스</figcaption>
-                        </figure>
-                        <figure class="place-wrapper">
-                            <img class="place-image" src="/src/assets/game.svg"></img>
-                            <figcaption class="place-name">플레이스테이션</figcaption>
-                        </figure>
-                        <figure class="place-wrapper">
-                            <img class="place-image" src="/src/assets/coffee.svg"></img>
-                            <figcaption class="place-name">커피메이커</figcaption>
-                        </figure>
-                        <figure class="place-wrapper">
-                            <img class="place-image" src="/src/assets/bookshelf.svg"></img>
-                            <figcaption class="place-name">전문서적</figcaption>
-                        </figure>
+                    ${placeData.map((place) => {
+                        return placeCard(place.name, place.img);
+                    })}
                     </div>
                 </section>
             </div>
