@@ -9,6 +9,7 @@ public class Member {
     private Long idx;
     private String memberId;
     private String password;
+    private String salt;
     private String name;
     private String email;
     private String image;
@@ -17,9 +18,10 @@ public class Member {
     private boolean isDeleted;
     private MemberRole role;
 
-    private Member(String memberId, String password, String name, String email, MemberRole memberRole) {
+    private Member(String memberId, String password, String salt, String name, String email, MemberRole memberRole) {
         this.memberId = memberId;
         this.password = password;
+        this.salt = salt;
         this.name = name;
         this.email = email;
         this.image = "";
@@ -31,8 +33,8 @@ public class Member {
 
     public Member() {}
 
-    public static Member of(String memberId, String password, String name, String email, MemberRole memberRole) {
-        return new Member(memberId, password, name, email, memberRole);
+    public static Member of(String memberId, String password, String salt, String name, String email, MemberRole memberRole) {
+        return new Member(memberId, password, salt, name, email, memberRole);
     }
 
     public Long getIdx() {
@@ -45,6 +47,10 @@ public class Member {
 
     public String getPassword() {
         return password;
+    }
+
+    public String getSalt() {
+        return salt;
     }
 
     public String getName() {
