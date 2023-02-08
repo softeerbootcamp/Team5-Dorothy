@@ -2,6 +2,7 @@ package dev.be.dorothy.auth;
 
 import dev.be.dorothy.auth.authentication.UsernameAndPasswordTokenProvider;
 import dev.be.dorothy.exception.BadRequestException;
+import dev.be.dorothy.member.service.PasswordEncryptor;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -12,6 +13,7 @@ import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.mock.web.MockHttpSession;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -24,8 +26,10 @@ import static org.junit.jupiter.api.Assertions.*;
 @ExtendWith(MockitoExtension.class)
 class SecurityFilterTest {
 
-/*    @Mock
+    @MockBean
     UsernameAndPasswordTokenProvider usernameAndPasswordTokenProviderMck;
+    @MockBean
+    PasswordEncryptor passwordEncryptor;
     @InjectMocks
     AuthenticationFilter authenticationFilter ;
 
@@ -51,7 +55,7 @@ class SecurityFilterTest {
     @Test
     @DisplayName("컨트롤러 접근 테스트 - 세션 없이 접근할 때")
     void accessWithoutSession(){
-        BadRequestException exception = assertThrows(BadRequestException.class, () -> mockMvc.perform(MockMvcRequestBuilders.get("/")));
-        assertThat(exception.getMessage()).isEqualTo("세션이 존재하지 않습니다.");
-    } */
+//        BadRequestException exception = assertThrows(BadRequestException.class, () -> mockMvc.perform(MockMvcRequestBuilders.get("/")));
+//        assertThat(exception.getMessage()).isEqualTo("세션이 존재하지 않습니다.");
+    }
 }
