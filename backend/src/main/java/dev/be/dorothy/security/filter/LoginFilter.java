@@ -39,7 +39,7 @@ public class LoginFilter implements Filter {
         HttpServletRequest httpReq = (HttpServletRequest) request;
         String url = httpReq.getRequestURI();
         logger.info(url);
-        if(url.equals("/member/login")){
+        if(url.equals("/api/v1/member/login")){
             try {
                 MemberResDto memberResDto = attemptAuthentication(httpReq);
                 writeSuccessResponse(httpReq, response, memberResDto);
