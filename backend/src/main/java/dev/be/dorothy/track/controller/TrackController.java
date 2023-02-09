@@ -7,20 +7,22 @@ import dev.be.dorothy.security.context.ContextHolder;
 import dev.be.dorothy.security.context.MemberDetail;
 import dev.be.dorothy.track.service.TrackRegisterService;
 import dev.be.dorothy.track.service.TrackResDto;
+import dev.be.dorothy.track.service.TrackRetrieveService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/track")
 public class TrackController {
     private final TrackRegisterService trackRegisterService;
+    private final TrackRetrieveService trackRetrieveService;
 
-    public TrackController(TrackRegisterService trackRegisterService) {
+    public TrackController(TrackRegisterService trackRegisterService, TrackRetrieveService trackRetrieveService) {
         this.trackRegisterService = trackRegisterService;
+        this.trackRetrieveService = trackRetrieveService;
     }
 
     @PostMapping("")
@@ -37,4 +39,17 @@ public class TrackController {
 
         return new ResponseEntity<>(commonResponse, HttpStatus.CREATED);
     }
+
+    @GetMapping("s")
+    public ResponseEntity<CommonResponse> readAll() {
+        MemberDetail principal = (MemberDetail) ContextHolder.getContext().getPrincipal();
+        MemberResDto memberDto = principal.getMemberDto();
+
+        List<TrackResDto> trackResDtos = trackRetrieveService.retrieveTracks(memberDto.getIdx());
+        CommonResponse commonResponse = new CommonResponse(HttpStatus.OK, "전체 트랙에 대한 조회가 완료되었습니다.", trackResDtos);
+
+        return new ResponseEntity<>(commonResponse, HttpStatus.OK);
+    }
+
+
 }
