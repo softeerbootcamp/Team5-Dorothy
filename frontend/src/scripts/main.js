@@ -10,9 +10,9 @@ const getUserLocation = () => {
             var longitude = pos.coords.longitude;
         });
         // 버튼 클릭으로 감시를 중지
-        $('#btnStop').click(function () {
-            navigator.geolocation.clearWatch(id);
-        });
+        // $('#btnStop').click(function () {
+        //     navigator.geolocation.clearWatch(id);
+        // });
     } else {
         alert('이 브라우저에서는 Geolocation이 지원되지 않습니다.');
     }

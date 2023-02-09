@@ -1,4 +1,4 @@
-const modal = (code, message) => {
+const stateModal = (code, message) => {
     const ModalTamplate = `
     <div class='modal-wrapper'>
     ${code == 'CREATED' ? successModal(message) : failModal(message)}
@@ -22,4 +22,4 @@ const successModal = (text) => {
     return successModalTamplate;
 };
 
-export { modal };
+export { stateModal };
