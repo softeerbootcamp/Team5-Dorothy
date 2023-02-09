@@ -4,4 +4,5 @@ import dev.be.dorothy.member.MemberRole;
 
 public interface TrackRegisterService {
     TrackResDto create(Long memberIdx, String name, MemberRole role);
+    TrackResDto join(Long trackIdx, Long trackMemberIdx, String joinCode);
 }

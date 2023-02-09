@@ -32,4 +32,9 @@ public class TrackRegisterServiceImpl implements TrackRegisterService {
                 track.getUpdatedAt()
         );
     }
+
+    @Override
+    public TrackResDto join(Long trackIdx, Long trackMemberIdx, String joinCode) {
+        return null;
+    }
 }
