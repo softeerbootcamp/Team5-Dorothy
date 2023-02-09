@@ -1,13 +1,18 @@
 package dev.be.dorothy.track.service;
 
+import dev.be.dorothy.exception.BadRequestException;
 import dev.be.dorothy.exception.ForbiddenException;
 import dev.be.dorothy.member.MemberRole;
+import dev.be.dorothy.track.repository.TrackRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.Optional;
+
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
@@ -54,5 +59,23 @@ public class TrackRegisterServiceTest {
                 ForbiddenException.class,
                 () -> trackRegisterService.join(trackIdx, memberIdx, joinCode)
         );
+    }
+
+    @Test
+    @DisplayName("트랙 가입 시, 트랙이 존재하지 않는 경우")
+    void joinWhenTrackDoesNotExist() {
+        // given
+        long trackIdx = 1L;
+        TrackRepository trackRepository = mock(TrackRepository.class);
+        given(trackRepository.findById(trackIdx)).willReturn(Optional.empty());
+
+        // when
+        BadRequestException exception = assertThrows(
+                BadRequestException.class,
+                () -> trackRegisterService.join(trackIdx, 99L, "123456")
+        );
+
+        // then
+        assertThat(exception.getMessage()).isEqualTo("트랙정보가 유효하지 않습니다.");
     }
 }
