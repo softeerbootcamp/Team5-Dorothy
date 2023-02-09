@@ -1,10 +1,23 @@
+let openPopup = false;
+
 const stateModal = (code, message) => {
+    openPopup = true;
     const ModalTamplate = `
     <div class='modal-wrapper'>
     ${code == 'CREATED' ? successModal(message) : failModal(message)}
     </div>
     `;
+    setTimeout(closeModal, 4000);
     return ModalTamplate;
+};
+
+const closeModal = () => {
+    const openModal = document.querySelector('.modal-wrapper');
+    console.log(openModal);
+    if (!openPopup) return;
+    if (openModal !== null) {
+        openModal.remove();
+    }
 };
 
 const failModal = (text) => {
@@ -21,5 +34,7 @@ const successModal = (text) => {
     <p>${text}</p>`;
     return successModalTamplate;
 };
+
+const trackModal = () => {};
 
 export { stateModal };
