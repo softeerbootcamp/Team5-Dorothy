@@ -85,4 +85,23 @@ public class TrackRegisterServiceTest {
         // then
         assertThat(exception.getMessage()).isEqualTo("트랙정보가 유효하지 않습니다.");
     }
+
+    @Test
+    @DisplayName("트랙에 이미 존재하는 멤버인 경우")
+    void doesExistTrackMember() {
+        // given
+        long memberIdx = 1L;
+        long trackIdx = 1L;
+        given(trackRepository.findById(trackIdx)).willReturn(Optional.of(mock(Track.class)));
+        given(trackRepository.doesExistTrackMember(memberIdx, trackIdx)).willReturn(Optional.of(1L));
+
+        // when
+        BadRequestException exception = assertThrows(
+                BadRequestException.class,
+                () -> trackRegisterService.join(trackIdx, memberIdx, "123456")
+        );
+
+        // then
+        assertThat(exception.getMessage()).isEqualTo("이미 존재하는 멤버입니다.");
+    }
 }
