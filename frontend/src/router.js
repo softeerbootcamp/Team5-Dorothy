@@ -7,6 +7,8 @@ import noticePage from './pages/noticePage.js';
 import trackPage from './pages/trackPage.js';
 import notFoundPage from './pages/notFoundPage.js';
 
+import './styles/style.scss';
+
 import eventdelegator from './main.js';
 
 const pathToRegex = (path) =>
@@ -63,7 +65,6 @@ const router = async () => {
     console.log(view);
     document.querySelector('#app').innerHTML = await view.getHtml();
     eventdelegator(match.path);
-
 };
 
 document.addEventListener('DOMContentLoaded', () => {

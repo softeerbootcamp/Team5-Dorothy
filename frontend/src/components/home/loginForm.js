@@ -4,7 +4,7 @@ const loginForm = () => {
         <i class="fa-solid fa-x login-close-btn"></i>
         <h2 class="login-title">로그인</h2>
         <h3 class='form-title'>아이디</h3>
-        <div class='form-input-wrapper'><input type="text" /></div>
+        <div class='form-input-wrapper'><input class="login-input" type="text" /></div>
         <h3 class='form-title'>비밀번호</h3>
         <div class='form-input-wrapper'>
             <input class="login-password-input password-input" type="password"/>
