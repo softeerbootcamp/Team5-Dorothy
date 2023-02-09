@@ -11,14 +11,14 @@ const UserService = {
 
     //로그인
     getUser: (id, password) =>
-        axios.post(BASE_URL, {
+        axios.post(BASE_URL + '/login', {
             username: id,
             password: password,
         }),
 
     //회원가입
     postUser: (memberId, password, passwordCheck, name, email) =>
-        axios.post(BASE_URL, {
+        axios.post(BASE_URL + '/member', {
             memberId,
             password,
             passwordCheck,
@@ -26,4 +26,4 @@ const UserService = {
             email,
         }),
 };
-export default UserService;
+export { UserService };

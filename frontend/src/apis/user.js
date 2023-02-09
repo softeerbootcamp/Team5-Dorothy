@@ -1,4 +1,5 @@
 import { stateModal } from '../components/modal';
+import { UserService } from './services/userservice';
 // 로그아웃
 export const Logout = () => {
     alert('로그아웃');
@@ -25,7 +26,7 @@ export const PostUser = async (
     email,
 ) => {
     try {
-        const responese = await UserService.postUser(
+        const response = await UserService.postUser(
             memberId,
             password,
             passwordCheck,
@@ -33,9 +34,11 @@ export const PostUser = async (
             email,
         );
         stateModal(response.code, response.message);
-        return Promise.resolve(responese.data);
+        console.log(response.message);
+        return Promise.resolve(response.data);
     } catch (error) {
-        stateModal(response.code, response.message);
-        return Promise.reject(response.message, '회원가입 실패');
+        stateModal(error.code, error.message);
+        console.log(error);
+        return Promise.reject(error.message, '회원가입 실패');
     }
 };
