@@ -1,7 +1,9 @@
 package dev.be.dorothy.member.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import dev.be.dorothy.auth.authentication.UsernameAndPasswordTokenProvider;
+import dev.be.dorothy.security.filter.AuthenticationFilter;
+import dev.be.dorothy.security.filter.AuthorizationFilter;
+import dev.be.dorothy.security.filter.LoginFilter;
 import dev.be.dorothy.exception.BadRequestException;
 import dev.be.dorothy.member.Member;
 import dev.be.dorothy.member.MemberRole;
@@ -13,15 +15,18 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.FilterType;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
-
 import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-@WebMvcTest(controllers = MemberController.class)
+@WebMvcTest(controllers = MemberController.class, excludeFilters = {
+        @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = {AuthenticationFilter.class, LoginFilter.class, AuthorizationFilter.class})})
+
 @DisplayName("MemberController Test")
 public class MemberControllerTest {
     @Autowired
@@ -29,9 +34,6 @@ public class MemberControllerTest {
 
     @MockBean
     MemberService memberService;
-
-    @MockBean
-    UsernameAndPasswordTokenProvider usernameAndPasswordTokenProvider;
 
     ObjectMapper objectMapper = new ObjectMapper();
 

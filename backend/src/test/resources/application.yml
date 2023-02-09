@@ -8,3 +8,11 @@ spring:
     init:
       mode: always
       schema-locations: init.sql
+  redis:
+    lettuce:
+      pool:
+        max-active: 8
+        max-idle: 8
+        min-idle: 2
+    host: localhost
+    port: 6379

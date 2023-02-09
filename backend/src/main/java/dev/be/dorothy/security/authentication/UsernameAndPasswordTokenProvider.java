@@ -1,7 +1,7 @@
-package dev.be.dorothy.auth.authentication;
+package dev.be.dorothy.security.authentication;
 
-import dev.be.dorothy.auth.MemberDetail;
-import dev.be.dorothy.auth.MemberDetailService;
+import dev.be.dorothy.security.context.MemberDetail;
+import dev.be.dorothy.security.context.MemberDetailService;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -13,8 +13,9 @@ public class UsernameAndPasswordTokenProvider {
         this.memberDetailService = memberDetailService;
     }
 
+
     public Authentication getAuthentication(String username){
         MemberDetail memberDetail = memberDetailService.loadMemberByName(username);
-        return new UsernameAndPasswordToken(memberDetail, "", memberDetail.getRole(), true);
+        return new UsernameAndPasswordToken(memberDetail, "", true);
     }
 }
