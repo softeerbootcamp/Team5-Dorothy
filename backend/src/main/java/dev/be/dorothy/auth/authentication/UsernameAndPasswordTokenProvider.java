@@ -13,8 +13,9 @@ public class UsernameAndPasswordTokenProvider {
         this.memberDetailService = memberDetailService;
     }
 
+
     public Authentication getAuthentication(String username){
         MemberDetail memberDetail = memberDetailService.loadMemberByName(username);
-        return new UsernameAndPasswordToken(memberDetail, "", memberDetail.getRole(), true);
+        return new UsernameAndPasswordToken(memberDetail, "", true);
     }
 }

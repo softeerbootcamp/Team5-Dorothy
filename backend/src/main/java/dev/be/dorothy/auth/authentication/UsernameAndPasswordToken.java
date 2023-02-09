@@ -1,20 +1,16 @@
 package dev.be.dorothy.auth.authentication;
 
 import dev.be.dorothy.auth.MemberDetail;
-import dev.be.dorothy.member.MemberRole;
 
 public class UsernameAndPasswordToken implements Authentication {
 
     private final MemberDetail memberDetail;
     private final String credential;
-
-    private final MemberRole memberRole;
     private final boolean isAuthenticated;
 
-    public UsernameAndPasswordToken(MemberDetail memberDetail, String credential, MemberRole memberRole, boolean isAuthenticated) {
+    public UsernameAndPasswordToken(MemberDetail memberDetail, String credential, boolean isAuthenticated) {
         this.memberDetail = memberDetail;
         this.credential = credential;
-        this.memberRole = memberRole;
         this.isAuthenticated = isAuthenticated;
     }
 
@@ -29,8 +25,8 @@ public class UsernameAndPasswordToken implements Authentication {
     }
 
     @Override
-    public Object getRole(){
-        return memberRole;
+    public Object getRole() {
+        return memberDetail.getMemberDto().getRole();
     }
 
     @Override
