@@ -1,4 +1,5 @@
 import { navigateTo } from '../router';
+import { GetUser, PostUser } from '../apis/user.js';
 
 function setHomeEvent() {
     const container = document.querySelector('.home-container');
@@ -15,7 +16,6 @@ function setHomeEvent() {
     hamburgerbtn.classList.add('hidden');
 
     container.addEventListener('click', (e) => {
-        console.log(e.target.classList);
         toggleLoginForm(e.target);
         toggleRegisterForm(e.target);
         clickLoginButton(e.target);
@@ -69,11 +69,21 @@ const linkToRegister = (target) => {
 
 const clickRegisterButton = (target) => {
     if (!target.classList.contains('register-btn')) return;
+    const container = document.querySelector('.home-container');
+    const joinForm = container.querySelector('.join-container');
+    const memberId = joinForm.querySelector('.id-input').value;
+    const password = joinForm.querySelector('.password-input').value;
+    const passwordCheck = joinForm.querySelector(
+        '.join-passwordcheck-input',
+    ).value;
+    const name = joinForm.querySelector('.name-input').value;
+    const email = joinForm.querySelector('.join-email-input').value;
+    PostUser(memberId, password, passwordCheck, name, email);
+    console.log(memberId, password, passwordCheck, name, email);
     navigateTo('/track');
 };
 
 const validateJoinPasswordCheck = () => {
-    console.log('check');
     const passwordreq =
         /^(?=.*[A-Za-z])(?=.*\d)(?=.*[~!@#$%^&*()+|=])[A-Za-z\d~!@#$%^&*()+|=]{8,16}$/;
 
@@ -163,6 +173,10 @@ const clickLoginButton = (target) => {
     const container = document.querySelector('.home-container');
     const loginForm = container.querySelector('.login-wrapper');
     const maintitle = container.querySelector('.title-wrapper');
+    const ID = loginForm.querySelector('.login-input').value;
+    const PW = loginForm.querySelector('.password-input').value;
+    console.log(ID, PW);
+    GetUser(ID, PW);
     loginForm.classList.toggle('On');
     maintitle.classList.add('Mini');
     document.body.querySelector('.hamburger').classList.add('show');
