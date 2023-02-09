@@ -1,0 +1,26 @@
+@import './attend.scss';
+@import './common.scss';
+@import './home.scss';
+@import './reset.scss';
+@import './rental.scss';
+@import './login.scss';
+@import './main.scss';
+@import './404.scss';
+@import './chart.scss';
+@import './rentalDetail.scss';
+@import './track.scss';
+
+
+.hidden {
+    visibility: hidden;
+}
+
+.show {
+    visibility: visible;
+}
+
+.On {
+    opacity: 1;
+    visibility: visible;
+    filter: blur(0);
+}

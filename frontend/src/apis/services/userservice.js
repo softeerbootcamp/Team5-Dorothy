@@ -7,8 +7,6 @@ const UserService = {
     // 로그아웃
     logout: () => {
         console.log('로그아웃 되었습니다.');
-        window.localStorage.removeItem('token');
-        window.location.href = '';
     },
 
     //로그인
@@ -18,13 +16,14 @@ const UserService = {
             password: password,
         }),
 
-    //회원가입 api
-    postUser: (id, password, name, email) =>
+    //회원가입
+    postUser: (memberId, password, passwordCheck, name, email) =>
         axios.post(BASE_URL, {
-            username: id,
-            password: password,
-            nickname: name,
-            email: email,
+            memberId,
+            password,
+            passwordCheck,
+            name,
+            email,
         }),
 };
 export default UserService;

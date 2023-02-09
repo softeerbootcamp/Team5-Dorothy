@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 @RestController
-@RequestMapping("/member")
+@RequestMapping("/api/v1/member")
 public class MemberController {
 
     private final MemberService memberService;
