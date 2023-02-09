@@ -3,7 +3,7 @@ package dev.be.dorothy.member.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import dev.be.dorothy.auth.AuthenticationFilter;
 import dev.be.dorothy.auth.AuthorizationFilter;
-import dev.be.dorothy.auth.authentication.UsernameAndPasswordTokenProvider;
+import dev.be.dorothy.auth.LoginFilter;
 import dev.be.dorothy.exception.BadRequestException;
 import dev.be.dorothy.member.Member;
 import dev.be.dorothy.member.MemberRole;
@@ -12,7 +12,6 @@ import dev.be.dorothy.member.service.MemberResDto;
 import dev.be.dorothy.member.service.MemberService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -27,7 +26,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @WebMvcTest(controllers = MemberController.class, excludeFilters = {
-        @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = {AuthenticationFilter.class, AuthorizationFilter.class})})
+        @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = {AuthenticationFilter.class, LoginFilter.class, AuthorizationFilter.class})})
 
 @DisplayName("MemberController Test")
 public class MemberControllerTest {
