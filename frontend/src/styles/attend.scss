@@ -1,8 +1,32 @@
+.calendar-container {
+    display: grid;
+    width: fit-content;
+    grid-template-columns: repeat(7, 1fr);
+    grid-gap: 5px;
+    background-color: #d9e1e8;
+    margin: 0 auto;
+    padding: 10px;
+    padding-top: 20px;
+    border-radius: 10px;
+}
+.day-wrapper,
+.no-color {
+    width: 9vw;
+    height: 7vw;
+    border-radius: 1vw;
+    box-sizing: border-box;
+    font-weight: 700;
+    padding: 10px;
+    background-color: #fff;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
+    border: 1px solid #eee;
+}
+.no-color {
+    background: #eee;
+}
 .big-content-container {
     position: absolute;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     top: 20vh;
     left: 10vw;
     width: 80vw;
@@ -19,7 +43,6 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-around;
-    width: 70%;
 }
 
 .calendar-header > i {
@@ -54,42 +77,17 @@
     color: #282c37;
 }
 
-.month-calendar-wrapper {
-    width: 60%;
-    background-color: #d9e1e8;
-    border-radius: 25px;
-}
-
-.weekday {
+.dayofWeek {
     display: flex;
     justify-content: space-around;
     text-align: center;
-    margin-top: 10px;
     font-weight: 700;
     user-select: none;
 }
 
-.sunday {
+.SUN {
     color: #ff4343;
 }
-.saturday {
+.SAT {
     color: #2b90d9;
-}
-
-.week-wrapper {
-    display: flex;
-    margin: 0.5vh 0;
-    flex-direction: row;
-    justify-content: space-around;
-}
-
-.day-wrapper {
-    width: 5vw;
-    height: 5vw;
-    border-radius: 1vw;
-    box-sizing: border-box;
-    font-weight: 700;
-    padding: 10px;
-    background-color: #fff;
-    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.25);
 }
