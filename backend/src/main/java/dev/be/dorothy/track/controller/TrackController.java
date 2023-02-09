@@ -40,7 +40,7 @@ public class TrackController {
         return new ResponseEntity<>(commonResponse, HttpStatus.CREATED);
     }
 
-    @GetMapping("s")
+    @GetMapping("/list")
     public ResponseEntity<CommonResponse> readAll() {
         MemberDetail principal = (MemberDetail) ContextHolder.getContext().getPrincipal();
         MemberResDto memberDto = principal.getMemberDto();
