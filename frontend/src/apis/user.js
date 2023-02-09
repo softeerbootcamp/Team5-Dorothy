@@ -12,8 +12,8 @@ export const GetUser = async (id, password) => {
         const response = await UserService.getUser(id, password);
         return Promise.resolve(response.data);
     } catch (error) {
-        stateModal(response.code, response.message);
-        return Promise.reject(response.message, '로그인 실패');
+        stateModal(error.code, error.message);
+        return Promise.reject(error.message, '로그인 실패');
     }
 };
 
