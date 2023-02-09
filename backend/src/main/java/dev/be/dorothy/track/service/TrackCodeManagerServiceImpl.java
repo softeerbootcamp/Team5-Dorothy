@@ -22,7 +22,7 @@ public class TrackCodeManagerServiceImpl implements TrackCodeManagerService {
 
     @Override
     public String read(String trackIdx) {
-        return null;
+        return redisDao.getValues(trackIdx);
     }
 
     private String generate() {
