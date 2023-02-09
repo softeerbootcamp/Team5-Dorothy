@@ -16,7 +16,7 @@ public class TrackRetrieveServiceImpl implements TrackRetrieveService{
 
     @Override
     public List<TrackResDto> retrieveTracks(Long userIdx) {
-        List<TrackResDto> byMemberId = trackRepository.findByMemberId(userIdx);
-        return byMemberId;
+        List<TrackResDto> trackList = trackRepository.findByMemberId(userIdx);
+        return trackList;
     }
 }
