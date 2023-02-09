@@ -12,7 +12,12 @@ export const GetUser = async (id, password) => {
         const response = await UserService.getUser(id, password);
         return Promise.resolve(response.data);
     } catch (error) {
-        stateModal(error.code, error.message);
+        document
+            .querySelector('.modal-place')
+            .insertAdjacentHTML(
+                'beforeend',
+                stateModal(error.code, error.message),
+            );
         return Promise.reject(error.message, '로그인 실패');
     }
 };
@@ -33,11 +38,18 @@ export const PostUser = async (
             name,
             email,
         );
-        stateModal(response.code, response.message);
+        document
+            .querySelector('.modal-place')
+            .insertAdjacentHTML(
+                'beforeend',
+                stateModal(response.code, response.message),
+            );
         console.log(response.message);
         return Promise.resolve(response.data);
     } catch (error) {
-        stateModal(error.code, error.message);
+        document
+            .querySelector('.modal-place')
+            .insertAdjacentHTML(stateModal(error.code, error.message));
         console.log(error);
         return Promise.reject(error.message, '회원가입 실패');
     }
