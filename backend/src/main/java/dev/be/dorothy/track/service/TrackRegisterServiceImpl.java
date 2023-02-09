@@ -7,6 +7,8 @@ import dev.be.dorothy.track.Track;
 import dev.be.dorothy.track.repository.TrackRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class TrackRegisterServiceImpl implements TrackRegisterService {
     private final TrackCodeManagerService trackCodeManagerService;
@@ -42,6 +44,11 @@ public class TrackRegisterServiceImpl implements TrackRegisterService {
         Track track = trackRepository
                 .findById(trackIdx)
                 .orElseThrow(() -> new BadRequestException("트랙정보가 유효하지 않습니다."));
+
+        Optional<Long> trackMemberIdx = trackRepository.doesExistTrackMember(memberIdx, trackIdx);
+        if(trackMemberIdx.isPresent()) {
+            throw new BadRequestException("이미 존재하는 멤버입니다.");
+        }
 
         String code = trackCodeManagerService.read(trackIdx.toString());
         if (!code.equals(joinCode)) {
