@@ -3,11 +3,13 @@ package dev.be.dorothy.track.service;
 import dev.be.dorothy.exception.BadRequestException;
 import dev.be.dorothy.exception.ForbiddenException;
 import dev.be.dorothy.member.MemberRole;
+import dev.be.dorothy.track.Track;
 import dev.be.dorothy.track.repository.TrackRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Optional;
@@ -20,6 +22,12 @@ import static org.mockito.Mockito.mock;
 @ExtendWith(MockitoExtension.class)
 @DisplayName("TrackRegisterService Test")
 public class TrackRegisterServiceTest {
+
+    @Mock
+    TrackRepository trackRepository;
+
+    @Mock
+    TrackCodeManagerService trackCodeManagerService;
 
     @InjectMocks
     TrackRegisterServiceImpl trackRegisterService;
@@ -51,8 +59,8 @@ public class TrackRegisterServiceTest {
         long trackIdx = 1L;
         long memberIdx = 99L;
         String joinCode = "123456";
-        TrackCodeManagerService trackCodeManagerService = mock(TrackCodeManagerService.class);
-        given(trackCodeManagerService.read(Long.toString(trackIdx))).willReturn("a1b2c3");
+        given(trackRepository.findById(trackIdx)).willReturn(Optional.of(mock(Track.class)));
+        given(trackCodeManagerService.read(String.valueOf(trackIdx))).willReturn("a1b2c3");
 
         // when then
         assertThrows(
@@ -66,7 +74,6 @@ public class TrackRegisterServiceTest {
     void joinWhenTrackDoesNotExist() {
         // given
         long trackIdx = 1L;
-        TrackRepository trackRepository = mock(TrackRepository.class);
         given(trackRepository.findById(trackIdx)).willReturn(Optional.empty());
 
         // when
