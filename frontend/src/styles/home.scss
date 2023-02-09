@@ -1,4 +1,15 @@
-@media screen and (max-width: 767px) {
+.title-wrapper {
+    position: relative;
+    left: 10vw;
+    top: 40vh;
+    width: 50vw;
+    color: #fff;
+    user-select: none;
+    font-family: 'Fontdiner Swanky', cursive;
+    font-size: 5em;
+    text-shadow: 0.25vw 0.25vh 0.5vw rgba(0, 0, 0, 0.5);
+}
+@media (max-width: 767px) {
     .title-wrapper {
         left: 10vw;
         top: 40vh;
@@ -48,21 +59,10 @@
     color: #000;
     background-color: #fff;
 }
-.title-wrapper {
-    position: relative;
-    left: 10vw;
-    top: 40vh;
-    width: 50vw;
-    color: #fff;
-    user-select: none;
-    font-family: 'Fontdiner Swanky', cursive;
-    font-size: 5em;
-    text-shadow: 0.25vw 0.25vh 0.5vw rgba(0, 0, 0, 0.5);
-}
 
 .Mini {
     transition: all 1s;
-    transform: translate(-24vw, -40vh) scale(0.25);
+    transform: translate(-20vw, -36vh) scale(0.5);
 }
 
 .Start {
