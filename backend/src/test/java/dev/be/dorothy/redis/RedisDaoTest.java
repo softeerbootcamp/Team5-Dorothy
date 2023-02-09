@@ -15,7 +15,7 @@ public class RedisDaoTest {
 
     @AfterEach
     void clear() {
-        redisDao.delete("*");
+        redisDao.deleteValues("*");
     }
 
     @Test
