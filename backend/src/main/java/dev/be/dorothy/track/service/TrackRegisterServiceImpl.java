@@ -1,16 +1,21 @@
 package dev.be.dorothy.track.service;
 
+import dev.be.dorothy.exception.BadRequestException;
 import dev.be.dorothy.exception.ForbiddenException;
 import dev.be.dorothy.member.MemberRole;
 import dev.be.dorothy.track.Track;
 import dev.be.dorothy.track.repository.TrackRepository;
 import org.springframework.stereotype.Service;
 
+import javax.crypto.BadPaddingException;
+
 @Service
 public class TrackRegisterServiceImpl implements TrackRegisterService {
+    private final TrackCodeManagerService trackCodeManagerService;
     private final TrackRepository trackRepository;
 
-    public TrackRegisterServiceImpl(TrackRepository trackRepository) {
+    public TrackRegisterServiceImpl(TrackCodeManagerService trackCodeManagerService, TrackRepository trackRepository) {
+        this.trackCodeManagerService = trackCodeManagerService;
         this.trackRepository = trackRepository;
     }
 
@@ -34,7 +39,7 @@ public class TrackRegisterServiceImpl implements TrackRegisterService {
     }
 
     @Override
-    public TrackResDto join(Long trackIdx, Long trackMemberIdx, String joinCode) {
+    public TrackResDto join(Long trackIdx, Long memberIdx, String joinCode) {
         return null;
     }
 }
