@@ -1,5 +1,6 @@
 package dev.be.dorothy.track.service;
 
+import dev.be.dorothy.exception.BadRequestException;
 import dev.be.dorothy.redis.RedisDao;
 import org.springframework.stereotype.Service;
 
@@ -22,7 +23,13 @@ public class TrackCodeManagerServiceImpl implements TrackCodeManagerService {
 
     @Override
     public String read(String trackIdx) {
-        return redisDao.getValues(trackIdx);
+        String code = redisDao.getValues(trackIdx);
+
+        if(code == null) {
+            throw new BadRequestException("잘못된 요청입니다.");
+        }
+
+        return code;
     }
 
     private String generate() {
