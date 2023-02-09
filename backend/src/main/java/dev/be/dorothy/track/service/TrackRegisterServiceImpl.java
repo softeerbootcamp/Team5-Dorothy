@@ -7,8 +7,6 @@ import dev.be.dorothy.track.Track;
 import dev.be.dorothy.track.repository.TrackRepository;
 import org.springframework.stereotype.Service;
 
-import javax.crypto.BadPaddingException;
-
 @Service
 public class TrackRegisterServiceImpl implements TrackRegisterService {
     private final TrackCodeManagerService trackCodeManagerService;
@@ -40,6 +38,24 @@ public class TrackRegisterServiceImpl implements TrackRegisterService {
 
     @Override
     public TrackResDto join(Long trackIdx, Long memberIdx, String joinCode) {
-        return null;
+        Track track = trackRepository
+                .findById(trackIdx)
+                .orElseThrow(() -> new BadRequestException("트랙정보가 유효하지 않습니다."));
+
+        String code = trackCodeManagerService.read(trackIdx.toString());
+        if (!code.equals(joinCode)) {
+            throw new ForbiddenException();
+        }
+
+        track.addTrackMember(memberIdx, MemberRole.MEMBER);
+        trackRepository.save(track);
+
+        return new TrackResDto(
+                track.getIdx(),
+                track.getName(),
+                track.getImage(),
+                track.getCreatedAt(),
+                track.getUpdatedAt()
+        );
     }
 }
