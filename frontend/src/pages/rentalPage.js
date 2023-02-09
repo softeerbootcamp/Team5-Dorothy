@@ -15,10 +15,12 @@ export default class rentalPage extends AbstractView {
                 <div class="content-container">
                 </div>
                 <section class="big-content-container">
-                    <div class="place-container">
-                    ${placeData.map((place) => {
-                        return placeCard(place.name, place.img);
-                    })}
+                    <div class="places-container">
+                    ${placeData
+                        .map((place) => {
+                            return placeCard(place.name, place.img);
+                        })
+                        .join('')}
                     </div>
                 </section>
             </div>

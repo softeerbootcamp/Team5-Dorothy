@@ -59,10 +59,8 @@ const router = async () => {
     const match = routes.find((route) => {
         return route.path === location.pathname;
     });
-    console.log(match);
     // const view = new match.view(getParams(match.path));
     const view = match ? new match.view() : new notFoundPage(location.pathname);
-    console.log(view);
     document.querySelector('#app').innerHTML = await view.getHtml();
     eventdelegator(match.path);
 };
