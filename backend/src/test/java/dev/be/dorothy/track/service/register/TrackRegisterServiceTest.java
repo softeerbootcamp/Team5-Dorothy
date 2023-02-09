@@ -2,6 +2,7 @@ package dev.be.dorothy.track.service.register;
 
 import dev.be.dorothy.exception.ForbiddenException;
 import dev.be.dorothy.member.MemberRole;
+import dev.be.dorothy.track.service.TrackRegisterServiceImpl;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -11,11 +12,11 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @ExtendWith(MockitoExtension.class)
-@DisplayName("TrackRegister Test")
-public class TrackRegisterTest {
+@DisplayName("TrackRegisterService Test")
+public class TrackRegisterServiceTest {
 
     @InjectMocks
-    TrackRegisterImpl trackRegister;
+    TrackRegisterServiceImpl trackRegister;
 
     @Test
     @DisplayName("권한이 운영진이 아닌 경우 (멤버인 경우) 403 예외를 던지는지 테스트")

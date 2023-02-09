@@ -1,17 +1,16 @@
-package dev.be.dorothy.track.service.register;
+package dev.be.dorothy.track.service;
 
 import dev.be.dorothy.exception.ForbiddenException;
 import dev.be.dorothy.member.MemberRole;
 import dev.be.dorothy.track.Track;
 import dev.be.dorothy.track.repository.TrackRepository;
-import dev.be.dorothy.track.service.TrackResDto;
 import org.springframework.stereotype.Service;
 
 @Service
-public class TrackRegisterImpl implements TrackRegister {
+public class TrackRegisterServiceImpl implements TrackRegisterService {
     private final TrackRepository trackRepository;
 
-    public TrackRegisterImpl(TrackRepository trackRepository) {
+    public TrackRegisterServiceImpl(TrackRepository trackRepository) {
         this.trackRepository = trackRepository;
     }
 
