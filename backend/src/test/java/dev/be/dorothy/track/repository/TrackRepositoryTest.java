@@ -4,10 +4,14 @@ import dev.be.dorothy.member.Member;
 import dev.be.dorothy.member.MemberRole;
 import dev.be.dorothy.member.repository.MemberRepository;
 import dev.be.dorothy.track.Track;
+import dev.be.dorothy.track.service.TrackResDto;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.data.jdbc.DataJdbcTest;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
+
+import java.util.List;
 
 @DataJdbcTest
 @AutoConfigureTestDatabase(replace= AutoConfigureTestDatabase.Replace.NONE)
@@ -47,8 +51,11 @@ public class TrackRepositoryTest {
     }
 
     @Test
-    @DisplayName("테스트의 테스트")
-    void test() {
-
+    @DisplayName("멤버 별 가입 트랙 조회 기능 ")
+    void retrieveTrackByMember() {
+        Member member = memberRepository.findAll().iterator().next();
+        Long memberIdx = member.getIdx();
+        List<TrackResDto> TrackResList = trackRepository.findByMemberId(memberIdx);
+        Assertions.assertThat(TrackResList.size()).isEqualTo(1);
     }
 }

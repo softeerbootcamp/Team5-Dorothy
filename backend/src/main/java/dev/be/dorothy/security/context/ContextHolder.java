@@ -1,6 +1,6 @@
-package dev.be.dorothy.auth;
+package dev.be.dorothy.security.context;
 
-import dev.be.dorothy.auth.authentication.Authentication;
+import dev.be.dorothy.security.authentication.Authentication;
 
 public class ContextHolder {
 
