@@ -12,7 +12,7 @@ const UserService = {
     //로그인
     getUser: (id, password) =>
         axios.post(BASE_URL + '/member/login', {
-            username: id,
+            memberId: id,
             password: password,
         }),
 
