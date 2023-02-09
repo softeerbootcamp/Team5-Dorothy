@@ -51,5 +51,16 @@ public class TrackController {
         return new ResponseEntity<>(commonResponse, HttpStatus.OK);
     }
 
+    @PostMapping("/join")
+    public ResponseEntity<CommonResponse> join(
+            @RequestParam("trackIdx") Long trackIdx,
+            @RequestParam("joinCode") String joinCode
+    ) {
+        MemberDetail principal = (MemberDetail) ContextHolder.getContext().getPrincipal();
+        MemberResDto memberDto = principal.getMemberDto();
 
+        TrackResDto trackResDto = trackRegisterService.join(trackIdx, memberDto.getIdx(), joinCode);
+        CommonResponse commonResponse = new CommonResponse(HttpStatus.OK, "트랙 참여에 성공하였습니다.", trackResDto);
+        return new ResponseEntity<>(commonResponse, HttpStatus.OK);
+    }
 }
