@@ -47,4 +47,20 @@ public class HttpExceptionHandlerTest {
                 () -> assertThat(Objects.requireNonNull(response.getBody()).getMessage()).isEqualTo("서버에서 알 수 없는 에러가 발생했단말이야,,")
         );
     }
+
+    @Test
+    @DisplayName("Forbidden handle Test")
+    void forbidden() {
+        // given
+        ForbiddenException exception = new ForbiddenException();
+
+        // when
+        ResponseEntity<CommonResponse> response = handler.handle(exception);
+
+        // then
+        assertAll(
+                () -> assertThat(response.getStatusCode()).isEqualTo(HttpStatus.FORBIDDEN),
+                () -> assertThat(Objects.requireNonNull(response.getBody()).getMessage()).isEqualTo("권한이 존재하지 않습니다.")
+        );
+    }
 }

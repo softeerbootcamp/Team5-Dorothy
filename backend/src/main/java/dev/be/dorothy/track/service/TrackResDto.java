@@ -1,7 +1,5 @@
 package dev.be.dorothy.track.service;
 
-import dev.be.dorothy.member.MemberRole;
-
 import java.time.LocalDateTime;
 
 public class TrackResDto {
@@ -10,17 +8,13 @@ public class TrackResDto {
     private final String image;
     private final LocalDateTime createdAt;
     private final LocalDateTime updatedAt;
-    private final MemberRole role;
-    private final LocalDateTime joinedAt;
 
-    public TrackResDto(Long idx, String name, String image, LocalDateTime createdAt, LocalDateTime updatedAt, MemberRole role, LocalDateTime joinedAt) {
+    public TrackResDto(Long idx, String name, String image, LocalDateTime createdAt, LocalDateTime updatedAt) {
         this.idx = idx;
         this.name = name;
         this.image = image;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
-        this.role = role;
-        this.joinedAt = joinedAt;
     }
 
     public Long getIdx() {
@@ -43,11 +37,4 @@ public class TrackResDto {
         return updatedAt;
     }
 
-    public MemberRole getRole() {
-        return role;
-    }
-
-    public LocalDateTime getJoinedAt() {
-        return joinedAt;
-    }
 }

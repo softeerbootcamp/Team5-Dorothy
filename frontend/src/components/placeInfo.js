@@ -23,4 +23,16 @@ export default [
         img: '/src/assets/chair.svg',
         alt: '휴식실',
     },
+    {
+        id: 5,
+        name: '커피머신',
+        img: '/src/assets/coffee.svg',
+        alt: '커피머신',
+    },
+    {
+        id: 6,
+        name: '전문서적',
+        img: '/src/assets/bookshelf.svg',
+        alt: '전문서적',
+    },
 ];

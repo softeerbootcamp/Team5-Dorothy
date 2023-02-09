@@ -5,15 +5,20 @@ import rentalDetailPage from './pages/rentalDetailPage.js';
 import attendPage from './pages/attendPage.js';
 import noticePage from './pages/noticePage.js';
 import trackPage from './pages/trackPage.js';
+import notFoundPage from './pages/notFoundPage.js';
+
+import './styles/style.scss';
+
+import eventdelegator from './main.js';
 
 const pathToRegex = (path) =>
     new RegExp('^' + path.replace(/\//g, '\\/').replace(/:\w+/g, '(.+)') + '$');
 
-const getParams = (match) => {
-    const values = match.result.slice(1);
-    const keys = Array.from(match.route.path.matchAll(/:(\w+)/g)).map(
+const getParams = (matchPath) => {
+    const keys = Array.from(matchPath.matchAll(/:(\w+)/g)).map(
         (result) => result[1],
     );
+    console.log(keys);
 
     return Object.fromEntries(
         keys.map((key, i) => {
@@ -27,34 +32,43 @@ const navigateTo = (url) => {
     router();
 };
 
-const router = async () => {
-    const routes = [
-        { path: '/', view: homePage },
-        { path: '/main', view: mainPage },
-        { path: '/track', view: trackPage },
-        { path: '/rental', view: rentalPage },
-        { path: '/rental/:id', view: rentalDetailPage },
-        { path: '/attend', view: attendPage },
-        { path: '/notice', view: noticePage },
-        { path: '/track', view: trackPage },
-    ];
-    const potentialMatches = routes.map((route) => {
-        return {
-            route: route,
-            result: location.pathname.match(pathToRegex(route.path)),
-        };
-    });
+const routes = [
+    { path: '/', view: homePage },
+    { path: '/main', view: mainPage },
+    { path: '/track', view: trackPage },
+    { path: '/rental', view: rentalPage },
+    { path: '/rental/:id', view: rentalDetailPage },
+    { path: '/attend', view: attendPage },
+    { path: '/notice', view: noticePage },
+    { path: '/track', view: trackPage },
+    { path: '/tempt', view: rentalDetailPage },
+];
 
-    let match = potentialMatches.find(
-        (potentialMatch) => potentialMatch.result !== null,
-    );
-    const view = new match.route.view(getParams(match));
+const router = async () => {
+    // const potentialMatches = routes.map((route) => {
+    //     return {
+    //         route: route,
+    //         result: location.pathname.match(pathToRegex(route.path)),
+    //     };
+    // });
+    // console.log(potentialMatches);
+    // let match = potentialMatches.find(
+    //     (potentialMatch) => potentialMatch.result !== null,
+    // );
+
+    const match = routes.find((route) => {
+        return route.path === location.pathname;
+    });
+    console.log(match);
+    // const view = new match.view(getParams(match.path));
+    const view = match ? new match.view() : new notFoundPage(location.pathname);
     console.log(view);
     document.querySelector('#app').innerHTML = await view.getHtml();
+    eventdelegator(match.path);
 };
 
 document.addEventListener('DOMContentLoaded', () => {
-    router();
+    router(getParams(match));
 });
 
 window.addEventListener('popstate', router);
@@ -69,3 +83,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
     router();
 });
+
+export { navigateTo };
