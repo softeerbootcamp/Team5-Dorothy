@@ -1,7 +1,6 @@
 package dev.be.dorothy.auth.authorization;
 
 import dev.be.dorothy.auth.AuthorizationFilter;
-import dev.be.dorothy.auth.MemberDetail;
 import dev.be.dorothy.member.MemberRole;
 import org.springframework.stereotype.Component;
 
@@ -21,11 +20,11 @@ public class HttpSecurity {
         return expressionUrlAuthorizationConfigurer;
     }
 
-    public void validateRequest(MemberDetail member, String url){
+    public void validateRequest(String url){
         ExpressionUrlAuthorizationConfigurer.UrlRegistry urlRegistry = expressionUrlAuthorizationConfigurer.antMatchers(url);
         List<AcccessEnum> accessList = urlRegistry.getAccessList();
         List<MemberRole> roleList = urlRegistry.getRoleList();
-        accessList.forEach(acccessEnum -> acccessEnum.validate(member, roleList));
+        accessList.forEach(acccessEnum -> acccessEnum.validate(roleList));
     }
 
     public AuthorizationFilter build() {
