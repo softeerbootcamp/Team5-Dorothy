@@ -79,7 +79,6 @@ const clickRegisterButton = (target) => {
     const name = joinForm.querySelector('.name-input').value;
     const email = joinForm.querySelector('.join-email-input').value;
     PostUser(memberId, password, passwordCheck, name, email);
-    console.log(memberId, password, passwordCheck, name, email);
     navigateTo('/track');
 };
 
@@ -175,7 +174,6 @@ const clickLoginButton = (target) => {
     const maintitle = container.querySelector('.title-wrapper');
     const ID = loginForm.querySelector('.login-input').value;
     const PW = loginForm.querySelector('.password-input').value;
-    console.log(ID, PW);
     GetUser(ID, PW);
     loginForm.classList.toggle('On');
     maintitle.classList.add('Mini');
