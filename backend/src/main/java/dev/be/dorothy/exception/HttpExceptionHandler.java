@@ -23,4 +23,12 @@ public class HttpExceptionHandler {
                 .internalServerError()
                 .body(body);
     }
+
+    @ExceptionHandler(ForbiddenException.class)
+    public ResponseEntity<CommonResponse> handle(ForbiddenException e) {
+        CommonResponse body = new CommonResponse(HttpStatus.FORBIDDEN, e.getMessage(), null);
+        return ResponseEntity
+                .status(HttpStatus.FORBIDDEN)
+                .body(body);
+    }
 }
