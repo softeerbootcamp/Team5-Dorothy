@@ -26,6 +26,7 @@ public class TrackRegisterServiceImpl implements TrackRegisterService {
         Track track = new Track(name, "");
         track.addTrackMember(memberIdx, role);
         trackRepository.save(track);
+        trackCodeManagerService.store(track.getIdx().toString());
 
         return new TrackResDto(
                 track.getIdx(),
