@@ -1,6 +1,6 @@
-package dev.be.dorothy.auth;
+package dev.be.dorothy.security.filter;
 
-import dev.be.dorothy.auth.authorization.HttpSecurity;
+import dev.be.dorothy.security.authorization.HttpSecurity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -10,7 +10,7 @@ import java.io.IOException;
 
 public class AuthorizationFilter implements Filter {
 
-    private static final Logger logger = LoggerFactory.getLogger(AuthenticationFilter.class);
+    private static final Logger logger = LoggerFactory.getLogger(AuthorizationFilter.class);
     private final HttpSecurity httpSecurity;
 
     public AuthorizationFilter(HttpSecurity httpSecurity) {
@@ -19,9 +19,10 @@ public class AuthorizationFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-        HttpServletRequest req = (HttpServletRequest) request;
-/*        String url = req.getRequestURI();
-        httpSecurity.validateRequest((MemberDetail)ContextHolder.getContext().getPrincipal(), url); */
+        logger.info("authorization filter");
+/*        HttpServletRequest req = (HttpServletRequest) request;
+        String url = req.getRequestURI();
+        httpSecurity.validateRequest(url);*/
         chain.doFilter(request, response);
     }
 

@@ -1,13 +1,13 @@
-package dev.be.dorothy.auth;
+package dev.be.dorothy.security.filter;
 
-import dev.be.dorothy.auth.authentication.Authentication;
-import dev.be.dorothy.auth.authentication.UsernameAndPasswordTokenProvider;
+import dev.be.dorothy.security.authentication.Authentication;
+import dev.be.dorothy.security.authentication.UsernameAndPasswordTokenProvider;
+import dev.be.dorothy.security.context.ContextHolder;
 import dev.be.dorothy.member.service.MemberResDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
-
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -21,7 +21,7 @@ public class AuthenticationFilter implements Filter {
     private final UsernameAndPasswordTokenProvider usernameAndPasswordTokenProvider;
 
 
-    public AuthenticationFilter(UsernameAndPasswordTokenProvider usernameAndPasswordTokenProvider, AuthenticationManager authenticationMangager) {
+    public AuthenticationFilter(UsernameAndPasswordTokenProvider usernameAndPasswordTokenProvider) {
         this.usernameAndPasswordTokenProvider = usernameAndPasswordTokenProvider;
     }
 

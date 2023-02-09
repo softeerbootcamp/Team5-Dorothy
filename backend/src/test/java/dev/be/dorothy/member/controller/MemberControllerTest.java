@@ -1,9 +1,9 @@
 package dev.be.dorothy.member.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import dev.be.dorothy.auth.AuthenticationFilter;
-import dev.be.dorothy.auth.AuthorizationFilter;
-import dev.be.dorothy.auth.LoginFilter;
+import dev.be.dorothy.security.filter.AuthenticationFilter;
+import dev.be.dorothy.security.filter.AuthorizationFilter;
+import dev.be.dorothy.security.filter.LoginFilter;
 import dev.be.dorothy.exception.BadRequestException;
 import dev.be.dorothy.member.Member;
 import dev.be.dorothy.member.MemberRole;
@@ -48,7 +48,7 @@ public class MemberControllerTest {
 
         // when
         ResultActions perform = mockMvc.perform(
-                post("/member/login")
+                post("/api/v1/member/login")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(content));
 
@@ -71,7 +71,7 @@ public class MemberControllerTest {
 
         // when
         ResultActions perform = mockMvc.perform(
-                post("/member/login")
+                post("/api/v1/member/login")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(content));
 
@@ -81,4 +81,3 @@ public class MemberControllerTest {
                 .andExpect(jsonPath("$.message").value("입력 정보가 올바르지 않습니다."));
     }
 }
-

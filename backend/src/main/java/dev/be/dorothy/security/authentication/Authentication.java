@@ -1,4 +1,4 @@
-package dev.be.dorothy.auth.authentication;
+package dev.be.dorothy.security.authentication;
 
 public interface Authentication {
 

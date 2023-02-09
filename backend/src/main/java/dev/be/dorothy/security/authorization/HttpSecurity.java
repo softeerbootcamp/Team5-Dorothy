@@ -1,6 +1,6 @@
-package dev.be.dorothy.auth.authorization;
+package dev.be.dorothy.security.authorization;
 
-import dev.be.dorothy.auth.AuthorizationFilter;
+import dev.be.dorothy.security.filter.AuthorizationFilter;
 import dev.be.dorothy.member.MemberRole;
 import org.springframework.stereotype.Component;
 

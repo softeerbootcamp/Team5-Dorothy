@@ -1,4 +1,4 @@
-package dev.be.dorothy.auth;
+package dev.be.dorothy.security.context;
 
 import dev.be.dorothy.exception.InternalServerErrorException;
 import dev.be.dorothy.member.Member;

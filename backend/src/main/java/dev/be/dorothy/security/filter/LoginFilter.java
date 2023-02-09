@@ -1,6 +1,7 @@
-package dev.be.dorothy.auth;
+package dev.be.dorothy.security.filter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import dev.be.dorothy.security.authentication.AuthenticationManager;
 import dev.be.dorothy.common.CommonResponse;
 import dev.be.dorothy.exception.BadRequestException;
 import dev.be.dorothy.member.service.LoginReqDto;

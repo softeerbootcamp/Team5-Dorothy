@@ -1,6 +1,6 @@
-package dev.be.dorothy.auth.authentication;
+package dev.be.dorothy.security.authentication;
 
-import dev.be.dorothy.auth.MemberDetail;
+import dev.be.dorothy.security.context.MemberDetail;
 
 public class UsernameAndPasswordToken implements Authentication {
 

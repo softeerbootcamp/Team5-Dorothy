@@ -1,7 +1,7 @@
-package dev.be.dorothy.auth.authorization;
+package dev.be.dorothy.security.authorization;
 
-import dev.be.dorothy.auth.ContextHolder;
-import dev.be.dorothy.auth.MemberDetail;
+import dev.be.dorothy.security.context.ContextHolder;
+import dev.be.dorothy.security.context.MemberDetail;
 import dev.be.dorothy.exception.BadRequestException;
 import dev.be.dorothy.member.MemberRole;
 import java.util.List;

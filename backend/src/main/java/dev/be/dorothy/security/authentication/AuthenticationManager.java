@@ -1,4 +1,4 @@
-package dev.be.dorothy.auth;
+package dev.be.dorothy.security.authentication;
 
 import dev.be.dorothy.exception.BadRequestException;
 import dev.be.dorothy.member.Member;
