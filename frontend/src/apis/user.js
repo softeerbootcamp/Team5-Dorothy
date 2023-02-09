@@ -24,15 +24,15 @@ export const PostUser = async (
     email,
 ) => {
     try {
-        const responese = await UserService.postUser(
+        const response = await UserService.postUser(
             memberId,
             password,
             passwordCheck,
             name,
             email,
         );
-        console.log(responese.message);
-        return Promise.resolve(responese.data);
+        console.log(response.message);
+        return Promise.resolve(response.data);
     } catch (error) {
         return Promise.reject(response.message, '회원가입 실패');
     }

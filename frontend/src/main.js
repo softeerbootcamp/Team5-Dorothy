@@ -1,16 +1,18 @@
 import setHomeEvent from './scripts/home.js';
-import setMainEvent from './scripts/main.js';
+import { setMainEvent, checkAvailable } from './scripts/main.js';
+import makeTimer from './scripts/attend.js';
+
 const eventdelegator = (root) => {
+    setMainEvent();
     switch (root) {
         case '/':
             setHomeEvent();
             break;
         case '/main':
-            console.log('main');
-            setMainEvent();
+            console.log(checkAvailable);
+            if (checkAvailable) makeTimer();
             break;
         case '/track':
-            console.log('track');
             break;
     }
 };
