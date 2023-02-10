@@ -92,4 +92,37 @@ BackEnd</br>
 ```
 
 ## 팀원 소개
-
+<center><table border="" cellspacing="0" cellpadding="0" width="100%">
+    <tr width="100%">
+        <td align="center"><a href= "https://github.com/solchan98">solchan</a></td>
+        <td align="center"><a href= "https://github.com/miinjoo">김민주</a></td>
+        <td align="center"><a href= "https://github.com/pjs0418">pjs0418</a></td>
+        <td align="center"><a href= "https://github.com/hoonystory98">Taehun Jeong</a></td>
+        <td align="center"><a href= "https://github.com/i5046821854">YoungShin Lee</a></td>
+    </tr>
+    <tr width="100%">
+        <td  align="center"><img src = "https://avatars.githubusercontent.com/u/64524916?v=4" width="100px"/></td>
+        <td  align="center"><img src = "https://avatars.githubusercontent.com/u/97172766?v=4" width="100px" /></td>
+        <td  align="center"><img src = "https://avatars.githubusercontent.com/u/33286894?v=4" width="100px"/></td>
+        <td  align="center"><img src = "https://avatars.githubusercontent.com/u/45064913?v=4" width="100px" /></td>
+        <td  align="center"><img src = "https://avatars.githubusercontent.com/u/77906386?v=4" width="100px"/></td>
+    </tr>
+    <tr width="100%">
+      <td  align="felx-start">
+        [가입자] 홈 화면 페이지 <br/> [가입자] 정의 구경하기 페이지 <br/> [가입자] 사전 검색 페이지 <br/> 햄버거 메뉴
+      </td>
+      <td  align="flex-start">
+        역할
+      </td>
+      <td  align="flex-start">
+         역할
+      </td>
+      <td  align="flex-start">
+        역할
+      </td>
+      <td  align="flex-start">
+         역할
+      </td>
+   </tr>
+</table>
+</center>
