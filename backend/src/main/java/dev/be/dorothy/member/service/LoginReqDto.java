@@ -6,6 +6,8 @@ public class LoginReqDto {
     private String memberId;
     private String password;
 
+    public LoginReqDto() {}
+
     public LoginReqDto(String memberId, String password) {
         this.memberId = memberId;
         this.password = password;
