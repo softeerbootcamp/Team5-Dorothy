@@ -5,7 +5,3 @@ export const http = axios.create({
 });
 
 http.defaults.withCredentials = true;
-
-// http.defaults.headers.common["Authorization"] = token
-//   ? `Bearer ${token}`
-//   : null;

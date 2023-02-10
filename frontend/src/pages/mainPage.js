@@ -1,24 +1,30 @@
 import AbstractView from './pageTemplate';
+import { timerForm } from '../components/main/timer';
+import { daysOfWeek } from '../components/calendar/constants.js';
+import { pageTitleTamplate } from '../components/pageTitle';
 
 export default class mainPage extends AbstractView {
     async getHtml() {
+        /*html*/
         return `
-        <div class="container Start">
+        <div class="container">
             <div class="main-wrapper">
-                <div class="title-wrapper Mini"><h1>DOROTHY</h1></div>
+                <h1 class="title-wrapper Mini">DOROTHY</h1>
                 <div class="name-wrapper">
-                    <h2>안녕하세요, 사용자님!</h2>
+                ${pageTitleTamplate('안녕하세요, 사용자님!')}
                 </div>
                 <div class="content-container">
                     <div class="attendance-wrapper">내 출석현황 >
                         <div class="calendar-wrapper">
-                            <article class="calendar"><div class="calendar-head">5<span class="day">Sun</span></div></article>
-                            <article class="calendar"><div class="calendar-head">6<span class="day">Mon</span></div></article>
-                            <article class="calendar"><div class="calendar-head">7<span class="day">Tue</span></div></article>
-                            <article class="calendar"><div class="calendar-head">8<span class="day">Wed</span></div></article>
-                            <article class="calendar"><div class="calendar-head">9<span class="day">Thu</span></div></article>
-                            <article class="calendar"><div class="calendar-head">10<span class="day">Fri</span></div></article>
-                            <article class="calendar"><div class="calendar-head">11<span class="day">Sat</span></div></article>
+                        ${daysOfWeek
+                            .map((day) => {
+                                return `<article class="calendar">
+                                    <div class="calendar-head">
+                                        5<span class="day">${day}</span>
+                                    </div>
+                                </article>`;
+                            })
+                            .join('')}
                         </div>
                     </div>
                     <div class="contour"></div>
@@ -55,7 +61,8 @@ export default class mainPage extends AbstractView {
                     </div>
                 </section>
             </div>
-        </div>
+        </div> 
+        ${timerForm()}
         `;
     }
 }

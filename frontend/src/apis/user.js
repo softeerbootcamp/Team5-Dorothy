@@ -10,6 +10,7 @@ export const Logout = () => {
 export const GetUser = async (id, password) => {
     try {
         const response = await UserService.getUser(id, password);
+        console.log(response.data);
         return Promise.resolve(response.data);
     } catch (error) {
         document
@@ -44,7 +45,7 @@ export const PostUser = async (
                 'beforeend',
                 stateModal(response.code, response.message),
             );
-        console.log(response.message);
+        console.log(response.data);
         return Promise.resolve(response.data);
     } catch (error) {
         document

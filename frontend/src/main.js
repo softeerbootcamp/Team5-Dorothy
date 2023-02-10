@@ -10,7 +10,7 @@ const eventdelegator = (root) => {
             break;
         case '/main':
             console.log(checkAvailable);
-            if (checkAvailable) makeTimer();
+            if (true) makeTimer();
             break;
         case '/track':
             break;
