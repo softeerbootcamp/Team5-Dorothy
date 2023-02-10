@@ -25,5 +25,13 @@ const UserService = {
             name,
             email,
         }),
+    postTrack: (trackname) => {
+        axios.post(BASE_URL + `/api/v1/track?name=${trackname}`, {});
+    },
+    getTrack: (trackMemberIdx) => {
+        axios.get(BASE_URL + '/api/v1/tracks', { trackMemberIdx });
+    },
+
+    Post,
 };
 export { UserService };
