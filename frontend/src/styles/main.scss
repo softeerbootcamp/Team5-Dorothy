@@ -40,8 +40,8 @@
 
 .image-container {
     display: flex;
-    width: 196px;
-    height: 196px;
+    min-width: 196px;
+    min-height: 196px;
     align-items: center;
     justify-content: center;
     overflow: hidden;
