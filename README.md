@@ -2,7 +2,7 @@
 
 ## 서비스 소개
 
-배포: [dorothy-5z.site](http://dorothy-5z.site)</br>
+배포: [dorothy-5z.site](http://dorothy-5z.site)</br>{: width="100%"}
 ![ezgif com-video-to-gif](https://user-images.githubusercontent.com/45064913/217983847-fbf53593-cdc2-47cb-9d43-1a4475503803.gif)
 
 **🧚‍♂️출석부, 공간대여 기능 탑재 공유오피스 관리 플랫폼🧚‍♀️**</br></br>
