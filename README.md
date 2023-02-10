@@ -14,13 +14,14 @@ gif
 
 ## 기술 스택
 FrontEnd</br>
-<img src="https://img.shields.io/badge/HTML-E34F26?style=flat&logo=HTML5&logoColor=white"/>
-<img src="https://img.shields.io/badge/CSS-1572B6?style=flat&logo=CSS3&logoColor=white"/>
-<img src="https://img.shields.io/badge/Scss-CC6699?style=flat&logo=Sass&logoColor=white"/>
-<img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=JavaScript&logoColor=white"/>
-<img src="https://img.shields.io/badge/TypeScript-3178C6?style=flat&logo=TypeScript&logoColor=white"/>
-<img src="https://img.shields.io/badge/Redux-764ABC?style=flat&logo=Redux&logoColor=white"/>
-<img src="https://img.shields.io/badge/Axios-5A29E4?style=flat&logo=Axios&logoColor=white"/>
+- dev</br>
+    <img src="https://img.shields.io/badge/HTML-E34F26?style=flat&logo=HTML5&logoColor=white"/>
+    <img src="https://img.shields.io/badge/CSS-1572B6?style=flat&logo=CSS3&logoColor=white"/>
+    <img src="https://img.shields.io/badge/Scss-CC6699?style=flat&logo=Sass&logoColor=white"/>
+    <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=JavaScript&logoColor=white"/>
+    <img src="https://img.shields.io/badge/TypeScript-3178C6?style=flat&logo=TypeScript&logoColor=white"/>
+    <img src="https://img.shields.io/badge/Redux-764ABC?style=flat&logo=Redux&logoColor=white"/>
+    <img src="https://img.shields.io/badge/Axios-5A29E4?style=flat&logo=Axios&logoColor=white"/>
 - Package Manager</br>
     <img src="https://img.shields.io/badge/npm-CB3837?style=flat&logo=npm&logoColor=white"/>
 - Code Formatter</br>
@@ -42,9 +43,11 @@ BackEnd</br>
 ## API 명세
 ![](https://velog.velcdn.com/images/solchan/post/c5db9b18-2eaa-497d-b0a4-b826aaf1eb22/image.png)
 
-
 ## 배포 아키텍처
 ![](https://velog.velcdn.com/images/solchan/post/7e9dd24a-cbd4-4a0b-8a5a-e137fe56232d/image.png)
+
+## SecurityFilter Architecture
+![image](https://user-images.githubusercontent.com/64524916/217993894-2c75638d-e847-48c7-ad9f-a90d196909f6.png)
 
 ## 라이브러리
 ```
@@ -84,13 +87,6 @@ BackEnd</br>
 └─ 📂 data ▶️ 샘플 데이터
 
 ```
-
-
-## 프로젝트 아키텍쳐
-
-
-## SecurityFilter Architecture
-![image](https://user-images.githubusercontent.com/64524916/217993894-2c75638d-e847-48c7-ad9f-a90d196909f6.png)
 
 ## 팀원 소개
 
