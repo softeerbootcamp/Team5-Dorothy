@@ -2,8 +2,8 @@
 
 ## 서비스 소개
 
-배포: [dorothy-5z.site](http://dorothy-5z.site)
-
+배포: [dorothy-5z.site](http://dorothy-5z.site)</br>
+![ezgif com-video-to-gif](https://user-images.githubusercontent.com/45064913/217983847-fbf53593-cdc2-47cb-9d43-1a4475503803.gif)
 
 **출석부, 공간대여 기능 탑재 공유오피스 관리 플랫폼**</br></br>
 Dorothy는 위치기반 출석부, 실시간 공간대여 관리 기능을 탑재한 공유오피스 관리를 위한 플랫폼입니다!</br>
