@@ -30,8 +30,21 @@ FrontEnd</br>
     <img src="https://img.shields.io/badge/Vite-646CFF?style=flat&logo=Vite&logoColor=white"/>
 
 BackEnd</br>
-<img src="https://img.shields.io/badge/NGINX-009639?style=flat&logo=NGINX&logoColor=white"/>
-<img src="https://img.shields.io/badge/Docker-2496ED?style=flat&logo=Docker&logoColor=white"/>
+- dev</br>
+    <img src="https://img.shields.io/badge/Java-007396?style=flat&logo=OpenJDK&logoColor=white"/>
+    <img src="https://img.shields.io/badge/SpringBoot-6DB33F?style=flat&logo=SpringBoot&logoColor=white"/>
+    <img src="https://img.shields.io/badge/JUnit5-25A162?style=flat&logo=JUnit5&logoColor=white"/>
+        <img src="https://img.shields.io/badge/Mockito-25A162?style=flat&logo=Mockito&logoColor=white"/>
+- Deploy</br>
+    <img src="https://img.shields.io/badge/NGINX-009639?style=flat&logo=NGINX&logoColor=white"/>
+    <img src="https://img.shields.io/badge/Docker-2496ED?style=flat&logo=Docker&logoColor=white"/>
+    
+## API 명세
+![](https://velog.velcdn.com/images/solchan/post/c5db9b18-2eaa-497d-b0a4-b826aaf1eb22/image.png)
+
+
+## 배포 아키텍처
+![](https://velog.velcdn.com/images/solchan/post/7e9dd24a-cbd4-4a0b-8a5a-e137fe56232d/image.png)
 
 ## 라이브러리
 ```
@@ -75,6 +88,9 @@ BackEnd</br>
 
 ## 프로젝트 아키텍쳐
 
+
+## SecurityFilter Architecture
+![image](https://user-images.githubusercontent.com/64524916/217993894-2c75638d-e847-48c7-ad9f-a90d196909f6.png)
 
 ## 팀원 소개
 
