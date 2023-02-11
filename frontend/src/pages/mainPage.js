@@ -50,7 +50,7 @@ export default class mainPage extends AbstractView {
                 </div>
                 <section class="profile-container">
                     <div class="image-container"><img src="https://ca.slack-edge.com/T04AE6CRWMB-U04GTQ0SHRT-badeda2b168f-512" alt="my-profile"></div>
-                    <div id="check-timer"></div>
+                    <div id="check-timer">${timerForm()}</div>
                     <div class="department-container">
                         <select class="track-select-container">
                             <option value="1">현대자동차그룹 소프티어 부트캠프 2023</option>
@@ -62,7 +62,7 @@ export default class mainPage extends AbstractView {
                 </section>
             </div>
         </div> 
-        ${timerForm()}
+        
         `;
     }
 }

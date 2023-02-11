@@ -1,9 +1,12 @@
 const WARNING_THRESHOLD = 10;
 const ALERT_THRESHOLD = 5;
 
+const ATTEND_MINUTES = 10;
+const ATTEND_SECONDS = 60;
+
 const NOW = new Date();
-const attendance_minutes = 59 - NOW.getMinutes();
-const attendance_seconds = 60 - NOW.getSeconds();
+const SET_MINUTES = ATTEND_MINUTES - NOW.getMinutes();
+const SET_SECONDS = ATTEND_SECONDS - NOW.getSeconds();
 
 const COLOR_CODES = {
     info: {
@@ -36,7 +39,7 @@ function makeTimer() {
 
     let intervalTimer;
     let timeLeft;
-    let wholeTime = 60 * attendance_minutes + attendance_seconds;
+    let wholeTime = 60 * SET_MINUTES + SET_SECONDS;
     let isPaused = false;
     let isStarted = false;
 
@@ -45,16 +48,10 @@ function makeTimer() {
 
     function timer(seconds) {
         let remainTime = Date.now() + seconds * 1000;
-        displayTimeLeft(seconds);
 
+        displayTimeLeft(seconds);
         intervalTimer = setInterval(function () {
             timeLeft = Math.round((remainTime - Date.now()) / 1000);
-            if (timeLeft < 0) {
-                clearInterval(intervalTimer);
-                isStarted = false;
-                displayTimeLeft(wholeTime);
-                return;
-            }
             displayTimeLeft(timeLeft);
         }, 1000);
     }
@@ -75,9 +72,11 @@ function makeTimer() {
     function displayTimeLeft(timeLeft) {
         let minutes = Math.floor(timeLeft / 60);
         let seconds = timeLeft % 60;
-        let displayString = `${minutes < 10 ? '0' : ''}${minutes}:${
-            seconds < 10 ? '0' : ''
-        }${seconds}`;
+        let displayString = `${
+            minutes < 0 ? (minutes > -10 ? '-0' : '-') : minutes < 10 ? '0' : ''
+        }${Math.abs(minutes)}:${
+            seconds < 10 && seconds > -10 ? '0' : ''
+        }${Math.abs(seconds)}`;
         displayOutput.textContent = displayString;
         update(timeLeft, wholeTime);
     }
