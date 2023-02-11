@@ -96,7 +96,7 @@ BackEnd</br>
 ```
 
 ## 팀원 소개
-<table border="" cellspacing="0" cellpadding="0" width="100%">
+<table border="" cellspacing="0" cellpadding="0">
     <tr width="100%">
         <td align="center"><a href= "https://github.com/solchan98">solchan</a></td>
         <td align="center"><a href= "https://github.com/miinjoo">김민주</a></td>
@@ -112,19 +112,19 @@ BackEnd</br>
         <td  align="center"><img src = "https://avatars.githubusercontent.com/u/77906386?v=4" width="100px"/></td>
     </tr>
     <tr width="100%">
-      <td  align="felx-start">
-        
-      </td>
-      <td  align="flex-start">
+      <td align="felx-start">
         역할
       </td>
-      <td  align="flex-start">
+      <td align="flex-start">
+        역할
+      </td>
+      <td align="flex-start">
          역할
       </td>
-      <td  align="flex-start">
+      <td align="flex-start">
         역할
       </td>
-      <td  align="flex-start">
+      <td align="flex-start">
          역할
       </td>
    </tr>
