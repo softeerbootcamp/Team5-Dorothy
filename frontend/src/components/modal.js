@@ -2,6 +2,7 @@ let openPopup = false;
 
 const stateModal = (code, message) => {
     openPopup = true;
+    console.log(code);
     const ModalTemplate = `
     <div class='modal-wrapper'>
     ${code == 'CREATED' ? successModal(message) : failModal(message)}
@@ -22,7 +23,7 @@ const closeModal = () => {
 
 const failModal = (text) => {
     const failModalTamplate = `
-    <i class="fa-solid fa-circle-check"></i>
+    <i class="fa-solid fa-circle-exclamation"></i>
     <p>${text}</p>
     `;
     return failModalTamplate;
@@ -30,7 +31,7 @@ const failModal = (text) => {
 
 const successModal = (text) => {
     const successModalTemplate = `
-    <i class="fa-solid fa-circle-exclamation"></i>
+    <i class="fa-solid fa-circle-check"></i>
     <p>${text}</p>`;
     return successModalTemplate;
 };

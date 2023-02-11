@@ -1,66 +1,69 @@
 #check-timer {
     position: absolute;
-    width: 196px;
-    height: 196px;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
+    height: 200px;
     border-radius: 98px;
 }
-
-.base-timer {
-    position: relative;
-    cursor: pointer;
-    width: 196px;
-    height: 196px;
+.circle {
+    backdrop-filter: blur(5px);
+    height: 200px;
+    width: 200px;
+    border-radius: 100px;
 }
 
-.base-timer__svg {
-    transform: scaleX(-1);
+.pink {
+    stroke: #f7958e;
+    color: #f7958e;
 }
 
-.base-timer__circle {
-    fill: rgba(0, 0, 0, 0.25);
-    stroke: none;
-}
-
-.base-timer__path-elapsed {
-    stroke-width: 7px;
-    stroke: #d8d8d8;
-}
-
-.base-timer__path-remaining {
-    stroke-width: 7px;
-    stroke-linecap: round;
-    transform: rotate(90deg);
-    transform-origin: center;
-    transition: 1s linear all;
-    fill-rule: nonzero;
-    stroke: currentColor;
-}
-
-.base-timer__path-remaining.green {
-    color: rgb(65, 184, 131);
-}
-
-.base-timer__path-remaining.orange {
+.orange {
+    stroke: orange;
     color: orange;
 }
 
-.base-timer__path-remaining.red {
+.red {
+    stroke: red;
     color: red;
 }
 
-.base-timer__label {
-    display: flex;
+.controlls {
     position: absolute;
-    width: 50px;
-    left: 50%;
-    top: 50%;
-    justify-content: center;
-    font-size: 48px;
-    transform: translate(-50%, -50%);
-    color: #fff;
-    text-shadow: 2.5px 2.5px 2.5px rgba(255, 255, 255, 0.8);
-    user-select: none;
+    left: 30px;
+    top: 45px;
+    text-align: center;
+}
+
+.display-remain-time {
+    font-family: 'Roboto';
+    font-weight: 100;
+    font-size: 45px;
+}
+
+#pause {
+    border: none;
+    margin-top: 15px;
+    width: fit-content;
+    height: 50px;
+    position: relative;
+    font-size: 30px;
+}
+
+.e-c-base {
+    fill: none;
+    stroke: #b6b6b6;
+    stroke-width: 4px;
+}
+
+.e-c-progress {
+    fill: none;
+    stroke-width: 4px;
+    transition: stroke-dashoffset 0.7s;
+}
+
+.e-c-pointer {
+    fill: #fff;
+    stroke-width: 2px;
+}
+
+#e-pointer {
+    transition: transform 0.7s;
 }

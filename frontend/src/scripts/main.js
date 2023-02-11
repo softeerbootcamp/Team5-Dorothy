@@ -1,5 +1,8 @@
+import makeTimer from '../components/main/timer/maketimer.js';
+
 function setMainEvent() {
     getUserLocation();
+    makeTimer();
 }
 
 let checkAvailable;
@@ -35,4 +38,5 @@ const getUserLocation = () => {
         alert('이 브라우저에서는 Geolocation이 지원되지 않습니다.');
     }
 };
+
 export { setMainEvent, checkAvailable };

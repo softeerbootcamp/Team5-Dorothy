@@ -10,6 +10,7 @@ export const Logout = () => {
 export const GetUser = async (id, password) => {
     try {
         const response = await UserService.getUser(id, password);
+        console.log(response.data);
         return Promise.resolve(response.data);
     } catch (error) {
         document
@@ -18,6 +19,7 @@ export const GetUser = async (id, password) => {
                 'beforeend',
                 stateModal(error.code, error.message),
             );
+        console.log(error.code);
         return Promise.reject(error.message, '로그인 실패');
     }
 };
@@ -44,7 +46,7 @@ export const PostUser = async (
                 'beforeend',
                 stateModal(response.code, response.message),
             );
-        console.log(response.message);
+        console.log(response.data);
         return Promise.resolve(response.data);
     } catch (error) {
         document
@@ -54,3 +56,6 @@ export const PostUser = async (
         return Promise.reject(error.message, '회원가입 실패');
     }
 };
+
+// 트랙 생성
+export const PostTrack = async () => {};
