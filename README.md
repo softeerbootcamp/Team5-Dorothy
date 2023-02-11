@@ -96,7 +96,8 @@ BackEnd</br>
 ```
 
 ## Documnetation
-
+[<img src="https://img.shields.io/badge/Notion-000000?style=flat&logo=Notion&logoColor=White"/>](https://quilled-subway-cd9.notion.site/HMG-5-5-a119522089fc453c9cfea93db85002ca)</br>
+[<img src="https://img.shields.io/badge/GitHub-181717?style=flat&logo=Github&logoColor=White"/>](https://github.com/orgs/softeerbootcamp/projects/6/)
 
 ## 팀원 소개
 <table border="" cellspacing="0" cellpadding="0">
