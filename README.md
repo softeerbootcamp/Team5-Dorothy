@@ -113,7 +113,7 @@ BackEnd</br>
     </tr>
     <tr width="100%">
       <td  align="felx-start">
-        [가입자] 홈 화면 페이지 <br/> [가입자] 정의 구경하기 페이지 <br/> [가입자] 사전 검색 페이지 <br/> 햄버거 메뉴
+        
       </td>
       <td  align="flex-start">
         역할
