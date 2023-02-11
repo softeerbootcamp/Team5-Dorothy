@@ -22,7 +22,7 @@ export default class noticePage extends AbstractView {
                         <div class="face bottom">6</div>
                     </div>
                     <div class="dice-message-container">
-                        <p>에러페이지입니다. 버튼을 눌러보세요.</p>
+                        <p>에러 페이지입니다. 버튼을 눌러보세요.</p>
                         <button class="dice-button">PUSH ME</button>
                     </div>
                 </section>

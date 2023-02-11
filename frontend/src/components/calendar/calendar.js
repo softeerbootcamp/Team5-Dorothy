@@ -1,6 +1,9 @@
 import { daysOfWeek } from './constants';
 
+let currentDate;
+
 const makeCalendar = (date) => {
+    currentDate = date;
     const currentYear = new Date(date).getFullYear();
     const currentMonth = new Date(date).getMonth() + 1;
 
@@ -28,8 +31,6 @@ const makeCalendar = (date) => {
     return htmlDummy;
 };
 
-const date = new Date();
-
 function setCalendarEvent() {
     const calendarYear = document.querySelector('.year-wrapper');
     const calendarMonth = document.querySelector('.month-wrapper');
@@ -37,7 +38,10 @@ function setCalendarEvent() {
         .querySelector('.prevDay')
         .addEventListener('click', () => {
             document.querySelector('.calendar-container').innerHTML =
-                makeCalendar(new Date(date.setMonth(date.getMonth() - 1)));
+                makeCalendar(
+                    new Date(currentDate.setMonth(currentDate.getMonth() - 1)),
+                );
+            console.log(new Date(currentDate.setMonth(currentDate.getMonth())));
             if (parseInt(calendarMonth.innerText) === 1) {
                 calendarYear.innerText = parseInt(calendarYear.innerText) - 1;
                 calendarMonth.innerText = 12;
@@ -49,7 +53,10 @@ function setCalendarEvent() {
         .querySelector('.nextDay')
         .addEventListener('click', () => {
             document.querySelector('.calendar-container').innerHTML =
-                makeCalendar(new Date(date.setMonth(date.getMonth() + 1)));
+                makeCalendar(
+                    new Date(currentDate.setMonth(currentDate.getMonth() + 1)),
+                );
+            console.log(new Date(currentDate.setMonth(currentDate.getMonth())));
             if (parseInt(calendarMonth.innerText) === 12) {
                 calendarYear.innerText = parseInt(calendarYear.innerText) + 1;
                 calendarMonth.innerText = 1;
@@ -58,15 +65,5 @@ function setCalendarEvent() {
             }
         });
 }
-
-// // 이전달 이동
-// document.querySelector(`.prevDay`).onclick = () => {
-//     makeCalendar(new Date(date.setMonth(date.getMonth() - 1)));
-// };
-
-// // 다음달 이동
-// document.querySelector(`.nextDay`).onclick = () => {
-//     makeCalendar(new Date(date.setMonth(date.getMonth() + 1)));
-// };
 
 export { makeCalendar, setCalendarEvent };
