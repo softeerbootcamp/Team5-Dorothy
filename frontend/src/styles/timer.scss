@@ -1,15 +1,13 @@
 #check-timer {
     position: absolute;
-    width: 196px;
-    height: 196px;
+    height: 200px;
     border-radius: 98px;
 }
 .circle {
-    position: absolute;
-    backdrop-filter: blur(10px);
-    width: 196px;
-    height: 196px;
-    border-radius: 98px;
+    backdrop-filter: blur(5px);
+    height: 200px;
+    width: 200px;
+    border-radius: 100px;
 }
 .green {
     color: rgb(65, 184, 131);
@@ -22,8 +20,6 @@
 .red {
     color: red;
 }
-
-@import url('https://fonts.googleapis.com/css?family=Roboto:100,300');
 
 button[data-setter] {
     outline: none;
