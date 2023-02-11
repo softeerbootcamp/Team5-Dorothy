@@ -1,7 +1,8 @@
 import AbstractView from './pageTemplate';
-import { timerForm } from '../components/main/timer';
+import { timerForm } from '../components/main/timer/timer.js';
 import { daysOfWeek } from '../components/calendar/constants.js';
 import { pageTitleTamplate } from '../components/pageTitle';
+import { makeChart } from '../components/main/chart/chart';
 
 export default class mainPage extends AbstractView {
     async getHtml() {
@@ -36,7 +37,8 @@ export default class mainPage extends AbstractView {
                     </div>
                     <div class="contour"></div>
                     <div class="chart-wrapper">전체 출석현황 >
-                        <div class="attend-ratio-wrapper">
+                        
+                        <div class="attend-ratio-wrapper">${makeChart()}
                             <div class="block"></div>
                             <div class="block"></div>
                             <div class="block"></div>

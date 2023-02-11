@@ -1,7 +1,8 @@
-import makeTimer from '../components/main/maketimer.js';
+import makeTimer from '../components/main/timer/maketimer.js';
 
 function setMainEvent() {
     getUserLocation();
+    makeTimer();
 }
 
 let checkAvailable;
