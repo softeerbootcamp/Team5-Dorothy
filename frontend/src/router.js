@@ -65,9 +65,9 @@ const router = async () => {
     eventdelegator(match.path);
 };
 
-document.addEventListener('DOMContentLoaded', () => {
-    router(getParams(match));
-});
+// document.addEventListener('DOMContentLoaded', () => {
+//     router(getParams(match));
+// });
 
 window.addEventListener('popstate', router);
 

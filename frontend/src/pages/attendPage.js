@@ -18,14 +18,14 @@ export default class attendPage extends AbstractView {
                 </div>
                 <section class="big-content-container">
                     <header class="calendar-header">
-                        <i class="fa-solid fa-circle-left fa-2x"></i>
+                        <i class="fa-solid fa-circle-left fa-2x prevDay"></i>
                         <div class="month-container">
                             <span class="year-wrapper">${now.getFullYear()}</span>
                             <span class="month-wrapper">
                             ${now.getMonth() + 1}
                             </span>
                         </div>
-                        <i class="fa-solid fa-circle-right fa-2x"></i>
+                        <i class="fa-solid fa-circle-right fa-2x nextDay"></i>
                     </header>
                     <div class='calendar-container'>
                     ${makeCalendar(now)}

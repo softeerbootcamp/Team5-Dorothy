@@ -1,5 +1,7 @@
 import setHomeEvent from './scripts/home.js';
 import setMainEvent from './scripts/main.js';
+import { setCalendarEvent } from './components/calendar/calendar.js';
+
 const eventdelegator = (root) => {
     switch (root) {
         case '/':
@@ -11,6 +13,9 @@ const eventdelegator = (root) => {
             break;
         case '/track':
             console.log('track');
+            break;
+        case '/attend':
+            setCalendarEvent();
             break;
     }
 };
