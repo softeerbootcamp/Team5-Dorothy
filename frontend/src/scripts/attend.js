@@ -2,7 +2,7 @@ const WARNING_THRESHOLD = 10;
 const ALERT_THRESHOLD = 5;
 
 const NOW = new Date();
-const attendance_minutes = 60 - NOW.getMinutes();
+const attendance_minutes = 59 - NOW.getMinutes();
 const attendance_seconds = 60 - NOW.getSeconds();
 
 const COLOR_CODES = {
@@ -32,7 +32,6 @@ function makeTimer() {
         pointer.style.transform = `rotate(${360 * value}deg)`;
     }
 
-    //circle ends
     const displayOutput = document.querySelector('.display-remain-time');
 
     let intervalTimer;
@@ -41,11 +40,10 @@ function makeTimer() {
     let isPaused = false;
     let isStarted = false;
 
-    update(wholeTime); //refreshes progress bar
+    update(wholeTime);
     displayTimeLeft(wholeTime);
 
     function timer(seconds) {
-        //counts time, takes seconds
         let remainTime = Date.now() + seconds * 1000;
         displayTimeLeft(seconds);
 

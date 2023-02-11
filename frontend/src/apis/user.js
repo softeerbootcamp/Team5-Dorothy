@@ -19,6 +19,7 @@ export const GetUser = async (id, password) => {
                 'beforeend',
                 stateModal(error.code, error.message),
             );
+        console.log(error.code);
         return Promise.reject(error.message, '로그인 실패');
     }
 };
@@ -57,6 +58,4 @@ export const PostUser = async (
 };
 
 // 트랙 생성
-export const PostTrack= async()=>{
-    
-}
+export const PostTrack = async () => {};
