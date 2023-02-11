@@ -66,17 +66,7 @@
 }
 
 .Start {
-    animation: inonecolor 1s linear;
     background: #9baec8;
-}
-
-@keyframes inonecolor {
-    0% {
-        background: #fff;
-    }
-    100% {
-        background: #9baec8;
-    }
 }
 
 .btn-wrapper {

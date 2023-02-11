@@ -4,17 +4,15 @@ import { setCalendarEvent } from './components/calendar/calendar.js';
 
 const eventdelegator = (root) => {
     switch (root) {
-        case '/':
+        case 'home':
             setHomeEvent();
             break;
-        case '/main':
-            console.log('main');
+        case 'main':
             setMainEvent();
             break;
-        case '/track':
-            console.log('track');
+        case 'track':
             break;
-        case '/attend':
+        case 'attend':
             setCalendarEvent();
             break;
     }

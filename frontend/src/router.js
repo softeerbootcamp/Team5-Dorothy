@@ -17,14 +17,18 @@ const navigateTo = (url) => {
 };
 
 const routes = [
-    { path: /^\/$/, view: homePage },
-    { path: /^\/main$/, view: mainPage },
-    { path: /^\/track$/, view: trackPage },
-    { path: /^\/rental$/, view: rentalPage },
-    { path: /^\/rental\/(\d+)$/, view: rentalDetailPage },
-    { path: /^\/attend$/, view: attendPage },
-    { path: /^\/notice$/, view: noticePage },
-    { path: /^\/track$/, view: trackPage },
+    { path: /^\/$/, event: 'home', view: homePage },
+    { path: /^\/main$/, event: 'main', view: mainPage },
+    { path: /^\/track$/, event: 'track', view: trackPage },
+    { path: /^\/rental$/, event: 'rental', view: rentalPage },
+    {
+        path: /^\/rental\/(\d+)$/,
+        event: 'rentalDetail',
+        view: rentalDetailPage,
+    },
+    { path: /^\/attend$/, event: 'attend', view: attendPage },
+    { path: /^\/notice$/, event: 'notice', view: noticePage },
+    { path: /^\/track$/, event: 'track', view: trackPage },
 ];
 
 const router = async () => {
@@ -33,7 +37,7 @@ const router = async () => {
     });
     const view = match ? new match.view() : new notFoundPage(location.pathname);
     document.querySelector('#app').innerHTML = await view.getHtml();
-    eventdelegator(match.path);
+    eventdelegator(match.event);
 };
 
 // document.addEventListener('DOMContentLoaded', () => {

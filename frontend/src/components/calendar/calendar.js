@@ -41,7 +41,6 @@ function setCalendarEvent() {
                 makeCalendar(
                     new Date(currentDate.setMonth(currentDate.getMonth() - 1)),
                 );
-            console.log(new Date(currentDate.setMonth(currentDate.getMonth())));
             if (parseInt(calendarMonth.innerText) === 1) {
                 calendarYear.innerText = parseInt(calendarYear.innerText) - 1;
                 calendarMonth.innerText = 12;
@@ -56,7 +55,6 @@ function setCalendarEvent() {
                 makeCalendar(
                     new Date(currentDate.setMonth(currentDate.getMonth() + 1)),
                 );
-            console.log(new Date(currentDate.setMonth(currentDate.getMonth())));
             if (parseInt(calendarMonth.innerText) === 12) {
                 calendarYear.innerText = parseInt(calendarYear.innerText) + 1;
                 calendarMonth.innerText = 1;
