@@ -1,6 +1,6 @@
 import setHomeEvent from './scripts/home.js';
 import { setMainEvent, checkAvailable } from './scripts/main.js';
-import makeTimer from './scripts/attend.js';
+import makeTimer from './components/main/maketimer.js';
 
 const eventdelegator = (root) => {
     setMainEvent();

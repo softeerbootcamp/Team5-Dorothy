@@ -8,20 +8,6 @@ const NOW = new Date();
 const SET_MINUTES = ATTEND_MINUTES - NOW.getMinutes();
 const SET_SECONDS = ATTEND_SECONDS - NOW.getSeconds();
 
-const COLOR_CODES = {
-    info: {
-        color: 'green',
-    },
-    warning: {
-        color: 'orange',
-        threshold: WARNING_THRESHOLD,
-    },
-    alert: {
-        color: 'red',
-        threshold: ALERT_THRESHOLD,
-    },
-};
-
 function makeTimer() {
     let progressBar = document.querySelector('.e-c-progress');
     let pointer = document.getElementById('e-pointer');
@@ -62,12 +48,11 @@ function makeTimer() {
         }${Math.abs(seconds)}`;
         const controlls = document.querySelector('.controlls');
 
-        if (minutes < 0) {
-            console.log(progressBar.classList);
+        if (minutes < ALERT_THRESHOLD) {
             progressBar.classList.add('red');
             pointer.classList.add('red');
             controlls.classList.add('red');
-        } else if (minutes < 5 && minutes > 0) {
+        } else if (minutes < WARNING_THRESHOLD && minutes > ALERT_THRESHOLD) {
             progressBar.classList.add('orange');
             pointer.classList.add('orange');
             controlls.classList.add('orange');
@@ -81,6 +66,13 @@ function makeTimer() {
         update(timeLeft);
     }
     timer(wholeTime);
+
+    const attendBtn = document.querySelector('.play');
+    const timerWrapper = document.querySelector('#check-timer');
+
+    attendBtn.addEventListener('click', () => {
+        timerWrapper.remove();
+    });
 }
 
 export default makeTimer;
