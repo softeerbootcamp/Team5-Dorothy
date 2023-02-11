@@ -36,26 +36,26 @@ function setCalendarEvent() {
     const prevButton = document
         .querySelector('.prevDay')
         .addEventListener('click', () => {
+            document.querySelector('.calendar-container').innerHTML =
+                makeCalendar(new Date(date.setMonth(date.getMonth() - 1)));
             if (parseInt(calendarMonth.innerText) === 1) {
                 calendarYear.innerText = parseInt(calendarYear.innerText) - 1;
                 calendarMonth.innerText = 12;
             } else {
                 calendarMonth.innerText = parseInt(calendarMonth.innerText) - 1;
             }
-            document.querySelector('.calendar-container').innerHTML =
-                makeCalendar(new Date(date.setMonth(date.getMonth() - 1)));
         });
     const nextButton = document
         .querySelector('.nextDay')
         .addEventListener('click', () => {
+            document.querySelector('.calendar-container').innerHTML =
+                makeCalendar(new Date(date.setMonth(date.getMonth() + 1)));
             if (parseInt(calendarMonth.innerText) === 12) {
                 calendarYear.innerText = parseInt(calendarYear.innerText) + 1;
                 calendarMonth.innerText = 1;
             } else {
                 calendarMonth.innerText = parseInt(calendarMonth.innerText) + 1;
             }
-            document.querySelector('.calendar-container').innerHTML =
-                makeCalendar(new Date(date.setMonth(date.getMonth() + 1)));
         });
 }
 
