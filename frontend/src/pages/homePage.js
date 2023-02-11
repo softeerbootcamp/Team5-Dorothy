@@ -1,7 +1,6 @@
 import AbstractView from './pageTemplate';
 import { loginForm } from '../components/home/loginForm.js';
 import { registerForm } from '../components/home/registerForm.js';
-import { codeModal } from '../components/modal';
 
 export default class homePage extends AbstractView {
     async getHtml() {

@@ -31,7 +31,5 @@ const UserService = {
     getTrack: (trackMemberIdx) => {
         axios.get(BASE_URL + '/api/v1/tracks', { trackMemberIdx });
     },
-
-    Post,
 };
 export { UserService };

@@ -15,7 +15,7 @@ const timerForm = () => {
                 </svg>
             </div>
             <div class="controlls">
-                <div class="display-remain-time">00:60</div>
+                <div class="display-remain-time"></div>
                 <button class="play" id="pause"></button>
             </div>
         </div>

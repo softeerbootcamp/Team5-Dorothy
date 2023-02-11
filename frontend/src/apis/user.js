@@ -55,3 +55,8 @@ export const PostUser = async (
         return Promise.reject(error.message, '회원가입 실패');
     }
 };
+
+// 트랙 생성
+export const PostTrack= async()=>{
+    
+}
