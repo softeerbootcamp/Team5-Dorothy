@@ -9,56 +9,41 @@
     width: 200px;
     border-radius: 100px;
 }
-.green {
-    color: rgb(65, 184, 131);
+
+.pink {
+    stroke: #f7958e;
+    color: #f7958e;
 }
 
 .orange {
+    stroke: orange;
     color: orange;
 }
 
 .red {
+    stroke: red;
     color: red;
-}
-
-button[data-setter] {
-    outline: none;
-    background: transparent;
-    border: none;
-    font-family: 'Roboto';
-    font-weight: 300;
-    font-size: 18px;
-    width: 25px;
-    height: 30px;
-    color: #f7958e;
-    cursor: pointer;
-}
-
-button[data-setter]:hover {
-    opacity: 0.5;
 }
 
 .controlls {
     position: absolute;
-    left: 40px;
-    top: 50px;
+    left: 30px;
+    top: 45px;
     text-align: center;
 }
+
 .display-remain-time {
     font-family: 'Roboto';
     font-weight: 100;
     font-size: 45px;
-    color: #f7958e;
 }
+
 #pause {
-    outline: none;
-    background: transparent;
     border: none;
-    margin-top: 20px;
+    margin-top: 15px;
     width: fit-content;
     height: 50px;
     position: relative;
-    color: #f7958e;
     font-size: 30px;
 }
 
@@ -67,17 +52,18 @@ button[data-setter]:hover {
     stroke: #b6b6b6;
     stroke-width: 4px;
 }
+
 .e-c-progress {
     fill: none;
-    stroke: #f7958e;
     stroke-width: 4px;
     transition: stroke-dashoffset 0.7s;
 }
+
 .e-c-pointer {
     fill: #fff;
-    stroke: #f7958e;
     stroke-width: 2px;
 }
+
 #e-pointer {
     transition: transform 0.7s;
 }

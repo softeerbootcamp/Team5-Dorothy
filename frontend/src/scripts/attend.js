@@ -1,7 +1,7 @@
 const WARNING_THRESHOLD = 10;
-const ALERT_THRESHOLD = 5;
+const ALERT_THRESHOLD = 0;
 
-const ATTEND_MINUTES = 10;
+const ATTEND_MINUTES = 4;
 const ATTEND_SECONDS = 60;
 
 const NOW = new Date();
@@ -36,37 +36,20 @@ function makeTimer() {
     }
 
     const displayOutput = document.querySelector('.display-remain-time');
-
     let intervalTimer;
     let timeLeft;
     let wholeTime = 60 * SET_MINUTES + SET_SECONDS;
-    let isPaused = false;
-    let isStarted = false;
 
     update(wholeTime);
     displayTimeLeft(wholeTime);
 
     function timer(seconds) {
         let remainTime = Date.now() + seconds * 1000;
-
         displayTimeLeft(seconds);
         intervalTimer = setInterval(function () {
             timeLeft = Math.round((remainTime - Date.now()) / 1000);
             displayTimeLeft(timeLeft);
         }, 1000);
-    }
-
-    function pauseTimer(event) {
-        if (isStarted === false) {
-            timer(wholeTime);
-            isStarted = true;
-        } else if (isPaused) {
-            timer(timeLeft);
-            isPaused = isPaused ? false : true;
-        } else {
-            clearInterval(intervalTimer);
-            isPaused = isPaused ? false : true;
-        }
     }
 
     function displayTimeLeft(timeLeft) {
@@ -77,10 +60,27 @@ function makeTimer() {
         }${Math.abs(minutes)}:${
             seconds < 10 && seconds > -10 ? '0' : ''
         }${Math.abs(seconds)}`;
+        const controlls = document.querySelector('.controlls');
+
+        if (minutes < 0) {
+            console.log(progressBar.classList);
+            progressBar.classList.add('red');
+            pointer.classList.add('red');
+            controlls.classList.add('red');
+        } else if (minutes < 5 && minutes > 0) {
+            progressBar.classList.add('orange');
+            pointer.classList.add('orange');
+            controlls.classList.add('orange');
+        } else {
+            progressBar.classList.add('pink');
+            pointer.classList.add('pink');
+            controlls.classList.add('pink');
+        }
+
         displayOutput.textContent = displayString;
-        update(timeLeft, wholeTime);
+        update(timeLeft);
     }
-    pauseTimer();
+    timer(wholeTime);
 }
 
 export default makeTimer;
