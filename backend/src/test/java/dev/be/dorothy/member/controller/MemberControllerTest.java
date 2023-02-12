@@ -1,6 +1,7 @@
 package dev.be.dorothy.member.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import dev.be.dorothy.mapper.MemberResDtoMapper;
 import dev.be.dorothy.security.filter.AuthenticationFilter;
 import dev.be.dorothy.security.filter.AuthorizationFilter;
 import dev.be.dorothy.security.filter.LoginFilter;
@@ -8,7 +9,6 @@ import dev.be.dorothy.exception.BadRequestException;
 import dev.be.dorothy.member.Member;
 import dev.be.dorothy.member.MemberRole;
 import dev.be.dorothy.member.service.LoginReqDto;
-import dev.be.dorothy.member.service.MemberResDto;
 import dev.be.dorothy.member.service.MemberService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -44,7 +44,7 @@ public class MemberControllerTest {
         LoginReqDto loginReqDto = new LoginReqDto("sol", "1234");
         String content = objectMapper.writeValueAsString(loginReqDto);
         Member member = Member.of("sol", "1234", "2p7VxertGPCkNfnr", "sol", "", MemberRole.MEMBER);
-        given(memberService.login(loginReqDto)).willReturn(MemberResDto.from(member));
+        given(memberService.login(loginReqDto)).willReturn(MemberResDtoMapper.INSTANCE.entityToMemberResDto(member));
 
         // when
         ResultActions perform = mockMvc.perform(
