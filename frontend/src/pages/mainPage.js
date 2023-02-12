@@ -38,11 +38,12 @@ export default class mainPage extends AbstractView {
                     <div class="contour"></div>
                     <div class="chart-wrapper">전체 출석현황 >
                         
-                        <div class="attend-ratio-wrapper">${makeChart()}
+                        <div class="attend-ratio-wrapper">
                             <div class="block"></div>
                             <div class="block"></div>
                             <div class="block"></div>
                         </div>
+                        ${makeChart()}
                         <ul class="legend">
                             <li>출석</li>
                             <li>지각</li>

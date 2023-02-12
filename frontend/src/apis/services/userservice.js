@@ -11,25 +11,34 @@ const UserService = {
 
     //로그인
     getUser: (id, password) =>
-        axios.post(BASE_URL + '/member/login', {
+        http.post(BASE_URL + '/member/login', {
             memberId: id,
             password: password,
         }),
 
     //회원가입
     postUser: (memberId, password, passwordCheck, name, email) =>
-        axios.post(BASE_URL + '/member', {
+        http.post(BASE_URL + '/member', {
             memberId,
             password,
             passwordCheck,
             name,
             email,
         }),
+    //트랙 생성
     postTrack: (trackname) => {
-        axios.post(BASE_URL + `/api/v1/track?name=${trackname}`, {});
+        http.post(BASE_URL + `/track`, {});
     },
+    //트랙 조회
     getTrack: (trackMemberIdx) => {
-        axios.get(BASE_URL + '/api/v1/tracks', { trackMemberIdx });
+        http.get(BASE_URL + `/tracks?trackMemberIdx=${trackMemberIdx}`, {});
+    },
+    postTrackMember: () => {
+        http.post(BASE_URL + '/track/member');
+    },
+    //트랙 멤버 조회
+    getTrackMember: () => {
+        http.get(BASE_URL + '/track/members');
     },
 };
 export { UserService };
