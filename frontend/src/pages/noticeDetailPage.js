@@ -3,7 +3,7 @@ import { pageTitleTamplate } from '../components/pageTitle.js';
 import noticeData from '../components/notice/noticeInfo.js';
 import { noticePreview } from '../components/notice/noticeComponents.js';
 
-export default class noticePage extends AbstractView {
+export default class noticeDetailPage extends AbstractView {
     async getHtml() {
         return `
         <div class="container Start">
@@ -21,12 +21,6 @@ export default class noticePage extends AbstractView {
                             <th class="notice-id">id</th><th class="notice-title">title</th><th class="notice-date">date</th><th class="notice-watch">view</th>
                         </tr>
                     </thead>
-                    ${noticeData
-                        .map((notice) => {
-                            return noticePreview(notice.title);
-                        })
-                        .join('')}
-
                     </table>
                 </section>
             </div>

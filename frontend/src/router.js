@@ -3,6 +3,7 @@ import mainPage from './pages/mainPage.js';
 import rentalPage from './pages/rentalPage.js';
 import rentalDetailPage from './pages/rentalDetailPage.js';
 import attendPage from './pages/attendPage.js';
+import noticeDetailPage from './pages/noticeDetailPage.js';
 import noticePage from './pages/noticePage.js';
 import trackPage from './pages/trackPage.js';
 import notFoundPage from './pages/notFoundPage.js';
@@ -28,6 +29,11 @@ const routes = [
     },
     { path: /^\/attend$/, event: 'attend', view: attendPage },
     { path: /^\/notice$/, event: 'notice', view: noticePage },
+    {
+        path: /^\/notice\/(\d+)$/,
+        event: 'noticelDetail',
+        view: noticeDetailPage,
+    },
     { path: /^\/track$/, event: 'track', view: trackPage },
 ];
 
