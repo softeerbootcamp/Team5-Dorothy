@@ -36,21 +36,4 @@ const successModal = (text) => {
     return successModalTemplate;
 };
 
-const codeModal = (role, code = '') => {
-    let placeHolder = null;
-    role === 'MEMBER'
-        ? (placeHolder = '초대 코드를 입력해 주세요')
-        : (placeHolder = `추가할 트랙명을 입력해주세요`);
-    const codeModalTemplate = `
-    <div class='code-modal'>
-        <input type='text' class='add-track-input' placeholder="${placeHolder}">
-        <div class='track-btn-wrapper'>
-            <button class='add-track-btn'>Cancle</button>
-            <input type='submit' value='Add' class='add-track-btn'>
-        </div>
-    </div>
-    `;
-    return codeModalTemplate;
-};
-
-export { stateModal, codeModal };
+export { stateModal };

@@ -8,14 +8,16 @@ import java.time.LocalDateTime;
 @Table("track_member")
 public class TrackMember {
     private Long memberIdx;
+    private Long trackIdx;
     private MemberRole role;
     private LocalDateTime joinedAt;
     private boolean isDeleted;
 
     public TrackMember() {}
 
-    public TrackMember(Long memberIdx, MemberRole role, LocalDateTime joinedAt, boolean isDeleted) {
+    public TrackMember(Long memberIdx, Long trackIdx, MemberRole role, LocalDateTime joinedAt, boolean isDeleted) {
         this.memberIdx = memberIdx;
+        this.trackIdx = trackIdx;
         this.role = role;
         this.joinedAt = joinedAt;
         this.isDeleted = isDeleted;
@@ -23,6 +25,10 @@ public class TrackMember {
 
     public Long getMemberIdx() {
         return memberIdx;
+    }
+
+    public Long getTrackIdx() {
+        return trackIdx;
     }
 
     public MemberRole getRole() {

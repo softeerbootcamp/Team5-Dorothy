@@ -6,7 +6,6 @@ export const Logout = () => {
     alert('로그아웃');
     sessionStorage.removeItem('userInfo');
     UserService.logout();
-    window.location.replace('/');
 };
 
 // 로그인

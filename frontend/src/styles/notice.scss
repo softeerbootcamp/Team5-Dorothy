@@ -7,43 +7,82 @@ $breakpoint-tablet: 1024px;
 $breakpoint-mobile: 640px;
 
 .notice-container {
-    display: flex;
-    flex-direction: column;
     width: 100%;
     height: 60vh;
-    padding: 0 2.5px;
-    box-sizing: border-box;
     overflow-y: auto;
 }
-.notice-wrapper {
-    background: $gray-color;
-    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.5);
-    margin: 10px 0;
+
+// .notice-wrapper {
+//     background: $gray-color;
+//     box-shadow: 0 5px 5px rgba(0, 0, 0, 0.5);
+//     margin: 10px 0;
+//     border-radius: 15px;
+//     width: 100%;
+//     height: 50px;
+//     display: flex;
+//     flex-direction: row;
+//     transition: 0.5s;
+//     align-items: center;
+//     padding: 10px 5em;
+//     box-sizing: border-box;
+//     cursor: pointer;
+//     font-size: 1.5em;
+// }
+.Anotice-wrapper {
+    box-shadow: 0 0px 5px rgba(0, 0, 0, 0.5);
     border-radius: 15px;
     width: 100%;
-    min-height: 100px;
-    display: flex;
-    flex-direction: row;
+    height: 50px;
+
     transition: 0.5s;
     align-items: center;
     padding: 10px 5em;
     box-sizing: border-box;
     cursor: pointer;
 }
-.notice-wrapper:hover {
-    background-color: #fff;
+// .notice-title,
+// .notice-id,
+// .notice-date {
+//     font-weight: 500;
+//     width: 90%;
+//     white-space: nowrap;
+//     overflow: hidden;
+//     text-overflow: ellipsis;
+// }
+// .notice-id {
+//     width: 10%;
+//     background-color: blue;
+// }
+// .notice-watch {
+//     display: flex;
+//     flex-direction: column;
+//     background-color: red;
+//     align-items: center;
+// }
+// .notice-watch-num {
+//     background-color: #2b90d9;
+//     width: fit-content;
+// }
+// .show-notice {
+//     margin-left: auto;
+//     font-size: 2em;
+//     color: $indigo-color;
+// }
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 15px;
+}
+th,
+td {
+    vertical-align: middle;
 }
 
-.notice-title {
-    font-size: 2.5em;
-    font-weight: 700;
-    width: 90%;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-.show-notice {
-    margin-left: auto;
-    font-size: 2em;
-    color: $indigo-color;
+thead {
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.5);
+    border-radius: 15px;
+    width: 100%;
+    height: 45px;
+    font-size: 1.2em;
+    font-weight: 600;
 }

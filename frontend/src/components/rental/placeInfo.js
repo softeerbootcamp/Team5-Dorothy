@@ -1,7 +1,7 @@
 export default [
     {
         id: 1,
-        name: '교실',
+        name: '회의실',
         img: '/src/assets/room.svg',
         alt: '교실이미지',
     },
