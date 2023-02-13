@@ -7,58 +7,36 @@ const ATTEND_MINUTES = 59;
 const ATTEND_SECONDS = 60;
 
 const NOW = new Date();
+let id;
 const SET_MINUTES = ATTEND_MINUTES - NOW.getMinutes();
 const SET_SECONDS = ATTEND_SECONDS - NOW.getSeconds();
 
-const getUserLocation = (state = '결석') => {
+const getUserLocation = () => {
     if (navigator.geolocation) {
-        let id;
-        if (state === '결석') {
-            id = navigator.geolocation.watchPosition(function (pos) {
-                let latitude = pos.coords.latitude;
-                let longitude = pos.coords.longitude;
-                console.log(latitude, longitude);
-            });
-        }
-        if (state === '출석') {
-            navigator.geolocation.clearWatch(id);
-        }
+        id = navigator.geolocation.watchPosition(function (pos) {
+            let latitude = pos.coords.latitude;
+            let longitude = pos.coords.longitude;
+            console.log(latitude, longitude);
+        });
     } else {
         alert('이 브라우저에서는 Geolocation이 지원되지 않습니다.');
     }
 };
 
-const makeTimer = (state = '결석') => {
+const makeTimer = () => {
     //위치 정보 받아오기
-    getUserLocation(state);
+    getUserLocation();
 
     let length = Math.PI * 2 * 100;
     $('.e-c-progress').style.strokeDasharray = length;
 
     function update(value) {
-        var offset = -length - length * (value - 1);
+        let offset = -length - length * (value - 1);
         $('.e-c-progress').style.strokeDashoffset = offset / 36;
         $('#e-pointer').style.transform = `rotate(${(360 * value) / 36}deg)`;
     }
-
-    const displayOutput = document.querySelector('.display-remain-time');
-    let intervalTimer;
-    let timeLeft;
-    let wholeTime = 60 * SET_MINUTES + SET_SECONDS;
-
-    update(wholeTime);
-    displayTimeLeft(wholeTime);
-
-    function timer(seconds) {
-        let remainTime = Date.now() + seconds * 1000;
-        displayTimeLeft(seconds);
-        intervalTimer = setInterval(function () {
-            timeLeft = Math.round((remainTime - Date.now()) / 1000);
-            displayTimeLeft(timeLeft);
-        }, 1000);
-    }
-
     function displayTimeLeft(timeLeft) {
+        if (wholeTime === 0) return;
         let minutes = Math.floor(timeLeft / 60);
         let seconds = timeLeft % 60;
         let displayString = `${
@@ -83,7 +61,31 @@ const makeTimer = (state = '결석') => {
         displayOutput.textContent = displayString;
         update(timeLeft);
     }
+
+    const displayOutput = document.querySelector('.display-remain-time');
+    const playButton = document.querySelector('.play');
+    let intervalTimer;
+    let timeLeft;
+    let wholeTime = 60 * SET_MINUTES + SET_SECONDS;
+
+    function timer(seconds) {
+        let remainTime = Date.now() + seconds * 1000;
+        displayTimeLeft(seconds);
+        intervalTimer = setInterval(function () {
+            timeLeft = Math.round((remainTime - Date.now()) / 1000);
+            displayTimeLeft(timeLeft);
+        }, 1000);
+    }
     timer(wholeTime);
+
+    playButton.addEventListener('click', () => {
+        navigator.geolocation.clearWatch(id);
+        clearInterval(intervalTimer);
+        document.querySelector('#check-timer').style.opacity = '0';
+        setTimeout(() => {
+            document.querySelector('#check-timer').remove();
+        }, 1000);
+    });
 };
 
 export default makeTimer;

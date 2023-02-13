@@ -14,12 +14,8 @@ function setMainEvent() {
     if (role === 'member') {
         if (!makeAttendance) {
             $('#check-timer').innerHTML = timerForm();
-            makeTimer('결석');
-            //getUserLocation(true);
+            makeTimer();
         }
-        document.addEventListener('click', (e) => {
-            checkAttendance(e);
-        });
     }
 }
 
@@ -37,13 +33,6 @@ const toggleChart = (target) => {
         $('.attend-ratio-wrapper').classList.add('hidden');
         $('.vertical_chart_box').classList.remove('hidden');
     }
-};
-
-const checkAttendance = (e) => {
-    if (!e.target.classList.contains('play')) return;
-    $('#check-timer').remove();
-    makeAttendance = true;
-    makeTimer('출석');
 };
 
 // const getUserLocation = (state) => {
