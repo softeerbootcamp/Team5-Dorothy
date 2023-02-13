@@ -1,6 +1,9 @@
 import { daysOfWeek } from './constants';
 
+let currentDate;
+
 const makeCalendar = (date) => {
+    currentDate = date;
     const currentYear = new Date(date).getFullYear();
     const currentMonth = new Date(date).getMonth() + 1;
 
@@ -28,16 +31,63 @@ const makeCalendar = (date) => {
     return htmlDummy;
 };
 
-const date = new Date();
+const yearOption = (date) => {
+    const currentYear = new Date(date).getFullYear();
+    let optionDummy = '';
 
-// // 이전달 이동
-// document.querySelector(`.prevDay`).onclick = () => {
-//     makeCalendar(new Date(date.setMonth(date.getMonth() - 1)));
-// };
+    for (let i = 3; i >= 1; i--) {
+        optionDummy += `<option value="${currentYear - i}">${
+            currentYear - i
+        }</option>`;
+    }
+    optionDummy += `<option value="${currentYear}" selected>${currentYear}</option>`;
+    for (let i = 1; i <= 3; i++) {
+        optionDummy += `<option value="${currentYear + i}">${
+            currentYear + i
+        }</option>`;
+    }
 
-// // 다음달 이동
-// document.querySelector(`.nextDay`).onclick = () => {
-//     makeCalendar(new Date(date.setMonth(date.getMonth() + 1)));
-// };
+    return optionDummy;
+};
 
-export { makeCalendar };
+function setCalendarEvent() {
+    const calendarYear = document.querySelector('.year-wrapper');
+    const calendarMonth = document.querySelector('.month-wrapper');
+    calendarYear.onchange = function () {
+        document.querySelector('.calendar-container').innerHTML = makeCalendar(
+            new Date(currentDate.setYear(this.value)),
+        );
+        document.querySelector('.year-wrapper').innerHTML =
+            yearOption(currentDate);
+    };
+    const prevButton = document
+        .querySelector('.prevDay')
+        .addEventListener('click', () => {
+            document.querySelector('.calendar-container').innerHTML =
+                makeCalendar(
+                    new Date(currentDate.setMonth(currentDate.getMonth() - 1)),
+                );
+            if (parseInt(calendarMonth.innerText) === 1) {
+                calendarYear.innerText = parseInt(calendarYear.innerText) - 1;
+                calendarMonth.innerText = 12;
+            } else {
+                calendarMonth.innerText = parseInt(calendarMonth.innerText) - 1;
+            }
+        });
+    const nextButton = document
+        .querySelector('.nextDay')
+        .addEventListener('click', () => {
+            document.querySelector('.calendar-container').innerHTML =
+                makeCalendar(
+                    new Date(currentDate.setMonth(currentDate.getMonth() + 1)),
+                );
+            if (parseInt(calendarMonth.innerText) === 12) {
+                calendarYear.innerText = parseInt(calendarYear.innerText) + 1;
+                calendarMonth.innerText = 1;
+            } else {
+                calendarMonth.innerText = parseInt(calendarMonth.innerText) + 1;
+            }
+        });
+}
+
+export { makeCalendar, yearOption, setCalendarEvent };

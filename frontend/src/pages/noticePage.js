@@ -1,5 +1,7 @@
 import AbstractView from './pageTemplate.js';
 import { pageTitleTamplate } from '../components/pageTitle.js';
+import noticeData from '../components/notice/noticeInfo.js';
+import { noticePreview } from '../components/notice/noticeComponents.js';
 
 export default class noticePage extends AbstractView {
     async getHtml() {
@@ -13,7 +15,13 @@ export default class noticePage extends AbstractView {
                 <div class="content-container">
                 </div>
                 <section class="big-content-container">
-                    
+                    <div class="notice-container">
+                    ${noticeData
+                        .map((notice) => {
+                            return noticePreview(notice.title);
+                        })
+                        .join('')}
+                    </div>
                 </section>
             </div>
         </div>

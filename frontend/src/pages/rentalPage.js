@@ -1,5 +1,5 @@
 import AbstractView from './pageTemplate';
-import placeData from '../components/placeInfo.js';
+import placeData from '../components/rental/placeInfo.js';
 import { pageTitleTamplate } from '../components/pageTitle.js';
 import { placeCard } from '../components/rental/placeCard.js';
 
@@ -18,7 +18,7 @@ export default class rentalPage extends AbstractView {
                     <div class="places-container">
                     ${placeData
                         .map((place) => {
-                            return placeCard(place.name, place.img);
+                            return placeCard(place.id, place.name, place.img);
                         })
                         .join('')}
                     </div>

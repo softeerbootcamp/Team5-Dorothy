@@ -3,13 +3,18 @@ import { UserService } from './services/userservice';
 // 로그아웃
 export const Logout = () => {
     alert('로그아웃');
+    sessionStorage.removeItem('userInfo');
     UserService.logout();
+    window.location.replace('/');
 };
 
 // 로그인
 export const GetUser = async (id, password) => {
     try {
         const response = await UserService.getUser(id, password);
+        if (response.code === 'CREATED') {
+            sessionStorage.setItem('userInfo', response.data);
+        }
         console.log(response.data);
         return Promise.resolve(response.data);
     } catch (error) {

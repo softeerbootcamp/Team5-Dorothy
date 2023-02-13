@@ -1,16 +1,20 @@
 import setHomeEvent from './scripts/home.js';
-import { setMainEvent, checkAvailable } from './scripts/main.js';
+import setMainEvent from './scripts/main.js';
+import { setCalendarEvent } from './components/calendar/calendar.js';
 
 const eventdelegator = (root) => {
     setMainEvent();
     switch (root) {
-        case '/':
+        case 'home':
             setHomeEvent();
             break;
-        case '/main':
+        case 'main':
             setMainEvent();
             break;
-        case '/track':
+        case 'track':
+            break;
+        case 'attend':
+            setCalendarEvent
             break;
     }
 };

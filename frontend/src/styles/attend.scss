@@ -11,8 +11,8 @@
 }
 .day-wrapper,
 .no-color {
-    width: 9vw;
-    height: 7vw;
+    width: 7vw;
+    height: 4vw;
     border-radius: 1vw;
     box-sizing: border-box;
     font-weight: 700;
@@ -67,6 +67,7 @@
 .year-wrapper {
     font-weight: 700;
     color: #2b90d9;
+    border: none;
     margin-left: 10px;
     margin-bottom: 5px;
     letter-spacing: 10px;

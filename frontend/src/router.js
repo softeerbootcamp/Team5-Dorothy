@@ -11,58 +11,33 @@ import './styles/style.scss';
 
 import eventdelegator from './main.js';
 
-const pathToRegex = (path) =>
-    new RegExp('^' + path.replace(/\//g, '\\/').replace(/:\w+/g, '(.+)') + '$');
-
-const getParams = (matchPath) => {
-    const keys = Array.from(matchPath.matchAll(/:(\w+)/g)).map(
-        (result) => result[1],
-    );
-    console.log(keys);
-
-    return Object.fromEntries(
-        keys.map((key, i) => {
-            return [key, values[i]];
-        }),
-    );
-};
-
 const navigateTo = (url) => {
     history.pushState(null, null, url);
     router();
 };
 
 const routes = [
-    { path: '/', view: homePage },
-    { path: '/main', view: mainPage },
-    { path: '/track', view: trackPage },
-    { path: '/rental', view: rentalPage },
-    { path: '/rental/:id', view: rentalDetailPage },
-    { path: '/attend', view: attendPage },
-    { path: '/notice', view: noticePage },
-    { path: '/track', view: trackPage },
-    { path: '/tempt', view: rentalDetailPage },
+    { path: /^\/$/, event: 'home', view: homePage },
+    { path: /^\/main$/, event: 'main', view: mainPage },
+    { path: /^\/track$/, event: 'track', view: trackPage },
+    { path: /^\/rental$/, event: 'rental', view: rentalPage },
+    {
+        path: /^\/rental\/(\d+)$/,
+        event: 'rentalDetail',
+        view: rentalDetailPage,
+    },
+    { path: /^\/attend$/, event: 'attend', view: attendPage },
+    { path: /^\/notice$/, event: 'notice', view: noticePage },
+    { path: /^\/track$/, event: 'track', view: trackPage },
 ];
 
 const router = async () => {
-    // const potentialMatches = routes.map((route) => {
-    //     return {
-    //         route: route,
-    //         result: location.pathname.match(pathToRegex(route.path)),
-    //     };
-    // });
-    // console.log(potentialMatches);
-    // let match = potentialMatches.find(
-    //     (potentialMatch) => potentialMatch.result !== null,
-    // );
-
     const match = routes.find((route) => {
-        return route.path === location.pathname;
+        return route.path.test(location.pathname);
     });
-    // const view = new match.view(getParams(match.path));
     const view = match ? new match.view() : new notFoundPage(location.pathname);
     document.querySelector('#app').innerHTML = await view.getHtml();
-    eventdelegator(match.path);
+    eventdelegator(match.event);
 };
 
 // document.addEventListener('DOMContentLoaded', () => {

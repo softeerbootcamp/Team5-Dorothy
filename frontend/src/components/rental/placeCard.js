@@ -1,11 +1,11 @@
-const placeCard = (name, img) => {
+const placeCard = (id, name, img) => {
     return `
-    <figure class="place-wrapper">
+    <a class="place-wrapper" href="rental/${id}">
         <img class="place-image" src=${img}></img>
         <figcaption class="place-name">
             ${name}
         </figcaption>
-    </figure>
+    </a>
     `;
 };
 
