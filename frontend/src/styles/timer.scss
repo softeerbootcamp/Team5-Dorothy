@@ -2,9 +2,10 @@
     position: absolute;
     height: 200px;
     border-radius: 98px;
+    transition: 1s;
 }
 .circle {
-    backdrop-filter: blur(5px);
+    backdrop-filter: blur(8px);
     height: 200px;
     width: 200px;
     border-radius: 100px;
@@ -27,8 +28,9 @@
 
 .controlls {
     position: absolute;
-    left: 30px;
-    top: 45px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     text-align: center;
 }
 
@@ -36,14 +38,16 @@
     font-family: 'Roboto';
     font-weight: 100;
     font-size: 45px;
+    text-shadow: 0 5px 5px;
 }
 
 #pause {
-    border: none;
-    margin-top: 15px;
-    width: fit-content;
-    height: 50px;
-    position: relative;
+    border: 5px solid;
+    background-color: rgba(0, 0, 0, 0);
+    border-radius: 10px;
+    color: #fff;
+    margin: 10px;
+    box-shadow: 0 5px 5px rgba(255, 255, 255, 0.5);
     font-size: 30px;
 }
 

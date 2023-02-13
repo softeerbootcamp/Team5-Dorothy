@@ -57,8 +57,7 @@ function setCalendarEvent() {
         document.querySelector('.calendar-container').innerHTML = makeCalendar(
             new Date(currentDate.setYear(this.value)),
         );
-        document.querySelector('.year-wrapper').innerHTML =
-            yearOption(currentDate);
+        calendarYear.innerHTML = yearOption(currentDate);
     };
     const prevButton = document
         .querySelector('.prevDay')
@@ -68,7 +67,9 @@ function setCalendarEvent() {
                     new Date(currentDate.setMonth(currentDate.getMonth() - 1)),
                 );
             if (parseInt(calendarMonth.innerText) === 1) {
-                calendarYear.innerText = parseInt(calendarYear.innerText) - 1;
+                calendarYear.innerHTML = yearOption(
+                    currentDate.setYear(currentDate.getFullYear()),
+                );
                 calendarMonth.innerText = 12;
             } else {
                 calendarMonth.innerText = parseInt(calendarMonth.innerText) - 1;
@@ -82,7 +83,9 @@ function setCalendarEvent() {
                     new Date(currentDate.setMonth(currentDate.getMonth() + 1)),
                 );
             if (parseInt(calendarMonth.innerText) === 12) {
-                calendarYear.innerText = parseInt(calendarYear.innerText) + 1;
+                calendarYear.innerHTML = yearOption(
+                    currentDate.setYear(currentDate.getFullYear()),
+                );
                 calendarMonth.innerText = 1;
             } else {
                 calendarMonth.innerText = parseInt(calendarMonth.innerText) + 1;

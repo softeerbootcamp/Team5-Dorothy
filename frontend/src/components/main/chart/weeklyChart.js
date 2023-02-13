@@ -1,24 +1,12 @@
-import { daysOfWeek } from '../../calendar/constants';
+import { getCurrentWeek } from './currentWeek';
 
 const axis_x = [0, 10, 20, 30, 40];
 
-const makeChart = () => {
-    function getCurrentWeek() {
-        const Today = new Date();
-        const LastDate = Today.getDate();
-        const day = Today.getDay();
-        const result = [];
-        for (let i = 0; i < 6; i++) {
-            const text = LastDate + i + '(' + daysOfWeek[day + i] + ')';
-            result.push(text);
-        }
-        return result;
-    }
-
+const weeklyChart = () => {
     const chart =
         /*html*/
         `
-        <div class="vertical_chart_box">
+        <div class="vertical_chart_box hidden">
             <div class="chart_box">
                 <ul class="axis_y">
                 ${axis_x
@@ -36,7 +24,7 @@ const makeChart = () => {
                         <li class="item">
                             <div class="text_box">
                                 <strong class="day">${day}</strong>
-                                <span class="time">00시간</span>
+                                <span class="time">00명</span>
                             </div>
                             <button type="button" class="graph">
                                 <span class="time data1" style="height:50%;">
@@ -59,4 +47,4 @@ const makeChart = () => {
     return chart;
 };
 
-export { makeChart };
+export { weeklyChart };
