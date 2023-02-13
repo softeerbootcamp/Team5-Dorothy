@@ -71,8 +71,8 @@ CREATE TABLE IF NOT EXISTS `attendance`
 (
     `idx`              int         NOT NULL auto_increment primary key,
     `track_member_idx` int         NOT NULL,
-    `date`             datetime    NOT NULL DEFAULT current_timestamp,
-    `time`             time        NOT NULL,
+    `date`             date    NOT NULL,
+    `time`             time    NOT NULL,
     `type`             varchar(50) NOT NULL COMMENT 'PRESENT, TARDY, ABSENT'
 );
 
