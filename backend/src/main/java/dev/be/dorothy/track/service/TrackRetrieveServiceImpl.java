@@ -1,5 +1,7 @@
 package dev.be.dorothy.track.service;
 
+import dev.be.dorothy.exception.BadRequestException;
+import dev.be.dorothy.track.Track;
 import dev.be.dorothy.track.repository.TrackRepository;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +18,13 @@ public class TrackRetrieveServiceImpl implements TrackRetrieveService{
 
     @Override
     public List<TrackResDto> retrieveTracks(Long userIdx) {
-        List<TrackResDto> trackList = trackRepository.findByMemberId(userIdx);
-        return trackList;
+        return trackRepository.findByMemberId(userIdx);
+    }
+
+    @Override
+    public Track getTrack(Long trackIdx) {
+        return trackRepository
+                .findById(trackIdx)
+                .orElseThrow(() -> new BadRequestException("존재하지 않는 트랙입니다."));
     }
 }
