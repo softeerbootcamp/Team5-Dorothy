@@ -1,3 +1,5 @@
+import { $ } from '../../../utils/selector';
+
 const WARNING_THRESHOLD = 10;
 const ALERT_THRESHOLD = 0;
 
@@ -9,16 +11,13 @@ const SET_MINUTES = ATTEND_MINUTES - NOW.getMinutes();
 const SET_SECONDS = ATTEND_SECONDS - NOW.getSeconds();
 
 function makeTimer() {
-    let progressBar = document.querySelector('.e-c-progress');
-    let pointer = document.getElementById('e-pointer');
     let length = Math.PI * 2 * 100;
-
-    progressBar.style.strokeDasharray = length;
+    $('.e-c-progress').style.strokeDasharray = length;
 
     function update(value) {
         var offset = -length - length * value;
-        progressBar.style.strokeDashoffset = offset;
-        pointer.style.transform = `rotate(${360 * value}deg)`;
+        $('.e-c-progress').style.strokeDashoffset = offset;
+        $('#e-pointer').style.transform = `rotate(${360 * value}deg)`;
     }
 
     const displayOutput = document.querySelector('.display-remain-time');
@@ -46,33 +45,25 @@ function makeTimer() {
         }${Math.abs(minutes)}:${
             seconds < 10 && seconds > -10 ? '0' : ''
         }${Math.abs(seconds)}`;
-        const controlls = document.querySelector('.controlls');
 
         if (minutes < ALERT_THRESHOLD) {
-            progressBar.classList.add('red');
-            pointer.classList.add('red');
-            controlls.classList.add('red');
+            $('.e-c-progress').classList.add('red');
+            $('#e-pointer').classList.add('red');
+            $('.controlls').classList.add('red');
         } else if (minutes < WARNING_THRESHOLD && minutes > ALERT_THRESHOLD) {
-            progressBar.classList.add('orange');
-            pointer.classList.add('orange');
-            controlls.classList.add('orange');
+            $('.e-c-progress').classList.add('orange');
+            $('#e-pointer').classList.add('orange');
+            $('.controlls').classList.add('orange');
         } else {
-            progressBar.classList.add('pink');
-            pointer.classList.add('pink');
-            controlls.classList.add('pink');
+            $('.e-c-progress').classList.add('pink');
+            $('#e-pointer').classList.add('pink');
+            $('.controlls').classList.add('pink');
         }
 
         displayOutput.textContent = displayString;
         update(timeLeft);
     }
     timer(wholeTime);
-
-    const attendBtn = document.querySelector('.play');
-    const timerWrapper = document.querySelector('#check-timer');
-
-    attendBtn.addEventListener('click', () => {
-        timerWrapper.remove();
-    });
 }
 
 export default makeTimer;
