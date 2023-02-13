@@ -76,7 +76,7 @@ public class TrackRepositoryTest {
         List<TrackResDto> trackResList = trackRepository.findByMemberId(memberIdx);
         Long trackIdx = trackResList.get(0).getIdx();
 
-        Optional<Long> idx = trackRepository.doesExistTrackMember(memberIdx, trackIdx);
+        Optional<Long> idx = trackRepository.getTrackMemberIdx(memberIdx, trackIdx);
 
         assertThat(idx.isPresent()).isTrue();
     }
@@ -89,7 +89,7 @@ public class TrackRepositoryTest {
         List<TrackResDto> trackResList = trackRepository.findByMemberId(memberIdx);
         Long trackIdx = trackResList.get(0).getIdx();
 
-        Optional<Long> idx = trackRepository.doesExistTrackMember(999L, trackIdx);
+        Optional<Long> idx = trackRepository.getTrackMemberIdx(999L, trackIdx);
 
         assertThat(idx.isPresent()).isFalse();
     }
