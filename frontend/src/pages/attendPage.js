@@ -1,6 +1,6 @@
 import AbstractView from './pageTemplate.js';
 import { pageTitleTamplate } from '../components/pageTitle.js';
-import { makeCalendar } from '../components/calendar/calendar.js';
+import { yearOption, makeCalendar } from '../components/calendar/calendar.js';
 import { daysOfWeek } from '../components/calendar/constants.js';
 
 export default class attendPage extends AbstractView {
@@ -20,7 +20,9 @@ export default class attendPage extends AbstractView {
                     <header class="calendar-header">
                         <i class="fa-solid fa-circle-left fa-2x prevDay"></i>
                         <div class="month-container">
-                            <span class="year-wrapper">${now.getFullYear()}</span>
+                            <select class="year-wrapper">
+                                ${yearOption(now)}
+                            </select>
                             <span class="month-wrapper">
                             ${now.getMonth() + 1}
                             </span>

@@ -31,9 +31,35 @@ const makeCalendar = (date) => {
     return htmlDummy;
 };
 
+const yearOption = (date) => {
+    const currentYear = new Date(date).getFullYear();
+    let optionDummy = '';
+
+    for (let i = 3; i >= 1; i--) {
+        optionDummy += `<option value="${currentYear - i}">${
+            currentYear - i
+        }</option>`;
+    }
+    optionDummy += `<option value="${currentYear}" selected>${currentYear}</option>`;
+    for (let i = 1; i <= 3; i++) {
+        optionDummy += `<option value="${currentYear + i}">${
+            currentYear + i
+        }</option>`;
+    }
+
+    return optionDummy;
+};
+
 function setCalendarEvent() {
     const calendarYear = document.querySelector('.year-wrapper');
     const calendarMonth = document.querySelector('.month-wrapper');
+    calendarYear.onchange = function () {
+        document.querySelector('.calendar-container').innerHTML = makeCalendar(
+            new Date(currentDate.setYear(this.value)),
+        );
+        document.querySelector('.year-wrapper').innerHTML =
+            yearOption(currentDate);
+    };
     const prevButton = document
         .querySelector('.prevDay')
         .addEventListener('click', () => {
@@ -64,4 +90,4 @@ function setCalendarEvent() {
         });
 }
 
-export { makeCalendar, setCalendarEvent };
+export { makeCalendar, yearOption, setCalendarEvent };
