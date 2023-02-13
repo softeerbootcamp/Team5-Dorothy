@@ -8,7 +8,7 @@
 .attend-ratio-wrapper {
     background-color: #dedede;
     width: 100%;
-    height: 400px;
+    height: 5vh;
     margin: 1vh 0;
     overflow: hidden;
     border-radius: 2.5vh;
@@ -94,6 +94,7 @@ li {
     overflow: hidden;
 }
 .vertical_chart_box {
+    margin: 10px;
     position: relative;
     .chart_box {
         position: relative;

@@ -6,7 +6,6 @@ import { setRentalEvent } from './scripts/rental.js';
 import { setNoticeEvent } from './scripts/notice.js';
 
 const eventdelegator = (root) => {
-    setMainEvent();
     switch (root) {
         case 'home':
             setHomeEvent();
