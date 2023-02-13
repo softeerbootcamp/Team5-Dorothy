@@ -3,17 +3,18 @@ import { $ } from '../utils/selector.js';
 import { timerForm } from '../components/main/timer/timer.js';
 
 function setMainEvent() {
-    // let makeAttendance = false;
-    // if (!makeAttendance) {
-    //     getUserLocation();
-    //     $('#check-timer').innerHTML = timerForm();
-    //     makeTimer();
-    // }
-    // $('.play').addEventListener('click', () => {
-    //     makeAttendance = true;
-    //     $('#check-timer').remove();
-    //     //navigator.geolocation.clearWatch();
-    // });
+    let makeAttendance = false;
+    if (!makeAttendance) {
+        getUserLocation();
+        $('#check-timer').innerHTML = timerForm();
+        makeTimer();
+    }
+
+    $('.play').addEventListener('click', () => {
+        makeAttendance = true;
+        $('#check-timer').remove();
+        //navigator.geolocation.clearWatch();
+    });
 }
 
 let checkAvailable;
