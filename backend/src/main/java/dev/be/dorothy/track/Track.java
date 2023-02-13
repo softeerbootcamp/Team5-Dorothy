@@ -1,16 +1,12 @@
 package dev.be.dorothy.track;
 
-import dev.be.dorothy.member.Member;
-import dev.be.dorothy.member.MemberRole;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.annotation.Transient;
-import org.springframework.data.relational.core.mapping.MappedCollection;
+import org.springframework.data.geo.Point;
+import org.springframework.data.relational.core.mapping.Embedded;
 import org.springframework.data.relational.core.mapping.Table;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
+import java.time.LocalTime;
 
 @Table("track")
 public class Track {
@@ -18,6 +14,9 @@ public class Track {
     private Long idx;
     private String name;
     private String image;
+    private LocalTime attendanceTime;
+    @Embedded(onEmpty = Embedded.OnEmpty.USE_NULL)
+    private Point location;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
     private boolean isDeleted;
@@ -27,33 +26,11 @@ public class Track {
     public Track(String name, String image) {
         this.name = name;
         this.image = image;
+        this.attendanceTime = LocalTime.of(10, 0);
+        this.location = new Point(37.490847, 127.033401);
         this.createdAt = LocalDateTime.now();
         this.updatedAt = LocalDateTime.now();
         this.isDeleted = false;
-    }
-
-    @MappedCollection(idColumn = "track_idx", keyColumn = "idx")
-    private List<TrackMember> trackMembers = new ArrayList<>();
-
-    @Transient
-    private final List<Member> members = new ArrayList<>();
-
-    private void setTrackMembers(List<TrackMember> trackMembers) {
-        this.trackMembers = trackMembers;
-    }
-
-    public void addTrackMember(Member member) {
-        trackMembers.add(new TrackMember(member.getIdx(), member.getRole(), LocalDateTime.now(), false));
-    }
-
-    public void addTrackMember(Long memberIdx, MemberRole role) {
-        trackMembers.add(new TrackMember(memberIdx, role, LocalDateTime.now(), false));
-    }
-
-    public List<Long> getMemberIds() {
-        return trackMembers.stream()
-                .map(TrackMember::getMemberIdx)
-                .collect(Collectors.toList());
     }
 
     public Long getIdx() {
@@ -66,6 +43,14 @@ public class Track {
 
     public String getImage() {
         return image;
+    }
+
+    public LocalTime getAttendanceTime() {
+        return attendanceTime;
+    }
+
+    public Point getLocation() {
+        return location;
     }
 
     public LocalDateTime getCreatedAt() {
