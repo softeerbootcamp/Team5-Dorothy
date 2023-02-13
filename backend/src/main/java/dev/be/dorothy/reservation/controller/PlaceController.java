@@ -21,17 +21,18 @@ public class PlaceController {
         this.placeService = placeService;
     }
 
-    @RequestMapping("")
+    @PostMapping("")
     public ResponseEntity<CommonResponse> registerPlace(@RequestParam("name") String name){
         Place register = placeService.register(name);
         CommonResponse commonResponse = new CommonResponse(HttpStatus.CREATED, "공간 등록이 완료되었습니다.", register);
         return new ResponseEntity<>(commonResponse, HttpStatus.CREATED);
     }
 
-    @RequestMapping("/list")
+    @GetMapping("/list")
     public ResponseEntity<CommonResponse> listAllPlaces(){
         List<PlaceResDto> placeList = placeService.retrievePlaces();
         CommonResponse commonResponse = new CommonResponse(HttpStatus.OK, "공간 조회가 완료되었습니다.", placeList);
         return new ResponseEntity<>(commonResponse, HttpStatus.CREATED);
     }
+
 }
