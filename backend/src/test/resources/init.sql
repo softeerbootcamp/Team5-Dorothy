@@ -25,6 +25,9 @@ CREATE TABLE IF NOT EXISTS `track`
     `idx`        int          NOT NULL auto_increment primary key,
     `name`       varchar(100) NOT NULL,
     `image`      text         NOT NULL COMMENT 'default image url',
+    `attendance_time` time NOT NULL,
+    `x` double NOT NULL,
+    `y` double NOT NULL,
     `created_at` datetime     NOT NULL DEFAULT current_timestamp,
     `updated_at` datetime     NOT NULL DEFAULT current_timestamp on update current_timestamp,
     `is_deleted` BIT(1)       NOT NULL DEFAULT 0 COMMENT '0: not deleted, 1: deleted'
