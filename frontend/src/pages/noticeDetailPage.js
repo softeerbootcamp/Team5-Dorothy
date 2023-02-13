@@ -15,13 +15,11 @@ export default class noticeDetailPage extends AbstractView {
                 <div class="content-container">
                 </div>
                 <section class="big-content-container">
-                    <table >
-                    <thead>
-                        <tr class="notice-wrapper">
-                            <th class="notice-id">id</th><th class="notice-title">title</th><th class="notice-date">date</th><th class="notice-watch">view</th>
-                        </tr>
-                    </thead>
-                    </table>
+                        <div class="notice-title-wrapper">이것은 제목입니다.</div>
+                        <div class="notice-content-wrapper">이것은 내용입니다.</div>
+                        <button class="notice-edit-btn">수정</button>
+                        <button class="notice-delete-btn">삭제</button>
+                        <button class="link-to-notice">목록</button>
                 </section>
             </div>
         </div>
