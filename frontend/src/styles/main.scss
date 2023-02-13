@@ -113,10 +113,11 @@
 
 .calendar-head {
     display: flex;
+    justify-content: center;
 }
 
 .calendar-head .day {
-    margin-left: auto;
+    font-size: 65%;
 }
 
 .contour {
