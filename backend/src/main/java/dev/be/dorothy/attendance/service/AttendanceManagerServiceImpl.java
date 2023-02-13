@@ -20,7 +20,7 @@ public class AttendanceManagerServiceImpl implements AttendanceManagerService {
 
         Double distance = calculateDistance(trackPoint, memberPoint);
 
-        return distance < 10;
+        return distance < 30;
     }
 
     private Point getTrackPoint(Long trackIdx) {
@@ -30,6 +30,7 @@ public class AttendanceManagerServiceImpl implements AttendanceManagerService {
     }
 
     private Double calculateDistance(Point trackPoint, Point memberPoint) {
+        int EARTH_RADIUS = 6371;
         double dX = Math.toRadians(trackPoint.getX() - memberPoint.getX());
         double dY = Math.toRadians(trackPoint.getY() - memberPoint.getY());
 
@@ -37,6 +38,7 @@ public class AttendanceManagerServiceImpl implements AttendanceManagerService {
                 Math.cos(Math.toRadians(trackPoint.getX())) * Math.cos(Math.toRadians(memberPoint.getX())) *
                         Math.sin(dY / 2) * Math.sin(dY / 2);
         double b = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-        return 6371 * b * 1000; // 단위: m, Earth Radius: 약 6371km
+
+        return EARTH_RADIUS * b * 1000; // 단위: m
     }
 }

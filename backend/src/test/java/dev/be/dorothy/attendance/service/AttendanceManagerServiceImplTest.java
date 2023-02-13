@@ -27,9 +27,9 @@ public class AttendanceManagerServiceImplTest {
                 "hyundai",
                 ""
         );
-        // 약 8m
+        // 약 26m
         double x = 37.490847;
-        double y = 127.033301;
+        double y = 127.033101;
 
         given(trackRetrieveService.getTrack(track.getIdx())).willReturn(track);
 
@@ -43,9 +43,9 @@ public class AttendanceManagerServiceImplTest {
                 "hyundai",
                 ""
         );
-        // 약 13m
+        // 약 33m
         double x = 37.490847;
-        double y = 127.033251;
+        double y = 127.033021;
 
         given(trackRetrieveService.getTrack(track.getIdx())).willReturn(track);
 
