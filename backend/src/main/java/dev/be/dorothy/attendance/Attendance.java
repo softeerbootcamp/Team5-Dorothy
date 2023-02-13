@@ -18,8 +18,7 @@ public class Attendance {
     public Attendance() {
     }
 
-    public Attendance(Long idx, Long trackMemberIdx, LocalDate date, LocalTime time, AttendanceType type) {
-        this.idx = idx;
+    public Attendance(Long trackMemberIdx, LocalDate date, LocalTime time, AttendanceType type) {
         this.trackMemberIdx = trackMemberIdx;
         this.date = date;
         this.time = time;
