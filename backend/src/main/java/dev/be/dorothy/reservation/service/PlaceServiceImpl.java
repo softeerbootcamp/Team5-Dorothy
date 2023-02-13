@@ -16,6 +16,7 @@ public class PlaceServiceImpl implements PlaceService{
         this.placeRepository = placeRepository;
     }
 
+    @Override
     public PlaceResDto addPlace(String name){
         Place place = new Place(name, "");
         place = placeRepository.save(place);
