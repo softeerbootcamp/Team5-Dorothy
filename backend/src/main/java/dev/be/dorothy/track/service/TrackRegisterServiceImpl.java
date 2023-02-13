@@ -8,6 +8,7 @@ import dev.be.dorothy.track.Track;
 import dev.be.dorothy.track.repository.TrackRepository;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 @Service
@@ -27,8 +28,14 @@ public class TrackRegisterServiceImpl implements TrackRegisterService {
         }
 
         Track track = new Track(name, "");
-        track.addTrackMember(memberIdx, role);
         trackRepository.save(track);
+        trackRepository.saveTrackMember(
+                memberIdx,
+                track.getIdx(),
+                role.name(),
+                LocalDateTime.now().toString(),
+                false
+        );
         trackCodeManagerService.store(track.getIdx().toString());
 
         return TrackResDtoMapper.INSTANCE.entityToTrackResDto(track);
@@ -50,8 +57,13 @@ public class TrackRegisterServiceImpl implements TrackRegisterService {
             throw new ForbiddenException();
         }
 
-        track.addTrackMember(memberIdx, MemberRole.MEMBER);
-        trackRepository.save(track);
+        trackRepository.saveTrackMember(
+                memberIdx,
+                trackIdx,
+                MemberRole.MEMBER.name(),
+                LocalDateTime.now().toString(),
+                false
+        );
 
         return TrackResDtoMapper.INSTANCE.entityToTrackResDto(track);
     }
