@@ -72,11 +72,6 @@
     display: none;
 }
 
-.team-container {
-    font-weight: 500;
-    font-size: 1.5vw;
-}
-
 .attendance-wrapper {
     font-weight: 700;
     font-size: 1.5em;
@@ -179,4 +174,10 @@
     height: 5vh;
     margin: 2.5vh 0;
     background: linear-gradient(90deg, #84b5ff 30%, #dedede 30% 100%);
+}
+.manager-main-btn-wrapper {
+    display: block;
+    width: fit-content;
+    float: right;
+    margin-bottom: ivh;
 }

@@ -2,7 +2,7 @@ import { getCurrentWeek } from './currentWeek';
 
 const axis_x = [0, 10, 20, 30, 40];
 
-const makeChart = () => {
+const weeklyChart = () => {
     const chart =
         /*html*/
         `
@@ -24,7 +24,7 @@ const makeChart = () => {
                         <li class="item">
                             <div class="text_box">
                                 <strong class="day">${day}</strong>
-                                <span class="time">00시간</span>
+                                <span class="time">00명</span>
                             </div>
                             <button type="button" class="graph">
                                 <span class="time data1" style="height:50%;">
@@ -47,4 +47,4 @@ const makeChart = () => {
     return chart;
 };
 
-export { makeChart };
+export { weeklyChart };
