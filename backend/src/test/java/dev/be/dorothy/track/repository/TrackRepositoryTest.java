@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.data.jdbc.DataJdbcTest;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -42,12 +43,18 @@ public class TrackRepositoryTest {
                 ""
         );
 
-        track.addTrackMember(member);
         trackRepository.save(track);
+        trackRepository.saveTrackMember(
+                member.getIdx(),
+                track.getIdx(),
+                MemberRole.MEMBER.name(),
+                LocalDateTime.now().toString(),
+                false);
     }
 
     @AfterAll
     void clear() {
+        trackRepository.deleteTrackMember();
         trackRepository.deleteAll();
         memberRepository.deleteAll();
     }
