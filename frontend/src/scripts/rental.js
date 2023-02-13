@@ -1,4 +1,3 @@
-import { $ } from '../utils/selector';
 import { navigateTo } from '../router';
 
 const setRentalEvent = () => {
@@ -8,6 +7,7 @@ const setRentalEvent = () => {
 };
 
 const navigator = (e) => {
+    if (e.target.closest('figure') === null) return;
     const cardID = e.target.closest('figure').getAttribute('data-set');
     navigateTo('/rental/' + cardID);
 };
