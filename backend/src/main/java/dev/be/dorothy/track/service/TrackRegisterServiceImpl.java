@@ -2,6 +2,7 @@ package dev.be.dorothy.track.service;
 
 import dev.be.dorothy.exception.BadRequestException;
 import dev.be.dorothy.exception.ForbiddenException;
+import dev.be.dorothy.mapper.TrackResDtoMapper;
 import dev.be.dorothy.member.MemberRole;
 import dev.be.dorothy.track.Track;
 import dev.be.dorothy.track.repository.TrackRepository;
@@ -30,13 +31,7 @@ public class TrackRegisterServiceImpl implements TrackRegisterService {
         trackRepository.save(track);
         trackCodeManagerService.store(track.getIdx().toString());
 
-        return new TrackResDto(
-                track.getIdx(),
-                track.getName(),
-                track.getImage(),
-                track.getCreatedAt(),
-                track.getUpdatedAt()
-        );
+        return TrackResDtoMapper.INSTANCE.entityToTrackResDto(track);
     }
 
     @Override
@@ -58,12 +53,6 @@ public class TrackRegisterServiceImpl implements TrackRegisterService {
         track.addTrackMember(memberIdx, MemberRole.MEMBER);
         trackRepository.save(track);
 
-        return new TrackResDto(
-                track.getIdx(),
-                track.getName(),
-                track.getImage(),
-                track.getCreatedAt(),
-                track.getUpdatedAt()
-        );
+        return TrackResDtoMapper.INSTANCE.entityToTrackResDto(track);
     }
 }
