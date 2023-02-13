@@ -1,6 +1,5 @@
 import { weeklyChart } from './chart/weeklyChart.js';
 import { dailyChart } from './chart/dailyChart.js';
-import { $ } from '../../utils/selector.js';
 
 const options = [
     '현대자동차그룹 소프티어 부트캠프 2023',
@@ -9,8 +8,6 @@ const options = [
 ];
 
 const managerMain = () => {
-    let toggleChart = false;
-
     const managerMainTemplate =
         /*html*/
         `
@@ -20,7 +17,7 @@ const managerMain = () => {
                 <button class="daily-chart-btn">일간</button>
                 <button class="weekly-chart-btn">주간</button>
             </div>
-            ${toggleChart ? dailyChart() : weeklyChart()}
+            ${dailyChart()}  ${weeklyChart()}
             <ul class="legend">
                 <li>출석</li>
                 <li>지각</li>

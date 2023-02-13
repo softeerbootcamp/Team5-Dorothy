@@ -3,7 +3,7 @@ import { pageTitleTamplate } from '../components/pageTitle';
 import { managerMain } from '../components/main/managerMain';
 import { userMain } from '../components/main/userMain';
 
-const role = 'f';
+const role = 'member';
 
 export default class mainPage extends AbstractView {
     async getHtml() {

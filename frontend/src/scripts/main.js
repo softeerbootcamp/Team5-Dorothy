@@ -2,53 +2,65 @@ import makeTimer from '../components/main/timer/maketimer.js';
 import { $ } from '../utils/selector.js';
 import { timerForm } from '../components/main/timer/timer.js';
 
-function setMainEvent() {
-    let makeAttendance = false;
-    if (!makeAttendance) {
-        getUserLocation();
-        $('#check-timer').innerHTML = timerForm();
-        makeTimer();
-    }
+const role = 'member';
+let makeAttendance = false;
 
-    $('.play').addEventListener('click', () => {
-        makeAttendance = true;
-        $('#check-timer').remove();
-        //navigator.geolocation.clearWatch();
-    });
+function setMainEvent() {
+    if (role === 'manager') {
+        document.addEventListener('click', (e) => {
+            toggleChart(e.target);
+        });
+    }
+    if (role === 'member') {
+        if (!makeAttendance) {
+            $('#check-timer').innerHTML = timerForm();
+            makeTimer('결석');
+            //getUserLocation(true);
+        }
+        document.addEventListener('click', (e) => {
+            checkAttendance(e);
+        });
+    }
 }
 
-let checkAvailable;
-const setALatitude = 37.490744;
-const setALongitude = 127.03337;
-const setBLatitude = 37.490955;
-const setBLongitude = 127.03354;
-
-const getUserLocation = () => {
-    if (navigator.geolocation) {
-        //위치 정보를 정기적으로 얻기
-        const id = navigator.geolocation.watchPosition(function (pos) {
-            let latitude = pos.coords.latitude;
-            let longitude = pos.coords.longitude;
-            console.log(latitude, longitude);
-            console.log(
-                latitude >= setALatitude &&
-                    latitude <= setBLatitude &&
-                    longitude >= setALongitude &&
-                    longitude <= setBLongitude,
-            );
-            checkAvailable =
-                latitude >= setALatitude &&
-                latitude <= setBLatitude &&
-                longitude >= setALongitude &&
-                longitude <= setBLongitude;
-        });
-        //버튼 클릭으로 감시를 중지
-        // $('#check-timer').click(function () {
-        //     navigator.geolocation.clearWatch(id);
-        // });
-    } else {
-        alert('이 브라우저에서는 Geolocation이 지원되지 않습니다.');
+const toggleChart = (target) => {
+    if (
+        !target.classList.contains('daily-chart-btn') &&
+        !target.classList.contains('weekly-chart-btn')
+    )
+        return;
+    if (target.classList.contains('daily-chart-btn')) {
+        $('.attend-ratio-wrapper').classList.remove('hidden');
+        $('.vertical_chart_box').classList.add('hidden');
+    }
+    if (target.classList.contains('weekly-chart-btn')) {
+        $('.attend-ratio-wrapper').classList.add('hidden');
+        $('.vertical_chart_box').classList.remove('hidden');
     }
 };
 
-export { setMainEvent, checkAvailable };
+const checkAttendance = (e) => {
+    if (!e.target.classList.contains('play')) return;
+    $('#check-timer').remove();
+    makeAttendance = true;
+    makeTimer('출석');
+};
+
+// const getUserLocation = (state) => {
+//     if (navigator.geolocation) {
+//         let id;
+//         if (state) {
+//             id = navigator.geolocation.watchPosition(function (pos) {
+//                 let latitude = pos.coords.latitude;
+//                 let longitude = pos.coords.longitude;
+//                 console.log(latitude, longitude);
+//             });
+//         } else {
+//             navigator.geolocation.clearWatch(id);
+//         }
+//     } else {
+//         alert('이 브라우저에서는 Geolocation이 지원되지 않습니다.');
+//     }
+// };
+
+export { setMainEvent };

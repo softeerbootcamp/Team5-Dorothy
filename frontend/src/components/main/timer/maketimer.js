@@ -3,21 +3,42 @@ import { $ } from '../../../utils/selector';
 const WARNING_THRESHOLD = 10;
 const ALERT_THRESHOLD = 0;
 
-const ATTEND_MINUTES = 4;
+const ATTEND_MINUTES = 59;
 const ATTEND_SECONDS = 60;
 
 const NOW = new Date();
 const SET_MINUTES = ATTEND_MINUTES - NOW.getMinutes();
 const SET_SECONDS = ATTEND_SECONDS - NOW.getSeconds();
 
-function makeTimer() {
+const getUserLocation = (state = '결석') => {
+    if (navigator.geolocation) {
+        let id;
+        if (state === '결석') {
+            id = navigator.geolocation.watchPosition(function (pos) {
+                let latitude = pos.coords.latitude;
+                let longitude = pos.coords.longitude;
+                console.log(latitude, longitude);
+            });
+        }
+        if (state === '출석') {
+            navigator.geolocation.clearWatch(id);
+        }
+    } else {
+        alert('이 브라우저에서는 Geolocation이 지원되지 않습니다.');
+    }
+};
+
+const makeTimer = (state = '결석') => {
+    //위치 정보 받아오기
+    getUserLocation(state);
+
     let length = Math.PI * 2 * 100;
     $('.e-c-progress').style.strokeDasharray = length;
 
     function update(value) {
-        var offset = -length - length * value;
-        $('.e-c-progress').style.strokeDashoffset = offset;
-        $('#e-pointer').style.transform = `rotate(${360 * value}deg)`;
+        var offset = -length - length * (value - 1);
+        $('.e-c-progress').style.strokeDashoffset = offset / 36;
+        $('#e-pointer').style.transform = `rotate(${(360 * value) / 36}deg)`;
     }
 
     const displayOutput = document.querySelector('.display-remain-time');
@@ -59,11 +80,10 @@ function makeTimer() {
             $('#e-pointer').classList.add('pink');
             $('.controlls').classList.add('pink');
         }
-
         displayOutput.textContent = displayString;
         update(timeLeft);
     }
     timer(wholeTime);
-}
+};
 
 export default makeTimer;
