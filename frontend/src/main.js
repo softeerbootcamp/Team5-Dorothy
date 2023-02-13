@@ -1,5 +1,6 @@
 import setHomeEvent from './scripts/home.js';
-import setMainEvent from './scripts/main.js';
+import { setMainEvent } from './scripts/main.js';
+import { setTrackEvent } from './components/track/trackCard.js';
 import { setCalendarEvent } from './components/calendar/calendar.js';
 
 const eventdelegator = (root) => {
@@ -12,9 +13,10 @@ const eventdelegator = (root) => {
             setMainEvent();
             break;
         case 'track':
+            setTrackEvent();
             break;
         case 'attend':
-            setCalendarEvent
+            setCalendarEvent();
             break;
     }
 };
