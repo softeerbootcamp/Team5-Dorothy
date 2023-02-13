@@ -1,0 +1,69 @@
+#check-timer {
+    position: absolute;
+    height: 200px;
+    border-radius: 98px;
+}
+.circle {
+    backdrop-filter: blur(5px);
+    height: 200px;
+    width: 200px;
+    border-radius: 100px;
+}
+
+.pink {
+    stroke: #f7958e;
+    color: #f7958e;
+}
+
+.orange {
+    stroke: orange;
+    color: orange;
+}
+
+.red {
+    stroke: red;
+    color: red;
+}
+
+.controlls {
+    position: absolute;
+    left: 30px;
+    top: 45px;
+    text-align: center;
+}
+
+.display-remain-time {
+    font-family: 'Roboto';
+    font-weight: 100;
+    font-size: 45px;
+}
+
+#pause {
+    border: none;
+    margin-top: 15px;
+    width: fit-content;
+    height: 50px;
+    position: relative;
+    font-size: 30px;
+}
+
+.e-c-base {
+    fill: none;
+    stroke: #b6b6b6;
+    stroke-width: 4px;
+}
+
+.e-c-progress {
+    fill: none;
+    stroke-width: 4px;
+    transition: stroke-dashoffset 0.7s;
+}
+
+.e-c-pointer {
+    fill: #fff;
+    stroke-width: 2px;
+}
+
+#e-pointer {
+    transition: transform 0.7s;
+}
