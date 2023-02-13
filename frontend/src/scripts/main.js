@@ -1,8 +1,19 @@
 import makeTimer from '../components/main/timer/maketimer.js';
+import { $ } from '../utils/selector.js';
+import { timerForm } from '../components/main/timer/timer.js';
 
 function setMainEvent() {
-    getUserLocation();
-    makeTimer();
+    // let makeAttendance = false;
+    // if (!makeAttendance) {
+    //     getUserLocation();
+    //     $('#check-timer').innerHTML = timerForm();
+    //     makeTimer();
+    // }
+    // $('.play').addEventListener('click', () => {
+    //     makeAttendance = true;
+    //     $('#check-timer').remove();
+    //     //navigator.geolocation.clearWatch();
+    // });
 }
 
 let checkAvailable;
@@ -30,8 +41,8 @@ const getUserLocation = () => {
                 longitude >= setALongitude &&
                 longitude <= setBLongitude;
         });
-        // 버튼 클릭으로 감시를 중지
-        // $('#btnStop').click(function () {
+        //버튼 클릭으로 감시를 중지
+        // $('#check-timer').click(function () {
         //     navigator.geolocation.clearWatch(id);
         // });
     } else {

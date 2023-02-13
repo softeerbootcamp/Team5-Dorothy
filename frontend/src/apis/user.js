@@ -20,7 +20,7 @@ export const GetUser = async (id, password) => {
                 'beforeend',
                 stateModal(error.code, error.message),
             );
-        console.log(error.code);
+        console.log(error);
         return Promise.reject(error.message, '로그인 실패');
     }
 };
