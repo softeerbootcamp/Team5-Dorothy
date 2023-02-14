@@ -2,7 +2,7 @@ import { makeTimer } from '../components/main/timer/maketimer.js';
 import { $ } from '../utils/selector.js';
 import { timerForm } from '../components/main/timer/timer.js';
 
-const role = 'member';
+const role = 'manager';
 let makeAttendance = false;
 
 function setMainEvent() {

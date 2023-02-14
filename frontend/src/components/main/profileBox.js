@@ -6,13 +6,14 @@ const options = [
     '코드스쿼드 마스터즈 코스',
 ];
 
+const role = 'manager';
 const profile = () => {
     const profileTemplate = /*html*/ `
         <section class="profile-container">
             <div class="image-container">
                 <img src="https://ca.slack-edge.com/T04AE6CRWMB-U04GTQ0SHRT-badeda2b168f-512" alt="my-profile">
             </div>
-            <div id="check-timer">${timerForm}</div>
+            ${role === 'manager' ? '' : timerForm}
             <select class="track-select-container">
                 ${options.map((option) => {
                     return `<option>${option}</option>`;
