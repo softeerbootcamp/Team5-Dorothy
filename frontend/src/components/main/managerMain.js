@@ -1,10 +1,12 @@
 import { weeklyChart } from './chart/weeklyChart.js';
 import { dailyChart } from './chart/dailyChart.js';
+import { profile } from './profileBox.js';
 
 const managerMain = () => {
     const managerMainTemplate =
         /*html*/
         `
+        ${profile()}
         <div class="content-container">
             <div class="chart-wrapper">출석현황 ></div>
             <div class='manager-main-btn-wrapper'>

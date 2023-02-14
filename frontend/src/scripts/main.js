@@ -2,7 +2,7 @@ import makeTimer from '../components/main/timer/maketimer.js';
 import { $ } from '../utils/selector.js';
 import { timerForm } from '../components/main/timer/timer.js';
 
-const role = 'member';
+const role = 'manager';
 let makeAttendance = false;
 
 function setMainEvent() {
@@ -26,12 +26,12 @@ const toggleChart = (target) => {
     )
         return;
     if (target.classList.contains('daily-chart-btn')) {
-        $('.attend-ratio-wrapper').classList.remove('hidden');
-        $('.vertical_chart_box').classList.add('hidden');
+        $('.daily-ratio-wrapper').classList.remove('hidden');
+        $('.weekly-ratio-wrapper').classList.add('hidden');
     }
     if (target.classList.contains('weekly-chart-btn')) {
-        $('.attend-ratio-wrapper').classList.add('hidden');
-        $('.vertical_chart_box').classList.remove('hidden');
+        $('.daily-ratio-wrapper').classList.add('hidden');
+        $('.weekly-ratio-wrapper').classList.remove('hidden');
     }
 };
 
