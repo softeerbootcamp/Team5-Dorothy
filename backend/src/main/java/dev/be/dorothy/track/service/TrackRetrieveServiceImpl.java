@@ -27,4 +27,11 @@ public class TrackRetrieveServiceImpl implements TrackRetrieveService{
                 .findById(trackIdx)
                 .orElseThrow(() -> new BadRequestException("존재하지 않는 트랙입니다."));
     }
+
+    @Override
+    public Long getTrackMemberIdx(Long memberIdx, Long trackIdx) {
+        return trackRepository
+                .getTrackMemberIdx(memberIdx, trackIdx)
+                .orElseThrow(() -> new BadRequestException("해당 트랙에 찾고자 하는 멤버가 존재하지 않습니다."));
+    }
 }
