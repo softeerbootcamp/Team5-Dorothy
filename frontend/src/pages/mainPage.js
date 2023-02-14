@@ -10,13 +10,13 @@ export default class mainPage extends AbstractView {
         /*html*/
         return `
         <div class="container">
-            <div class="main-wrapper">
-                <h1 class="title-wrapper Mini">DOROTHY</h1>
-                <div class="name-wrapper">
-                ${pageTitleTamplate(`안녕하세요, ${role}님!`)}
-                </div>
-                ${role === 'manager' ? managerMain() : userMain()}
+            <h1 class="title-wrapper Mini">DOROTHY</h1>
+            <div class="name-wrapper">
+            ${pageTitleTamplate(`안녕하세요, ${role}님!`)}
             </div>
+            <section class="main-content-container flex">
+            ${role === 'manager' ? managerMain() : userMain()}
+            </section>
         </div> 
         
         `;

@@ -9,63 +9,72 @@
     font-weight: 700;
     text-shadow: 0 0 0.25vw rgba(0, 0, 0, 0.25);
 }
+.flex {
+    display: flex;
+}
 
 .content-container {
-    position: absolute;
     background-color: #fff;
-    width: 100%;
-    height: 60vh;
-    top: 40vh;
+    width: 70%;
+    background-color: red;
     box-sizing: border-box;
-    padding: 15vh 10vh 0 10vh;
-    box-shadow: inset 0 10px 10px rgba(0, 0, 0, 0.5);
+    margin-left: 2%;
 }
 
 .profile-container {
-    position: absolute;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
-    top: 20vh;
-    left: 10vw;
-    width: 80vw;
-    height: 30vh;
+    width: 20%;
+    height: 90%;
     background-color: #fff;
-    border-radius: 25px;
-    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.5);
     box-sizing: border-box;
     padding-left: 10vw;
     padding-right: 10vw;
+    background-color: blue;
+    button {
+        background-color: #fff;
+        border: #84b5ff 2px solid;
+        border-radius: 100%;
+    }
 }
 
 .image-container {
     display: flex;
-    min-width: 196px;
-    min-height: 196px;
+    min-width: 20vmin;
+    min-height: 20vmin;
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    border-radius: 98px;
+    border-radius: 100%;
     box-shadow: 0 10px 10px rgba(0, 0, 0, 0.25);
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .image-container > img {
-    width: 196px;
+    width: 24vmin;
+    height: 24vmin;
     pointer-events: none;
 }
 
-.department-container {
-    flex-direction: column;
-    margin-left: 5vw;
+.circle {
+    margin-top: 20px;
+    backdrop-filter: blur(8px);
+    height: 24vmin;
+    width: 24vmin;
+    border-radius: 100px;
+    .circle-svg {
+        width: 24vmin;
+    }
 }
 
 .track-select-container {
-    position: relative;
     font-weight: 700;
-    font-size: 2.5vw;
+    font-size: 1em;
     text-shadow: 0.1vw 0.1vw 0.05vw rgba(0, 0, 0, 0.125);
-    margin-bottom: 5vh;
     border: none;
+    width: fit-content;
 }
 
 .track-select-container::-ms-expand {
@@ -121,7 +130,7 @@
 }
 
 .contour {
-    width: 90vw;
+    width: 90%;
     height: 3px;
     background-color: lightgray;
     margin: 2.5vh 0;

@@ -1,10 +1,11 @@
 import { getCurrentWeek } from './chart/currentWeek';
-import { timerForm } from './timer/timer';
+import { profile } from './profileBox';
 
 const userMain = () => {
     const userMainTemplate =
         /*html*/
         `
+        ${profile()}
         <div class="content-container">
             <div class="attendance-wrapper">내 출석현황 >
                 <div class="calendar-wrapper">
@@ -27,18 +28,7 @@ const userMain = () => {
                 </div>
             </div>
     </div>
-    <section class="profile-container">
-        <div class="image-container"><img src="https://ca.slack-edge.com/T04AE6CRWMB-U04GTQ0SHRT-badeda2b168f-512" alt="my-profile">
-        </div>
-        <div id="check-timer">${timerForm}</div>
-        <div class="department-container">
-            <select class="track-select-container">
-                <option value="1">현대자동차그룹 소프티어 부트캠프 2023</option>
-                <option value="2">우아한 테크캠프</option>
-                <option value="3">코드스쿼드 마스터즈 코스</option>
-            </select>
-        </div>
-    </section>
+
     `;
     return userMainTemplate;
 };
