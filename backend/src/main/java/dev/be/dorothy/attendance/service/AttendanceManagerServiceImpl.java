@@ -14,7 +14,7 @@ public class AttendanceManagerServiceImpl implements AttendanceManagerService {
     }
 
     @Override
-    public boolean checkAttendance(Long trackIdx, Double x, Double y) {
+    public boolean checkAttendanceLocation(Long trackIdx, Double x, Double y) {
         Point trackPoint = getTrackPoint(trackIdx);
         Point memberPoint = new Point(x, y);
 

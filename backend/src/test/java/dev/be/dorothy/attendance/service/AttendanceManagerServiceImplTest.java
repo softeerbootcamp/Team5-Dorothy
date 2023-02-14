@@ -22,7 +22,7 @@ public class AttendanceManagerServiceImplTest {
 
     @Test
     @DisplayName("거리 기반 출석 확인 테스트 - 출석 성공 케이스")
-    void checkAttendanceSuccessTest() {
+    void checkAttendanceLocationSuccessTest() {
         Track track = new Track(
                 "hyundai",
                 ""
@@ -33,12 +33,12 @@ public class AttendanceManagerServiceImplTest {
 
         given(trackRetrieveService.getTrack(track.getIdx())).willReturn(track);
 
-        assertThat(attendanceManagerServiceImpl.checkAttendance(track.getIdx(), x, y)).isTrue();
+        assertThat(attendanceManagerServiceImpl.checkAttendanceLocation(track.getIdx(), x, y)).isTrue();
     }
 
     @Test
     @DisplayName("거리 기반 출석 확인 테스트 - 출석 실패 케이스")
-    void checkAttendanceFailTest() {
+    void checkAttendanceLocationFailTest() {
         Track track = new Track(
                 "hyundai",
                 ""
@@ -49,6 +49,6 @@ public class AttendanceManagerServiceImplTest {
 
         given(trackRetrieveService.getTrack(track.getIdx())).willReturn(track);
 
-        assertThat(attendanceManagerServiceImpl.checkAttendance(track.getIdx(), x, y)).isFalse();
+        assertThat(attendanceManagerServiceImpl.checkAttendanceLocation(track.getIdx(), x, y)).isFalse();
     }
 }
