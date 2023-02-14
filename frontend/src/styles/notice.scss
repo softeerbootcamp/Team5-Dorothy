@@ -89,22 +89,25 @@ thead,
 }
 .notice-title-wrapper {
     display: flex;
-    justify-content: center;
     align-items: center;
+    background-color: #2b90d9;
+    color: #ffffff;
+    text-indent: 25px;
+    margin-top: 20px;
 }
 .notice-content-wrapper {
     box-shadow: 0 5px 5px rgba(0, 0, 0, 0.5);
-    width: 100%;
-    margin: 40px auto;
-    height: 250px;
+    width: 90%;
+    margin: 40px auto 20px;
+    height: 50%;
     display: flex;
-    justify-content: center;
-    padding-top: 10px;
+    padding: 5% 5%;
     border-radius: 15px;
+    border: #9baec8 2px solid;
+    border-radius: 0.5em;
 }
 .link-to-notice,
-.notice-delete-btn,
-.notice-edit-btn {
+.notice-delete-btn {
     display: block;
     float: right;
     width: 200px;
@@ -116,8 +119,7 @@ thead,
 }
 
 .link-to-notice:hover,
-.notice-delete-btn:hover,
-.notice-edit-btn:hover {
+.notice-delete-btn:hover {
     width: 200px;
     height: 40px;
     border-radius: 15px;
@@ -159,4 +161,29 @@ thead,
     margin-bottom: 1vh;
     border-radius: 0.5em;
     resize: none;
+}
+.notice-edit-btn {
+    display: flex;
+    flex-direction: row;
+    width: 10vw;
+    height: 4vw;
+    border-radius: 1vw;
+    box-sizing: border-box;
+    padding: 0.5vh 1.2vw;
+    margin-right: 1vw;
+    box-shadow: 0.25vh 0.25vh 0.25vh rgba(0, 0, 0, 0.25);
+    align-items: center;
+    transition: all 0.5s;
+    float: right;
+}
+.notice-edit-btn:hover {
+    background-color: #d9e1e8;
+}
+.notice-detail-wrapper {
+    margin: 3% 1%;
+    width: fit-content;
+    float: right;
+    i {
+        margin-right: 2px;
+    }
 }
