@@ -1,14 +1,17 @@
 import { $ } from '../../../utils/selector';
 
+let intervalTimer;
 const WARNING_THRESHOLD = 10;
 const ALERT_THRESHOLD = 0;
 
-const ATTEND_MINUTES = 59;
+const ATTEND_HOURS = 9;
+const ATTEND_MINUTES = 60;
 const ATTEND_SECONDS = 60;
 
 const NOW = new Date();
 let id;
-const SET_MINUTES = ATTEND_MINUTES - NOW.getMinutes();
+const SET_MINUTES =
+    (ATTEND_HOURS - NOW.getHours()) * 60 + (ATTEND_MINUTES - NOW.getMinutes());
 const SET_SECONDS = ATTEND_SECONDS - NOW.getSeconds();
 
 const getUserLocation = () => {
@@ -64,15 +67,13 @@ const makeTimer = () => {
 
     const displayOutput = document.querySelector('.display-remain-time');
     const playButton = document.querySelector('.play');
-    let intervalTimer;
-    let timeLeft;
     let wholeTime = 60 * SET_MINUTES + SET_SECONDS;
 
     function timer(seconds) {
         let remainTime = Date.now() + seconds * 1000;
         displayTimeLeft(seconds);
         intervalTimer = setInterval(function () {
-            timeLeft = Math.round((remainTime - Date.now()) / 1000);
+            let timeLeft = Math.round((remainTime - Date.now()) / 1000);
             displayTimeLeft(timeLeft);
         }, 1000);
     }
@@ -88,4 +89,8 @@ const makeTimer = () => {
     });
 };
 
-export default makeTimer;
+function clearTimer(timer) {
+    clearInterval(timer);
+}
+
+export { makeTimer, clearTimer, intervalTimer };

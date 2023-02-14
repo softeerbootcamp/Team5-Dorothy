@@ -4,8 +4,13 @@ import { setTrackEvent } from './components/track/trackCard.js';
 import { setCalendarEvent } from './components/calendar/calendar.js';
 import { setRentalEvent } from './scripts/rental.js';
 import { setNoticeEvent } from './scripts/notice.js';
+import {
+    clearTimer,
+    intervalTimer,
+} from './components/main/timer/maketimer.js';
 
 const eventdelegator = (root) => {
+    clearTimer(intervalTimer);
     switch (root) {
         case 'home':
             setHomeEvent();
