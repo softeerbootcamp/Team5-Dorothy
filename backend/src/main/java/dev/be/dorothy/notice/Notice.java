@@ -22,7 +22,7 @@ public class Notice {
     private LocalDateTime updatedAt;
     private boolean isDeleted;
 
-    public Notice(String title, String content) {
+    private Notice(String title, String content) {
         this.title = title;
         this.content = content;
         this.createdAt = LocalDateTime.now();
