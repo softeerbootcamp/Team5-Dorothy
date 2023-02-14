@@ -1,5 +1,6 @@
 import { stateModal } from '../components/modal';
 import { UserService } from './services/userservice';
+import { navigateTo } from '../router';
 
 // 로그아웃
 export const Logout = () => {
@@ -18,6 +19,7 @@ export const GetUser = async (id, password) => {
         console.log(response.data);
         return Promise.resolve(response.data);
     } catch (error) {
+        navigateTo('/');
         document
             .querySelector('.modal-place')
             .insertAdjacentHTML(
