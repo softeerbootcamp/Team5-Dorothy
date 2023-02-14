@@ -5,12 +5,12 @@ const absentRatio = 25;
 const dailyChart = () => {
     const chart = `
     <section class="daily-ratio-wrapper">
-            <span class="attend" style="width:${attendRatio}%;">
-            <span class="late" style="width:${lateRatio}%;">
-            <span class="absent" style="width:${absentRatio}%;">
-            ${absentRatio}%</span> 
-            ${lateRatio}%</span>
-            ${attendRatio}%</span>    
+            <div class="attend" style="width:${attendRatio}%;">
+            <div class="late" style="width:${lateRatio}%;">
+            <div class="absent" style="width:${absentRatio}%;">
+            ${absentRatio}%</div> 
+            ${lateRatio}%</div>
+            ${attendRatio}%</div>    
 
     </section>
     `;

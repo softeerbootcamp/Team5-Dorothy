@@ -40,5 +40,12 @@ const UserService = {
     getTrackMember: () => {
         http.get(BASE_URL + '/track/members');
     },
+    getWholeNotices: () => {
+        http.get(BASE_URL + '/notices');
+    },
+    //
+    getNotice: (id) => {
+        http.get(BASE_URL + `/notices/${id}`);
+    },
 };
 export { UserService };

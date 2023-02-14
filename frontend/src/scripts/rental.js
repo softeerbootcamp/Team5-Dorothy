@@ -8,7 +8,7 @@ const setRentalEvent = () => {
 
 const navigator = (e) => {
     if (e.target.closest('figure') === null) return;
-    const cardID = e.target.closest('figure').getAttribute('data-set');
+    const cardID = e.target.closest('.place-wrapper').getAttribute('data-set');
     navigateTo('/rental/' + cardID);
 };
 export { setRentalEvent };
