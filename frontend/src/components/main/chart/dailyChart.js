@@ -1,10 +1,18 @@
+const attendRatio = 75;
+const lateRatio = 60;
+const absentRatio = 25;
+
 const dailyChart = () => {
     const chart = `
-    <div class="attend-ratio-wrapper">
-        <div class="block"></div>
-        <div class="block"></div>
-        <div class="block"></div>
-    </div>
+    <section class="daily-ratio-wrapper">
+            <div class="attend" style="width:${attendRatio}%;">
+            <div class="late" style="width:${lateRatio}%;">
+            <div class="absent" style="width:${absentRatio}%;">
+            ${absentRatio}%</div> 
+            ${lateRatio}%</div>
+            ${attendRatio}%</div>    
+
+    </section>
     `;
     return chart;
 };

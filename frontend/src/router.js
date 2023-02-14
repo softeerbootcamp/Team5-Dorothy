@@ -7,6 +7,7 @@ import noticeDetailPage from './pages/noticeDetailPage.js';
 import noticePage from './pages/noticePage.js';
 import trackPage from './pages/trackPage.js';
 import notFoundPage from './pages/notFoundPage.js';
+import noticeAddPage from './pages/noticeAddPage.js';
 
 import './styles/style.scss';
 
@@ -29,6 +30,7 @@ const routes = [
     },
     { path: /^\/attend$/, event: 'attend', view: attendPage },
     { path: /^\/notice$/, event: 'notice', view: noticePage },
+    { path: /^\/noticeadd$/, event: 'noticeadd', view: noticeAddPage },
     {
         path: /^\/notice\/(\d+)$/,
         event: 'noticelDetail',
