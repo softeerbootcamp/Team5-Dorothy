@@ -26,7 +26,6 @@ export default class noticePage extends AbstractView {
                             return noticePreview(notice.title);
                         })
                         .join('')}
-
                     </table>
                 </section>
             </div>

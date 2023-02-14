@@ -6,7 +6,7 @@ const weeklyChart = () => {
     const chart =
         /*html*/
         `
-        <div class="vertical_chart_box hidden">
+        <div class="weekly-ratio-wrapper hidden">
             <div class="chart_box">
                 <ul class="axis_y">
                 ${axis_x
