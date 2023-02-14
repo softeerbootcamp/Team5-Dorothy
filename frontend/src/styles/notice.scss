@@ -125,3 +125,38 @@ thead,
     background-color: white;
     color: #2b90d9;
 }
+
+.notice-add-btn {
+    width: 200px;
+    height: 40px;
+    border-radius: 15px;
+    border: #2b90d9 2px solid;
+    color: #2b90d9;
+    background-color: #ffffff;
+    float: right;
+    margin-left: 3%;
+}
+.notice-add-btn:hover {
+    background-color: #2b90d9;
+    color: #ffffff;
+}
+
+.notice-title-input-wrapper {
+    border: #9baec8 2px solid;
+    height: 4vh;
+    width: 100%;
+    margin-bottom: 1vh;
+    font-size: 1.2em;
+    text-indent: 1em;
+    border-radius: 0.5em;
+}
+
+.notice-content-input-wrapper {
+    border: #9baec8 2px solid;
+    height: 75%;
+    width: 94%;
+    padding: 3%;
+    margin-bottom: 1vh;
+    border-radius: 0.5em;
+    resize: none;
+}
