@@ -9,6 +9,7 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcOperations;
 
 import javax.annotation.PostConstruct;
+import java.util.List;
 import java.util.Optional;
 
 @RequiredArgsConstructor
@@ -22,16 +23,28 @@ public class NoticeRepositoryImpl implements CustomNoticeRepository {
     }
 
     private static final String ALL_FIELD = "idx, title, content, created_at, updated_at, is_deleted ";
+    private static final String DEFAULT_SELECT = "SELECT " + ALL_FIELD + " FROM notice";
 
     @Override
     public Optional<Notice> findOne(Long noticeId) {
-        String sql = "SELECT " + ALL_FIELD + " FROM notice WHERE idx=:noticeId LIMIT 1";
+        String sql = DEFAULT_SELECT + " WHERE idx=:noticeId LIMIT 1";
         MapSqlParameterSource params = new MapSqlParameterSource("noticeId", noticeId);
         try {
             Notice notice = operations.queryForObject(sql, params, rowMapper);
             return Optional.ofNullable(notice);
         } catch (EmptyResultDataAccessException e) {
             return Optional.empty();
+        }
+    }
+
+    @Override
+    public List<Notice> findAll(boolean orderByCreatedAtDesc) {
+        String sort = orderByCreatedAtDesc ? "DESC" : "ASC";
+        String sql = DEFAULT_SELECT + " ORDER BY created_at " + sort;
+        try {
+            return operations.query(sql, rowMapper);
+        } catch (EmptyResultDataAccessException e) {
+            return List.of();
         }
     }
 }
