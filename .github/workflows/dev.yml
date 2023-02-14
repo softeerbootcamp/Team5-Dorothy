@@ -1,0 +1,44 @@
+name: Test
+
+on:
+  push:
+    branches:
+      - dev
+
+jobs:
+  frontend-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Build
+        run: sudo sh scripts/front-build.sh
+
+      - name: Publish
+        uses: nogsantos/scp-deploy@master
+        with:
+          src: frontend/dist.tar
+          host: ${{ secrets.REMOTE_IP }}
+          remote: /home/ubuntu
+          port: 22
+          user: ${{ secrets.REMOTE_SSH_ID }}
+          key: ${{ secrets.REMOTE_SSH_KEY }}
+
+      - name: Deploy
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.REMOTE_IP }}
+          username: ${{ secrets.REMOTE_SSH_ID }}
+          key: ${{ secrets.REMOTE_SSH_KEY }}
+          port: ${{ secrets.REMOTE_SSH_PORT }}
+          script: |
+            sudo rm -rf dist
+            sudo tar -xvf dist.tar
+            sudo systemctl reload nginx
+
