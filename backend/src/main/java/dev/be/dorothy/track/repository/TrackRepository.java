@@ -15,8 +15,8 @@ public interface TrackRepository extends CrudRepository<Track, Long> {
     @Query("select a.idx, a.name, a.image, a.created_at, a.updated_at from track a inner join track_member b on a.idx = b.track_idx where b.is_deleted = 0 and a.is_deleted = 0 and b.member_idx = :userIdx")
     List<TrackResDto> findByMemberId(@Param("userIdx") Long idx);
 
-    @Query("select idx from track_member where member_idx = :memberIdx and track_idx = :trackIdx limit 1")
-    Optional<Long> doesExistTrackMember(@Param("memberIdx") Long memberIdx, @Param("trackIdx") Long trackIdx);
+    @Query("select idx from track_member where member_idx = :memberIdx and track_idx = :trackIdx and is_deleted = 0 limit 1")
+    Optional<Long> getTrackMemberIdx(@Param("memberIdx") Long memberIdx, @Param("trackIdx") Long trackIdx);
 
     @Modifying
     @Query("insert into track_member values(null, :memberIdx, :trackIdx, :role, :joinedAt, :isDeleted);")

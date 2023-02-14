@@ -93,7 +93,7 @@ public class TrackRegisterServiceTest {
         long memberIdx = 1L;
         long trackIdx = 1L;
         given(trackRepository.findById(trackIdx)).willReturn(Optional.of(mock(Track.class)));
-        given(trackRepository.doesExistTrackMember(memberIdx, trackIdx)).willReturn(Optional.of(1L));
+        given(trackRepository.getTrackMemberIdx(memberIdx, trackIdx)).willReturn(Optional.of(1L));
 
         // when
         BadRequestException exception = assertThrows(

@@ -47,7 +47,7 @@ public class TrackRegisterServiceImpl implements TrackRegisterService {
                 .findById(trackIdx)
                 .orElseThrow(() -> new BadRequestException("트랙정보가 유효하지 않습니다."));
 
-        Optional<Long> trackMemberIdx = trackRepository.doesExistTrackMember(memberIdx, trackIdx);
+        Optional<Long> trackMemberIdx = trackRepository.getTrackMemberIdx(memberIdx, trackIdx);
         if(trackMemberIdx.isPresent()) {
             throw new BadRequestException("이미 존재하는 멤버입니다.");
         }
