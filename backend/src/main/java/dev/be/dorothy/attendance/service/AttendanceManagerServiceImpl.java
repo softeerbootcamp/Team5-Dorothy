@@ -1,9 +1,14 @@
 package dev.be.dorothy.attendance.service;
 
+import dev.be.dorothy.attendance.AttendanceType;
+import dev.be.dorothy.exception.BadRequestException;
 import dev.be.dorothy.track.Track;
 import dev.be.dorothy.track.service.TrackRetrieveService;
 import org.springframework.data.geo.Point;
 import org.springframework.stereotype.Service;
+
+import java.time.LocalTime;
+import java.time.temporal.ChronoUnit;
 
 @Service
 public class AttendanceManagerServiceImpl implements AttendanceManagerService {
@@ -40,5 +45,22 @@ public class AttendanceManagerServiceImpl implements AttendanceManagerService {
         double b = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 
         return EARTH_RADIUS * b * 1000; // 단위: m
+    }
+
+    @Override
+    public AttendanceType checkAttendanceTime(Long trackIdx, LocalTime time) {
+        Track track = trackRetrieveService.getTrack(trackIdx);
+        LocalTime attendanceTime = track.getAttendanceTime();
+        long duration = ChronoUnit.SECONDS.between(attendanceTime, time);
+
+        if (duration < -1800) {
+            throw new BadRequestException("잘못된 출석 요청입니다."); // 너무 이른 출석 요청
+        } else if (duration >= 1800) {
+            return AttendanceType.ABSENT; // 결석
+        } else if (duration >= 600) {
+            return AttendanceType.TARDY; // 지각
+        }
+
+        return AttendanceType.PRESENT; // 출석
     }
 }
