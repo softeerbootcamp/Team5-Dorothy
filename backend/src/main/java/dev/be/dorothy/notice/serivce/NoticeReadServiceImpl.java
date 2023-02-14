@@ -5,6 +5,7 @@ import dev.be.dorothy.notice.Notice;
 import dev.be.dorothy.notice.repository.NoticeRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -25,6 +26,17 @@ public class NoticeReadServiceImpl implements NoticeReadService {
 
     @Override
     public List<NoticeResDto> getNotices() {
-        return null;
+        List<Notice> notices = noticeRepository.findAll(true);
+
+        List<NoticeResDto> noticeResDtos = new ArrayList<>();
+        // TODO: 현재 views 관련 기능 구현 전
+        for (Notice notice: notices) {
+            NoticeResDto noticeResDto = NoticeResDto.of(
+                    notice.getIdx(), notice.getTitle(), notice.getContent(), notice.getCreatedAt(), 0L
+            );
+            noticeResDtos.add(noticeResDto);
+        }
+
+        return noticeResDtos;
     }
 }
