@@ -1,0 +1,55 @@
+body {
+  background-color: #9baec8;
+}
+
+.page-title {
+  color: white;
+  font-family: "Spoqa Han Sans Neo";
+}
+
+.places-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 60vh;
+  align-items: center;
+  overflow-x: auto;
+}
+
+.place-wrapper {
+  background: #d9e1e8;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.5);
+  border-radius: 15px;
+  min-width: 200px;
+  height: 40vh;
+  margin-left: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transition: 0.5s;
+  cursor: pointer;
+}
+
+.place-wrapper:hover {
+  margin-top: -0.5vh;
+  margin-bottom: 0.5vh;
+}
+
+.place-image {
+  display: block;
+  width: 110px;
+  margin: 25% auto 20px;
+  font-size: 80px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+
+.place-name {
+  font-weight: 600;
+  font-size: 25px;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin: 20px auto;
+  display: block;
+}/*# sourceMappingURL=rental.css.map */

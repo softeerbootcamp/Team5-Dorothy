@@ -1,0 +1,214 @@
+.chart-wrapper {
+  font-weight: 700;
+  font-size: 1.5em;
+  display: flex;
+  flex-direction: column;
+}
+
+.daily-ratio-wrapper {
+  background-color: #dedede;
+  width: 100%;
+  height: 5vh;
+  margin: 10vh 0 0;
+  border-radius: 40vw;
+}
+.daily-ratio-wrapper div {
+  line-height: 5vh;
+  height: 100%;
+  border-radius: 40vw;
+  box-sizing: border-box;
+  color: white;
+  text-align: right;
+  padding-right: 1vw;
+}
+
+@keyframes stack {
+  0% {
+    transform: scaleX(0);
+    opacity: 0;
+  }
+  100% {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+}
+.attend {
+  height: 100%;
+  background-color: blue;
+  animation: stack 2s 1;
+  transform-origin: 0% 100%;
+}
+
+.late {
+  background-color: orange;
+  animation: stack2 2s 1;
+  transform-origin: 0% 100%;
+}
+
+.absent {
+  background-color: violet;
+  animation: stack3 2s 1;
+  transform-origin: 0% 100%;
+}
+
+.value {
+  display: block;
+  line-height: 1em;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%);
+}
+
+.legend {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.legend li {
+  padding: 0 1em;
+  line-height: 1em;
+}
+
+.legend li:before {
+  content: "";
+  margin-right: 0.5em;
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 4px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
+  transform: translate(0, -50%);
+}
+
+ul,
+li {
+  list-style: none;
+}
+
+.blind {
+  position: absolute;
+  clip: rect(0 0 0 0);
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.weekly-ratio-wrapper {
+  margin: 10px;
+  position: relative;
+}
+.weekly-ratio-wrapper .chart_box {
+  position: relative;
+  margin-bottom: 45px;
+  padding-left: 20px;
+  box-sizing: border-box;
+  height: 200px;
+}
+.weekly-ratio-wrapper .axis_y {
+  display: -ms-flex;
+  display: -o-flex;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  justify-content: space-between;
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 0;
+  padding: 0;
+  width: 20px;
+  height: 100%;
+  font-size: 12px;
+  color: #4a4a4a;
+}
+.weekly-ratio-wrapper .axis_y:before {
+  content: "";
+  position: absolute;
+  top: 5px;
+  bottom: 0;
+  right: 0;
+  width: 1px;
+  background: #d3d3d3;
+}
+.weekly-ratio-wrapper .axis_x {
+  display: -ms-flex;
+  display: -o-flex;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  padding: 0;
+  box-sizing: border-box;
+  height: 100%;
+  border-bottom: 1px solid #d3d3d3;
+}
+.weekly-ratio-wrapper .axis_x .item {
+  flex: 1;
+  position: relative;
+}
+.weekly-ratio-wrapper .axis_x .item .text_box {
+  position: absolute;
+  bottom: -43px;
+  left: 50%;
+  text-align: center;
+  transform: translate(-50%, 0);
+}
+.weekly-ratio-wrapper .axis_x .item .text_box .day {
+  display: block;
+  font-size: 12px;
+  line-height: 19px;
+  color: #4a4a4a;
+}
+.weekly-ratio-wrapper .axis_x .item .text_box .day.sat {
+  color: #3475ed;
+}
+.weekly-ratio-wrapper .axis_x .item .text_box .day.sun {
+  color: #eb474a;
+}
+.weekly-ratio-wrapper .axis_x .item .text_box .time {
+  display: block;
+  margin-top: 3px;
+  font-size: 12px;
+  color: #999;
+}
+.weekly-ratio-wrapper .axis_x .graph {
+  display: -ms-flex;
+  display: -o-flex;
+  display: flex;
+  flex-direction: column-reverse;
+  position: relative;
+  margin: 0 auto;
+  padding: 0;
+  width: 35px;
+  height: 100%;
+  background: #e8e8e8;
+  border-radius: 3px 3px 0 0;
+  overflow: hidden;
+}
+.weekly-ratio-wrapper .axis_x .graph .time {
+  display: block;
+  position: relative;
+  margin-bottom: -4px;
+  padding-top: 4px;
+  box-sizing: content-box;
+  width: 100%;
+  border-radius: 3px 3px 0 0;
+}
+.weekly-ratio-wrapper .axis_x .graph .time.data1 {
+  background: #84b5ff;
+  z-index: 3;
+}
+.weekly-ratio-wrapper .axis_x .graph .time.data2 {
+  background: #ea907a;
+  z-index: 2;
+}
+.weekly-ratio-wrapper .axis_x .graph .time.data3 {
+  background: #fbc687;
+  z-index: 1;
+}
+.weekly-ratio-wrapper .axis_x button.graph {
+  border: 0;
+}/*# sourceMappingURL=chart.css.map */

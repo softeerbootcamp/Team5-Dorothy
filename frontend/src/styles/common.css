@@ -1,0 +1,20 @@
+body {
+  font-family: "Spoqa Han Sans Neo", "sans-serif";
+}
+
+input,
+button {
+  border: none;
+}
+
+input:focus,
+input:active,
+button:focus,
+button:active {
+  outline: none;
+  box-shadow: none;
+}
+
+textarea:focus {
+  outline: none;
+}/*# sourceMappingURL=common.css.map */
