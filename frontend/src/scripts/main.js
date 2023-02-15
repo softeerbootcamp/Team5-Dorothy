@@ -1,8 +1,8 @@
 import { makeTimer } from '../components/main/timer/maketimer.js';
-import { $ } from '../utils/selector.js';
+import { qs } from '../utils/selector.js';
 import { timerForm } from '../components/main/timer/timer.js';
 
-const role = 'member';
+const role = 'manager';
 let makeAttendance = false;
 
 function setMainEvent() {
@@ -13,7 +13,7 @@ function setMainEvent() {
     }
     if (role === 'member') {
         if (!makeAttendance) {
-            $('#check-timer').innerHTML = timerForm();
+            qs('#check-timer').innerHTML = timerForm();
             makeTimer();
         }
     }
@@ -26,12 +26,12 @@ const toggleChart = (target) => {
     )
         return;
     if (target.classList.contains('daily-chart-btn')) {
-        $('.daily-ratio-wrapper').classList.remove('hidden');
-        $('.weekly-ratio-wrapper').classList.add('hidden');
+        qs('.daily-ratio-wrapper').classList.remove('hidden');
+        qs('.weekly-ratio-wrapper').classList.add('hidden');
     }
     if (target.classList.contains('weekly-chart-btn')) {
-        $('.daily-ratio-wrapper').classList.add('hidden');
-        $('.weekly-ratio-wrapper').classList.remove('hidden');
+        qs('.daily-ratio-wrapper').classList.add('hidden');
+        qs('.weekly-ratio-wrapper').classList.remove('hidden');
     }
 };
 
