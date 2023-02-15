@@ -31,7 +31,7 @@ public class AttendanceServiceImpl implements AttendanceService {
         }
 
         attendanceManagerService.checkAttendanceLocation(trackIdx, attendanceReqDto.getX(), attendanceReqDto.getY());
-        AttendanceType attendanceType = attendanceManagerService.checkAttendanceTime(trackIdx, time);
+        AttendanceType attendanceType = attendanceManagerService.checkAttendanceTime(trackIdx, date, time);
 
         Long trackMemberIdx = trackRetrieveService.getTrackMemberIdx(memberIdx, trackIdx);
         Attendance attendance = new Attendance(
