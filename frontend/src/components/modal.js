@@ -2,7 +2,6 @@ let openPopup = false;
 
 const stateModal = (code, message) => {
     openPopup = true;
-    console.log(code);
     const ModalTemplate = `
     <div class='modal-wrapper'>
     ${
