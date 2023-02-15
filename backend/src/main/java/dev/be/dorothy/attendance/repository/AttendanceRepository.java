@@ -14,7 +14,7 @@ public interface AttendanceRepository extends CrudRepository<Attendance, Long> {
     Optional<Long> getAttendanceIdx(@Param("trackMemberIdx") Long trackMemberIdx);
 
     @Query("select date, time, type from attendance where track_member_idx = :trackMemberIdx;")
-    Optional<AttendanceResDto> getAttendanceByDayWhenMember(@Param("trackMemberIdx") Long trackMemberIdx);
+    AttendanceResDto getAttendanceByDayWhenMember(@Param("trackMemberIdx") Long trackMemberIdx);
 
     @Query("select name, date, time, type\n" +
             "from attendance\n" +
