@@ -10,13 +10,14 @@ import org.springframework.core.annotation.Order;
 public class SecurityConfig {
 
     @Bean
-    @Order(3)
+    @Order(4)
     public AuthorizationFilter authorizationFilter(HttpSecurity httpSecurity){
         return httpSecurity
                 .authorizeRequest()
-                .antMatchers("/login").permitAll()
-                .antMatchers("/track").isAuthenticated()
+                .antMatchers("/api/v1/member").permitAll()
+                .antMatchers("/api/v1/member/login").permitAll()
                 .antMatchers("/track/generate").hasRole(MemberRole.ADMIN)
+                .antMatchers("/**").isAuthenticated()
                 .and().build();
     }
 }
