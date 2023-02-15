@@ -1,4 +1,4 @@
-import { $ } from '../../utils/selector';
+import { qs } from '../../utils/selector';
 
 const trackCard = (img, tname) => {
     return `
@@ -9,10 +9,10 @@ const trackCard = (img, tname) => {
 };
 
 function setTrackEvent() {
-    const trackMake = $('#track-make');
+    const trackMake = qs('#track-make');
     const trackMakeInput = trackMake.querySelector('.track-input');
     const trackMakeBtn = trackMake.querySelector('.track-button');
-    const trackJoin = $('#track-join');
+    const trackJoin = qs('#track-join');
     const trackJoinInput = trackJoin.querySelector('.track-input');
     const trackJoinBtn = trackJoin.querySelector('.track-button');
 

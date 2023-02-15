@@ -1,4 +1,4 @@
-import { $ } from '../../../utils/selector';
+import { qs } from '../../../utils/selector';
 
 let intervalTimer;
 const WARNING_THRESHOLD = 10;
@@ -31,12 +31,12 @@ const makeTimer = () => {
     getUserLocation();
 
     let length = Math.PI * 2 * 100;
-    $('.e-c-progress').style.strokeDasharray = length;
+    qs('.e-c-progress').style.strokeDasharray = length;
 
     function update(value) {
         let offset = -length - length * (value - 1);
-        $('.e-c-progress').style.strokeDashoffset = offset / 36;
-        $('#e-pointer').style.transform = `rotate(${(360 * value) / 36}deg)`;
+        qs('.e-c-progress').style.strokeDashoffset = offset / 36;
+        qs('#e-pointer').style.transform = `rotate(${(360 * value) / 36}deg)`;
     }
     function displayTimeLeft(timeLeft) {
         if (wholeTime === 0) return;
@@ -49,17 +49,17 @@ const makeTimer = () => {
         }${Math.abs(seconds)}`;
 
         if (minutes < ALERT_THRESHOLD) {
-            $('.e-c-progress').classList.add('red');
-            $('#e-pointer').classList.add('red');
-            $('.controlls').classList.add('red');
+            qs('.e-c-progress').classList.add('red');
+            qs('#e-pointer').classList.add('red');
+            qs('.controlls').classList.add('red');
         } else if (minutes < WARNING_THRESHOLD && minutes > ALERT_THRESHOLD) {
-            $('.e-c-progress').classList.add('orange');
-            $('#e-pointer').classList.add('orange');
-            $('.controlls').classList.add('orange');
+            qs('.e-c-progress').classList.add('orange');
+            qs('#e-pointer').classList.add('orange');
+            qs('.controlls').classList.add('orange');
         } else {
-            $('.e-c-progress').classList.add('pink');
-            $('#e-pointer').classList.add('pink');
-            $('.controlls').classList.add('pink');
+            qs('.e-c-progress').classList.add('pink');
+            qs('#e-pointer').classList.add('pink');
+            qs('.controlls').classList.add('pink');
         }
         displayOutput.textContent = displayString;
         update(timeLeft);
