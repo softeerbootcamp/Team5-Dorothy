@@ -16,6 +16,13 @@ public interface AttendanceRepository extends CrudRepository<Attendance, Long> {
     @Query("select date, time, type from attendance where track_member_idx = :trackMemberIdx;")
     Optional<AttendanceResDto> getAttendanceByDayWhenMember(@Param("trackMemberIdx") Long trackMemberIdx);
 
-    @Query("select date, time, type from attendance inner join track_member on attendance.track_member_idx = track_member.idx where track_idx = :trackIdx and role = 'MEMBER' and is_deleted = 0;")
+    @Query("select name, date, time, type\n" +
+            "from attendance\n" +
+            "         inner join track_member on attendance.track_member_idx = track_member.idx\n" +
+            "         inner join member on track_member.member_idx = member.idx\n" +
+            "where track_idx = :trackIdx\n" +
+            "  and track_member.role = 'MEMBER'\n" +
+            "  and member.is_deleted = 0\n" +
+            "  and track_member.is_deleted = 0;")
     List<AttendanceResDto> getAttendanceByDayWhenAdmin(@Param("trackIdx") Long trackIdx);
 }
