@@ -21,7 +21,7 @@ public class HttpSecurity {
     }
 
     public void validateRequest(String url){
-        ExpressionUrlAuthorizationConfigurer.UrlRegistry urlRegistry = expressionUrlAuthorizationConfigurer.antMatchers(url);
+        ExpressionUrlAuthorizationConfigurer.UrlRegistry urlRegistry = expressionUrlAuthorizationConfigurer.findRegistry(url);
         List<AcccessEnum> accessList = urlRegistry.getAccessList();
         List<MemberRole> roleList = urlRegistry.getRoleList();
         accessList.forEach(acccessEnum -> acccessEnum.validate(roleList));
