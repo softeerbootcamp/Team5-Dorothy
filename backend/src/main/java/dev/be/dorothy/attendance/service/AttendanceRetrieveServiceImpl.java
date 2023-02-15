@@ -24,7 +24,7 @@ public class AttendanceRetrieveServiceImpl implements AttendanceRetrieveService 
     }
 
     @Override
-    public List<AttendanceResDto> retrieveAttendanceByDayWhenAdmin(Long trackIdx) {
+    public List<AttendanceRetrieveResDto> retrieveAttendanceByDayWhenAdmin(Long trackIdx) {
         return attendanceRepository.getAttendanceByDayWhenAdmin(trackIdx);
     }
 }

@@ -2,6 +2,7 @@ package dev.be.dorothy.attendance.repository;
 
 import dev.be.dorothy.attendance.Attendance;
 import dev.be.dorothy.attendance.service.AttendanceResDto;
+import dev.be.dorothy.attendance.service.AttendanceRetrieveResDto;
 import org.springframework.data.jdbc.repository.query.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
@@ -24,5 +25,5 @@ public interface AttendanceRepository extends CrudRepository<Attendance, Long> {
             "  and track_member.role = 'MEMBER'\n" +
             "  and member.is_deleted = 0\n" +
             "  and track_member.is_deleted = 0;")
-    List<AttendanceResDto> getAttendanceByDayWhenAdmin(@Param("trackIdx") Long trackIdx);
+    List<AttendanceRetrieveResDto> getAttendanceByDayWhenAdmin(@Param("trackIdx") Long trackIdx);
 }
