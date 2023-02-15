@@ -11,17 +11,12 @@ export const Logout = () => {
 
 // 로그인
 export const GetUser = async (id, password) => {
-    await UserService.getUser(id, password)
-        .then((data) => {
-            succeedLogin(
-                data.response.data.data,
-                data.response.data.code,
-                data.response.data.message,
-            );
-        })
-        .catch((error) => {
-            failLogin(error.response.data.code, error.response.data.message);
-        });
+    try {
+        const response = await UserService.getUser(id, password);
+        succeedLogin(response);
+    } catch (e) {
+        failLogin(e);
+    }
 };
 // 회원가입
 export const PostUser = async (
@@ -31,35 +26,34 @@ export const PostUser = async (
     name,
     email,
 ) => {
-    UserService.postUser(memberId, password, passwordCheck, name, email)
-        .then((data) => {
-            succeedLogin(
-                data.response.data.data,
-                data.response.data.code,
-                data.response.data.message,
-            );
-        })
-        .catch((error) => {
-            failLogin(error.response.data.code, error.response.data.message);
-        });
+    try {
+        const response = await UserService.postUser(id, password);
+        succeedLogin(response);
+    } catch (e) {
+        failLogin(e);
+    }
 };
 
-const succeedLogin = (data, code, message) => {
+const setmodal = (code, message) =>
     qs('.modal-place').insertAdjacentHTML(
         'beforeend',
         stateModal(code, message),
     );
-    const user = { name: data.name, role: data.role };
+
+const succeedLogin = (response) => {
+    const code = response.code;
+    const message = response.message;
+    const name = response.data.name;
+    const role = response.data.role;
+    setmodal(code, message);
+
+    const user = { name, role };
     sessionStorage.setItem('user', JSON.stringify(user));
-
-    setTimeout(() => {
-        navigateTo('/track');
-    }, 1500);
+    navigateTo('/track');
 };
 
-const failLogin = (code, message) => {
-    qs('.modal-place').insertAdjacentHTML(
-        'beforeend',
-        stateModal(code, message),
-    );
+const failLogin = async (error) => {
+    const code = await error.response.data.code;
+    const message = await error.response.data.message;
+    setmodal(code, message);
 };

@@ -10,21 +10,27 @@ const UserService = {
     },
 
     //로그인
-    getUser: (id, password) =>
-        http.post('/api/member/login', {
+    getUser: async (id, password) => {
+        const response = await http.post('/api/member/login', {
             memberId: id,
             password: password,
-        }),
+        });
+
+        return response.data;
+    },
 
     //회원가입
-    postUser: (memberId, password, passwordCheck, name, email) =>
-        http.post('/api/member', {
+    postUser: async (memberId, password, passwordCheck, name, email) => {
+        const response = await http.post('/api/member', {
             memberId,
             password,
             passwordCheck,
             name,
             email,
-        }),
+        });
+
+        return response.data;
+    },
 
     getAllNotices: () => {
         http.get('/notices');

@@ -1,6 +1,10 @@
-const user = JSON.parse(sessionStorage.getItem('user'));
+let userName;
+let userRole;
 
-const userName = user.name;
-const userRole = user.role;
+let user = JSON.parse(sessionStorage.getItem('user'));
+if (user !== null) {
+    userName = user.name;
+    userRole = user.role;
+}
 
 export { userName, userRole };

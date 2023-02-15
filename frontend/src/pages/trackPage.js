@@ -1,8 +1,10 @@
 import AbstractView from './pageTemplate.js';
 import { pageTitleTamplate } from '../components/pageTitle.js';
-import trackInfo from '../components/track/trackInfo.js';
 import { trackCard } from '../components/track/trackCard.js';
 import { addTrackCard } from '../components/track/addTrackCard.js';
+import { GetTrack } from '../apis/track.js';
+
+import { userRole } from '../store/user';
 
 export default class trackPage extends AbstractView {
     async getHtml() {
@@ -17,7 +19,7 @@ export default class trackPage extends AbstractView {
                 </div>
                 <section class="big-content-container">
                     <section class="track-container">
-                        ${trackInfo
+                        ${await GetTrack()
                             .map((track) => {
                                 return trackCard(track.img, track.name);
                             })

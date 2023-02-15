@@ -1,4 +1,4 @@
-import { UserService } from './services/userservice';
+import { TrackService } from './services/trackservices';
 
 //트랙 생성
 export const PostTrack = async () => {
@@ -24,10 +24,10 @@ export const PostTrack = async () => {
 //트랙 조회
 export const GetTrack = async () => {
     try {
-        const response = await UserService.getTrack();
+        const response = await TrackService.getTrack();
+        return response;
     } catch (error) {
         console.log(error);
-        return Promise.reject(error.message, '트랙 조회 실패');
     }
 };
 

@@ -7,8 +7,9 @@ const TrackService = {
     },
 
     //나의 트랙 조회
-    getTrack: () => {
-        http.get(`/tracks/list`, {});
+    getTrack: async () => {
+        const response = await http.get(`/api/track/list`);
+        return response.data.data;
     },
 
     //트랙 가입

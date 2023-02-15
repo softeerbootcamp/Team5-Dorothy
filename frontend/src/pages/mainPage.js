@@ -4,8 +4,6 @@ import { managerMain } from '../components/main/managerMain';
 import { userMain } from '../components/main/userMain';
 import { userRole, userName } from '../store/user';
 
-const role = 'manager';
-
 export default class mainPage extends AbstractView {
     async getHtml() {
         /*html*/
@@ -18,7 +16,7 @@ export default class mainPage extends AbstractView {
             <div class="content-container">
             </div>
             <section class="big-content-container">
-                ${userRole === 'MANAGER' ? managerMain() : userMain()}
+                ${userRole === 'ADMIN' ? managerMain() : userMain()}
             </section>
         </div>
         `;

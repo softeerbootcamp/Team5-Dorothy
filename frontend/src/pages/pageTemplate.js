@@ -3,7 +3,7 @@ export default class {
         this.params = params;
     }
 
-    async getHtml() {
+    getHtml() {
         return '';
     }
 }
