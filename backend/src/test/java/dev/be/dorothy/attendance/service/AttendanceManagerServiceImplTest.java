@@ -11,6 +11,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.time.LocalDate;
 import java.time.LocalTime;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -59,9 +60,9 @@ public class AttendanceManagerServiceImplTest {
         given(trackRetrieveService.getTrack(track.getIdx())).willReturn(track);
 
         assertAll(
-                () -> assertThat(attendanceManagerServiceImpl.checkAttendanceTime(track.getIdx(), time1)).isEqualTo(AttendanceType.PRESENT),
-                () -> assertThat(attendanceManagerServiceImpl.checkAttendanceTime(track.getIdx(), time2)).isEqualTo(AttendanceType.PRESENT),
-                () -> assertThat(attendanceManagerServiceImpl.checkAttendanceTime(track.getIdx(), time3)).isEqualTo(AttendanceType.PRESENT)
+                () -> assertThat(attendanceManagerServiceImpl.checkAttendanceTime(track.getIdx(), LocalDate.now(), time1)).isEqualTo(AttendanceType.PRESENT),
+                () -> assertThat(attendanceManagerServiceImpl.checkAttendanceTime(track.getIdx(), LocalDate.now(), time2)).isEqualTo(AttendanceType.PRESENT),
+                () -> assertThat(attendanceManagerServiceImpl.checkAttendanceTime(track.getIdx(), LocalDate.now(), time3)).isEqualTo(AttendanceType.PRESENT)
         );
     }
 
@@ -78,8 +79,8 @@ public class AttendanceManagerServiceImplTest {
         given(trackRetrieveService.getTrack(track.getIdx())).willReturn(track);
 
         assertAll(
-                () -> assertThat(attendanceManagerServiceImpl.checkAttendanceTime(track.getIdx(), time1)).isEqualTo(AttendanceType.TARDY),
-                () -> assertThat(attendanceManagerServiceImpl.checkAttendanceTime(track.getIdx(), time2)).isEqualTo(AttendanceType.TARDY)
+                () -> assertThat(attendanceManagerServiceImpl.checkAttendanceTime(track.getIdx(), LocalDate.now(), time1)).isEqualTo(AttendanceType.TARDY),
+                () -> assertThat(attendanceManagerServiceImpl.checkAttendanceTime(track.getIdx(), LocalDate.now(), time2)).isEqualTo(AttendanceType.TARDY)
         );
     }
 
@@ -94,7 +95,7 @@ public class AttendanceManagerServiceImplTest {
 
         given(trackRetrieveService.getTrack(track.getIdx())).willReturn(track);
 
-        assertThat(attendanceManagerServiceImpl.checkAttendanceTime(track.getIdx(), time)).isEqualTo(AttendanceType.ABSENT);
+        assertThat(attendanceManagerServiceImpl.checkAttendanceTime(track.getIdx(), LocalDate.now(), time)).isEqualTo(AttendanceType.ABSENT);
     }
 
     @Test
@@ -109,7 +110,24 @@ public class AttendanceManagerServiceImplTest {
         given(trackRetrieveService.getTrack(track.getIdx())).willReturn(track);
 
         BadRequestException badRequestException = assertThrows(BadRequestException.class,
-                () -> attendanceManagerServiceImpl.checkAttendanceTime(track.getIdx(), time));
+                () -> attendanceManagerServiceImpl.checkAttendanceTime(track.getIdx(), LocalDate.now(), time));
+
+        assertThat(badRequestException.getMessage()).isEqualTo("잘못된 요청입니다.");
+    }
+
+    @Test
+    @DisplayName("출석 시간에 따른 출결 상태 테스트 - 출석 요청 날짜 예외 처리")
+    void checkAttendanceDate() {
+        Track track = new Track(
+                "hyundai",
+                ""
+        );
+        LocalDate date = LocalDate.of(2050, 10, 13);
+
+        given(trackRetrieveService.getTrack(track.getIdx())).willReturn(track);
+
+        BadRequestException badRequestException = assertThrows(BadRequestException.class,
+                () -> attendanceManagerServiceImpl.checkAttendanceTime(track.getIdx(), date, LocalTime.now()));
 
         assertThat(badRequestException.getMessage()).isEqualTo("잘못된 요청입니다.");
     }
