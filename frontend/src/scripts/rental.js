@@ -1,4 +1,5 @@
 import { navigateTo } from '../router';
+import { qsa } from '../utils/selector';
 
 const setRentalEvent = () => {
     document.addEventListener('click', (e) => {
@@ -7,14 +8,13 @@ const setRentalEvent = () => {
 };
 
 const setRentalDetailEvent = () => {
-    document.addEventListener('mousedown', (e) => {
-        console.log(e.target);
-        selectOption(e);
-    });
+    const allTimeBox = [...qsa('.time-box')];
     document.addEventListener('mousedown', (e) => {
         mousedown(e);
     });
-
+    document.addEventListener('mousemove', (e) => {
+        mousemove(e);
+    });
     document.addEventListener('mouseup', (e) => {
         mouseup(e);
     });
@@ -26,18 +26,20 @@ const linkToRentalDetail = (e) => {
     navigateTo('/rental/' + cardID);
 };
 
+let startOption = null;
+let endOption = null;
+
 const selectOption = (e) => {};
 
-let selectTimeOption = null;
-
 function mousedown(e) {
-    let currentOption = e.target.closest('.time-box');
-    console.log('mousedown', currentOption);
-    currentOption.classList.add('time-box-select');
+    startOption = e.target.closest('.time-box');
+    startOption.classList.toggle('time-box-select');
 }
+
 function mouseup(e) {
-    let currentOption = e.target.closest('.time-box');
-    console.log('mouseup', currentOption);
-    currentOption.classList.add('time-box-select');
+    endOption = e.target.closest('.time-box');
+    if (endOption === null || startOption === endOption) return;
+    endOption.classList.toggle('time-box-select');
 }
+
 export { setRentalEvent, setRentalDetailEvent };

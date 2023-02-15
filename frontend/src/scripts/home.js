@@ -1,4 +1,3 @@
-import { navigateTo } from '../router';
 import { GetUser, PostUser } from '../apis/user.js';
 
 function setHomeEvent() {
@@ -79,7 +78,6 @@ const clickRegisterButton = (target) => {
     const name = joinForm.querySelector('.name-input').value;
     const email = joinForm.querySelector('.join-email-input').value;
     PostUser(memberId, password, passwordCheck, name, email);
-    navigateTo('/track');
 };
 
 const validateJoinPasswordCheck = () => {
@@ -179,9 +177,6 @@ const clickLoginButton = (target) => {
     maintitle.classList.add('Mini');
     document.body.querySelector('.hamburger').classList.add('show');
     document.body.querySelector('.home-container').classList.add('Start');
-    setTimeout(() => {
-        navigateTo('/main');
-    }, 1500);
 };
 
 const validateJoinPassword = (e) => {

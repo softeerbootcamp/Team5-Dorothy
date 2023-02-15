@@ -12,20 +12,20 @@ export const Logout = () => {
 export const GetUser = async (id, password) => {
     try {
         const response = await UserService.getUser(id, password);
-        if (response.code === 'CREATED') {
-            sessionStorage.setItem('userInfo', response.data);
-        }
-        console.log(response.data);
+        setTimeout(() => {
+            navigateTo('/track');
+        }, 1500);
         return Promise.resolve(response.data);
     } catch (error) {
-        navigateTo('/');
         document
             .querySelector('.modal-place')
             .insertAdjacentHTML(
                 'beforeend',
-                stateModal(error.code, error.message),
+                stateModal(
+                    error.response.data.code,
+                    error.response.data.message,
+                ),
             );
-        console.log(error);
         return Promise.reject(error.message, '로그인 실패');
     }
 };
@@ -50,75 +50,23 @@ export const PostUser = async (
             .querySelector('.modal-place')
             .insertAdjacentHTML(
                 'beforeend',
-                stateModal(response.code, response.message),
+                stateModal(response.data.code, response.data.message),
             );
-        console.log(response.data);
+        setTimeout(() => {
+            navigateTo('/track');
+        }, 1500);
         return Promise.resolve(response.data);
     } catch (error) {
         document
             .querySelector('.modal-place')
-            .insertAdjacentHTML(stateModal(error.code, error.message));
-        console.log(error);
+            .insertAdjacentHTML(
+                'beforeend',
+                stateModal(
+                    error.response.data.code,
+                    error.response.data.message,
+                ),
+            );
         return Promise.reject(error.message, '회원가입 실패');
-    }
-};
-
-//트랙 생성
-export const PostTrack = async () => {
-    try {
-        document
-            .querySelector('.modal-place')
-            .insertAdjacentHTML(
-                'beforeend',
-                stateModal(response.code, response.message),
-            );
-    } catch (error) {
-        console.log(error);
-        document
-            .querySelector('.modal-place')
-            .insertAdjacentHTML(
-                'beforeend',
-                stateModal(error.code, error.message),
-            );
-        return Promise.reject(error.message, '트랙 생성 실패');
-    }
-};
-//트랙 조회
-export const GetTrack = async () => {
-    try {
-        const response = await UserService.getTrack();
-    } catch (error) {
-        console.log(error);
-        return Promise.reject(error.message, '트랙 조회 실패');
-    }
-};
-//트랙 가입
-export const PostTrackMember = async () => {
-    try {
-        const response = await UserService.postTrackMember();
-        document
-            .querySelector('.modal-place')
-            .insertAdjacentHTML(
-                'beforeend',
-                stateModal(response.code, response.message),
-            );
-    } catch (error) {
-        document
-            .querySelector('.modal-place')
-            .insertAdjacentHTML(
-                'beforeend',
-                stateModal(error.code, error.message),
-            );
-        return Promise.reject(error.message, '트랙 가입 실패');
-    }
-};
-//트랙 멤버 조회
-export const GetTrackMember = async () => {
-    try {
-        const response = await UserService.getTrackMember();
-    } catch (error) {
-        console.log(error);
-        return Promise.reject(error.message, '트랙 멤버 조회 실패');
     }
 };
 
