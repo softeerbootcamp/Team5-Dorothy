@@ -6,7 +6,7 @@ import { qs } from '../utils/selector';
 // 로그아웃
 export const Logout = () => {
     alert('로그아웃');
-    UserService.logout();
+    sessionStorage.removeItem('user');
 };
 
 // 로그인
