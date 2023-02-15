@@ -26,6 +26,7 @@ dependencies {
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	runtimeOnly 'com.mysql:mysql-connector-j'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation group: 'org.testcontainers', name: 'testcontainers', version: '1.17.2'
 }
 
 tasks.named('test') {
