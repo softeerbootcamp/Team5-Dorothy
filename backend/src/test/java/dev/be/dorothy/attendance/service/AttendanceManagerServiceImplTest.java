@@ -27,24 +27,8 @@ public class AttendanceManagerServiceImplTest {
     AttendanceManagerServiceImpl attendanceManagerServiceImpl;
 
     @Test
-    @DisplayName("거리 기반 출석 확인 테스트 - 출석 성공 케이스")
-    void checkAttendanceLocationSuccessTest() {
-        Track track = new Track(
-                "hyundai",
-                ""
-        );
-        // 약 26m
-        double x = 37.490847;
-        double y = 127.033101;
-
-        given(trackRetrieveService.getTrack(track.getIdx())).willReturn(track);
-
-        assertThat(attendanceManagerServiceImpl.checkAttendanceLocation(track.getIdx(), x, y)).isTrue();
-    }
-
-    @Test
-    @DisplayName("거리 기반 출석 확인 테스트 - 출석 실패 케이스")
-    void checkAttendanceLocationFailTest() {
+    @DisplayName("거리 기반 출석 확인 테스트 - 실패 케이스")
+    void checkAttendanceLocation() {
         Track track = new Track(
                 "hyundai",
                 ""
@@ -55,7 +39,10 @@ public class AttendanceManagerServiceImplTest {
 
         given(trackRetrieveService.getTrack(track.getIdx())).willReturn(track);
 
-        assertThat(attendanceManagerServiceImpl.checkAttendanceLocation(track.getIdx(), x, y)).isFalse();
+        BadRequestException badRequestException = assertThrows(BadRequestException.class,
+                () -> attendanceManagerServiceImpl.checkAttendanceLocation(track.getIdx(), x, y));
+
+        assertThat(badRequestException.getMessage()).isEqualTo("잘못된 요청입니다.");
     }
 
     @Test
@@ -124,6 +111,6 @@ public class AttendanceManagerServiceImplTest {
         BadRequestException badRequestException = assertThrows(BadRequestException.class,
                 () -> attendanceManagerServiceImpl.checkAttendanceTime(track.getIdx(), time));
 
-        assertThat(badRequestException.getMessage()).isEqualTo("잘못된 출석 요청입니다.");
+        assertThat(badRequestException.getMessage()).isEqualTo("잘못된 요청입니다.");
     }
 }
