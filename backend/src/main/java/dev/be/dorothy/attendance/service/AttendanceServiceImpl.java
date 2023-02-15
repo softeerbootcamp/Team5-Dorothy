@@ -3,6 +3,7 @@ package dev.be.dorothy.attendance.service;
 import dev.be.dorothy.attendance.Attendance;
 import dev.be.dorothy.attendance.AttendanceType;
 import dev.be.dorothy.attendance.repository.AttendanceRepository;
+import dev.be.dorothy.exception.BadRequestException;
 import dev.be.dorothy.exception.ForbiddenException;
 import dev.be.dorothy.mapper.AttendanceResDtoMapper;
 import dev.be.dorothy.member.MemberRole;
@@ -34,6 +35,10 @@ public class AttendanceServiceImpl implements AttendanceService {
         AttendanceType attendanceType = attendanceManagerService.checkAttendanceTime(trackIdx, date, time);
 
         Long trackMemberIdx = trackRetrieveService.getTrackMemberIdx(memberIdx, trackIdx);
+        if(attendanceRepository.getAttendanceIdx(trackMemberIdx).isPresent()) {
+            throw new BadRequestException("이미 출결 처리가 완료되었습니다.");
+        }
+
         Attendance attendance = new Attendance(
                 trackMemberIdx,
                 date,
