@@ -20,6 +20,9 @@ public interface PlaceRepository extends CrudRepository<Place, Long> {
     @Query("select idx, start_time, end_time from reservation where idx = :idx")
     Optional<ReservationResDto> findReservationById(@Param("idx") Integer idx);
 
+    @Query("select idx, start_time, end_time from reservation")
+    List<ReservationResDto> findAllReservations();
+
     @Modifying
     @Query("insert into reservation (member_idx, place_idx, date, start_time, end_time, is_deleted) values (:memberIdx, :placeIdx, :date, :startTime, :endTime, :isDeleted)")
     Integer reservePlace(
@@ -29,4 +32,8 @@ public interface PlaceRepository extends CrudRepository<Place, Long> {
             @Param("startTime") LocalTime startTime,
             @Param("endTime") LocalTime endTime,
             @Param("isDeleted") boolean isDeleted);
+
+    @Modifying
+    @Query("delete from reservation")
+    void deleteAllReservation();
 }
