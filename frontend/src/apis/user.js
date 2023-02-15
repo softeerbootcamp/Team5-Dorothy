@@ -12,6 +12,12 @@ export const Logout = () => {
 export const GetUser = async (id, password) => {
     try {
         const response = await UserService.getUser(id, password);
+        document
+            .querySelector('.modal-place')
+            .insertAdjacentHTML(
+                'beforeend',
+                stateModal(response.data.code, response.data.message),
+            );
         setTimeout(() => {
             navigateTo('/track');
         }, 1500);

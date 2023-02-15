@@ -5,7 +5,11 @@ const stateModal = (code, message) => {
     console.log(code);
     const ModalTemplate = `
     <div class='modal-wrapper'>
-    ${code == 'CREATED' ? successModal(message) : failModal(message)}
+    ${
+        code === 'CREATED' || code === 'OK'
+            ? successModal(message)
+            : failModal(message)
+    }
     </div>
     `;
     setTimeout(closeModal, 4000);
