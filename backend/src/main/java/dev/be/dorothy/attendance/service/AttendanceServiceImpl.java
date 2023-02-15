@@ -3,15 +3,16 @@ package dev.be.dorothy.attendance.service;
 import dev.be.dorothy.attendance.Attendance;
 import dev.be.dorothy.attendance.AttendanceType;
 import dev.be.dorothy.attendance.repository.AttendanceRepository;
-import dev.be.dorothy.exception.BadRequestException;
 import dev.be.dorothy.exception.ForbiddenException;
 import dev.be.dorothy.mapper.AttendanceResDtoMapper;
 import dev.be.dorothy.member.MemberRole;
 import dev.be.dorothy.track.service.TrackRetrieveService;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+@Service
 public class AttendanceServiceImpl implements AttendanceService {
     private final TrackRetrieveService trackRetrieveService;
     private final AttendanceManagerService attendanceManagerService;
@@ -29,10 +30,7 @@ public class AttendanceServiceImpl implements AttendanceService {
             throw new ForbiddenException("잘못된 접근입니다.");
         }
 
-        boolean isCorrectLocation = attendanceManagerService.checkAttendanceLocation(trackIdx, attendanceReqDto.getX(), attendanceReqDto.getY());
-        if(!isCorrectLocation) {
-            throw new BadRequestException("잘못된 요청입니다.");
-        }
+        attendanceManagerService.checkAttendanceLocation(trackIdx, attendanceReqDto.getX(), attendanceReqDto.getY());
         AttendanceType attendanceType = attendanceManagerService.checkAttendanceTime(trackIdx, time);
 
         Long trackMemberIdx = trackRetrieveService.getTrackMemberIdx(memberIdx, trackIdx);
