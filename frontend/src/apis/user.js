@@ -23,7 +23,6 @@ export const GetUser = async (id, password) => {
             failLogin(error.response.data.code, error.response.data.message);
         });
 };
-
 // 회원가입
 export const PostUser = async (
     memberId,
