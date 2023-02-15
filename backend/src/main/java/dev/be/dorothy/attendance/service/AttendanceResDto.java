@@ -7,9 +7,11 @@ import java.time.LocalTime;
 
 public class AttendanceResDto {
     private String name;
-    private final LocalDate date;
-    private final LocalTime time;
-    private final AttendanceType type;
+    private LocalDate date;
+    private LocalTime time;
+    private AttendanceType type;
+
+    public AttendanceResDto() {}
 
     public AttendanceResDto(String name, LocalDate date, LocalTime time, AttendanceType type) {
         this.name = name;
