@@ -19,13 +19,15 @@ public class AttendanceManagerServiceImpl implements AttendanceManagerService {
     }
 
     @Override
-    public boolean checkAttendanceLocation(Long trackIdx, Double x, Double y) {
+    public void checkAttendanceLocation(Long trackIdx, Double x, Double y) {
         Point trackPoint = getTrackPoint(trackIdx);
         Point memberPoint = new Point(x, y);
 
         Double distance = calculateDistance(trackPoint, memberPoint);
 
-        return distance < 30;
+        if (distance > 30) {
+            throw new BadRequestException("잘못된 요청입니다.");
+        }
     }
 
     private Point getTrackPoint(Long trackIdx) {
