@@ -54,7 +54,7 @@ public class AttendanceManagerServiceImpl implements AttendanceManagerService {
         long duration = ChronoUnit.SECONDS.between(attendanceTime, time);
 
         if (duration < -1800) {
-            throw new BadRequestException("잘못된 출석 요청입니다."); // 너무 이른 출석 요청
+            throw new BadRequestException("잘못된 요청입니다."); // 너무 이른 출석 요청
         } else if (duration >= 1800) {
             return AttendanceType.ABSENT; // 결석
         } else if (duration >= 600) {
