@@ -18,14 +18,14 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @Component
-@Order(2)
+@Order(3)
 public class LoginFilter implements Filter {
     private static final Logger logger = LoggerFactory.getLogger(LoginFilter.class);
     private final AuthenticationManager authenticationManager;
     private final ObjectMapper objectMapper = new ObjectMapper();
 
-    public LoginFilter(AuthenticationManager authenticationMangager) {
-        this.authenticationManager = authenticationMangager;
+    public LoginFilter(AuthenticationManager authenticationManager) {
+        this.authenticationManager = authenticationManager;
     }
 
     @Override
@@ -44,7 +44,7 @@ public class LoginFilter implements Filter {
                 MemberResDto memberResDto = attemptAuthentication(httpReq);
                 writeSuccessResponse(httpReq, response, memberResDto);
             }catch (BadRequestException e) {
-                writeFailResponse(response, e.getMessage());
+                throw new BadRequestException("입력 정보가 올바르지 않습니다.");
             }
             return;
         }
@@ -63,16 +63,6 @@ public class LoginFilter implements Filter {
         String result = objectMapper.writeValueAsString(commonResponse);
         HttpServletResponse httpRes = (HttpServletResponse) response;
         httpRes.setStatus(200);
-        response.setContentType("application/json");
-        response.setCharacterEncoding("utf-8");
-        response.getWriter().write(result);
-    }
-
-    private void writeFailResponse(ServletResponse response, String message) throws IOException {
-        CommonResponse commonResponse = new CommonResponse(HttpStatus.UNAUTHORIZED, message, null);
-        String result = objectMapper.writeValueAsString(commonResponse);
-        HttpServletResponse httpRes = (HttpServletResponse) response;
-        httpRes.setStatus(401);
         response.setContentType("application/json");
         response.setCharacterEncoding("utf-8");
         response.getWriter().write(result);
