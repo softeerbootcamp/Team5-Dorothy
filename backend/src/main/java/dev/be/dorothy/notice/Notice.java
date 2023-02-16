@@ -20,11 +20,13 @@ public class Notice {
     private String content;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
+    private Long views;
     private boolean isDeleted;
 
     private Notice(String title, String content) {
         this.title = title;
         this.content = content;
+        this.views = 0L;
         this.createdAt = LocalDateTime.now();
         this.updatedAt = LocalDateTime.now();
         this.isDeleted = false;
