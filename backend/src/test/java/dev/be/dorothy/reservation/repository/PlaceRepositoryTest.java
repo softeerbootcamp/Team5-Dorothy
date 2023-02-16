@@ -85,9 +85,7 @@ class PlaceRepositoryTest {
 
         //when
         List<PlaceResDto> allPlaces = placeRepository.findAllPlaces();
-        for (PlaceResDto allPlace : allPlaces) {
-            System.out.println(allPlace.getName());
-        }
+
         //then
         Assertions.assertThat(allPlaces).hasSize(3);
     }
