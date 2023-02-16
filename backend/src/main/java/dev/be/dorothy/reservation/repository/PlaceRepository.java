@@ -37,4 +37,7 @@ public interface PlaceRepository extends CrudRepository<Place, Long> {
 
     @Query("select place_idx, start_time from reservation where member_idx = :memberIdx")
     List<ReservationResDto> findReservationByMemberId(@Param("memberIdx") Long memberIdx);
+
+    @Query("select place_idx, start_time from reservation where idx = :idx")
+    Optional<ReservationResDto> findReservationById(@Param("idx") int idx);
 }
