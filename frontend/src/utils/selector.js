@@ -1,9 +1,9 @@
 //querySelector
-export const $ = (target) => {
+export const qs = (target) => {
     return document.body.querySelector(target);
 };
 
 // querySelectorAll
-export const $$ = (target) => {
+export const qsa = (target) => {
     return document.body.querySelectorAll(target);
 };

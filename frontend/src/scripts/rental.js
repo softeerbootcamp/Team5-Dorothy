@@ -1,7 +1,8 @@
 import { navigateTo } from '../router';
+import { qs } from '../utils/selector';
 
 const setRentalEvent = () => {
-    document.addEventListener('click', (e) => {
+    qs('.places-container').addEventListener('click', (e) => {
         navigator(e);
     });
 };

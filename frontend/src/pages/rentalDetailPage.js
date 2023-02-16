@@ -1,8 +1,14 @@
 import AbstractView from './pageTemplate';
 import { pageTitleTamplate } from '../components/pageTitle.js';
+import { hourCard } from '../components/rental/hourCard';
+import { navigateTo } from '../router';
+
+const time = [10, 11, 12, 13, 14, 15, 16, 17, 18, 19];
 
 export default class rentalDetailPage extends AbstractView {
     async getHtml() {
+        const param = location.pathname.split('/')[2];
+        if (param > 6) navigateTo('/notFound');
         return `
         <div class="container Start">
             <div class="main-wrapper">
@@ -23,66 +29,11 @@ export default class rentalDetailPage extends AbstractView {
                         </div>
                     <header>
                     <section class="time-container">
-                        <div class="time-line">
-                            <h6 class="time-hour">10시</h6>
-                            <figure class="time-box">00분</figure>
-                            <figure class="time-box">15분</figure>
-                            <figure class="time-box">30분</figure>
-                            <figure class="time-box">45분</figure>
-                            <h6 class="time-hour">11시</h6>
-                            <figure class="time-box">00분</figure>
-                            <figure class="time-box">15분</figure>
-                            <figure class="time-box">30분</figure>
-                            <figure class="time-box">45분</figure>
-                        </div>
-                        <div class="time-line">
-                            <h6 class="time-hour">12시</h6>
-                            <figure class="time-box">00분</figure>
-                            <figure class="time-box">15분</figure>
-                            <figure class="time-box">30분</figure>
-                            <figure class="time-box">45분</figure>
-                            <h6 class="time-hour">13시</h6>
-                            <figure class="time-box">00분</figure>
-                            <figure class="time-box">15분</figure>
-                            <figure class="time-box">30분</figure>
-                            <figure class="time-box">45분</figure>
-                        </div>
-                        <div class="time-line">
-                            <h6 class="time-hour">14시</h6>
-                            <figure class="time-box">00분</figure>
-                            <figure class="time-box">15분</figure>
-                            <figure class="time-box">30분</figure>
-                            <figure class="time-box">45분</figure>
-                            <h6 class="time-hour">15시</h6>
-                            <figure class="time-box">00분</figure>
-                            <figure class="time-box">15분</figure>
-                            <figure class="time-box">30분</figure>
-                            <figure class="time-box">45분</figure>
-                        </div>
-                        <div class="time-line">
-                            <h6 class="time-hour">16시</h6>
-                            <figure class="time-box">00분</figure>
-                            <figure class="time-box">15분</figure>
-                            <figure class="time-box">30분</figure>
-                            <figure class="time-box">45분</figure>
-                            <h6 class="time-hour">17시</h6>
-                            <figure class="time-box">00분</figure>
-                            <figure class="time-box">15분</figure>
-                            <figure class="time-box">30분</figure>
-                            <figure class="time-box">45분</figure>
-                        </div>
-                        <div class="time-line">
-                            <h6 class="time-hour">18시</h6>
-                            <figure class="time-box">00분</figure>
-                            <figure class="time-box">15분</figure>
-                            <figure class="time-box">30분</figure>
-                            <figure class="time-box">45분</figure>
-                            <h6 class="time-hour">19시</h6>
-                            <figure class="time-box">00분</figure>
-                            <figure class="time-box">15분</figure>
-                            <figure class="time-box">30분</figure>
-                            <figure class="time-box">45분</figure>
-                        </div>
+                        ${time
+                            .map((hour) => {
+                                return hourCard(hour);
+                            })
+                            .join('')}
                     </section>
                     <button class="rental-confirm">대여할게요</button>
                 </section>

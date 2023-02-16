@@ -8,8 +8,10 @@ import {
     clearTimer,
     intervalTimer,
 } from './components/main/timer/maketimer.js';
+import { holdClickReserve } from './scripts/rentalDetail.js';
 
 const eventdelegator = (root) => {
+    document.removeEventListener('click', setRentalEvent);
     clearTimer(intervalTimer);
     switch (root) {
         case 'home':
@@ -29,6 +31,9 @@ const eventdelegator = (root) => {
             break;
         case 'notice':
             setNoticeEvent();
+            break;
+        case 'rentalDetail':
+            holdClickReserve();
             break;
     }
 };

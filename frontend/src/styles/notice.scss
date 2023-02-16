@@ -69,7 +69,9 @@ $breakpoint-mobile: 640px;
 .notice-container tr {
     display: table;
     width: 99%;
-    margin: 15px auto;
+}
+.notice-container tbody tr {
+    margin: 10px auto;
 }
 .notice-wrapper {
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);

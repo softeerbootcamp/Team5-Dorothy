@@ -51,7 +51,8 @@
 
 .time-container {
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
+    flex-direction: row;
     width: 60vw;
     height: 30vh;
     margin: 2.5vh auto;
@@ -60,20 +61,29 @@
     border-radius: 2.5vw;
     justify-content: space-between;
     background-color: #d9e1e8;
+    user-select: none;
 }
 
-.time-line {
+.hour-card {
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-around;
+    width: 28vw;
 }
 
 .time-hour {
     font-weight: 700;
     font-size: 24px;
+    margin-right: 10px;
     color: #282c37;
     text-shadow: 0.5px 0.4px 1px rgba(0, 0, 0, 0.5);
+}
+
+.minute-select {
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+    justify-content: space-around;
 }
 
 .time-box {
@@ -94,6 +104,10 @@
 
 .time-box:hover {
     background-color: #ddffef;
+}
+
+.time-box.checked {
+    background-color: #99ffaa;
 }
 
 .rental-confirm {
