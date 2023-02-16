@@ -27,7 +27,7 @@ public class NoticeReadServiceImpl implements NoticeReadService {
     public NoticeResDto getNotice(Long noticeId) {
         Notice notice = noticeRepository.findOne(noticeId)
                 .orElseThrow(() -> new BadRequestException("해당 공지사항이 존재하지 않습니다."));
-        Long viewsInRedis = redisDao.inclement(REDIS_KEY + noticeId);
+        Long viewsInRedis = redisDao.increment(REDIS_KEY + noticeId);
         return NoticeResDto.of(
                 notice.getIdx(),
                 notice.getTitle(),

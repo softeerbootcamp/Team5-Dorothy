@@ -43,7 +43,7 @@ public class RedisDaoTest {
 
     private void incTest(String key) {
         for (int idx = 0; idx < 1000; idx++) {
-            redisDao.inclement(key);
+            redisDao.increment(key);
         }
     }
 }

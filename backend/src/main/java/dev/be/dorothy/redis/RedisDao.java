@@ -32,7 +32,7 @@ public class RedisDao {
         }
     }
 
-    public Long inclement(String key) {
+    public Long increment(String key) {
         return redisTemplate.opsForValue().increment(key);
     }
 }
