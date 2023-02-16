@@ -1,8 +1,22 @@
 import { getCurrentWeek } from './chart/currentWeek';
 import { profile } from './profileBox';
 import { getDayAttendance } from '../../apis/attend';
+import { GetAllNotices } from '../../apis/notice';
+import { noticePreview } from '../notice/noticeComponents';
+import { qs } from '../../utils/selector';
+
+const latelyNotice = async () => {
+    const notices = await GetAllNotices();
+    const newNotice = notices[0];
+    console.log(newNotice);
+    qs('.news-content-wrapper').insertAdjacentHTML(
+        'afterbegin',
+        noticePreview(newNotice),
+    );
+};
 
 const userMain = () => {
+    latelyNotice();
     const userMainTemplate =
         /*html*/
         `
@@ -30,8 +44,9 @@ const userMain = () => {
                     </div>
                 </div>
                 <div class="contour"></div>
-                <div class="news-wrapper"><i class="fa-regular fa-newspaper"></i> 최근 공지사항
+                <div class="news-wrapper"><i class="fa-regular fa-newspaper new-notice"></i> 최근 공지사항
                 </div>
+                <table class="news-content-wrapper"></table>
             </section>
         </div>
         `;

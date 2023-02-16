@@ -27,7 +27,6 @@ export const getDayAttendance = async (trackIdx) => {
 export const getMonthAttendance = async (trackIdx) => {
     try {
         const response = await AttendService.getMonthAttendance(trackIdx);
-        console.log(response.data);
         return response.data;
     } catch (error) {
         console.log(error);

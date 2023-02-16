@@ -7,7 +7,6 @@ import { GetAllNotices } from '../apis/notice.js';
 export default class noticePage extends AbstractView {
     async getHtml() {
         const noticeData = await GetAllNotices();
-        console.log(noticeData);
         return /*html */ `
         <div class="container Start">
             <div class="main-wrapper">

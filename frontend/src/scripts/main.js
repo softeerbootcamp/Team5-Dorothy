@@ -3,6 +3,7 @@ import { qs } from '../utils/selector.js';
 import { timerForm } from '../components/main/timer/timer.js';
 import { userRole } from '../store/user.js';
 import { getDayAttendance } from '../apis/attend.js';
+import { navigateTo } from '../router.js';
 
 async function setMainEvent() {
     if (userRole() === 'ADMIN') {
@@ -20,6 +21,12 @@ async function setMainEvent() {
             );
             makeTimer();
         }
+        qs('.news-content-wrapper').addEventListener('click', (e) => {
+            const parent = e.target.closest('table');
+            const targetNode = parent.querySelector('.notice-wrapper');
+            const targetID = targetNode.getAttribute('data-set');
+            navigateTo(`/notice/${targetID}`);
+        });
     }
     // qs('.main-button-wrapper').addEventListener('click', (e) => {
     //     const mainButton = e.target.closest('.main-button-front');

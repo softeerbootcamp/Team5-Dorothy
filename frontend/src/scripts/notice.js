@@ -10,7 +10,6 @@ const setNoticeEvent = () => {
 
 const setNoticeAddEvent = () => {
     qs('.notice-add-btn').addEventListener('click', (e) => {
-        console.log('clicked');
         setPostNotice(e);
     });
 };
