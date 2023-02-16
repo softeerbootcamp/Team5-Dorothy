@@ -1,18 +1,25 @@
 package dev.be.dorothy.attendance.repository;
 
 import dev.be.dorothy.attendance.Attendance;
+import dev.be.dorothy.attendance.AttendanceType;
 import dev.be.dorothy.attendance.service.AttendanceResDto;
 import dev.be.dorothy.attendance.service.AttendanceRetrieveResDto;
+import org.springframework.data.jdbc.repository.query.Modifying;
 import org.springframework.data.jdbc.repository.query.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
+import java.time.LocalTime;
 import java.util.List;
 import java.util.Optional;
 
 public interface AttendanceRepository extends CrudRepository<Attendance, Long> {
-    @Query("select idx from attendance where track_member_idx = :trackMemberIdx limit 1;")
-    Optional<Long> getAttendanceIdx(@Param("trackMemberIdx") Long trackMemberIdx);
+    @Query("select idx, track_member_idx, date, time, type from attendance where track_member_idx = :trackMemberIdx and date = date_format(now(), '%Y-%m-%d') limit 1;")
+    Optional<Attendance> getAttendance(@Param("trackMemberIdx") Long trackMemberIdx);
+
+    @Modifying
+    @Query("update attendance set time = :time, type = :type where idx = :idx;")
+    void attend(@Param("idx") Long idx, @Param("time") LocalTime time, @Param("type") AttendanceType type);
 
     @Query("select date, time, type\n" +
             "from attendance\n" +
