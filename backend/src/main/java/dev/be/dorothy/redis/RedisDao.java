@@ -31,4 +31,8 @@ public class RedisDao {
             redisTemplate.delete(keys);
         }
     }
+
+    public Long increment(String key) {
+        return redisTemplate.opsForValue().increment(key);
+    }
 }
