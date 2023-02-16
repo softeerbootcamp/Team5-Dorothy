@@ -22,7 +22,7 @@ public class NoticeRepositoryImpl implements CustomNoticeRepository {
         this.rowMapper = new NoticeRowMapper();
     }
 
-    private static final String ALL_FIELD = "idx, title, content, views, created_at, updated_at, is_deleted ";
+    private static final String ALL_FIELD = "idx, member_idx, title, content, views, created_at, updated_at, is_deleted ";
     private static final String DEFAULT_SELECT = "SELECT " + ALL_FIELD + " FROM notice";
 
     @Override

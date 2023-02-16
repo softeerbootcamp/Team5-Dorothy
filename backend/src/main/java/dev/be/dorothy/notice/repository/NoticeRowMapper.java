@@ -11,6 +11,7 @@ public class NoticeRowMapper implements RowMapper<Notice> {
     public Notice mapRow(ResultSet rs, int rowNum) throws SQLException {
         return new Notice(
                 rs.getLong("idx"),
+                rs.getLong("member_idx"),
                 rs.getString("title"),
                 rs.getString("content"),
                 rs.getTimestamp("created_at").toLocalDateTime(),

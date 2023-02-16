@@ -14,10 +14,10 @@ public class NoticeCreateServiceImpl implements NoticeCreateService {
     }
 
     @Override
-    public NoticeResDto create(NoticeCreateDto noticeCreateDto) {
+    public NoticeResDto create(Long memberIdx, NoticeCreateDto noticeCreateDto) {
         validateCreateData(noticeCreateDto);
 
-        Notice notice = Notice.of(noticeCreateDto.getTitle(), noticeCreateDto.getContent());
+        Notice notice = Notice.of(memberIdx, noticeCreateDto.getTitle(), noticeCreateDto.getContent());
         noticeRepository.save(notice);
 
         return NoticeResDto.of(
