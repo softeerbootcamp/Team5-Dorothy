@@ -1,22 +1,17 @@
 import { TrackService } from './services/trackservices';
+import { navigateTo } from '../router';
+import { stateModal } from '../components/modal';
+import { qs } from '../utils/selector';
 
 //트랙 생성
-export const PostTrack = async () => {
+export const PostTrack = async (trackname) => {
+    console.log(trackname);
     try {
-        document
-            .querySelector('.modal-place')
-            .insertAdjacentHTML(
-                'beforeend',
-                stateModal(response.code, response.message),
-            );
+        const response = await TrackService.postTrack(trackname);
+        succeedTrack(response.data);
     } catch (error) {
         console.log(error);
-        document
-            .querySelector('.modal-place')
-            .insertAdjacentHTML(
-                'beforeend',
-                stateModal(error.code, error.message),
-            );
+
         return Promise.reject(error.message, '트랙 생성 실패');
     }
 };
@@ -28,6 +23,7 @@ export const GetTrack = async () => {
         return response;
     } catch (error) {
         console.log(error);
+        navigateTo('/');
     }
 };
 
@@ -60,4 +56,28 @@ export const GetTrackMember = async () => {
         console.log(error);
         return Promise.reject(error.message, '트랙 멤버 조회 실패');
     }
+};
+
+const setmodal = (code, message) =>
+    qs('.modal-place').insertAdjacentHTML(
+        'beforeend',
+        stateModal(code, message),
+    );
+
+const succeedTrack = (response) => {
+    const code = response.code;
+    const message = response.message;
+    const name = response.data.name;
+    const role = response.data.role;
+    setmodal(code, message);
+
+    const user = { name, role };
+    sessionStorage.setItem('user', JSON.stringify(user));
+    navigateTo('/track');
+};
+
+const failTrack = async (error) => {
+    const code = await error.response.data.code;
+    const message = await error.response.data.message;
+    setmodal(code, message);
 };

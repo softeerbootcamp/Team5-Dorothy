@@ -2,8 +2,10 @@ import { http } from '../http.js';
 
 const TrackService = {
     //트랙 생성
-    postTrack: (trackname) => {
-        http.post(`/track?name=${trackname}`, {});
+    postTrack: async (trackname) => {
+        const response = await http.post(`/api/track?name=${trackname}`, {});
+
+        return response;
     },
 
     //나의 트랙 조회

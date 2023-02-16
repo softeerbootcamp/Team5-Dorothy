@@ -18,14 +18,9 @@ export const GetUser = async (id, password) => {
         failLogin(e);
     }
 };
+
 // 회원가입
-export const PostUser = async (
-    memberId,
-    password,
-    passwordCheck,
-    name,
-    email,
-) => {
+export const PostUser = async (id, password, passwordCheck, name, email) => {
     try {
         const response = await UserService.postUser(id, password);
         succeedLogin(response);

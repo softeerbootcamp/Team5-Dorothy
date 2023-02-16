@@ -1,5 +1,4 @@
 import { http } from '../http.js';
-import axios from 'axios';
 
 //const BASE_URL = 'https://dorothy-5z.site/api/v1';
 
