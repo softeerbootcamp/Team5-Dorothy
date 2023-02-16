@@ -35,4 +35,15 @@ public class RedisDao {
     public Long increment(String key) {
         return redisTemplate.opsForValue().increment(key);
     }
+
+    public Set<String> keys(String keyPattern) {
+        return redisTemplate.keys(keyPattern);
+    }
+
+    public void clear(String keyPattern) {
+        Set<String> keys = keys(keyPattern);
+        for (String key: keys) {
+            redisTemplate.delete(key);
+        }
+    }
 }
