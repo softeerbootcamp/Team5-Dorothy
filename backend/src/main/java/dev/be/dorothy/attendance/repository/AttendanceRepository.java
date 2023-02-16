@@ -14,7 +14,10 @@ public interface AttendanceRepository extends CrudRepository<Attendance, Long> {
     @Query("select idx from attendance where track_member_idx = :trackMemberIdx limit 1;")
     Optional<Long> getAttendanceIdx(@Param("trackMemberIdx") Long trackMemberIdx);
 
-    @Query("select date, time, type from attendance where track_member_idx = :trackMemberIdx;")
+    @Query("select date, time, type\n" +
+            "from attendance\n" +
+            "where track_member_idx = :trackMemberIdx\n" +
+            "  and date = date_format(now(), '%Y-%m-%d');")
     AttendanceResDto getAttendanceByDayWhenMember(@Param("trackMemberIdx") Long trackMemberIdx);
 
     @Query("select name, date, time, type\n" +
@@ -24,6 +27,7 @@ public interface AttendanceRepository extends CrudRepository<Attendance, Long> {
             "where track_idx = :trackIdx\n" +
             "  and track_member.role = 'MEMBER'\n" +
             "  and member.is_deleted = 0\n" +
-            "  and track_member.is_deleted = 0;")
+            "  and track_member.is_deleted = 0\n" +
+            "  and date = date_format(now(), '%Y-%m-%d');")
     List<AttendanceRetrieveResDto> getAttendanceByDayWhenAdmin(@Param("trackIdx") Long trackIdx);
 }
