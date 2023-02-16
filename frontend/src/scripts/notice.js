@@ -15,14 +15,12 @@ const setNoticeAddEvent = () => {
 };
 
 const setPostNotice = (e) => {
-    qs('.notice-add-btn').addEventListener('click', (e) => {
-        const titleInput = qs('.notice-title-input-wrapper').value;
-        const contentInput = qs('.notice-content-input-wrapper').value;
-        if (titleInput.length === 0 || contentInput.length === 0) {
-            return;
-        }
-        PostNotice(titleInput, contentInput);
-    });
+    const titleInput = qs('.notice-title-input-wrapper').value;
+    const contentInput = qs('.notice-content-input-wrapper').value;
+    if (titleInput.length === 0 || contentInput.length === 0) {
+        return;
+    }
+    PostNotice(titleInput, contentInput);
 };
 
 const navigator = (e) => {

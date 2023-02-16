@@ -1,6 +1,7 @@
 import AbstractView from './pageTemplate.js';
 import { pageTitleTamplate } from '../components/pageTitle.js';
 import { GetNotice } from '../apis/notice.js';
+import { userRole } from '../store/user.js';
 
 export default class noticeDetailPage extends AbstractView {
     async getHtml() {
@@ -33,8 +34,13 @@ export default class noticeDetailPage extends AbstractView {
                             notice.title
                         }</div>
                         <button class="notice-edit-btn"><div class="rental-icon"><i class="fa-solid fa-list"></i></div>목록</button>
-                        <button class="notice-edit-btn"><div class="rental-icon"><i class="fa-solid fa-trash"></i></div>삭제</button>
-                        <button class="notice-edit-btn"><div class="rental-icon"><i class="fa-solid fa-pen"></i></div>수정</button>
+                        ${
+                            userRole === 'ADMIN'
+                                ? `
+                        <button class="notice-edit-btn"><div class="rental-icon"><i class="fa-solid fa-trash"></i></div>삭제</button><button class="notice-edit-btn"><div class="rental-icon"><i class="fa-solid fa-pen"></i></div>수정</button>`
+                                : ''
+                        }
+                        
                 </section>
             </div>
         </div>

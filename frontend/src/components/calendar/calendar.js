@@ -1,7 +1,16 @@
 import { daysOfWeek } from './constants';
+import { getMonthAttendance } from '../../apis/attend';
+import { qs } from '../../utils/selector';
+
+const monthTest = async (lastDay) => {
+    const myMonthAttendance = await getMonthAttendance(3);
+    const length = myMonthAttendance.length;
+    for (let i = 0; i <= length; i++) {
+        qs(`.today-state-${i + 1}`).innerHTML = myMonthAttendance[i].type;
+    }
+};
 
 let currentDate;
-
 const makeCalendar = (date) => {
     currentDate = date;
     const currentYear = new Date(date).getFullYear();
@@ -23,11 +32,12 @@ const makeCalendar = (date) => {
     }
 
     for (let i = 1; i <= lastDay; i++) {
-        htmlDummy += `<div class="day-wrapper">${i}</div>`;
+        htmlDummy += `<div class='day-wrapper day-wrapper-${i}'>${i}<span class='today-state-${i}'></span></div>`;
     }
     for (let i = limitDay; i < nextDay; i++) {
         htmlDummy += `<div class="no-color"></div>`;
     }
+    monthTest(lastDay);
     return htmlDummy;
 };
 
