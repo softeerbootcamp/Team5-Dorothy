@@ -81,6 +81,7 @@ CREATE TABLE IF NOT EXISTS `notice`
     `idx`        int      NOT NULL auto_increment primary key,
     `title`      TEXT     NOT NULL,
     `content`    TEXT     NOT NULL,
+    `views`      int      NOT NULL,
     `created_at` datetime NOT NULL DEFAULT current_timestamp,
     `updated_at` datetime NULL     DEFAULT current_timestamp on update current_timestamp,
     `is_deleted` BIT(1)   NULL     DEFAULT 0 COMMENT '0: not deleted, 1: deleted'
