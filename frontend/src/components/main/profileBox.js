@@ -13,7 +13,7 @@ const profileOption = async () => {
     return optionBox;
 };
 
-const profile = () => {
+const profile = async () => {
     const profileTemplate = `
         <section class="profile-container">
             <div class="image-container">
