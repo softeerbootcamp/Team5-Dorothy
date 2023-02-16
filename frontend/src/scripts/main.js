@@ -7,13 +7,21 @@ let makeAttendance = false;
 
 function setMainEvent() {
     if (role === 'manager') {
-        document.addEventListener('click', (e) => {
+        qs('.big-content-container').addEventListener('click', (e) => {
             toggleChart(e.target);
         });
     }
     if (role === 'member') {
         if (!makeAttendance) {
             qs('#check-timer').innerHTML = timerForm();
+            qs('.main-button-wrapper').addEventListener('click', (e) => {
+                const mainButton = e.target.closest('.main-button-front');
+                if (mainButton) {
+                    mainButton
+                        .closest('.main-button')
+                        .classList.toggle('input-available');
+                }
+            });
             makeTimer();
         }
     }

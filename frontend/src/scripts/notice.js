@@ -1,7 +1,8 @@
 import { navigateTo } from '../router';
+import { qs } from '../utils/selector';
 
 const setNoticeEvent = () => {
-    document.addEventListener('click', (e) => {
+    qs('.big-content-container').addEventListener('click', (e) => {
         navigator(e);
     });
 };

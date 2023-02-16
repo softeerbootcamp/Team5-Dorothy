@@ -1,17 +1,24 @@
-const noticePreview = (title) => {
-    return `
-    <tr class="Anotice-wrapper" data-set="1">
-        <th class="notice-id">1</th>
-        <th class="notice-title">${title}</th>
-        <th class="notice-date">21-01-11</th>
-        <th class="notice-watch">
-        <i class="fa-regular fa-user"></i>
-        <div class='notice-watch-num'>4</div>
-        </th>
+const noticePreview = (notice) => {
+    return /*html*/ `
+    <tr class="notice-wrapper" data-set="${notice.idx}">
+        <td class="notice-id">${notice.idx}</td>
+        <td class="notice-title">${notice.title}</td>
+        <td class="notice-date">${new Date(notice.createdAt)
+            .getFullYear()
+            .toString()
+            .slice(2, 4)}-${(
+        '00' + (new Date(notice.createdAt).getMonth() + 1).toString()
+    ).slice(-2)}-${(
+        '00' + new Date(notice.createdAt).getDate().toString()
+    ).slice(-2)}</td>
+        <td class="notice-watch">
+            <i class="fa-regular fa-user"></i>
+            <div class='notice-watch-num'>${notice.views}</div>
+        </td>
     </tr>
     `;
 };
 
-const noticeBody = (title, content, check, denial) => {};
+const noticeBody = (idx, title, content, createdAt, views) => {};
 
 export { noticePreview, noticeBody };

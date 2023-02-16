@@ -1,4 +1,5 @@
 import { navigateTo } from '../router';
+import { qs } from '../utils/selector';
 import { qsa } from '../utils/selector';
 
 const setRentalEvent = () => {
