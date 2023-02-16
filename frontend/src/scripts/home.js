@@ -1,15 +1,16 @@
 import { GetUser, PostUser } from '../apis/user.js';
+import { qs, qsa } from '../utils/selector.js';
 
 function setHomeEvent() {
-    const container = document.querySelector('.home-container');
-    const hamburgerbtn = document.querySelector('.hamburger');
+    const container = qs('.home-container');
+    const hamburgerbtn = qs('.hamburger');
     const passwordInputs = container.querySelectorAll('.password-input');
-    const showPasswordEyeIcons = document.querySelectorAll('.fa-eye');
-    const joinemail = document.querySelector('.join-email-input');
-    const registerPassword = document.querySelector('.join-password-input');
-    const registerPasswordCheck = document.querySelector(
-        '.join-passwordcheck-input',
-    );
+    const showPasswordEyeIcons = qsa('.fa-eye');
+    const joinemail = qs('.join-email-input');
+    const registerId = qs('.join-id-input');
+    const registerPassword = qs('.join-password-input');
+    const registerPasswordCheck = qs('.join-passwordcheck-input');
+    const registerButton = qs('.register-btn');
 
     validateJoinPasswordCheck();
     hamburgerbtn.classList.add('hidden');
@@ -28,7 +29,6 @@ function setHomeEvent() {
             showEyeIcon(e.target);
         });
     });
-
     showPasswordEyeIcons.forEach((eye) => {
         eye.addEventListener('mouseover', (e) => {
             showPasswordValue(e.target);
@@ -41,6 +41,9 @@ function setHomeEvent() {
     });
     joinemail.addEventListener('input', (e) => {
         validateJoinEmail(e);
+    });
+    registerId.addEventListener('input', (e) => {
+        validateJoinId(e);
     });
     registerPassword.addEventListener('input', (e) => {
         validateJoinPassword(e);
@@ -78,6 +81,16 @@ const clickRegisterButton = (target) => {
     const name = joinForm.querySelector('.name-input').value;
     const email = joinForm.querySelector('.join-email-input').value;
     PostUser(memberId, password, passwordCheck, name, email);
+};
+
+const validateJoinId = (e) => {
+    const idreq = /^[a-zA-Z]{1}[a-zA-Z0-9_]{4,11}$/;
+    const joinid = qs('#join-id-wrapper');
+    const joinidcheck = joinid.querySelector('.fa-check');
+
+    joinidcheck.style.backgroundColor = idreq.test(e.target.value)
+        ? `#2b90d9`
+        : `#b8b8b8`;
 };
 
 const validateJoinPasswordCheck = () => {

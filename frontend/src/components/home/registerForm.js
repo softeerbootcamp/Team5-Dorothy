@@ -1,5 +1,5 @@
 const registerForm = () => {
-    const registerFormTemplate = `
+    const registerFormTemplate = /*html */ `
     <div class='join-container'>
         <i class="fa-solid fa-x join-close-btn"></i>
         <h2 class='join-title'>회원가입</h2>
@@ -10,8 +10,14 @@ const registerForm = () => {
         </div>
 
         <h3 class='form-title'>아이디</h3>
-        <div class='form-input-wrapper'>
-            <input class="id-input" type="text" />
+        <div class="input-check-wrapper" id="join-id-wrapper">
+            <div class='form-input-wrapper'>
+                <input
+                type="text"
+                placeholder="ID는 최소 5자 이상이어야 합니다."
+                class="id-input join-id-input"/>
+            </div>
+            <i class=" fa-solid fa-check"></i>
         </div>
 
         <h3 class='form-title'>비밀번호</h3>
