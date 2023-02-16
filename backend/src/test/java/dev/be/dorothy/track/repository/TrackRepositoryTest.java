@@ -38,7 +38,16 @@ public class TrackRepositoryTest {
                 MemberRole.MEMBER
         );
 
-        memberRepository.save(member);
+        Member lucas = Member.of(
+                "lucas",
+                "abcd1234",
+                "2p7VxertGPCkNfnr",
+                "lucas",
+                "lucas@example.com",
+                MemberRole.MEMBER
+        );
+
+        memberRepository.saveAll(List.of(member, lucas));
 
         Track track = new Track(
                 "hyundai",
@@ -48,6 +57,12 @@ public class TrackRepositoryTest {
         trackRepository.save(track);
         trackRepository.saveTrackMember(
                 member.getIdx(),
+                track.getIdx(),
+                MemberRole.MEMBER.name(),
+                LocalDateTime.now().toString(),
+                false);
+        trackRepository.saveTrackMember(
+                lucas.getIdx(),
                 track.getIdx(),
                 MemberRole.MEMBER.name(),
                 LocalDateTime.now().toString(),
@@ -94,5 +109,12 @@ public class TrackRepositoryTest {
         Optional<Long> idx = trackRepository.getTrackMemberIdx(999L, trackIdx);
 
         assertThat(idx.isPresent()).isFalse();
+    }
+
+    @Test
+    @DisplayName("모든 트랙 멤버 idx 조회 테스트")
+    void getAllTrackIdx() {
+        List<Long> allTrackMemberIdx = trackRepository.getAllTrackMemberIdx();
+        assertThat(allTrackMemberIdx.size()).isEqualTo(2L);
     }
 }
