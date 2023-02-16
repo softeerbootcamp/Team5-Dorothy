@@ -1,31 +1,30 @@
 import { makeTimer } from '../components/main/timer/maketimer.js';
 import { qs } from '../utils/selector.js';
 import { timerForm } from '../components/main/timer/timer.js';
+import { userRole } from '../store/user.js';
 
-const role = 'manager';
 let makeAttendance = false;
 
 function setMainEvent() {
-    qs('.main-button-wrapper').addEventListener('click', (e) => {
-        const mainButton = e.target.closest('.main-button-front');
-        if (mainButton) {
-            mainButton
-                .closest('.main-button')
-                .classList.toggle('input-available');
-        }
-    });
-    if (role === 'manager') {
+    if (userRole() === 'ADMIN') {
         qs('.big-content-container').addEventListener('click', (e) => {
             toggleChart(e.target);
         });
     }
-    if (role === 'member') {
+    if (userRole() === 'MEMBER') {
         if (!makeAttendance) {
             qs('#check-timer').innerHTML = timerForm();
-
             makeTimer();
         }
     }
+    // qs('.main-button-wrapper').addEventListener('click', (e) => {
+    //     const mainButton = e.target.closest('.main-button-front');
+    //     if (mainButton) {
+    //         mainButton
+    //             .closest('.main-button')
+    //             .classList.toggle('input-available');
+    //     }
+    // });
 }
 
 const toggleChart = (target) => {

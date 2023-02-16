@@ -17,3 +17,12 @@ export const userRole = () => {
     const user = JSON.parse(sessionStorage.getItem('user'));
     return user.role;
 };
+
+export const userIdx = () => {
+    if (sessionStorage.getItem('user') == null) {
+        navigateTo('/');
+        return;
+    }
+    const user = JSON.parse(sessionStorage.getItem('user'));
+    return user.idx;
+};

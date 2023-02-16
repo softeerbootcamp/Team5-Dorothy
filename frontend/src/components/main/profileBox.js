@@ -1,23 +1,27 @@
 import { timerForm } from './timer/timer';
+import { userRole } from '../../store/user';
+import { GetTrack } from '../../apis/track';
 
-const options = [
-    '소프티어 부트캠프 2023',
-    '우아한 테크캠프',
-    '코드스쿼드 마스터즈 코스',
-];
+const profileOption = async () => {
+    const options = await GetTrack();
+    const optionBox = `${options
+        .map((option) => {
+            return `<option>${option.name}</option>`;
+        })
+        .join('')}`;
 
-const role = 'manager';
-const profile = () => {
-    const profileTemplate = /*html*/ `
+    return optionBox;
+};
+
+const profile = async () => {
+    const profileTemplate = `
         <section class="profile-container">
             <div class="image-container">
                 <img src="https://ca.slack-edge.com/T04AE6CRWMB-U04GTQ0SHRT-badeda2b168f-512" alt="my-profile">
             </div>
-            ${role === 'manager' ? '' : timerForm}
+            ${userRole() === 'MEMBER' ? timerForm() : ''}
             <select class="track-select-container">
-                ${options.map((option) => {
-                    return `<option>${option}</option>`;
-                })}
+                ${profileOption()}
             </select>
             <div class="main-button-wrapper">
                 <figure class="main-button">
@@ -29,7 +33,7 @@ const profile = () => {
                             <button class="main-button-btn">취소</button>
                         </div>
                     </div>
-                    <div class="main-button-front">트랙 참가하기</div>
+                    <div class="main-button-front">트랙 참가하기</div> 
                 </figure>
             </div>
         </section>`;

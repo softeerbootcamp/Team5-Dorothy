@@ -46,6 +46,8 @@ const succeedLogin = (response) => {
     const message = response.message;
     const name = response.data.name;
     const role = response.data.role;
+    const idx = response.data.idx;
+
     const container = document.querySelector('.home-container');
     const loginForm = container.querySelector('.login-wrapper');
     const maintitle = container.querySelector('.title-wrapper');
@@ -56,7 +58,8 @@ const succeedLogin = (response) => {
     document.body.querySelector('.hamburger').classList.remove('hidden');
     document.body.querySelector('.home-container').classList.add('Start');
 
-    const user = { name, role };
+    const user = { name, role, idx };
+
     sessionStorage.setItem('user', JSON.stringify(user));
     setTimeout(() => {
         navigateTo('/track');

@@ -1,6 +1,7 @@
-import { qs } from '../../utils/selector';
+import { qs, qsa } from '../../utils/selector';
 import { userRole } from '../../store/user';
 import { PostTrack, PostTrackMember } from '../../apis/track';
+import { navigateTo } from '../../router';
 
 const trackCard = (img, tname) => {
     return `
@@ -27,7 +28,7 @@ function setTrackEvent() {
                         '/src/assets/soundless.svg',
                         trackMakeInput.value,
                     ),
-                ); //이름이 같은 트랙이 존재하지 않으면 정상 모달 메세지와 함께 트랙 추가 카드 앞에 새로운 트랙 버튼이 생성됨. 그렇지 않으면 오류 모달 메세지 출력.
+                );
                 PostTrack(trackMakeInput.value);
                 trackMake.classList.toggle('track-rotate');
                 trackMakeInput.value = '';
@@ -42,6 +43,7 @@ function setTrackEvent() {
     if (userRole() === 'MEMBER') {
         const trackJoin = qs('#track-join');
         const trackJoinInput = trackJoin.querySelector('.track-input');
+        const trackJoinID = trackJoin.querySelector('.track-index-input');
         const trackJoinBtn = trackJoin.querySelector('.track-button');
         trackJoinInput.addEventListener('input', (e) => {
             trackJoinBtn.disabled = e.target.value.length <= 0;
@@ -49,15 +51,10 @@ function setTrackEvent() {
         trackJoin.addEventListener('click', (e) => {
             const makeBtn = e.target.closest('.track-button');
             if (makeBtn) {
-                trackJoin.insertAdjacentHTML(
-                    'beforebegin',
-                    trackCard(
-                        '/src/assets/soundless.svg',
-                        trackJoinInput.value,
-                    ),
-                ); //초대 코드가 유효할 경우, 정상 모달 메세지와 함께 트랙 추가 카드 앞에 새로운 트랙 버튼이 생성됨. 그렇지 않으면 오류 모달 메세지 출력.
+                PostTrackMember(trackJoinID.value, trackJoinInput.value);
                 trackJoin.classList.toggle('track-rotate');
                 trackJoinInput.value = '';
+                trackJoinID.value = '';
                 trackJoinBtn.disabled = 'true';
             } else {
                 if (trackJoin.classList.contains('track-rotate')) return;
@@ -66,6 +63,11 @@ function setTrackEvent() {
             }
         });
     }
+    qsa('.track-wrapper').forEach((trackWrapper) => {
+        trackWrapper.addEventListener('click', (e) => {
+            navigateTo('/main');
+        });
+    });
 }
 
 export { trackCard, setTrackEvent };

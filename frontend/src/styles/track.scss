@@ -89,8 +89,16 @@ $breakpoint-mobile: 640px;
     font-weight: 600;
     font-size: 20px;
 }
+#track-code {
+    display: flex;
+}
+.track-index-input {
+    width: 40px;
+    height: 40px;
+    margin: 10px auto;
+}
 .track-input {
-    width: 280px;
+    width: 200px;
     height: 40px;
     margin: 10px auto;
 }
