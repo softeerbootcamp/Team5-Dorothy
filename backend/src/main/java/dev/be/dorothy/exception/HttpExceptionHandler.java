@@ -31,4 +31,12 @@ public class HttpExceptionHandler {
                 .status(HttpStatus.FORBIDDEN)
                 .body(body);
     }
+
+    @ExceptionHandler(PartialContentException.class)
+    public ResponseEntity<CommonResponse> handle(PartialContentException e){
+        CommonResponse body = new CommonResponse(HttpStatus.PARTIAL_CONTENT, e.getMessage(), e.getContent());
+        return ResponseEntity
+                .status(HttpStatus.FORBIDDEN)
+                .body(body);
+    }
 }
