@@ -59,8 +59,8 @@ public class PlaceController {
         MemberDetail principal = (MemberDetail) ContextHolder.getContext().getPrincipal();
         MemberResDto memberDto = principal.getMemberDto();
 
-        List<ReservationResDto> placeList = placeReservationService.readMyReservations(memberDto.getIdx());
-        CommonResponse commonResponse = new CommonResponse(HttpStatus.OK, "공간 대여 현황 조회에 성공하였습니다.", placeList);
+        List<ReservationResDto> places = placeReservationService.readMyReservations(memberDto.getIdx());
+        CommonResponse commonResponse = new CommonResponse(HttpStatus.OK, "공간 대여 현황 조회에 성공하였습니다.", places);
         return new ResponseEntity<>(commonResponse, HttpStatus.OK);
     }
 
