@@ -14,7 +14,6 @@ document.addEventListener('click', (e) => {
 
 const linkToLogout = (e) => {
     if (!e.target.classList.contains('nav_home_link')) return;
-    console.log(e.target);
     qs('.nav').classList.add('hidden');
     Logout();
 };

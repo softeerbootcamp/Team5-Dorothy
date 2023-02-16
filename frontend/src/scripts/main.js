@@ -6,14 +6,6 @@ import { userRole } from '../store/user.js';
 let makeAttendance = false;
 
 function setMainEvent() {
-    qs('.main-button-wrapper').addEventListener('click', (e) => {
-        const mainButton = e.target.closest('.main-button-front');
-        if (mainButton) {
-            mainButton
-                .closest('.main-button')
-                .classList.toggle('input-available');
-        }
-    });
     if (userRole() === 'ADMIN') {
         qs('.big-content-container').addEventListener('click', (e) => {
             toggleChart(e.target);
@@ -22,10 +14,17 @@ function setMainEvent() {
     if (userRole() === 'MEMBER') {
         if (!makeAttendance) {
             qs('#check-timer').innerHTML = timerForm();
-
             makeTimer();
         }
     }
+    // qs('.main-button-wrapper').addEventListener('click', (e) => {
+    //     const mainButton = e.target.closest('.main-button-front');
+    //     if (mainButton) {
+    //         mainButton
+    //             .closest('.main-button')
+    //             .classList.toggle('input-available');
+    //     }
+    // });
 }
 
 const toggleChart = (target) => {

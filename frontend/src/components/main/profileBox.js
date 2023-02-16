@@ -4,23 +4,22 @@ import { GetTrack } from '../../apis/track';
 
 const profileOption = async () => {
     const options = await GetTrack();
-    const optionBox = `${
-        options.length !== 0
-            ? options.map((option) => {
-                  return `<option>${option.name}</option>`;
-              })
-            : ''
-    }`;
+    const optionBox = `${options
+        .map((option) => {
+            return `<option>${option.name}</option>`;
+        })
+        .join('')}`;
+
     return optionBox;
 };
 
 const profile = () => {
-    const profileTemplate = /*html*/ `
+    const profileTemplate = `
         <section class="profile-container">
             <div class="image-container">
                 <img src="https://ca.slack-edge.com/T04AE6CRWMB-U04GTQ0SHRT-badeda2b168f-512" alt="my-profile">
             </div>
-            ${userRole() === 'ADMIN' ? '' : timerForm()}
+            ${userRole() === 'MEMBER' ? timerForm() : ''}
             <select class="track-select-container">
                 ${profileOption()}
             </select>
