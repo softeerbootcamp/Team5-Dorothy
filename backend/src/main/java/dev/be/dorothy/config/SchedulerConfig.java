@@ -4,7 +4,6 @@ package dev.be.dorothy.config;
 import dev.be.dorothy.common.scheduler.NoticeViewsSyncScheduler;
 import dev.be.dorothy.notice.repository.NoticeRepository;
 import dev.be.dorothy.redis.RedisDao;
-
 import dev.be.dorothy.attendance.repository.AttendanceRepository;
 import dev.be.dorothy.common.scheduler.AttendanceScheduler;
 import dev.be.dorothy.track.repository.TrackRepository;
@@ -20,20 +19,17 @@ import org.springframework.scheduling.config.ScheduledTaskRegistrar;
 @EnableScheduling
 public class SchedulerConfig implements SchedulingConfigurer {
     private static final int POOL_SIZE = 10;
-    
     private final TrackRepository trackRepository;
     private final AttendanceRepository attendanceRepository;
     private final NoticeRepository noticeRepository;
     private final RedisDao redisDao;
 
-    public SchedulerConfig(NoticeRepository noticeRepository, RedisDao redisDao) {
-        this.noticeRepository = noticeRepository;
-        this.redisDao = redisDao;
-    }
 
-    public SchedulerConfig(TrackRepository trackRepository, AttendanceRepository attendanceRepository) {
+    public SchedulerConfig(TrackRepository trackRepository, AttendanceRepository attendanceRepository, NoticeRepository noticeRepository, RedisDao redisDao) {
         this.trackRepository = trackRepository;
         this.attendanceRepository = attendanceRepository;
+        this.noticeRepository = noticeRepository;
+        this.redisDao = redisDao;
     }
 
     @Override
@@ -50,6 +46,7 @@ public class SchedulerConfig implements SchedulingConfigurer {
     @Bean
     public NoticeViewsSyncScheduler getNoticeViewsSyncScheduler() {
         return new NoticeViewsSyncScheduler(noticeRepository, redisDao);
+    }
 
     @Bean
     public AttendanceScheduler getAttendanceScheduler() {
