@@ -25,4 +25,25 @@ public class RedisDaoTest {
         String value = redisDao.getValues("key");
         assertThat(value).isEqualTo("value");
     }
+
+    @Test
+    @DisplayName("증가 메서드 테스트")
+    void inclement() throws InterruptedException {
+        // given when
+        Thread incKey1 = new Thread(() -> incTest("incKey"));
+        Thread incKey2 = new Thread(() -> incTest("incKey"));
+        incKey1.start();
+        incKey2.start();
+        incKey1.join();
+        incKey2.join();
+
+        // then
+        assertThat(redisDao.getValues("incKey")).isEqualTo("2000");
+    }
+
+    private void incTest(String key) {
+        for (int idx = 0; idx < 1000; idx++) {
+            redisDao.inclement(key);
+        }
+    }
 }
