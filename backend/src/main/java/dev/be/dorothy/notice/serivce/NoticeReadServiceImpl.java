@@ -43,13 +43,14 @@ public class NoticeReadServiceImpl implements NoticeReadService {
         List<NoticeResDto> noticeResDtos = new ArrayList<>();
 
         for (Notice notice: notices) {
-            String viewsInRedis = redisDao.getValues(REDIS_KEY + notice.getIdx());
+            String value = redisDao.getValues(REDIS_KEY + notice.getIdx());
+            Long viewsInRedis = value != null ? Long.parseLong(value) : 0L;
             NoticeResDto noticeResDto = NoticeResDto.of(
                     notice.getIdx(),
                     notice.getTitle(),
                     notice.getContent(),
                     notice.getCreatedAt(),
-                    notice.getViews() + Long.parseLong(viewsInRedis)
+                    notice.getViews() + viewsInRedis
             );
             noticeResDtos.add(noticeResDto);
         }

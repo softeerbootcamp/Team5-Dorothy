@@ -12,6 +12,9 @@ import java.util.Optional;
 
 public interface TrackRepository extends CrudRepository<Track, Long> {
 
+    @Query("select idx from track_member where is_deleted = 0 and role = 'MEMBER'")
+    List<Long> getAllTrackMemberIdx();
+
     @Query("select a.idx, a.name, a.image, a.created_at, a.updated_at from track a inner join track_member b on a.idx = b.track_idx where b.is_deleted = 0 and a.is_deleted = 0 and b.member_idx = :userIdx")
     List<TrackResDto> findByMemberId(@Param("userIdx") Long idx);
 

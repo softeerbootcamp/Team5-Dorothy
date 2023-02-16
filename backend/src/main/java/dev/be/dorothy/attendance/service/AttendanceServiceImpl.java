@@ -5,7 +5,7 @@ import dev.be.dorothy.attendance.AttendanceType;
 import dev.be.dorothy.attendance.repository.AttendanceRepository;
 import dev.be.dorothy.exception.BadRequestException;
 import dev.be.dorothy.exception.ForbiddenException;
-import dev.be.dorothy.mapper.AttendanceResDtoMapper;
+import dev.be.dorothy.exception.InternalServerErrorException;
 import dev.be.dorothy.member.MemberRole;
 import dev.be.dorothy.track.service.TrackRetrieveService;
 import org.springframework.stereotype.Service;
@@ -35,18 +35,19 @@ public class AttendanceServiceImpl implements AttendanceService {
         AttendanceType attendanceType = attendanceManagerService.checkAttendanceTime(trackIdx, date, time);
 
         Long trackMemberIdx = trackRetrieveService.getTrackMemberIdx(memberIdx, trackIdx);
-        if(attendanceRepository.getAttendanceIdx(trackMemberIdx).isPresent()) {
+        Attendance attendance = attendanceRepository
+                .getAttendance(trackMemberIdx)
+                .orElseThrow(InternalServerErrorException::new);
+
+        if(attendance.getType() != AttendanceType.ABSENT) {
             throw new BadRequestException("이미 출결 처리가 완료되었습니다.");
         }
+        attendanceRepository.attend(attendance.getIdx(), time, attendanceType);
 
-        Attendance attendance = new Attendance(
-                trackMemberIdx,
+        return new AttendanceResDto(
                 date,
                 time,
                 attendanceType
         );
-        attendance = attendanceRepository.save(attendance);
-
-        return AttendanceResDtoMapper.INSTANCE.entityToAttendanceResDto(attendance);
     }
 }
