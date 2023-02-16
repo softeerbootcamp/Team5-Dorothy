@@ -33,6 +33,16 @@ public class NoticeController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
+    @GetMapping("/list")
+    public ResponseEntity<CommonResponse> readAll() {
+        CommonResponse response = new CommonResponse(
+                HttpStatus.OK,
+                "공지사항 전체를 성공적으로 조회하였습니다.",
+                noticeReadService.getNotices()
+        );
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
     @PostMapping("")
     public ResponseEntity<CommonResponse> create(
             @RequestBody NoticeCreateDto noticeCreateDto
