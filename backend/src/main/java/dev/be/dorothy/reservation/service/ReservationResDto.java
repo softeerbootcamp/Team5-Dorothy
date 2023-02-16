@@ -4,29 +4,23 @@ import java.time.LocalTime;
 
 public class ReservationResDto {
 
-    private final Long idx;
+    private final Long placeIdx;
     private final LocalTime startTime;
-    private final LocalTime endTime;
 
-    private ReservationResDto(Long idx, LocalTime startTime, LocalTime endTime) {
-        this.idx = idx;
+    public ReservationResDto(Long placeIdx, LocalTime startTime) {
+        this.placeIdx = placeIdx;
         this.startTime = startTime;
-        this.endTime = endTime;
     }
 
-    public static ReservationResDto of(Long placeIdx, LocalTime startTime, LocalTime endTime) {
-        return new ReservationResDto(placeIdx, startTime, endTime);
+    public static ReservationResDto of(Long placeIdx, LocalTime time) {
+        return new ReservationResDto(placeIdx, time);
     }
 
-    public Long getIdx() {
-        return idx;
+    public Long getPlaceIdx() {
+        return placeIdx;
     }
 
     public LocalTime getStartTime() {
         return startTime;
-    }
-
-    public LocalTime getEndTime() {
-        return endTime;
     }
 }
