@@ -28,7 +28,7 @@ public class NoticeCreateServiceTest {
         // when then
         BadRequestException exception = assertThrows(
                 BadRequestException.class,
-                () -> noticeCreateService.create(noticeCreateDto)
+                () -> noticeCreateService.create(1L, noticeCreateDto)
         );
         assertThat(exception.getMessage()).isEqualTo("요청 인자를 확인하세요.");
     }
