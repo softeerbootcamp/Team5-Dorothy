@@ -23,7 +23,7 @@ public class PlaceReservationServiceImpl implements PlaceReservationService{
 
     @Override
     public List<ReservationResDto> reservePlace(Long memberIdx, Long placeIdx, Object startTimeObj) {
-        List<Map<String, String>> startTimeList = ArrayList.class.cast(startTimeObj);
+        List<Map<String, String>> startTimeList = (ArrayList) startTimeObj;
         List<ReservationResDto> resultList = new ArrayList<>();
         for(Map<String, String> startTimeStr : startTimeList){
             LocalTime startTime = LocalTime.parse(startTimeStr.get("time"));
