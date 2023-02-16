@@ -4,9 +4,9 @@ drop table if exists `attendance`;
 drop table if exists `track_member`;
 drop table if exists `reservation`;
 drop table if exists `place`;
+drop table if exists `notice`;
 drop table if exists `member`;
 drop table if exists `track`;
-drop table if exists `notice`;
 
 CREATE TABLE IF NOT EXISTS `member`
 (
@@ -79,8 +79,10 @@ CREATE TABLE IF NOT EXISTS `attendance`
 CREATE TABLE IF NOT EXISTS `notice`
 (
     `idx`        int      NOT NULL auto_increment primary key,
+    `member_idx` int	  NOT NULL,
     `title`      TEXT     NOT NULL,
     `content`    TEXT     NOT NULL,
+    `views`      int      NOT NULL,
     `created_at` datetime NOT NULL DEFAULT current_timestamp,
     `updated_at` datetime NULL     DEFAULT current_timestamp on update current_timestamp,
     `is_deleted` BIT(1)   NULL     DEFAULT 0 COMMENT '0: not deleted, 1: deleted'
@@ -105,3 +107,5 @@ ALTER TABLE `reservation`
 ALTER TABLE `attendance`
     ADD CONSTRAINT `FK_track_member_TO_attendance_1` FOREIGN KEY (`track_member_idx`)
         REFERENCES `track_member` (`idx`);
+ALTER TABLE `notice` ADD CONSTRAINT `FK_member_TO_notice_1` FOREIGN KEY (`member_idx`)
+    REFERENCES `member` (`idx`);

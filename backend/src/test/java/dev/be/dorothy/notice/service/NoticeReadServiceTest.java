@@ -34,7 +34,7 @@ public class NoticeReadServiceTest {
     void getNotice() {
         // given
         Long noticeId = 1L;
-        Notice notice = new Notice(noticeId, "현대차그룹 채용결과 안내", "all pass", LocalDateTime.now(), LocalDateTime.now(), false);
+        Notice notice = new Notice(noticeId, 1L, "현대차그룹 채용결과 안내", "all pass", LocalDateTime.now(), LocalDateTime.now(), 0L, false);
         given(noticeRepository.findOne(noticeId)).willReturn(Optional.of(notice));
 
         // when
