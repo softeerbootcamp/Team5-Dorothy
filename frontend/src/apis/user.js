@@ -22,7 +22,13 @@ export const GetUser = async (id, password) => {
 // 회원가입
 export const PostUser = async (id, password, passwordCheck, name, email) => {
     try {
-        const response = await UserService.postUser(id, password);
+        const response = await UserService.postUser(
+            id,
+            password,
+            passwordCheck,
+            name,
+            email,
+        );
         succeedLogin(response);
     } catch (e) {
         failLogin(e);

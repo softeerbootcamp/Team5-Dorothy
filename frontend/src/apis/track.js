@@ -5,12 +5,12 @@ import { qs } from '../utils/selector';
 
 //트랙 생성
 export const PostTrack = async (trackname) => {
-    console.log(trackname);
     try {
         const response = await TrackService.postTrack(trackname);
+        console.log(response);
         succeedTrack(response.data);
     } catch (error) {
-        console.log(error);
+        console.log(error.status);
 
         return Promise.reject(error.message, '트랙 생성 실패');
     }
@@ -67,13 +67,7 @@ const setmodal = (code, message) =>
 const succeedTrack = (response) => {
     const code = response.code;
     const message = response.message;
-    const name = response.data.name;
-    const role = response.data.role;
     setmodal(code, message);
-
-    const user = { name, role };
-    sessionStorage.setItem('user', JSON.stringify(user));
-    navigateTo('/track');
 };
 
 const failTrack = async (error) => {
