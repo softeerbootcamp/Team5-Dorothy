@@ -2,11 +2,8 @@ package dev.be.dorothy.reservation.controller;
 
 import dev.be.dorothy.common.CommonResponse;
 import dev.be.dorothy.member.service.MemberResDto;
-import dev.be.dorothy.reservation.service.PlaceResDto;
-import dev.be.dorothy.reservation.service.PlaceReservationServiceImpl;
-import dev.be.dorothy.reservation.service.PlaceRegisterService;
+import dev.be.dorothy.reservation.service.*;
 
-import dev.be.dorothy.reservation.service.ReservationResDto;
 import dev.be.dorothy.security.context.ContextHolder;
 import dev.be.dorothy.security.context.MemberDetail;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -22,7 +19,7 @@ import java.util.List;
 public class PlaceController {
 
     private final PlaceRegisterService placeRegisterService;
-    private final PlaceReservationServiceImpl placeReservationService;
+    private final PlaceReservationService placeReservationService;
 
     public PlaceController(PlaceRegisterService placeRegisterService, PlaceReservationServiceImpl placeReservationService) {
         this.placeRegisterService = placeRegisterService;
