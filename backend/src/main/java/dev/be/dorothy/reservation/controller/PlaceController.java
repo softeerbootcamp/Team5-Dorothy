@@ -60,7 +60,7 @@ public class PlaceController {
         return new ResponseEntity<>(commonResponse, HttpStatus.OK);
     }
 
-    @GetMapping("/reservation/my")
+    @GetMapping("/reservation")
     public ResponseEntity<CommonResponse> myReservation(){
         MemberDetail principal = (MemberDetail) ContextHolder.getContext().getPrincipal();
         MemberResDto memberDto = principal.getMemberDto();
