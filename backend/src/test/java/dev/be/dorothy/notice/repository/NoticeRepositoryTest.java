@@ -46,8 +46,8 @@ public class NoticeRepositoryTest {
     @DisplayName("findAll ORDER BY ASC 정상 조회 테스트")
     void findAllWithOrderByAsc() {
         // given
-        Notice noticeOfHyundai = new Notice(null, "현대차그룹 채용 결과 안내", "all pass", LocalDateTime.now().minusDays(1), LocalDateTime.now().minusDays(1), false);
-        Notice noticeOfCodeSquad = new Notice(null, "코드스쿼드 수료 결과 안내", "all pass", LocalDateTime.now(), LocalDateTime.now(), false);
+        Notice noticeOfHyundai = new Notice(null, "현대차그룹 채용 결과 안내", "all pass", LocalDateTime.now().minusDays(1), LocalDateTime.now().minusDays(1), 0L, false);
+        Notice noticeOfCodeSquad = new Notice(null, "코드스쿼드 수료 결과 안내", "all pass", LocalDateTime.now(), LocalDateTime.now(), 0L, false);
         noticeRepository.saveAll(List.of(noticeOfHyundai, noticeOfCodeSquad));
         // when
         List<Notice> notices = noticeRepository.findAll(false);
@@ -63,8 +63,8 @@ public class NoticeRepositoryTest {
     @DisplayName("findAll ORDER BY DESC 정상 조회 테스트")
     void findAllWithOrderByDesc() {
         // given
-        Notice noticeOfHyundai = new Notice(null, "현대차그룹 채용 결과 안내", "all pass", LocalDateTime.now().minusDays(1), LocalDateTime.now().minusDays(1), false);
-        Notice noticeOfCodeSquad = new Notice(null, "코드스쿼드 수료 결과 안내", "all pass", LocalDateTime.now(), LocalDateTime.now(), false);
+        Notice noticeOfHyundai = new Notice(null, "현대차그룹 채용 결과 안내", "all pass", LocalDateTime.now().minusDays(1), LocalDateTime.now().minusDays(1), 0L, false);
+        Notice noticeOfCodeSquad = new Notice(null, "코드스쿼드 수료 결과 안내", "all pass", LocalDateTime.now(), LocalDateTime.now(), 0L, false);
         noticeRepository.saveAll(List.of(noticeOfHyundai, noticeOfCodeSquad));
 
         // when
