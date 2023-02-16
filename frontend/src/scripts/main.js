@@ -2,18 +2,22 @@ import { makeTimer } from '../components/main/timer/maketimer.js';
 import { qs } from '../utils/selector.js';
 import { timerForm } from '../components/main/timer/timer.js';
 import { userRole } from '../store/user.js';
+import { getDayAttendance } from '../apis/attend.js';
 
-let makeAttendance = false;
-
-function setMainEvent() {
+async function setMainEvent() {
     if (userRole() === 'ADMIN') {
         qs('.big-content-container').addEventListener('click', (e) => {
             toggleChart(e.target);
         });
     }
     if (userRole() === 'MEMBER') {
-        if (!makeAttendance) {
-            qs('#check-timer').innerHTML = timerForm();
+        const currentAttendance = await getDayAttendance(3);
+        const attendanceType = currentAttendance.type;
+        if (attendanceType !== 'PRESENT' && attendanceType !== 'TARDY') {
+            qs('.image-container').insertAdjacentHTML(
+                'afterbegin',
+                timerForm(),
+            );
             makeTimer();
         }
     }

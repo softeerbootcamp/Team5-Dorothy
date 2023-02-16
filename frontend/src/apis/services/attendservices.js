@@ -20,7 +20,7 @@ const AttendService = {
 
     //출석 현황 조회(월간)
     getMonthAttendance: async (trackIdx) => {
-        const response = await http.get(`/api/v1/attendance/month/${trackIdx}`);
+        const response = await http.get(`/api/attendance/month/${trackIdx}`);
         return response.data;
     },
 };

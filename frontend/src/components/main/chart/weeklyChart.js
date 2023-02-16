@@ -1,8 +1,17 @@
 import { getCurrentWeek } from './currentWeek';
+import { getMonthAttendance } from '../../../apis/attend';
 
 const axis_x = [0, 10, 20, 30, 40];
 
+const chartTest = async () => {
+    const items = await getMonthAttendance(3);
+    items.map((item) => {
+        console.log(item.date.split('-')[2]);
+    });
+};
+
 const weeklyChart = () => {
+    chartTest();
     const chart =
         /*html*/
         `

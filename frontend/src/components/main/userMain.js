@@ -1,7 +1,8 @@
 import { getCurrentWeek } from './chart/currentWeek';
 import { profile } from './profileBox';
+import { getDayAttendance } from '../../apis/attend';
 
-const userMain = async () => {
+const userMain = () => {
     const userMainTemplate =
         /*html*/
         `

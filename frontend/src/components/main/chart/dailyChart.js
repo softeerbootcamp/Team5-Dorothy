@@ -1,7 +1,3 @@
-const attendRatio = 75;
-const lateRatio = 60;
-const absentRatio = 25;
-
 import { getDayAttendance } from '../../../apis/attend';
 import { qs } from '../../../utils/selector';
 
@@ -29,11 +25,12 @@ const chartTest = async () => {
     ${attend * 100}%</div>    `;
     qs('.daily-ratio-wrapper').insertAdjacentHTML('beforeend', ratio);
 };
-chartTest();
+
 const dailyChart = () => {
+    chartTest();
     const chart = `
     <section class="daily-ratio-wrapper">
-            
+
     </section>
     `;
     return chart;

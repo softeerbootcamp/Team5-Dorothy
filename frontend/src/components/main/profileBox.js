@@ -1,29 +1,15 @@
-import { timerForm } from './timer/timer';
-import { userRole } from '../../store/user';
 import { GetTrack } from '../../apis/track';
-import { getDayAttendance } from '../../apis/attend';
 import { qs } from '../../utils/selector';
 
 const profileOption = async () => {
     const options = await GetTrack();
     const optionBox = `${options
         .map((option) => {
-            return `<option>${option.name}</option>`;
+            return `<option value="${option.idx}">${option.name}</option>`;
         })
         .join('')}`;
     qs('.track-select-container').insertAdjacentHTML('afterbegin', optionBox);
 };
-
-// const hiddenTimer = async () => {
-//     const type = await getDayAttendance(3);
-//     const hiddenTimer = `${
-//         (type.type === 'PRESENT' || type.type === 'TARDY') &&
-//         userRole === 'MEMBER'
-//             ? ''
-//             : timerForm()
-//     }`;
-//     qs('.image-container').insertAdjacentHTML('beforeend', hiddenTimer);
-// };
 
 const profile = () => {
     const profileTemplate = `

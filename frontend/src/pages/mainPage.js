@@ -16,7 +16,7 @@ export default class mainPage extends AbstractView {
             <div class="content-container">
             </div>
             <section class="big-content-container">
-                ${userRole() === 'ADMIN' ? managerMain() : userMain()}
+                ${userRole() !== 'ADMIN' ? userMain() : managerMain()}
             </section>
         </div>
         `;
