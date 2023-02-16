@@ -5,6 +5,7 @@ import dev.be.dorothy.reservation.repository.PlaceRepository;
 import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.List;
 
 @Service
 public class PlaceReservationServiceImpl implements PlaceReservationService{
@@ -32,4 +33,13 @@ public class PlaceReservationServiceImpl implements PlaceReservationService{
         return placeRepository.findReservationById(reservationID).orElseThrow(() -> new BadRequestException("입력 정보가 올바르지 않습니다."));
     }
 
+    @Override
+    public List<ReservationResDto> readReservationDetail(Long placeIdx) {
+        return placeRepository.findReservationByPlaceId(placeIdx);
+    }
+
+    @Override
+    public List<ReservationResDto> readMyReservations(Long memberIdx) {
+        return placeRepository.findReservationByPlaceId(memberIdx);
+    }
 }
