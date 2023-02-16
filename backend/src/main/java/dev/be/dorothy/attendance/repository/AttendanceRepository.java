@@ -36,4 +36,13 @@ public interface AttendanceRepository extends CrudRepository<Attendance, Long> {
             "where track_member_idx = :trackMemberIdx\n" +
             "  and date_format(date, '%Y-%m') = date_format(now(), '%Y-%m');")
     List<AttendanceResDto> getAttendanceByMonthWhenMember(@Param("trackMemberIdx") Long trackMemberIdx);
+
+    @Query("select date, time, type\n" +
+            "from attendance\n" +
+            "         inner join track_member on attendance.track_member_idx = track_member.idx\n" +
+            "where track_idx = :trackIdx\n" +
+            "  and role = 'MEMBER'\n" +
+            "  and is_deleted = 0\n" +
+            "  and date_format(date, '%Y-%m') = date_format(now(), '%Y-%m');")
+    List<AttendanceResDto> getAttendanceByMonthWhenAdmin(@Param("trackIdx") Long trackIdx);
 }
