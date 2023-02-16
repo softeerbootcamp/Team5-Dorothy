@@ -17,6 +17,8 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-data-redis'
 	implementation 'org.mapstruct:mapstruct:1.4.2.Final'
+	implementation 'org.redisson:redisson-spring-boot-starter:3.17.7'
+	implementation 'org.springframework.boot:spring-boot-starter-aop'
 	annotationProcessor "org.mapstruct:mapstruct-processor:1.4.2.Final"
 	annotationProcessor 'org.projectlombok:lombok-mapstruct-binding:0.2.0'
 	compileOnly 'org.projectlombok:lombok:1.18.22'
@@ -24,6 +26,7 @@ dependencies {
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	runtimeOnly 'com.mysql:mysql-connector-j'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation group: 'org.testcontainers', name: 'testcontainers', version: '1.17.2'
 }
 
 tasks.named('test') {

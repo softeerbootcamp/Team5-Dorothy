@@ -15,10 +15,17 @@ public class ExpressionUrlAuthorizationConfigurer {
         this.httpSecurity = httpSecurity;
     }
 
-    public UrlRegistry antMatchers(String path){
-        UrlRegistry registry = urlRegistryList.stream()
+    public UrlRegistry findRegistry(String path){
+        return urlRegistryList.stream()
                 .filter(urlRegistry -> urlRegistry.getPath().equals(path))
-                .findFirst().orElse(new UrlRegistry(path));
+                .findFirst().orElse(new UrlRegistry("noPath", AcccessEnum.IS_AUTHENTICATED));
+    }
+
+    public UrlRegistry antMatchers(String path){
+        UrlRegistry registry = findRegistry(path);
+        if(registry.getPath().equals("noPath")) {
+            registry.reInitialize(path);
+        }
         urlRegistryList.add(registry);
         return registry;
     }
@@ -29,15 +36,18 @@ public class ExpressionUrlAuthorizationConfigurer {
 
     class UrlRegistry {
 
-        private final String path;
+        private String path;
 
-        private final List<AcccessEnum> accessList;
-        private final List<MemberRole> roleList;
+        private final List<AcccessEnum> accessList = new ArrayList<>();
+        private final List<MemberRole> roleList = new ArrayList<>();
 
         public UrlRegistry(String path) {
             this.path = path;
-            accessList = new ArrayList<>();
-            roleList = new ArrayList<>();
+        }
+
+        public UrlRegistry(String path, AcccessEnum access) {
+            this.path = path;
+            this.accessList.add(access);
         }
 
         public void addAccessList(AcccessEnum access){
@@ -46,6 +56,11 @@ public class ExpressionUrlAuthorizationConfigurer {
 
         public String getPath() {
             return path;
+        }
+
+        public void reInitialize(String path) {
+            this.path = path;
+            accessList.clear();
         }
         public List<AcccessEnum> getAccessList() {
             return accessList;

@@ -2,7 +2,7 @@ import setHomeEvent from './scripts/home.js';
 import { setMainEvent } from './scripts/main.js';
 import { setTrackEvent } from './components/track/trackCard.js';
 import { setCalendarEvent } from './components/calendar/calendar.js';
-import { setRentalEvent } from './scripts/rental.js';
+import { setRentalEvent, setRentalDetailEvent } from './scripts/rental.js';
 import { setNoticeEvent } from './scripts/notice.js';
 import {
     clearTimer,
@@ -28,6 +28,9 @@ const eventdelegator = (root) => {
             break;
         case 'rental':
             setRentalEvent();
+            break;
+        case 'rentalDetail':
+            setRentalDetailEvent();
             break;
         case 'notice':
             setNoticeEvent();

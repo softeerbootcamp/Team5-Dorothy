@@ -1,5 +1,6 @@
 const timerForm = () => {
     const timer = `
+    <div id="check-timer">
     <div class="circle">
         <object type="image/svg+xml" data="./potion.svg" class="circle-svg"></object>
         <svg width="240" viewBox="5 6 230 230" xmlns="http://www.w3.org/2000/svg">
@@ -17,6 +18,7 @@ const timerForm = () => {
     <div class="controlls">
         <div class="display-remain-time"></div>
         <button class="play" id="pause">출석</button>
+    </div>
     </div>
     `;
     return timer;

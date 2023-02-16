@@ -17,15 +17,15 @@ public enum AcccessEnum {
     IS_AUTHENTICATED{
         @Override
         public void validate(List<MemberRole> roleList){
-            MemberDetail member = (MemberDetail) ContextHolder.getContext().getPrincipal();
-            if(member == null)
+            if(ContextHolder.getContext() == null)
                 throw new BadRequestException("사용자 정보가 존재하지 않습니다.");
     }},
     HAS_ROLE{
         @Override
          public void validate(List<MemberRole> roleList) {
             MemberDetail member = (MemberDetail) ContextHolder.getContext().getPrincipal();
-            if(!roleList.contains(member.getMemberDto().getRole())){
+            MemberRole role = MemberRole.valueOf(member.getMemberDto().getRole());
+            if(!roleList.contains(role)){
                 throw new BadRequestException("권한이 존재하지 않습니다");
             }
     }};

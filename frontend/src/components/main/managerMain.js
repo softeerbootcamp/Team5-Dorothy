@@ -6,9 +6,10 @@ const managerMain = () => {
     const managerMainTemplate =
         /*html*/
         `
+        <div class="main-content-container">
         ${profile()}
-        <div class="content-container">
-            <div class="chart-wrapper">출석현황 ></div>
+            <section class="user-content-container">
+            <div class="attendance-wrapper"><i class="fa-solid fa-bell-concierge"></i> 출석현황 ></div>
             <div class='manager-main-btn-wrapper'>
                 <button class="daily-chart-btn">일간</button>
                 <button class="weekly-chart-btn">주간</button>
@@ -19,8 +20,8 @@ const managerMain = () => {
                 <li>지각</li>
                 <li>결석</li>
             </ul>
+            </section>
         </div>
-        
     `;
 
     return managerMainTemplate;

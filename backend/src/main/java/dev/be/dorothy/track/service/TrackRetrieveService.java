@@ -7,4 +7,5 @@ import java.util.List;
 public interface TrackRetrieveService {
     List<TrackResDto> retrieveTracks(Long userIdx);
     Track getTrack(Long trackIdx);
+    Long getTrackMemberIdx(Long memberIdx, Long trackIdx);
 }
