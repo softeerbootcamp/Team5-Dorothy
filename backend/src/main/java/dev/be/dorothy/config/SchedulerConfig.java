@@ -1,6 +1,8 @@
 package dev.be.dorothy.config;
 
-import dev.be.dorothy.common.scheduler.ExampleScheduler;
+import dev.be.dorothy.common.scheduler.NoticeViewsSyncScheduler;
+import dev.be.dorothy.notice.repository.NoticeRepository;
+import dev.be.dorothy.redis.RedisDao;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;
@@ -12,6 +14,13 @@ import org.springframework.scheduling.config.ScheduledTaskRegistrar;
 @EnableScheduling
 public class SchedulerConfig implements SchedulingConfigurer {
     private static final int POOL_SIZE = 10;
+    private final NoticeRepository noticeRepository;
+    private final RedisDao redisDao;
+
+    public SchedulerConfig(NoticeRepository noticeRepository, RedisDao redisDao) {
+        this.noticeRepository = noticeRepository;
+        this.redisDao = redisDao;
+    }
 
     @Override
     public void configureTasks(ScheduledTaskRegistrar taskRegistrar) {
@@ -24,11 +33,8 @@ public class SchedulerConfig implements SchedulingConfigurer {
         taskRegistrar.setTaskScheduler(threadPoolTaskScheduler);
     }
 
-    /** NOTE: Scheduler 예시를 확인할 수 있는 ExampleScheduler 빈 주입 부분
-     *  NOTE: 아래 주석을 해제한 뒤 어플리케이션을 실행하면 동작
-     */
-//    @Bean
-//    public ExampleScheduler getExampleScheduler() {
-//        return new ExampleScheduler();
-//    }
+    @Bean
+    public NoticeViewsSyncScheduler getNoticeViewsSyncScheduler() {
+        return new NoticeViewsSyncScheduler(noticeRepository, redisDao);
+    }
 }
