@@ -6,7 +6,7 @@ import { http } from './http';
 
 export const postAttendance = async (trackIdx) => {
     try {
-        const response = await http.AttendService.postAttendance(trackIdx);
+        const response = await AttendService.postAttendance(trackIdx);
         succeedTrack('OK', '출석체크 성공');
         return response.data;
     } catch (error) {
@@ -17,7 +17,8 @@ export const postAttendance = async (trackIdx) => {
 
 export const getDayAttendance = async (trackIdx) => {
     try {
-        const response = await http.AttendService.getDayAttendance(trackIdx);
+        const response = await AttendService.getDayAttendance(trackIdx);
+        console.log(response.data);
         return response.data;
     } catch (error) {
         console.log(error);
@@ -26,7 +27,7 @@ export const getDayAttendance = async (trackIdx) => {
 
 export const getMonthAttendance = async (trackIdx) => {
     try {
-        const response = await http.AttendService.getMonthAttendance(trackIdx);
+        const response = await AttendService.getMonthAttendance(trackIdx);
         return response.data;
     } catch (error) {
         console.log(error);

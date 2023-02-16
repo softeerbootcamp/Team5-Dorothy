@@ -4,8 +4,11 @@ import { http } from '../http.js';
 
 const AttendService = {
     //출석(지각, 결석) 요청
-    postAttendance: async (trackIdx) => {
-        const response = await http.get(`/api/attendance/${trackIdx}`);
+    postAttendance: async (x, y) => {
+        const response = await http.get(`/api/attendance/${trackIdx}`, {
+            x,
+            y,
+        });
         return response.data;
     },
 

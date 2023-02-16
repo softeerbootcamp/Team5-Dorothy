@@ -5,7 +5,6 @@ import { userMain } from '../components/main/userMain';
 import { userRole, userName } from '../store/user';
 
 export default class mainPage extends AbstractView {
-    const;
     async getHtml() {
         /*html*/
         return `

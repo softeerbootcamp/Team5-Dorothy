@@ -1,7 +1,7 @@
 import { getCurrentWeek } from './chart/currentWeek';
 import { profile } from './profileBox';
 
-const userMain = () => {
+const userMain = async () => {
     const userMainTemplate =
         /*html*/
         `

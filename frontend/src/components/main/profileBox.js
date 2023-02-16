@@ -1,6 +1,7 @@
 import { timerForm } from './timer/timer';
 import { userRole } from '../../store/user';
 import { GetTrack } from '../../apis/track';
+import { getDayAttendance } from '../../apis/attend';
 import { qs } from '../../utils/selector';
 
 const profileOption = async () => {
@@ -13,13 +14,23 @@ const profileOption = async () => {
     qs('.track-select-container').insertAdjacentHTML('afterbegin', optionBox);
 };
 
+// const hiddenTimer = async () => {
+//     const type = await getDayAttendance(3);
+//     const hiddenTimer = `${
+//         (type.type === 'PRESENT' || type.type === 'TARDY') &&
+//         userRole === 'MEMBER'
+//             ? ''
+//             : timerForm()
+//     }`;
+//     qs('.image-container').insertAdjacentHTML('beforeend', hiddenTimer);
+// };
+
 const profile = () => {
     const profileTemplate = `
         <section class="profile-container">
             <div class="image-container">
                 <img src="https://ca.slack-edge.com/T04AE6CRWMB-U04GTQ0SHRT-badeda2b168f-512" alt="my-profile">
             </div>
-            ${userRole() === 'MEMBER' ? timerForm() : ''}
             <select class="track-select-container">
                 ${profileOption()}
             </select>
