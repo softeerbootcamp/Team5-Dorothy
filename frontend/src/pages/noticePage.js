@@ -1,10 +1,13 @@
 import AbstractView from './pageTemplate.js';
 import { pageTitleTamplate } from '../components/pageTitle.js';
-import noticeData from '../components/notice/noticeInfo.js';
+//import noticeData from '../components/notice/noticeInfo.js';
 import { noticePreview } from '../components/notice/noticeComponents.js';
+import { GetAllNotices } from '../apis/notice.js';
 
 export default class noticePage extends AbstractView {
     async getHtml() {
+        const noticeData = await GetAllNotices();
+        console.log(noticeData);
         return /*html */ `
         <div class="container Start">
             <div class="main-wrapper">

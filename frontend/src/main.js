@@ -3,7 +3,7 @@ import { setMainEvent } from './scripts/main.js';
 import { setTrackEvent } from './components/track/trackCard.js';
 import { setCalendarEvent } from './components/calendar/calendar.js';
 import { setRentalEvent, setRentalDetailEvent } from './scripts/rental.js';
-import { setNoticeEvent } from './scripts/notice.js';
+import { setNoticeEvent, setNoticeAddEvent } from './scripts/notice.js';
 import {
     clearTimer,
     intervalTimer,
@@ -38,6 +38,8 @@ const eventdelegator = (root) => {
         case 'rentalDetail':
             holdClickReserve();
             break;
+        case 'noticeadd':
+            setNoticeAddEvent();
     }
 };
 

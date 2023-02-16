@@ -19,6 +19,4 @@ const noticePreview = (notice) => {
     `;
 };
 
-const noticeBody = (idx, title, content, createdAt, views) => {};
-
-export { noticePreview, noticeBody };
+export { noticePreview };
