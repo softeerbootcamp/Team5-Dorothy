@@ -1,10 +1,9 @@
-let userName;
-let userRole;
+export const userName = () => {
+    const user = JSON.parse(sessionStorage.getItem('user'));
+    return user.name;
+};
 
-let user = JSON.parse(sessionStorage.getItem('user'));
-if (user !== null) {
-    userName = user.name;
-    userRole = user.role;
-}
-
-export { userName, userRole };
+export const userRole = () => {
+    const user = JSON.parse(sessionStorage.getItem('user'));
+    return user.role;
+};
