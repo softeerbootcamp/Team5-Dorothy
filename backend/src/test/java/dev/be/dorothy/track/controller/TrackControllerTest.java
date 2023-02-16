@@ -92,4 +92,72 @@ public class TrackControllerTest {
                 .andExpect(jsonPath("$.message").value("트랙 초대 코드 조회가 완료되었습니다."))
                 .andExpect(jsonPath("$.data").value("1ab2c3"));
     }
+
+    @Test
+    @DisplayName("Member가 트랙 초대 코드를 조회하는 경우, 403 예외 잘 던지는지 테스트")
+    void getTrackCodeWhenMember() throws Exception {
+        // given
+        Member member = Member.of(
+                "dorothy",
+                "abcd1234",
+                "2p7VxertGPCkNfnr",
+                "dorothy",
+                "dorothy@example.com",
+                MemberRole.MEMBER
+        );
+        Authentication mock = mock(Authentication.class);
+        ContextHolder.setContext(mock);
+        given(mock.getPrincipal()).willReturn(MemberDetail.from(member));
+
+        CommonResponse commonResponse = new CommonResponse(HttpStatus.FORBIDDEN, "권한이 존재하지 않습니다.", null);
+        ResponseEntity<CommonResponse> responseEntity = new ResponseEntity<>(commonResponse, HttpStatus.FORBIDDEN);
+        String content = objectMapper.writeValueAsString(responseEntity);
+        given(trackCodeManagerService.read("1")).willReturn(null);
+
+        // when
+        ResultActions perform = mockMvc.perform(
+                get("/api/v1/track/code/1")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(content));
+
+        // then
+        perform
+                .andExpect(status().isForbidden())
+                .andExpect(jsonPath("$.message").value("권한이 존재하지 않습니다."))
+                .andExpect(jsonPath("$.data").isEmpty());
+    }
+
+    @Test
+    @DisplayName("Super Admin이 트랙 초대 코드를 조회하는 경우, 403 예외 잘 던지는지 테스트")
+    void getTrackCodeWhenSuperAdmin() throws Exception {
+        // given
+        Member member = Member.of(
+                "dorothy",
+                "abcd1234",
+                "2p7VxertGPCkNfnr",
+                "dorothy",
+                "dorothy@example.com",
+                MemberRole.SUPER_ADMIN
+        );
+        Authentication mock = mock(Authentication.class);
+        ContextHolder.setContext(mock);
+        given(mock.getPrincipal()).willReturn(MemberDetail.from(member));
+
+        CommonResponse commonResponse = new CommonResponse(HttpStatus.FORBIDDEN, "권한이 존재하지 않습니다.", null);
+        ResponseEntity<CommonResponse> responseEntity = new ResponseEntity<>(commonResponse, HttpStatus.FORBIDDEN);
+        String content = objectMapper.writeValueAsString(responseEntity);
+        given(trackCodeManagerService.read("1")).willReturn(null);
+
+        // when
+        ResultActions perform = mockMvc.perform(
+                get("/api/v1/track/code/1")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(content));
+
+        // then
+        perform
+                .andExpect(status().isForbidden())
+                .andExpect(jsonPath("$.message").value("권한이 존재하지 않습니다."))
+                .andExpect(jsonPath("$.data").isEmpty());
+    }
 }
