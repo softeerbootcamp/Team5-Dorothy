@@ -31,4 +31,8 @@ public class RedisDao {
             redisTemplate.delete(keys);
         }
     }
+
+    public Long inclement(String key) {
+        return redisTemplate.opsForValue().increment(key);
+    }
 }
