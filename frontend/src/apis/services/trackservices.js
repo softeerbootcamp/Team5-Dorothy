@@ -4,7 +4,6 @@ const TrackService = {
     //트랙 생성
     postTrack: async (trackname) => {
         const response = await http.post(`/api/track?name=${trackname}`, {});
-
         return response;
     },
 
@@ -15,8 +14,13 @@ const TrackService = {
     },
 
     //트랙 가입
-    postTrackMember: () => {
-        http.post('/track/member');
+    postTrackMember: async (trackIdx, joinCode) => {
+        const response = await http.post(
+            `/api/track/join/${trackIdx}?joinCode=${joinCode}`,
+        );
+        console.log(response);
+        debugger;
+        return response;
     },
 };
 

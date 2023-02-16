@@ -24,7 +24,10 @@ const trackUser = () => {
         </div>
         <div class="track-back">
             <p class="track-body">참가할 트랙의 코드를 입력해주세요</p>
-            <input class="track-input" id="track-code" type="text" placeholder="초대 코드" />
+            <div id="track-code">
+                <input class="track-index-input" type="text" placeholder="ID" />
+                <input class="track-input" type="text" placeholder="초대 코드" />
+            </div>
             <button class="track-button" disabled="true">참가</button>
         </div>
     </figure>

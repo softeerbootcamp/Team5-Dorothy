@@ -2,16 +2,19 @@ import { TrackService } from './services/trackservices';
 import { navigateTo } from '../router';
 import { stateModal } from '../components/modal';
 import { qs } from '../utils/selector';
+import { trackCard } from '../components/track/trackCard';
 
 //트랙 생성
 export const PostTrack = async (trackname) => {
     try {
         const response = await TrackService.postTrack(trackname);
-        console.log(response);
+        qs('#track-make').insertAdjacentHTML(
+            'beforebegin',
+            trackCard('/src/assets/soundless.svg', response.data.data.name),
+        );
         succeedTrack(response.data);
     } catch (error) {
         console.log(error.status);
-
         return Promise.reject(error.message, '트랙 생성 실패');
     }
 };
@@ -22,39 +25,23 @@ export const GetTrack = async () => {
         const response = await TrackService.getTrack();
         return response;
     } catch (error) {
-        console.log(error);
+        console.log(error.response);
         navigateTo('/');
     }
 };
 
 //트랙 가입
-export const PostTrackMember = async () => {
+export const PostTrackMember = async (trackIdx, joinCode) => {
     try {
-        const response = await TrackService.postTrackMember();
-        document
-            .querySelector('.modal-place')
-            .insertAdjacentHTML(
-                'beforeend',
-                stateModal(response.code, response.message),
-            );
+        const response = await TrackService.postTrackMember(trackIdx, joinCode);
+        qs('#track-join').insertAdjacentHTML(
+            'beforebegin',
+            trackCard('/src/assets/soundless.svg', response.data.data.name),
+        );
+        succeedTrack(response.data);
     } catch (error) {
-        document
-            .querySelector('.modal-place')
-            .insertAdjacentHTML(
-                'beforeend',
-                stateModal(error.code, error.message),
-            );
+        failTrack();
         return Promise.reject(error.message, '트랙 가입 실패');
-    }
-};
-
-//트랙 멤버 조회
-export const GetTrackMember = async () => {
-    try {
-        const response = await TrackService.getTrackMember();
-    } catch (error) {
-        console.log(error);
-        return Promise.reject(error.message, '트랙 멤버 조회 실패');
     }
 };
 
@@ -70,8 +57,8 @@ const succeedTrack = (response) => {
     setmodal(code, message);
 };
 
-const failTrack = async (error) => {
-    const code = await error.response.data.code;
-    const message = await error.response.data.message;
+const failTrack = () => {
+    const code = 'fail';
+    const message = '트랙 가입 실패';
     setmodal(code, message);
 };
