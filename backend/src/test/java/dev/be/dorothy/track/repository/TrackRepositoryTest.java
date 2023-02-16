@@ -27,6 +27,8 @@ public class TrackRepositoryTest {
 
     @BeforeAll
     void insert() {
+        memberRepository.deleteAll();
+
         Member member = Member.of(
                 "dorothy",
                 "abcd1234",
