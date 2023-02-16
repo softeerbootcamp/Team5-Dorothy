@@ -5,6 +5,7 @@ const axis_x = [0, 10, 20, 30, 40];
 
 const chartTest = async () => {
     const items = await getMonthAttendance(3);
+    console.log(items);
     items.map((item) => {
         console.log(item.date.split('-')[2]);
     });

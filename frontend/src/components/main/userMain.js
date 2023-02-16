@@ -1,6 +1,6 @@
 import { getCurrentWeek } from './chart/currentWeek';
 import { profile } from './profileBox';
-import { getDayAttendance } from '../../apis/attend';
+import { getDayAttendance, getMonthAttendance } from '../../apis/attend';
 import { GetAllNotices } from '../../apis/notice';
 import { noticePreview } from '../notice/noticeComponents';
 import { qs } from '../../utils/selector';
@@ -8,15 +8,34 @@ import { qs } from '../../utils/selector';
 const latelyNotice = async () => {
     const notices = await GetAllNotices();
     const newNotice = notices[0];
-    console.log(newNotice);
     qs('.news-content-wrapper').insertAdjacentHTML(
         'afterbegin',
         noticePreview(newNotice),
     );
 };
+const weekAttendance = async () => {
+    const weekAttendance = await getMonthAttendance(3);
+    const length = weekAttendance.length;
+    const week = weekAttendance.slice(length - 7, length);
+    let i = 0;
+    getCurrentWeek()
+        .map((day) => {
+            const temp = `
+            <article class="calendar">
+                <div class="calendar-head">
+                    <span class="day">${day}</span>
+                </div>
+                ${week[i].type}
+            </article>`;
+            qs('.calendar-wrapper').insertAdjacentHTML('afterbegin', temp);
+            i++;
+        })
+        .join('');
+};
 
 const userMain = () => {
     latelyNotice();
+    weekAttendance();
     const userMainTemplate =
         /*html*/
         `
@@ -25,15 +44,7 @@ const userMain = () => {
             <section class="user-content-container">
                 <div class="attendance-wrapper"><i class="fa-solid fa-bell-concierge"></i> 나의 출석현황
                     <div class="calendar-wrapper">
-                        ${getCurrentWeek()
-                            .map((day) => {
-                                return `<article class="calendar">
-                                            <div class="calendar-head">
-                                                <span class="day">${day}</span>
-                                            </div>
-                                        </article>`;
-                            })
-                            .join('')}
+                        
                     </div>
                 </div>
                 <div class="contour"></div>

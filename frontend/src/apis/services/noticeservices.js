@@ -6,7 +6,6 @@ const NoticeService = {
     // 전체 공지 사항 조회
     getAllNotices: async () => {
         const response = await http.get('/api/notice/list');
-        console.log(response.data);
         return response.data.data;
     },
     // 단일 공지 사항 조회

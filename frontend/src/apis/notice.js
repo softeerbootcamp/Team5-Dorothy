@@ -7,7 +7,6 @@ import { navigateTo } from '../router';
 export const GetAllNotices = async () => {
     try {
         const response = await NoticeService.getAllNotices();
-        console.log(response);
         return response;
     } catch (error) {
         console.log(error);
