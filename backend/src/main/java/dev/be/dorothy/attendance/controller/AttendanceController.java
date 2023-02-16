@@ -76,4 +76,22 @@ public class AttendanceController {
         CommonResponse commonResponse = new CommonResponse(HttpStatus.OK, "출결 현황 조회가 완료되었습니다.", attendanceResDtoList);
         return new ResponseEntity<>(commonResponse, HttpStatus.OK);
     }
+
+    @GetMapping("/month/{trackIdx}")
+    public ResponseEntity<CommonResponse> readAttendanceByMonth(
+            @PathVariable("trackIdx") Long trackIdx
+    ) {
+        MemberDetail principal = (MemberDetail) ContextHolder.getContext().getPrincipal();
+        MemberResDto memberDto = principal.getMemberDto();
+
+        List<AttendanceResDto> attendanceResDtoList =
+                attendanceRetrieveService.retrieveAttendanceByMonth(
+                        memberDto.getIdx(),
+                        trackIdx,
+                        MemberRole.valueOf(memberDto.getRole())
+                );
+
+        CommonResponse commonResponse = new CommonResponse(HttpStatus.OK, "출결 현황 조회가 완료되었습니다.", attendanceResDtoList);
+        return new ResponseEntity<>(commonResponse, HttpStatus.OK);
+    }
 }
