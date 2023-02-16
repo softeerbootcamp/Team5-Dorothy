@@ -72,8 +72,8 @@ input {
     margin-bottom: 2vh;
 }
 
-.login-btn > button:disabled,
-.register-btn > button:disabled {
+.login-btn:disabled,
+.register-btn:disabled {
     background-color: #b8b8b8;
     cursor: default;
 }

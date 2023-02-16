@@ -1,9 +1,41 @@
 import { GetUser, PostUser } from '../apis/user.js';
 import { qs, qsa } from '../utils/selector.js';
 
+const idreq = /^[a-zA-Z]{1}[a-zA-Z0-9_]{4,11}$/;
+const passwordreq =
+    /^(?=.*[A-Za-z])(?=.*\d)(?=.*[~!@#$%^&*()+|=])[A-Za-z\d~!@#$%^&*()+|=]{8,16}$/;
+const emailreq = /^[_a-z0-9-]+([._a-z0-9-]+)*@(\w+\.)+\w+$/;
+
+function registerValidationCheck() {
+    const registerButton = qs('.register-btn');
+    const registerId = qs('#join-id-wrapper').querySelector('input').value;
+    const registerPassword = qs('#join-password-wrapper').querySelector(
+        'input',
+    ).value;
+    const registerPasswordCheck = qs(
+        '#join-passwordcheck-wrapper',
+    ).querySelector('input').value;
+    const registerEmail = qs('#join-email-wrapper').querySelector(
+        'input',
+    ).value;
+
+    registerButton.disabled = !(
+        idreq.test(registerId) &&
+        passwordreq.test(registerPassword) &&
+        registerPassword === registerPasswordCheck &&
+        emailreq.test(registerEmail)
+    );
+}
+function loginValidationCheck() {
+    const loginId = qs('#login-id-input').value.trim();
+    const loginPassWord = qs('#login-password-input').value;
+    const loginButton = qs('.login-btn');
+
+    loginButton.disabled = !(loginId.length > 0 && loginPassWord.length > 0);
+}
+
 function setHomeEvent() {
     const container = qs('.home-container');
-    const hamburgerbtn = qs('.hamburger');
     const passwordInputs = container.querySelectorAll('.password-input');
     const showPasswordEyeIcons = qsa('.fa-eye');
     const joinemail = qs('.join-email-input');
@@ -11,9 +43,11 @@ function setHomeEvent() {
     const registerPassword = qs('.join-password-input');
     const registerPasswordCheck = qs('.join-passwordcheck-input');
     const registerButton = qs('.register-btn');
+    const loginId = qs('#login-id-input');
+    const loginPassWord = qs('#login-password-input');
+    const loginButton = qs('.login-btn');
 
     validateJoinPasswordCheck();
-    hamburgerbtn.classList.add('hidden');
 
     container.addEventListener('click', (e) => {
         toggleLoginForm(e.target);
@@ -51,22 +85,52 @@ function setHomeEvent() {
     registerPasswordCheck.addEventListener('input', (e) => {
         validateJoinPasswordCheck(e);
     });
+    registerButton.disabled = 'true';
+    loginButton.disabled = 'true';
+    loginId.addEventListener('input', loginValidationCheck);
+    loginPassWord.addEventListener('input', loginValidationCheck);
 }
 
 const linkToLogin = (target) => {
     if (!target.classList.contains('link-to-login')) return;
     const loginForm = document.querySelector('.login-wrapper');
     const joinForm = document.querySelector('.join-container');
+    const registerButton = qs('.register-btn');
+    const joinInput = joinForm.querySelectorAll('input');
+    const joinCheck = joinForm.querySelectorAll('.fa-check');
+    const showPasswordEyeIcons = qsa('.fa-eye');
     loginForm.classList.toggle('On');
     joinForm.classList.toggle('On');
+    registerButton.disabled = 'true';
+    joinInput.forEach((inputForm) => {
+        inputForm.value = '';
+    });
+    joinCheck.forEach((check) => {
+        check.style.backgroundColor = `#b8b8b8`;
+    });
+    showPasswordEyeIcons.forEach((eye) => {
+        eye.classList.remove('show');
+        eye.classList.add('hidden');
+    });
 };
 
 const linkToRegister = (target) => {
     if (!target.classList.contains('link-to-join')) return;
-    const loginForm = document.querySelector('.login-wrapper');
-    const joinForm = document.querySelector('.join-container');
+    const loginId = qs('#login-id-input');
+    const loginPassWord = qs('#login-password-input');
+    const loginButton = qs('.login-btn');
+    const loginForm = qs('.login-wrapper');
+    const joinForm = qs('.join-container');
+    const showPasswordEyeIcons = qsa('.fa-eye');
     joinForm.classList.toggle('On');
     loginForm.classList.toggle('On');
+    loginId.value = '';
+    loginPassWord.value = '';
+    loginButton.disabled = 'true';
+    showPasswordEyeIcons.forEach((eye) => {
+        eye.classList.remove('show');
+        eye.classList.add('hidden');
+    });
 };
 
 const clickRegisterButton = (target) => {
@@ -84,19 +148,17 @@ const clickRegisterButton = (target) => {
 };
 
 const validateJoinId = (e) => {
-    const idreq = /^[a-zA-Z]{1}[a-zA-Z0-9_]{4,11}$/;
     const joinid = qs('#join-id-wrapper');
     const joinidcheck = joinid.querySelector('.fa-check');
 
     joinidcheck.style.backgroundColor = idreq.test(e.target.value)
         ? `#2b90d9`
         : `#b8b8b8`;
+
+    registerValidationCheck();
 };
 
 const validateJoinPasswordCheck = () => {
-    const passwordreq =
-        /^(?=.*[A-Za-z])(?=.*\d)(?=.*[~!@#$%^&*()+|=])[A-Za-z\d~!@#$%^&*()+|=]{8,16}$/;
-
     const joinpwcheckWrapper = document.querySelector(
         '#join-passwordcheck-wrapper',
     );
@@ -115,16 +177,19 @@ const validateJoinPasswordCheck = () => {
     } else {
         joinpwcheckshow.classList.remove('show');
     }
+
+    registerValidationCheck();
 };
 
 const validateJoinEmail = (e) => {
-    const joinemail = document.querySelector('#join-email-wrapper');
+    const joinemail = qs('#join-email-wrapper');
     const checkIcon = joinemail.querySelector('.fa-check');
-    const emailreq = /^[_a-z0-9-]+([._a-z0-9-]+)*@(\w+\.)+\w+$/;
 
     checkIcon.style.backgroundColor = emailreq.test(e.target.value)
         ? `#2b90d9`
         : `#b8b8b8`;
+
+    registerValidationCheck();
 };
 
 const toggleLoginForm = (target) => {
@@ -182,20 +247,13 @@ const clickLoginButton = (target) => {
     if (!target.classList.contains('login-btn')) return;
     const container = document.querySelector('.home-container');
     const loginForm = container.querySelector('.login-wrapper');
-    const maintitle = container.querySelector('.title-wrapper');
     const ID = loginForm.querySelector('.login-input').value;
     const PW = loginForm.querySelector('.password-input').value;
     GetUser(ID, PW);
-    loginForm.classList.toggle('On');
-    maintitle.classList.add('Mini');
-    document.body.querySelector('.hamburger').classList.add('show');
-    document.body.querySelector('.home-container').classList.add('Start');
 };
 
 const validateJoinPassword = (e) => {
     validateJoinPasswordCheck();
-    const passwordreq =
-        /^(?=.*[A-Za-z])(?=.*\d)(?=.*[~!@#$%^&*()+|=])[A-Za-z\d~!@#$%^&*()+|=]{8,16}$/;
 
     const registerPassword = document.querySelector('#join-password-wrapper');
     registerPassword.querySelector('.fa-check').style.backgroundColor =
@@ -206,6 +264,8 @@ const validateJoinPassword = (e) => {
     } else {
         joinpasswordshow.classList.remove('show');
     }
+
+    registerValidationCheck();
 };
 
 export default setHomeEvent;

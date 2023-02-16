@@ -46,11 +46,21 @@ const succeedLogin = (response) => {
     const message = response.message;
     const name = response.data.name;
     const role = response.data.role;
+    const container = document.querySelector('.home-container');
+    const loginForm = container.querySelector('.login-wrapper');
+    const maintitle = container.querySelector('.title-wrapper');
     setmodal(code, message);
+
+    loginForm.classList.toggle('On');
+    maintitle.classList.add('Mini');
+    document.body.querySelector('.hamburger').classList.remove('hidden');
+    document.body.querySelector('.home-container').classList.add('Start');
 
     const user = { name, role };
     sessionStorage.setItem('user', JSON.stringify(user));
-    navigateTo('/track');
+    setTimeout(() => {
+        navigateTo('/track');
+    }, 1000);
 };
 
 const failLogin = async (error) => {
