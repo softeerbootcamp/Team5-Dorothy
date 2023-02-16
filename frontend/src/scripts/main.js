@@ -6,6 +6,14 @@ const role = 'manager';
 let makeAttendance = false;
 
 function setMainEvent() {
+    qs('.main-button-wrapper').addEventListener('click', (e) => {
+        const mainButton = e.target.closest('.main-button-front');
+        if (mainButton) {
+            mainButton
+                .closest('.main-button')
+                .classList.toggle('input-available');
+        }
+    });
     if (role === 'manager') {
         qs('.big-content-container').addEventListener('click', (e) => {
             toggleChart(e.target);
@@ -14,14 +22,7 @@ function setMainEvent() {
     if (role === 'member') {
         if (!makeAttendance) {
             qs('#check-timer').innerHTML = timerForm();
-            qs('.main-button-wrapper').addEventListener('click', (e) => {
-                const mainButton = e.target.closest('.main-button-front');
-                if (mainButton) {
-                    mainButton
-                        .closest('.main-button')
-                        .classList.toggle('input-available');
-                }
-            });
+
             makeTimer();
         }
     }
