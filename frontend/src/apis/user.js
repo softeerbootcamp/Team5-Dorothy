@@ -46,9 +46,10 @@ const succeedLogin = (response) => {
     const message = response.message;
     const name = response.data.name;
     const role = response.data.role;
+    const idx = response.data.idx;
     setmodal(code, message);
 
-    const user = { name, role };
+    const user = { name, role, idx };
     sessionStorage.setItem('user', JSON.stringify(user));
     navigateTo('/track');
 };

@@ -30,7 +30,7 @@ export const GetTrack = async () => {
 //트랙 가입
 export const PostTrackMember = async () => {
     try {
-        const response = await UserService.postTrackMember();
+        const response = await TrackService.postTrackMember();
         document
             .querySelector('.modal-place')
             .insertAdjacentHTML(
@@ -51,7 +51,7 @@ export const PostTrackMember = async () => {
 //트랙 멤버 조회
 export const GetTrackMember = async () => {
     try {
-        const response = await UserService.getTrackMember();
+        const response = await TrackService.getTrackMember();
     } catch (error) {
         console.log(error);
         return Promise.reject(error.message, '트랙 멤버 조회 실패');

@@ -26,6 +26,7 @@ export default class trackPage extends AbstractView {
                         })
                         .join('')}
                         ${userRole() === 'ADMIN' ? trackManager() : trackUser()}
+
                     </section>
                 </section>
             </div>

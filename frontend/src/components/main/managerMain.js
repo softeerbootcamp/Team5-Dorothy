@@ -2,12 +2,12 @@ import { weeklyChart } from './chart/weeklyChart.js';
 import { dailyChart } from './chart/dailyChart.js';
 import { profile } from './profileBox.js';
 
-const managerMain = () => {
+const managerMain = async () => {
     const managerMainTemplate =
         /*html*/
         `
         <div class="main-content-container">
-        ${profile()}
+        ${await profile()}
             <section class="user-content-container">
             <div class="attendance-wrapper"><i class="fa-solid fa-bell-concierge"></i> 출석현황 ></div>
             <div class='manager-main-btn-wrapper'>
