@@ -34,6 +34,7 @@ export default class rentalDetailPage extends AbstractView {
                                 return hourCard(hour);
                             })
                             .join('')}
+                        <p class="time-container-capt">드래그로 다수의 시간대를 선택할 수 있습니다</p>
                     </section>
                     <button class="rental-confirm">대여할게요</button>
                 </section>

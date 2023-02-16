@@ -17,15 +17,10 @@ const holdClickReserve = () => {
             );
             const targetTimeBox = elemBelow.closest('.time-box');
 
-            if (targetTimeBox && currentTimeBox !== targetTimeBox) {
-                console.log('un-checked!');
-                targetTimeBox.classList.remove('checked');
-                currentTimeBox = targetTimeBox;
-                return;
-            } else if (targetTimeBox) {
-                if (!targetTimeBox.classList.contains('checked')) {
-                    console.log('checked!');
-                    targetTimeBox.classList.add('checked');
+            if (targetTimeBox) {
+                if (currentTimeBox !== targetTimeBox) {
+                    targetTimeBox.classList.toggle('checked');
+                    currentTimeBox = targetTimeBox;
                 }
             }
 
