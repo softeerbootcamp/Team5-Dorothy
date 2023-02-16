@@ -31,9 +31,10 @@ public class PlaceReservationServiceImpl implements PlaceReservationService{
             if(!placeReservationManagerImpl.reservePlace(key, memberIdx)){
                 resultList.add(ReservationResDto.of(placeIdx, startTime));
             }else{
-            placeRepository.reservePlace(memberIdx, placeIdx, LocalDateTime.now(), startTime, startTime.plusMinutes(15), false);
+                placeRepository.reservePlace(memberIdx, placeIdx, LocalDateTime.now(), startTime, startTime.plusMinutes(15), false);
             }
         }
+        placeReservationManagerImpl.findFailReservation(startTimeList.size(), resultList.size(), resultList);
         return resultList;
     }
 
