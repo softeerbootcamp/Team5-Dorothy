@@ -1,6 +1,7 @@
 import { timerForm } from './timer/timer';
 import { userRole } from '../../store/user';
 import { GetTrack } from '../../apis/track';
+import { qs } from '../../utils/selector';
 
 const profileOption = async () => {
     const options = await GetTrack();
@@ -9,11 +10,10 @@ const profileOption = async () => {
             return `<option>${option.name}</option>`;
         })
         .join('')}`;
-
-    return optionBox;
+    qs('.track-select-container').insertAdjacentHTML('afterbegin', optionBox);
 };
 
-const profile = async () => {
+const profile = () => {
     const profileTemplate = `
         <section class="profile-container">
             <div class="image-container">

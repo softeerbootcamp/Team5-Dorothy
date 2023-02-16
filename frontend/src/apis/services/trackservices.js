@@ -19,7 +19,6 @@ const TrackService = {
             `/api/track/join/${trackIdx}?joinCode=${joinCode}`,
         );
         console.log(response);
-        debugger;
         return response;
     },
 };
