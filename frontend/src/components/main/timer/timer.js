@@ -3,7 +3,7 @@ const timerForm = () => {
     <div id="check-timer">
     <div class="circle">
         <object type="image/svg+xml" data="./potion.svg" class="circle-svg"></object>
-        <svg width="230" viewBox="5 6 230 230" xmlns="http://www.w3.org/2000/svg">
+        <svg width="240" viewBox="8 8 230 230" xmlns="http://www.w3.org/2000/svg">
             <g transform="translate(110,110)">
                 <circle r="100" class="e-c-base"/>
                 <g transform="rotate(-90)">
