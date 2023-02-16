@@ -98,7 +98,7 @@ jobs:
           src: scripts/back-deploy.sh
           host: ${{ secrets.SERVER_IP }}
           remote: /home/ubuntu
-          port: 22
+          port: ${{ secrets.SSH_PORT }}
           user: ${{ secrets.SERVER_SSH_ID }}
           key: ${{ secrets.SSH_KEY }}
 
