@@ -2,6 +2,7 @@ package dev.be.dorothy.attendance.controller;
 
 import dev.be.dorothy.attendance.service.*;
 import dev.be.dorothy.common.CommonResponse;
+import dev.be.dorothy.exception.ForbiddenException;
 import dev.be.dorothy.member.MemberRole;
 import dev.be.dorothy.member.service.MemberResDto;
 import dev.be.dorothy.security.context.ContextHolder;
@@ -51,20 +52,28 @@ public class AttendanceController {
         MemberDetail principal = (MemberDetail) ContextHolder.getContext().getPrincipal();
         MemberResDto memberDto = principal.getMemberDto();
 
-        CommonResponse commonResponse = null;
+        // SUPER_ADMIN이 요청할 경우, 403 예외 처리
+        if (MemberRole.valueOf(memberDto.getRole()) == MemberRole.SUPER_ADMIN) {
+            throw new ForbiddenException();
+        }
+
+        // MEMBER가 요청한 경우
         if (MemberRole.valueOf(memberDto.getRole()) == MemberRole.MEMBER) {
             AttendanceResDto attendanceResDto = attendanceRetrieveService.retrieveAttendanceByDayWhenMember(
                     memberDto.getIdx(),
                     trackIdx
             );
-            commonResponse = new CommonResponse(HttpStatus.OK, "출결 현황 조회가 완료되었습니다.", attendanceResDto);
-        } else if (MemberRole.valueOf(memberDto.getRole()) == MemberRole.ADMIN) {
-            List<AttendanceRetrieveResDto> attendanceResDtoList = attendanceRetrieveService.retrieveAttendanceByDayWhenAdmin(
-                    trackIdx
-            );
-            commonResponse = new CommonResponse(HttpStatus.OK, "출결 현황 조회가 완료되었습니다.", attendanceResDtoList);
+
+            CommonResponse commonResponse = new CommonResponse(HttpStatus.OK, "출결 현황 조회가 완료되었습니다.", attendanceResDto);
+            return new ResponseEntity<>(commonResponse, HttpStatus.OK);
         }
 
+        // ADMIN이 요청한 경우
+        List<AttendanceRetrieveResDto> attendanceResDtoList = attendanceRetrieveService.retrieveAttendanceByDayWhenAdmin(
+                trackIdx
+        );
+
+        CommonResponse commonResponse = new CommonResponse(HttpStatus.OK, "출결 현황 조회가 완료되었습니다.", attendanceResDtoList);
         return new ResponseEntity<>(commonResponse, HttpStatus.OK);
     }
 }
