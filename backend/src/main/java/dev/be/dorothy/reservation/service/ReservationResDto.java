@@ -8,10 +8,14 @@ public class ReservationResDto {
     private final LocalTime startTime;
     private final LocalTime endTime;
 
-    public ReservationResDto(Long idx, LocalTime startTime, LocalTime endTime) {
+    private ReservationResDto(Long idx, LocalTime startTime, LocalTime endTime) {
         this.idx = idx;
         this.startTime = startTime;
         this.endTime = endTime;
+    }
+
+    public static ReservationResDto of(Long placeIdx, LocalTime startTime, LocalTime endTime) {
+        return new ReservationResDto(placeIdx, startTime, endTime);
     }
 
     public Long getIdx() {
