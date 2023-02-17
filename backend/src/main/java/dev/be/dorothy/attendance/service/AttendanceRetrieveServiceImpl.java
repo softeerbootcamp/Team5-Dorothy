@@ -1,8 +1,6 @@
 package dev.be.dorothy.attendance.service;
 
 import dev.be.dorothy.attendance.repository.AttendanceRepository;
-import dev.be.dorothy.exception.ForbiddenException;
-import dev.be.dorothy.member.MemberRole;
 import dev.be.dorothy.track.service.TrackRetrieveService;
 import org.springframework.stereotype.Service;
 
@@ -31,17 +29,14 @@ public class AttendanceRetrieveServiceImpl implements AttendanceRetrieveService 
     }
 
     @Override
-    public List<AttendanceResDto> retrieveAttendanceByMonth(Long memberIdx, Long trackIdx, MemberRole role) {
-        if(role == MemberRole.SUPER_ADMIN) {
-            throw new ForbiddenException("잘못된 접근입니다.");
-        }
+    public List<AttendanceResDto> retrieveAttendanceByMonthWhenMember(Long memberIdx, Long trackIdx) {
+        Long trackMemberIdx = trackRetrieveService.getTrackMemberIdx(memberIdx, trackIdx);
 
-        if(role == MemberRole.MEMBER) {
-            Long trackMemberIdx = trackRetrieveService.getTrackMemberIdx(memberIdx, trackIdx);
+        return attendanceRepository.getAttendanceByMonthWhenMember(trackMemberIdx);
+    }
 
-            return attendanceRepository.getAttendanceByMonthWhenMember(trackMemberIdx);
-        }
-
+    @Override
+    public List<AttendanceStatisticsResDto> retrieveAttendanceByMonthWhenAdmin(Long trackIdx) {
         return attendanceRepository.getAttendanceByMonthWhenAdmin(trackIdx);
     }
 }
