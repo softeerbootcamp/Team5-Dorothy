@@ -53,6 +53,25 @@ export const PostTrackMember = async (trackIdx, joinCode) => {
         return Promise.reject(error.message, '트랙 가입 실패');
     }
 };
+export const PostTrackMembers = async (trackIdx, joinCode) => {
+    try {
+        const response = await TrackService.postTrackMember(trackIdx, joinCode);
+        succeedTrack(response.data);
+    } catch (error) {
+        failTrack();
+        return Promise.reject(error.message, '트랙 가입 실패');
+    }
+};
+
+//트랙 초대 코드 조회
+export const GetTrackCode = async (currentIdx) => {
+    try {
+        const response = await TrackService.getTrackCode(currentIdx);
+        return response;
+    } catch (error) {
+        console.log(error.response);
+    }
+};
 
 //트랙 초대 코드 조회
 export const GetTrackCode = async (currentIdx) => {

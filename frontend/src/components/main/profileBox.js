@@ -28,12 +28,20 @@ const profile = () => {
                     ? `<figure class="main-button">
                         <div class="main-button-back">
                             <p>초대 코드 입력</p>
-                            <input
-                                class="main-track-input"
-                                id="track-code"
-                                type="text"
-                                placeholder="초대 코드"
-                            />
+                            <div class="user-track-input">
+                                <input
+                                    class="main-track-input"
+                                    id="track-id"
+                                    type="text"
+                                    placeholder="ID"
+                                />
+                                <input
+                                    class="main-track-input"
+                                    id="track-code"
+                                    type="text"
+                                    placeholder="초대 코드"
+                                />
+                            </div>
                             <div class="main-button-btn-wrapper">
                                 <button class="main-button-btn" id="main-button-confirm">등록</button>
                                 <button class="main-button-btn" id="main-button-cancel">취소</button>
@@ -60,7 +68,8 @@ const profile = () => {
                     </figure>
                     <figure class="main-button">
                         <div class="main-button-back">
-                            <p>현재 트랙 초대 코드</p>
+                            <p>현재 트랙 초대 코드: <span id="track-invite-id"></span></p>
+
                             <p id="track-invite-code"></p>
                             <div class="main-button-btn-wrapper">
                                 <button class="main-button-btn" id="main-code-copy">복사</button>

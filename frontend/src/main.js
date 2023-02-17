@@ -2,7 +2,7 @@ import setHomeEvent from './scripts/home.js';
 import { setMainEvent } from './scripts/main.js';
 import { setTrackEvent } from './components/track/trackCard.js';
 import { setCalendarEvent } from './components/calendar/calendar.js';
-import { setRentalEvent, setRentalDetailEvent } from './scripts/rental.js';
+import { setRentalEvent } from './scripts/rental.js';
 import {
     setNoticeEvent,
     setNoticeAddEvent,
