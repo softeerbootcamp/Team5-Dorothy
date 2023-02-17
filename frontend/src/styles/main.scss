@@ -306,6 +306,16 @@
     }
 }
 
+.user-track-input {
+    display: flex;
+    flex-direction: row;
+    margin: 0 5px;
+}
+#track-id {
+    width: 25px;
+    margin-right: 5px;
+}
+
 .news-content-wrapper {
     width: 90%;
     margin-top: 20px;
