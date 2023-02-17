@@ -33,7 +33,7 @@ const routes = [
     { path: /^\/noticeadd$/, event: 'noticeadd', view: noticeAddPage },
     {
         path: /^\/notice\/(\d+)$/,
-        event: 'noticelDetail',
+        event: 'noticeDetail',
         view: noticeDetailPage,
     },
     { path: /^\/track$/, event: 'track', view: trackPage },

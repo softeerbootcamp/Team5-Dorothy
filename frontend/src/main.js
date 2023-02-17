@@ -3,12 +3,17 @@ import { setMainEvent } from './scripts/main.js';
 import { setTrackEvent } from './components/track/trackCard.js';
 import { setCalendarEvent } from './components/calendar/calendar.js';
 import { setRentalEvent, setRentalDetailEvent } from './scripts/rental.js';
-import { setNoticeEvent } from './scripts/notice.js';
+import {
+    setNoticeEvent,
+    setNoticeAddEvent,
+    setNoticeDetailEvent,
+} from './scripts/notice.js';
 import {
     clearTimer,
     intervalTimer,
 } from './components/main/timer/maketimer.js';
 import { holdClickReserve } from './scripts/rentalDetail.js';
+import noticeDetailPage from './pages/noticeDetailPage.js';
 
 const eventdelegator = (root) => {
     document.removeEventListener('click', setRentalEvent);
@@ -35,9 +40,15 @@ const eventdelegator = (root) => {
         case 'notice':
             setNoticeEvent();
             break;
+        case 'noticeDetail':
+            setNoticeDetailEvent();
+            break;
         case 'rentalDetail':
             holdClickReserve();
+
             break;
+        case 'noticeadd':
+            setNoticeAddEvent();
     }
 };
 
