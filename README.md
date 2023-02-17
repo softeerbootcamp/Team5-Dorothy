@@ -48,7 +48,7 @@ BackEnd</br>
 <img width="857" alt="스크린샷 2023-02-17 오전 11 54 08" src="https://user-images.githubusercontent.com/64524916/219537895-b758f170-6df9-4549-aabf-f5c657e67d54.png">
 
 ## 배포 아키텍처
-![제목 없는 다이어그램 drawio (1)](https://user-images.githubusercontent.com/64524916/219537764-a33aecb0-5866-4843-bb05-a211bebe7eb9.png)
+![제목 없는 다이어그램 drawio](https://user-images.githubusercontent.com/64524916/219539878-ca17b5e7-9654-4a83-b269-2d6b22427921.png)
 
 ## SecurityFilter Architecture
 ![image](https://user-images.githubusercontent.com/64524916/217993894-2c75638d-e847-48c7-ad9f-a90d196909f6.png)
