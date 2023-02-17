@@ -69,6 +69,7 @@ const profile = () => {
                     <figure class="main-button">
                         <div class="main-button-back">
                             <p>현재 트랙 초대 코드: <span id="track-invite-id"></span></p>
+
                             <p id="track-invite-code"></p>
                             <div class="main-button-btn-wrapper">
                                 <button class="main-button-btn" id="main-code-copy">복사</button>
