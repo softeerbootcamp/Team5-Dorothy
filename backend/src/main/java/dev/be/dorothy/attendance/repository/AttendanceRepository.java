@@ -4,6 +4,7 @@ import dev.be.dorothy.attendance.Attendance;
 import dev.be.dorothy.attendance.AttendanceType;
 import dev.be.dorothy.attendance.service.AttendanceResDto;
 import dev.be.dorothy.attendance.service.AttendanceRetrieveResDto;
+import dev.be.dorothy.attendance.service.AttendanceStatisticsResDto;
 import org.springframework.data.jdbc.repository.query.Modifying;
 import org.springframework.data.jdbc.repository.query.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -44,12 +45,18 @@ public interface AttendanceRepository extends CrudRepository<Attendance, Long> {
             "  and date_format(date, '%Y-%m') = date_format(now(), '%Y-%m');")
     List<AttendanceResDto> getAttendanceByMonthWhenMember(@Param("trackMemberIdx") Long trackMemberIdx);
 
-    @Query("select date, time, type\n" +
-            "from attendance\n" +
-            "         inner join track_member on attendance.track_member_idx = track_member.idx\n" +
-            "where track_idx = :trackIdx\n" +
-            "  and role = 'MEMBER'\n" +
-            "  and is_deleted = 0\n" +
-            "  and date_format(date, '%Y-%m') = date_format(now(), '%Y-%m');")
-    List<AttendanceResDto> getAttendanceByMonthWhenAdmin(@Param("trackIdx") Long trackIdx);
+    @Query("select date, sum(d.PRESENT) as 'present', sum(d.TARDY) as 'tardy', sum(d.ABSENT) as 'absent'\n" +
+            "from (select date,\n" +
+            "             IF(type = 'PRESENT', count(type), 0) as 'PRESENT',\n" +
+            "             IF(type = 'TARDY', count(type), 0)   as 'TARDY',\n" +
+            "             IF(type = 'ABSENT', count(type), 0)  as 'ABSENT'\n" +
+            "      from attendance\n" +
+            "               inner join track_member on attendance.track_member_idx = track_member.idx\n" +
+            "      where track_idx = :trackIdx\n" +
+            "        and role = 'MEMBER'\n" +
+            "        and is_deleted = 0\n" +
+            "        and date_format(date, '%Y-%m') = date_format(now(), '%Y-%m')\n" +
+            "      group by date, type) as d\n" +
+            "group by d.date;")
+    List<AttendanceStatisticsResDto> getAttendanceByMonthWhenAdmin(@Param("trackIdx") Long trackIdx);
 }
