@@ -2,7 +2,7 @@ import setHomeEvent from './scripts/home.js';
 import { setMainEvent } from './scripts/main.js';
 import { setTrackEvent } from './components/track/trackCard.js';
 import { setCalendarEvent } from './components/calendar/calendar.js';
-import { setRentalEvent, setRentalDetailEvent } from './scripts/rental.js';
+import { setRentalEvent } from './scripts/rental.js';
 import {
     setNoticeEvent,
     setNoticeAddEvent,
@@ -13,6 +13,7 @@ import {
     intervalTimer,
 } from './components/main/timer/maketimer.js';
 import { holdClickReserve, ReservedTime } from './scripts/rentalDetail.js';
+import { userRole } from './store/user.js';
 
 const eventdelegator = (root) => {
     document.removeEventListener('click', setRentalEvent);
@@ -28,7 +29,9 @@ const eventdelegator = (root) => {
             setTrackEvent();
             break;
         case 'attend':
-            setCalendarEvent();
+            if (userRole() === 'MEMBER') {
+                setCalendarEvent();
+            }
             break;
         case 'rental':
             setRentalEvent();
