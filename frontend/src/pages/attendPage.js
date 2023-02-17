@@ -4,6 +4,7 @@ import { yearOption, makeCalendar } from '../components/calendar/calendar.js';
 import { getDayAttendance } from '../apis/attend.js';
 import { userRole } from '../store/user.js';
 import { qs } from '../utils/selector.js';
+import { navigateTo } from '../router.js';
 
 const memberAttend = () => {
     const now = new Date();
@@ -28,7 +29,6 @@ const memberAttend = () => {
 
 const adminAttend = async () => {
     const datas = await getDayAttendance(3);
-    console.log(datas);
     const admin = datas
         .map((data) => {
             return `

@@ -73,16 +73,6 @@ export const GetTrackCode = async (currentIdx) => {
     }
 };
 
-//트랙 초대 코드 조회
-export const GetTrackCode = async (currentIdx) => {
-    try {
-        const response = await TrackService.getTrackCode(currentIdx);
-        return response;
-    } catch (error) {
-        console.log(error.response);
-    }
-};
-
 const setmodal = (code, message) =>
     qs('.modal-place').insertAdjacentHTML(
         'beforeend',
