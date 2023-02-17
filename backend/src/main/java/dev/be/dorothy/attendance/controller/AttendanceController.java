@@ -84,12 +84,26 @@ public class AttendanceController {
         MemberDetail principal = (MemberDetail) ContextHolder.getContext().getPrincipal();
         MemberResDto memberDto = principal.getMemberDto();
 
-        List<AttendanceResDto> attendanceResDtoList =
-                attendanceRetrieveService.retrieveAttendanceByMonth(
-                        memberDto.getIdx(),
-                        trackIdx,
-                        MemberRole.valueOf(memberDto.getRole())
-                );
+        // SUPER_ADMIN이 요청할 경우, 403 예외 처리
+        if (MemberRole.valueOf(memberDto.getRole()) == MemberRole.SUPER_ADMIN) {
+            throw new ForbiddenException();
+        }
+
+        // MEMBER가 요청한 경우
+        if (MemberRole.valueOf(memberDto.getRole()) == MemberRole.MEMBER) {
+            List<AttendanceResDto> attendanceResDtoList = attendanceRetrieveService.retrieveAttendanceByMonthWhenMember(
+                    memberDto.getIdx(),
+                    trackIdx
+            );
+
+            CommonResponse commonResponse = new CommonResponse(HttpStatus.OK, "출결 현황 조회가 완료되었습니다.", attendanceResDtoList);
+            return new ResponseEntity<>(commonResponse, HttpStatus.OK);
+        }
+
+        // ADMIN이 요청한 경우
+        List<AttendanceStatisticsResDto> attendanceResDtoList = attendanceRetrieveService.retrieveAttendanceByMonthWhenAdmin(
+                trackIdx
+        );
 
         CommonResponse commonResponse = new CommonResponse(HttpStatus.OK, "출결 현황 조회가 완료되었습니다.", attendanceResDtoList);
         return new ResponseEntity<>(commonResponse, HttpStatus.OK);
