@@ -27,7 +27,7 @@ const weekAttendance = async () => {
                 </div>
                 ${week[i].type}
             </article>`;
-            qs('.calendar-wrapper').insertAdjacentHTML('afterbegin', temp);
+            qs('.calendar-wrapper').insertAdjacentHTML('beforeend', temp);
             i++;
         })
         .join('');

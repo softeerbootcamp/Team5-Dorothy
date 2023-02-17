@@ -3,6 +3,7 @@ import { pageTitleTamplate } from '../components/pageTitle.js';
 //import noticeData from '../components/notice/noticeInfo.js';
 import { noticePreview } from '../components/notice/noticeComponents.js';
 import { GetAllNotices } from '../apis/notice.js';
+import { userRole } from '../store/user.js';
 
 export default class noticePage extends AbstractView {
     async getHtml() {
@@ -36,7 +37,13 @@ export default class noticePage extends AbstractView {
                             </tbody>
                         </table>
                     </div>
+                    ${
+                        userRole() === 'ADMIN'
+                            ? `<button class="add-notice-btn">+</button>`
+                            : ''
+                    }
                 </section>
+                
             </div>
         </div>
         `;

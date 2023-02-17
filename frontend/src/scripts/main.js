@@ -13,7 +13,10 @@ async function setMainEvent() {
     }
     if (userRole() === 'MEMBER') {
         const currentAttendance = await getDayAttendance(3);
+        console.log(currentAttendance);
+
         const attendanceType = currentAttendance.type;
+        console.log(attendanceType);
         if (attendanceType !== 'PRESENT' && attendanceType !== 'TARDY') {
             qs('.image-container').insertAdjacentHTML(
                 'afterbegin',

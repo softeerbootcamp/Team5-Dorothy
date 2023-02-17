@@ -5,10 +5,21 @@ const axis_x = [0, 10, 20, 30, 40];
 
 const chartTest = async () => {
     const items = await getMonthAttendance(3);
-    console.log(items);
-    items.map((item) => {
-        console.log(item.date.split('-')[2]);
-    });
+    //const items
+
+    // items.map((item) => {
+    //     let num = 0;
+    //     for (let i = 0; i < 7; i++) {
+    //         console.log(
+    //             getCurrentWeek()[i].split('(')[0],
+    //             item.date.split('-')[2],
+    //         );
+    //         if ((getCurrentWeek()[i] = item.date.split('-')[2])) {
+    //             items.key()
+    //         }
+    //         console.log(num);
+    //     }
+    // });
 };
 
 const weeklyChart = () => {
