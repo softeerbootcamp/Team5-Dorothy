@@ -17,7 +17,7 @@ function setTrackEvent() {
         const trackMakeInput = trackMake.querySelector('.track-input');
         const trackMakeBtn = trackMake.querySelector('.track-button');
         trackMakeInput.addEventListener('input', (e) => {
-            trackMakeBtn.disabled = e.target.value.length <= 0;
+            trackMakeBtn.disabled = e.target.value.trim().length <= 0;
         });
         trackMake.addEventListener('click', (e) => {
             const makeBtn = e.target.closest('.track-button');

@@ -12,8 +12,7 @@ import {
     clearTimer,
     intervalTimer,
 } from './components/main/timer/maketimer.js';
-import { holdClickReserve } from './scripts/rentalDetail.js';
-import noticeDetailPage from './pages/noticeDetailPage.js';
+import { holdClickReserve, ReservedTime } from './scripts/rentalDetail.js';
 
 const eventdelegator = (root) => {
     document.removeEventListener('click', setRentalEvent);
@@ -34,9 +33,6 @@ const eventdelegator = (root) => {
         case 'rental':
             setRentalEvent();
             break;
-        case 'rentalDetail':
-            setRentalDetailEvent();
-            break;
         case 'notice':
             setNoticeEvent();
             break;
@@ -44,6 +40,7 @@ const eventdelegator = (root) => {
             setNoticeDetailEvent();
             break;
         case 'rentalDetail':
+            ReservedTime(location.pathname.split('/')[2]);
             holdClickReserve();
 
             break;

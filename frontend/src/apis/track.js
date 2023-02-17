@@ -18,6 +18,15 @@ export const PostTrack = async (trackname) => {
         return Promise.reject(error.message, '트랙 생성 실패');
     }
 };
+export const PostsTrack = async (trackname) => {
+    try {
+        const response = await TrackService.postTrack(trackname);
+        succeedTrack(response.data);
+    } catch (error) {
+        console.log(error.status);
+        return Promise.reject(error.message, '트랙 생성 실패');
+    }
+};
 
 //트랙 조회
 export const GetTrack = async () => {
@@ -42,6 +51,16 @@ export const PostTrackMember = async (trackIdx, joinCode) => {
     } catch (error) {
         failTrack();
         return Promise.reject(error.message, '트랙 가입 실패');
+    }
+};
+
+//트랙 초대 코드 조회
+export const GetTrackCode = async (currentIdx) => {
+    try {
+        const response = await TrackService.getTrackCode(currentIdx);
+        return response;
+    } catch (error) {
+        console.log(error.response);
     }
 };
 
