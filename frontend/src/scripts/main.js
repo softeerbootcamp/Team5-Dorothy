@@ -2,6 +2,8 @@ import { makeTimer } from '../components/main/timer/maketimer.js';
 import { qs } from '../utils/selector.js';
 import { timerForm } from '../components/main/timer/timer.js';
 import { userRole } from '../store/user.js';
+import { GetTrackCode } from '../apis/track.js';
+import { PostsTrack } from '../apis/track.js';
 
 let makeAttendance = false;
 
@@ -17,14 +19,35 @@ function setMainEvent() {
             makeTimer();
         }
     }
-    // qs('.main-button-wrapper').addEventListener('click', (e) => {
-    //     const mainButton = e.target.closest('.main-button-front');
-    //     if (mainButton) {
-    //         mainButton
-    //             .closest('.main-button')
-    //             .classList.toggle('input-available');
-    //     }
-    // });
+    qs('.main-button-wrapper').addEventListener('click', (e) => {
+        const mainButton = e.target.closest('.main-button-front');
+        if (mainButton) {
+            mainButton
+                .closest('.main-button')
+                .classList.toggle('input-available');
+        }
+        const closeButton = e.target.closest('#main-button-cancel');
+        if (closeButton) {
+            closeButton
+                .closest('.main-button')
+                .classList.toggle('input-available');
+        }
+    });
+    qs('#track-code-call').addEventListener('click', async () => {
+        const inviteCode = await GetTrackCode(
+            qs('.track-select-container').value,
+        );
+        qs('#track-invite-code').innerHTML = inviteCode.data;
+    });
+    qs('#track-name-input').addEventListener('input', (e) => {
+        qs('#main-button-generate').disabled =
+            e.target.value.trim().length <= 0;
+    });
+    qs('#main-button-generate').addEventListener('click', async () => {
+        const newTrackName = qs('#track-name-input');
+        PostsTrack(newTrackName.value);
+        newTrackName.value = '';
+    });
 }
 
 const toggleChart = (target) => {

@@ -1,4 +1,5 @@
-import { qs } from '../utils/selector';
+import { qs, qsa } from '../utils/selector';
+import { GetHours, PostReservation } from '../apis/rental';
 
 const holdClickReserve = () => {
     let currentTimeBox;
@@ -36,6 +37,35 @@ const holdClickReserve = () => {
         }
         document.addEventListener('mouseup', onMouseUp);
     });
+
+    qs('.rental-confirm').addEventListener('click', () => {
+        MakeReservation();
+    });
 };
 
-export { holdClickReserve };
+const ReservedTime = async (placeId) => {
+    const TimeBoxes = qsa('.time-box');
+    const TimeBooked = await GetHours(placeId);
+    NodeList.prototype.find = Array.prototype.find;
+
+    TimeBooked.data.forEach((time) => {
+        const TargetTime = TimeBoxes.find((TimeBox) => {
+            return TimeBox.getAttribute('data-time') + ':00' === time.startTime;
+        });
+        TargetTime.classList.add('unabled');
+    });
+};
+
+const MakeReservation = () => {
+    const CheckedTimeBoxes = qsa('.checked');
+    let ReserveTime = [];
+
+    CheckedTimeBoxes.forEach((TimeBox) => {
+        ReserveTime.push(TimeBox.getAttribute('data-time'));
+    });
+
+    console.log(ReserveTime);
+    PostReservation(location.pathname.split('/')[2], ReserveTime);
+};
+
+export { holdClickReserve, ReservedTime };

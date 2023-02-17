@@ -2,13 +2,13 @@ import setHomeEvent from './scripts/home.js';
 import { setMainEvent } from './scripts/main.js';
 import { setTrackEvent } from './components/track/trackCard.js';
 import { setCalendarEvent } from './components/calendar/calendar.js';
-import { setRentalEvent, setRentalDetailEvent } from './scripts/rental.js';
+import { setRentalEvent } from './scripts/rental.js';
 import { setNoticeEvent } from './scripts/notice.js';
 import {
     clearTimer,
     intervalTimer,
 } from './components/main/timer/maketimer.js';
-import { holdClickReserve } from './scripts/rentalDetail.js';
+import { holdClickReserve, ReservedTime } from './scripts/rentalDetail.js';
 
 const eventdelegator = (root) => {
     document.removeEventListener('click', setRentalEvent);
@@ -29,13 +29,11 @@ const eventdelegator = (root) => {
         case 'rental':
             setRentalEvent();
             break;
-        case 'rentalDetail':
-            setRentalDetailEvent();
-            break;
         case 'notice':
             setNoticeEvent();
             break;
         case 'rentalDetail':
+            ReservedTime(location.pathname.split('/')[2]);
             holdClickReserve();
             break;
     }

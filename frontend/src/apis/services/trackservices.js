@@ -21,6 +21,12 @@ const TrackService = {
         console.log(response);
         return response;
     },
+
+    //현재 트랙 초대 코드 조회
+    getTrackCode: async (currentIdx) => {
+        const response = await http.get(`/api/track/code/${currentIdx}`);
+        return response.data;
+    },
 };
 
 export { TrackService };

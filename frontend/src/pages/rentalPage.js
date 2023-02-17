@@ -2,9 +2,11 @@ import AbstractView from './pageTemplate';
 import placeData from '../components/rental/placeInfo.js';
 import { pageTitleTamplate } from '../components/pageTitle.js';
 import { placeCard } from '../components/rental/placeCard.js';
+import { GetRental } from '../apis/rental';
 
 export default class rentalPage extends AbstractView {
     async getHtml() {
+        const rentalInfo = await GetRental();
         return `
         <div class="container Start">
             <div class="main-wrapper">
@@ -16,9 +18,9 @@ export default class rentalPage extends AbstractView {
                 </div>
                 <section class="big-content-container">
                     <div class="places-container">
-                    ${placeData
+                    ${rentalInfo.data
                         .map((place) => {
-                            return placeCard(place.id, place.name, place.img);
+                            return placeCard(place.idx, place.name, place.img);
                         })
                         .join('')}
                     </div>

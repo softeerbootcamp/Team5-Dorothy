@@ -110,6 +110,12 @@
 .time-box.checked {
     background-color: #99ffaa;
 }
+.time-box.unabled {
+    background-color: #828282;
+    color: #fff;
+    pointer-events: none;
+    box-shadow: none;
+}
 
 .rental-confirm {
     display: flex;
