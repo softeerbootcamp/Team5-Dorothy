@@ -19,7 +19,6 @@ const profile = () => {
             <div class="image-container">
                 <img src="https://ca.slack-edge.com/T04AE6CRWMB-U04GTQ0SHRT-badeda2b168f-512" alt="my-profile">
             </div>
-            ${userRole() === 'MEMBER' ? timerForm() : ''}
             <select class="track-select-container">
                 ${profileOption()}
             </select>

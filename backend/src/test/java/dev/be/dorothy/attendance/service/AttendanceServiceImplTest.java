@@ -1,5 +1,6 @@
 package dev.be.dorothy.attendance.service;
 
+import dev.be.dorothy.attendance.Attendance;
 import dev.be.dorothy.attendance.AttendanceType;
 import dev.be.dorothy.attendance.repository.AttendanceRepository;
 import dev.be.dorothy.exception.BadRequestException;
@@ -72,7 +73,14 @@ public class AttendanceServiceImplTest {
         doNothing().when(attendanceManagerService).checkAttendanceLocation(trackIdx, 37.490847, 127.033101);
         given(attendanceManagerService.checkAttendanceTime(trackIdx, LocalDate.now(), LocalTime.of(10, 0))).willReturn(AttendanceType.PRESENT);
         given(trackRetrieveService.getTrackMemberIdx(memberIdx, trackIdx)).willReturn(1L);
-        given(attendanceRepository.getAttendanceIdx(trackMemberIdx)).willReturn(Optional.of(1L));
+
+        Attendance attendance = new Attendance(
+                trackMemberIdx,
+                LocalDate.now(),
+                LocalTime.now(),
+                AttendanceType.PRESENT
+        );
+        given(attendanceRepository.getAttendance(trackMemberIdx)).willReturn(Optional.of(attendance));
 
         BadRequestException badRequestException = assertThrows(BadRequestException.class,
                 () -> attendanceServiceImpl.attend(memberIdx, trackIdx, MemberRole.MEMBER, LocalDate.now(), LocalTime.of(10, 0), attendanceReqDto));

@@ -30,13 +30,5 @@ const UserService = {
 
         return response.data;
     },
-
-    getAllNotices: () => {
-        http.get('/notices');
-    },
-    //
-    getNotice: (id) => {
-        http.get(`/notices/${id}`);
-    },
 };
 export { UserService };

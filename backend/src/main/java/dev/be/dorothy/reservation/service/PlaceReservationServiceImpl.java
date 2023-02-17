@@ -1,17 +1,20 @@
 package dev.be.dorothy.reservation.service;
 
-import dev.be.dorothy.exception.BadRequestException;
+import dev.be.dorothy.aspect.RedissonKeyUtils;
 import dev.be.dorothy.reservation.repository.PlaceRepository;
 import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 @Service
 public class PlaceReservationServiceImpl implements PlaceReservationService{
 
     private final PlaceRepository placeRepository;
     private final PlaceReservationManagerImpl placeReservationManagerImpl;
-    private static final String RESERVATION_KEY = "RESERVATION_";
+    public static final String RESERVATION_KEY = "RESERVATION_";
 
     public PlaceReservationServiceImpl(PlaceRepository placeRepository, PlaceReservationManagerImpl placeReservationManagerImpl) {
         this.placeRepository = placeRepository;
@@ -19,17 +22,30 @@ public class PlaceReservationServiceImpl implements PlaceReservationService{
     }
 
     @Override
-    public ReservationResDto reservePlace(Long memberIdx, Long placeIdx, LocalTime startTime) {
-        StringBuilder keyBuilder = new StringBuilder();
-        keyBuilder.append(RESERVATION_KEY)
-                .append(placeIdx)
-                .append("-")
-                .append(startTime);
-        if(!placeReservationManagerImpl.reservePlace(keyBuilder.toString(), memberIdx)){
-            throw new BadRequestException("이미 예약된 공간입니다.");
+    public List<ReservationResDto> reservePlace(Long memberIdx, Long placeIdx, Object startTimeObj) {
+        List<Map<String, String>> startTimeList = (ArrayList) startTimeObj;
+        List<ReservationResDto> resultList = new ArrayList<>();
+        for(Map<String, String> startTimeStr : startTimeList){
+            LocalTime startTime = LocalTime.parse(startTimeStr.get("time"));
+            String key = RedissonKeyUtils.keyBuilder(placeIdx, startTime);
+            if(!placeReservationManagerImpl.reservePlace(key, memberIdx)){
+                resultList.add(ReservationResDto.of(placeIdx, startTime));
+            }else{
+                placeRepository.reservePlace(memberIdx, placeIdx, LocalDateTime.now(), startTime, startTime.plusMinutes(15), false);
+            }
         }
-        Integer reservationID = placeRepository.reservePlace(memberIdx, placeIdx, LocalDateTime.now(), startTime, startTime.plusMinutes(15), false);
-        return placeRepository.findReservationById(reservationID).orElseThrow(() -> new BadRequestException("입력 정보가 올바르지 않습니다."));
+        placeReservationManagerImpl.findFailReservation(startTimeList.size(), resultList.size(), resultList);
+        return resultList;
+    }
+
+    @Override
+    public List<ReservationResDto> readReservationDetail(Long placeIdx) {
+        return placeRepository.findReservationByPlaceId(placeIdx);
+    }
+
+    @Override
+    public List<ReservationResDto> readMyReservations(Long memberIdx) {
+        return placeRepository.findReservationByMemberId(memberIdx);
     }
 
 }

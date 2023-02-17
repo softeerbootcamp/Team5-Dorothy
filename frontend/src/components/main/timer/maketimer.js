@@ -1,3 +1,4 @@
+import { postAttendance } from '../../../apis/attend';
 import { qs } from '../../../utils/selector';
 
 let intervalTimer;
@@ -19,7 +20,9 @@ const getUserLocation = () => {
         id = navigator.geolocation.watchPosition(function (pos) {
             let latitude = pos.coords.latitude;
             let longitude = pos.coords.longitude;
+
             console.log(latitude, longitude);
+            return latitude, longitude;
         });
     } else {
         alert('이 브라우저에서는 Geolocation이 지원되지 않습니다.');
@@ -80,6 +83,7 @@ const makeTimer = () => {
     timer(wholeTime);
 
     playButton.addEventListener('click', () => {
+        console.log(getUserLocation());
         navigator.geolocation.clearWatch(id);
         clearInterval(intervalTimer);
         document.querySelector('#check-timer').style.opacity = '0';

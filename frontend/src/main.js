@@ -2,8 +2,12 @@ import setHomeEvent from './scripts/home.js';
 import { setMainEvent } from './scripts/main.js';
 import { setTrackEvent } from './components/track/trackCard.js';
 import { setCalendarEvent } from './components/calendar/calendar.js';
-import { setRentalEvent } from './scripts/rental.js';
-import { setNoticeEvent } from './scripts/notice.js';
+import { setRentalEvent, setRentalDetailEvent } from './scripts/rental.js';
+import {
+    setNoticeEvent,
+    setNoticeAddEvent,
+    setNoticeDetailEvent,
+} from './scripts/notice.js';
 import {
     clearTimer,
     intervalTimer,
@@ -32,10 +36,16 @@ const eventdelegator = (root) => {
         case 'notice':
             setNoticeEvent();
             break;
+        case 'noticeDetail':
+            setNoticeDetailEvent();
+            break;
         case 'rentalDetail':
             ReservedTime(location.pathname.split('/')[2]);
             holdClickReserve();
+
             break;
+        case 'noticeadd':
+            setNoticeAddEvent();
     }
 };
 

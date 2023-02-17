@@ -18,7 +18,6 @@ const TrackService = {
         const response = await http.post(
             `/api/track/join/${trackIdx}?joinCode=${joinCode}`,
         );
-        console.log(response);
         return response;
     },
 

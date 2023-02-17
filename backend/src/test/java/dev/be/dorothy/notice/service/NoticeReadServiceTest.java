@@ -5,6 +5,7 @@ import dev.be.dorothy.notice.Notice;
 import dev.be.dorothy.notice.repository.NoticeRepository;
 import dev.be.dorothy.notice.serivce.NoticeReadServiceImpl;
 import dev.be.dorothy.notice.serivce.NoticeResDto;
+import dev.be.dorothy.redis.RedisDao;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -29,6 +30,9 @@ public class NoticeReadServiceTest {
     @InjectMocks
     NoticeReadServiceImpl noticeReadService;
 
+    @Mock
+    RedisDao redisDao;
+
     @Test
     @DisplayName("Notice 단일 조회 시, 디비에서 조회한 Notice를 정상적으로 NoticeResDto로 반환하는지 테스트")
     void getNotice() {
@@ -36,6 +40,7 @@ public class NoticeReadServiceTest {
         Long noticeId = 1L;
         Notice notice = new Notice(noticeId, 1L, "현대차그룹 채용결과 안내", "all pass", LocalDateTime.now(), LocalDateTime.now(), 0L, false);
         given(noticeRepository.findOne(noticeId)).willReturn(Optional.of(notice));
+        given(redisDao.increment("NOTICE_" + noticeId)).willReturn(1L);
 
         // when
         NoticeResDto noticeResDto = noticeReadService.getNotice(noticeId);
