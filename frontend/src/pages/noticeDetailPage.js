@@ -35,7 +35,7 @@ export default class noticeDetailPage extends AbstractView {
                         }</div>
                         <button class="notice-edit-btn"><div class="rental-icon"><i class="fa-solid fa-list"></i></div>목록</button>
                         ${
-                            userRole === 'ADMIN'
+                            userRole() === 'ADMIN'
                                 ? `
                         <button class="notice-edit-btn"><div class="rental-icon"><i class="fa-solid fa-trash"></i></div>삭제</button><button class="notice-edit-btn"><div class="rental-icon"><i class="fa-solid fa-pen"></i></div>수정</button>`
                                 : ''

@@ -24,6 +24,12 @@ const setNoticeAddEvent = () => {
     });
 };
 
+const setNoticeDetailEvent = () => {
+    qs('.notice-edit-btn').addEventListener('click', (e) => {
+        navigateTo('/notice');
+    });
+};
+
 const linkToAdd = () => {
     navigateTo('/noticeadd');
 };
@@ -48,4 +54,4 @@ const navigator = (e) => {
     const cardID = e.target.closest('tr').getAttribute('data-set');
     navigateTo('/notice/' + cardID);
 };
-export { setNoticeEvent, setNoticeAddEvent };
+export { setNoticeEvent, setNoticeAddEvent, setNoticeDetailEvent };
