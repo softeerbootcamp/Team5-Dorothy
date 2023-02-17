@@ -45,10 +45,10 @@ BackEnd</br>
     <img src="https://img.shields.io/badge/Docker-2496ED?style=flat&logo=Docker&logoColor=white"/>
     
 ## API 명세
-![](https://velog.velcdn.com/images/solchan/post/c5db9b18-2eaa-497d-b0a4-b826aaf1eb22/image.png)
+<img width="857" alt="스크린샷 2023-02-17 오전 11 54 08" src="https://user-images.githubusercontent.com/64524916/219537895-b758f170-6df9-4549-aabf-f5c657e67d54.png">
 
 ## 배포 아키텍처
-![](https://velog.velcdn.com/images/solchan/post/7e9dd24a-cbd4-4a0b-8a5a-e137fe56232d/image.png)
+![제목 없는 다이어그램 drawio (1)](https://user-images.githubusercontent.com/64524916/219537764-a33aecb0-5866-4843-bb05-a211bebe7eb9.png)
 
 ## SecurityFilter Architecture
 ![image](https://user-images.githubusercontent.com/64524916/217993894-2c75638d-e847-48c7-ad9f-a90d196909f6.png)
