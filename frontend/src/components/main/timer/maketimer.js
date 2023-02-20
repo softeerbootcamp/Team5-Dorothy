@@ -5,7 +5,7 @@ let intervalTimer;
 const WARNING_THRESHOLD = 10;
 const ALERT_THRESHOLD = 0;
 
-const ATTEND_HOURS = 9;
+const ATTEND_HOURS = 14;
 const ATTEND_MINUTES = 60;
 const ATTEND_SECONDS = 60;
 
@@ -46,7 +46,13 @@ const makeTimer = () => {
         let minutes = Math.floor(timeLeft / 60);
         let seconds = timeLeft % 60;
         let displayString = `${
-            minutes < 0 ? (minutes > -10 ? '-0' : '-') : minutes < 10 ? '0' : ''
+            minutes < 0
+                ? minutes > -10
+                    ? '-0'
+                    : '+'
+                : minutes < 10
+                ? '0'
+                : '-'
         }${Math.abs(minutes)}:${
             seconds < 10 && seconds > -10 ? '0' : ''
         }${Math.abs(seconds)}`;

@@ -39,7 +39,7 @@ const adminAttend = async () => {
             `;
         })
         .join('');
-    qs('.big-content-container').insertAdjacentHTML('beforeend', admin);
+    qs('.big-attend-container').insertAdjacentHTML('beforeend', admin);
 };
 
 if (userRole() === 'ADMIN') {
@@ -62,7 +62,7 @@ export default class attendPage extends AbstractView {
                 </div>
                 <div class="content-container">
                 </div>
-                <section class="big-content-container">
+                <section class="big-content-container big-attend-container">
                     ${userRole() === 'MEMBER' ? memberAttend() : ''}
                 </section> 
             </div>

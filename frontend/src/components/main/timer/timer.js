@@ -11,13 +11,13 @@ const timerForm = () => {
                     <g id="e-pointer">
                         <circle cx="94" cy="0" r="8" class="e-c-pointer"/>
                     </g>
-                </g>
+                </g>x
             </g>
         </svg>
     </div>
     <div class="controlls">
         <div class="display-remain-time"></div>
-        <button class="play" id="pause">출석</button>
+        <button class="play" id="pause">출석하기</button>
     </div>
     </div>
     `;

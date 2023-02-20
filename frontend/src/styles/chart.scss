@@ -6,12 +6,14 @@
 }
 
 .daily-ratio-wrapper {
+    position: relative;
     background-color: #dedede;
     width: 100%;
     height: 5vh;
     margin: 10vh 0 0;
     border-radius: 40vw;
     div {
+        position: absolute;
         line-height: 5vh;
         height: 100%;
         border-radius: 40vw;
@@ -41,12 +43,12 @@
 }
 .late {
     background-color: orange;
-    animation: stack2 2s 1;
+    animation: stack 2s 1;
     transform-origin: 0% 100%;
 }
 .absent {
-    background-color: violet;
-    animation: stack3 2s 1;
+    background-color: rgb(238, 130, 130);
+    animation: stack 2s 1;
     transform-origin: 0% 100%;
 }
 
