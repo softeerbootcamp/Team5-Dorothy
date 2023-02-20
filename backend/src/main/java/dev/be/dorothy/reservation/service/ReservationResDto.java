@@ -14,14 +14,8 @@ public class ReservationResDto {
         this.endTime = endTime.substring(0, endTime.lastIndexOf(":"));
     }
 
-    private ReservationResDto(Long placeIdx, LocalTime startTime, LocalTime endTime) {
-        this.placeIdx = placeIdx;
-        this.startTime = startTime.toString();
-        this.endTime = endTime.toString();
-    }
-
     public static ReservationResDto of(Long placeIdx, LocalTime startTime, LocalTime endTime) {
-        return new ReservationResDto(placeIdx, startTime, endTime);
+        return new ReservationResDto(placeIdx, startTime.toString().concat(":00"), endTime.toString().concat(":00"));
     }
 
     public Long getPlaceIdx() {
