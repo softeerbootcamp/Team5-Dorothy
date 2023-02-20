@@ -42,7 +42,8 @@ public interface AttendanceRepository extends CrudRepository<Attendance, Long> {
     @Query("select date, time, type\n" +
             "from attendance\n" +
             "where track_member_idx = :trackMemberIdx\n" +
-            "  and date_format(date, '%Y-%m') = date_format(now(), '%Y-%m');")
+            "  and date_format(date, '%Y-%m') = date_format(now(), '%Y-%m')\n" +
+            "order by date;")
     List<AttendanceResDto> getAttendanceByMonthWhenMember(@Param("trackMemberIdx") Long trackMemberIdx);
 
     @Query("select date, sum(d.PRESENT) as 'present', sum(d.TARDY) as 'tardy', sum(d.ABSENT) as 'absent'\n" +
@@ -57,6 +58,7 @@ public interface AttendanceRepository extends CrudRepository<Attendance, Long> {
             "        and is_deleted = 0\n" +
             "        and date_format(date, '%Y-%m') = date_format(now(), '%Y-%m')\n" +
             "      group by date, type) as d\n" +
-            "group by d.date;")
+            "group by d.date\n" +
+            "order by d.date;")
     List<AttendanceStatisticsResDto> getAttendanceByMonthWhenAdmin(@Param("trackIdx") Long trackIdx);
 }

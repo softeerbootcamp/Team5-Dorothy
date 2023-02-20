@@ -9,7 +9,7 @@ const managerMain = () => {
         <div class="main-content-container">
         ${profile()}
             <section class="user-content-container">
-            <div class="attendance-wrapper"><i class="fa-solid fa-bell-concierge"></i> 출석현황 ></div>
+            <div class="attendance-wrapper"><i class="fa-solid fa-magnifying-glass-chart"></i> 출석 통계 ></div>
             <div class='manager-main-btn-wrapper'>
                 <button class="daily-chart-btn">일간</button>
                 <button class="weekly-chart-btn">주간</button>

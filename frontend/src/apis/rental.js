@@ -38,6 +38,16 @@ export const PostReservation = async (placeIdx, reserveTimes) => {
         failReserve();
     }
 };
+export const getMyReserved = async () => {
+    try {
+        const response = await RentalService.getMyReservation();
+        succeedReserve(response);
+        return response;
+    } catch (error) {
+        console.log(error.response);
+        failInquire();
+    }
+};
 
 const setmodal = (code, message) =>
     qs('.modal-place').insertAdjacentHTML(
@@ -54,5 +64,10 @@ const succeedReserve = (response) => {
 const failReserve = () => {
     const code = 'fail';
     const message = '공간 예약 실패';
+    setmodal(code, message);
+};
+const failInquire = () => {
+    const code = 'fail';
+    const message = '예약 내역 조회 실패';
     setmodal(code, message);
 };

@@ -50,7 +50,7 @@ const ReservedTime = async (placeId) => {
 
     TimeBooked.data.forEach((time) => {
         const TargetTime = TimeBoxes.find((TimeBox) => {
-            return TimeBox.getAttribute('data-time') + ':00' === time.startTime;
+            return TimeBox.getAttribute('data-time') === time.startTime;
         });
         TargetTime.classList.add('unabled');
     });

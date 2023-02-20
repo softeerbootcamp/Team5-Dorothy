@@ -20,6 +20,11 @@ export default class rentalPage extends AbstractView {
                     <div class="places-container">
                     ${rentalInfo.data
                         .map((place) => {
+                            return placeCard(
+                                place.idx,
+                                place.name,
+                                Math.floor(Math.random() * 20) + 1,
+                            );
                             return placeCard(place.idx, place.name, place.img);
                         })
                         .join('')}

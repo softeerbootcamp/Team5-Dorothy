@@ -32,7 +32,7 @@ public class PlaceReservationManagerImpl implements PlaceReservationManager{
             throw new BadRequestException("공간 예약에 실패하였습니다");
         }
         if(failLength > 0) {
-            String resultMsg = String.format("%d개의 요청 중 %d개의 요청에 실패하였습니다", paramLength, paramLength - failLength);
+            String resultMsg = String.format("%d개의 요청 중 %d개의 요청에 실패하였습니다", paramLength, failLength);
             throw new PartialContentException(resultMsg, resultList);
         }
     }
