@@ -3,7 +3,9 @@ import { profile } from './profileBox';
 import { getDayAttendance, getMonthAttendance } from '../../apis/attend';
 import { GetAllNotices } from '../../apis/notice';
 import { noticePreview } from '../notice/noticeComponents';
+import { getMyReserved } from '../../apis/rental';
 import { qs } from '../../utils/selector';
+import { isElementAccessExpression } from 'typescript';
 
 const latelyNotice = async () => {
     const notices = await GetAllNotices();
@@ -32,10 +34,119 @@ const weekAttendance = async () => {
         })
         .join('');
 };
+const myReservation = async () => {
+    const myReserveLog = await getMyReserved();
+    let myReserveTime = [];
+
+    myReserveLog.data.forEach((myTime) => {
+        const myTimeParsed = myTime.startTime.split(':');
+        let startDateObj = new Date();
+        startDateObj.setHours(myTimeParsed[0]);
+        startDateObj.setMinutes(myTimeParsed[1]);
+        let endDateObj = new Date();
+        endDateObj.setHours(myTimeParsed[0]);
+        endDateObj.setMinutes(myTimeParsed[1]);
+        endDateObj.setMinutes(endDateObj.getMinutes() + 15);
+
+        if (myReserveTime.length === 0) {
+            myReserveTime.push({
+                idx: myTime.placeIdx,
+                startTime: `${
+                    startDateObj.getHours() < 10
+                        ? '0' + startDateObj.getHours()
+                        : startDateObj.getHours()
+                }:${
+                    startDateObj.getMinutes() < 10
+                        ? '0' + startDateObj.getMinutes()
+                        : startDateObj.getMinutes()
+                }`,
+                endTime: `${
+                    startDateObj.getHours() < 10
+                        ? '0' + startDateObj.getHours()
+                        : startDateObj.getHours()
+                }:${
+                    endDateObj.getMinutes() < 10
+                        ? '0' + endDateObj.getMinutes()
+                        : endDateObj.getMinutes()
+                }`,
+                endMinute: endDateObj,
+            });
+        } else {
+            let lastTime = myReserveTime.pop();
+            if (
+                myTime.placeIdx === lastTime.idx &&
+                `${
+                    startDateObj.getHours() < 10
+                        ? '0' + startDateObj.getHours()
+                        : startDateObj.getHours()
+                }:${
+                    startDateObj.getMinutes() < 10
+                        ? '0' + startDateObj.getMinutes()
+                        : startDateObj.getMinutes()
+                }` === lastTime.endTime
+            ) {
+                let newEndMinute = lastTime.endMinute;
+                newEndMinute.setMinutes(newEndMinute.getMinutes() + 15);
+                myReserveTime.push({
+                    idx: lastTime.placeIdx,
+                    startTime: lastTime.startTime,
+                    endTime: `${
+                        newEndMinute.getHours() < 10
+                            ? '0' + newEndMinute.getHours()
+                            : newEndMinute.getHours()
+                    }:${
+                        newEndMinute.getMinutes() < 10
+                            ? '0' + newEndMinute.getMinutes()
+                            : newEndMinute.getMinutes()
+                    }`,
+                    endMinute: newEndMinute,
+                });
+            } else {
+                myReserveTime.push(lastTime);
+                myReserveTime.push({
+                    idx: myTime.placeIdx,
+                    startTime: `${
+                        startDateObj.getHours() < 10
+                            ? '0' + startDateObj.getHours()
+                            : startDateObj.getHours()
+                    }:${
+                        startDateObj.getMinutes() < 10
+                            ? '0' + startDateObj.getMinutes()
+                            : startDateObj.getMinutes()
+                    }`,
+                    endTime: `${
+                        startDateObj.getHours() < 10
+                            ? '0' + startDateObj.getHours()
+                            : startDateObj.getHours()
+                    }:${
+                        endDateObj.getMinutes() < 10
+                            ? '0' + endDateObj.getMinutes()
+                            : endDateObj.getMinutes()
+                    }`,
+                    endMinute: endDateObj,
+                });
+            }
+        }
+    });
+
+    console.log(myReserveTime);
+    myReserveTime.map((rentalLog) => {
+        const rentalCard = `
+        <div class="rental">
+            <div class="rental-icon">
+                <img class="place-icon" src="/src/assets/${rentalLog.idx}.svg" />
+            </div>
+            ${rentalLog.startTime}~${rentalLog.endTime}
+        </div>
+        `;
+        qs('.rental-card-wrapper').insertAdjacentHTML('beforeend', rentalCard);
+    });
+};
 
 const userMain = () => {
     latelyNotice();
     weekAttendance();
+    myReservation();
     const userMainTemplate =
         /*html*/
         `
@@ -50,8 +161,7 @@ const userMain = () => {
                 <div class="contour"></div>
                 <div class="rental-wrapper"><i class="fa-solid fa-person-shelter"></i> 나의 공간대여
                     <div class="rental-card-wrapper">
-                        <div class="rental"><div class="rental-icon"><img class="place-icon" src="/src/assets/game.svg" /></div>15:00~15:30</div>
-                        <div class="rental"><div class="rental-icon"><img class="place-icon" src="/src/assets/room.svg" /></div>16:00~17:00</div>
+                    
                     </div>
                 </div>
                 <div class="contour"></div>

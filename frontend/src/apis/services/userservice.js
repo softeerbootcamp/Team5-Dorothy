@@ -10,7 +10,7 @@ const UserService = {
 
     //로그인
     getUser: async (id, password) => {
-        const response = await http.post('/api/member/login', {
+        const response = await http.post('/member/login', {
             memberId: id,
             password: password,
         });
@@ -20,7 +20,7 @@ const UserService = {
 
     //회원가입
     postUser: async (memberId, password, passwordCheck, name, email) => {
-        const response = await http.post('/api/member', {
+        const response = await http.post('/member', {
             memberId,
             password,
             passwordCheck,

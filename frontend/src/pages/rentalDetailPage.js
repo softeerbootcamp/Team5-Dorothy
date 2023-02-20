@@ -23,7 +23,7 @@ export default class rentalDetailPage extends AbstractView {
                 <section class="big-content-container">
                     <header class="schedule-header">
                         <div class="schedule-wrapper">
-                            <div class="rental-icon"><img class="place-icon" src="/src/assets/chair.svg"></div>
+                            <div class="rental-icon"><img class="place-icon" src="/src/assets/${param}.svg"></div>
                             현재 선택 가능한 시간대
                             <div class="rental-left">48</div>
                         </div>

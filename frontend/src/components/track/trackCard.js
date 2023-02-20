@@ -6,7 +6,7 @@ import { navigateTo } from '../../router';
 const trackCard = (img, tname) => {
     return `
     <figure class="track-wrapper">
-        <img class="track-image" src=${img}></img>
+        <img class="track-image" src='/src/assets/${img}.svg'></img>
         <figcaption class="track-name">${tname}</figcaption>
     </figure>`;
 };
