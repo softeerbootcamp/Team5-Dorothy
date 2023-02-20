@@ -1,7 +1,5 @@
 import { http } from '../http.js';
 
-//const BASE_URL = 'https://dorothy-5z.site/api/v1';
-
 const NoticeService = {
     // 전체 공지 사항 조회
     getAllNotices: async () => {

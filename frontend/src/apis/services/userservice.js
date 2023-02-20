@@ -1,7 +1,5 @@
 import { http } from '../http.js';
 
-//const BASE_URL = 'https://dorothy-5z.site/api/v1';
-
 const UserService = {
     // 로그아웃
     logout: () => {

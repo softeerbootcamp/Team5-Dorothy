@@ -11,7 +11,7 @@ const timerForm = () => {
                     <g id="e-pointer">
                         <circle cx="94" cy="0" r="8" class="e-c-pointer"/>
                     </g>
-                </g>
+                </g>x
             </g>
         </svg>
     </div>

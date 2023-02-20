@@ -31,7 +31,7 @@ export default class noticeDetailPage extends AbstractView {
             notice.views
         } </div>
                         <div class="notice-content-wrapper">${
-                            notice.title
+                            notice.content
                         }</div>
                         <button class="notice-edit-btn"><div class="rental-icon"><i class="fa-solid fa-list"></i></div>목록</button>
                         ${
