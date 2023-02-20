@@ -6,8 +6,8 @@
 }
 
 .pink {
-    stroke: #f7958e;
-    color: #f7958e;
+    stroke: green;
+    color: green;
 }
 
 .orange {
@@ -30,9 +30,8 @@
 
 .display-remain-time {
     font-family: 'Roboto';
-    font-weight: 100;
+    font-weight: 400;
     font-size: 45px;
-    text-shadow: 0 5px 5px;
 }
 
 #pause {
@@ -44,11 +43,12 @@
     box-shadow: 0 5px 5px rgba(255, 255, 255, 0.5);
     font-size: 30px;
     transition: 0.5s;
+    width: 150px;
 }
 #pause:hover {
     transform: scale(111%);
-    border: 5px solid #f7958e;
-    color: #f7958e;
+    border: 5px solid #84b5ff;
+    color: #84b5ff;
 }
 
 .e-c-base {

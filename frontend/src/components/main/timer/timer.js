@@ -17,7 +17,7 @@ const timerForm = () => {
     </div>
     <div class="controlls">
         <div class="display-remain-time"></div>
-        <button class="play" id="pause">출석</button>
+        <button class="play" id="pause">출석하기</button>
     </div>
     </div>
     `;
