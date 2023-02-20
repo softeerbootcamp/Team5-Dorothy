@@ -16,9 +16,9 @@ const managerMain = () => {
             </div>
             ${dailyChart()}  ${weeklyChart()}
             <ul class="legend">
-                <li>출석</li>
-                <li>지각</li>
-                <li>결석</li>
+                <li class='attend-block'>출석</li>
+                <li class='late-block'>지각</li>
+                <li class='absent-block'>결석</li>
             </ul>
             </section>
         </div>
