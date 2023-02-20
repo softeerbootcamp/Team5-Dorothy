@@ -34,7 +34,8 @@ public class LogoutFilter implements Filter {
         logger.info(url);
         if(url.equals("/api/v1/member/logout")){
             try {
-                writeSuccessResponse(httpReq, response);
+                Cookie cookie = attemptLogout(httpReq);
+                writeSuccessResponse(response, cookie);
             }catch (BadRequestException e) {
                 throw new BadRequestException("입력 정보가 올바르지 않습니다.");
             }
@@ -48,8 +49,7 @@ public class LogoutFilter implements Filter {
         Filter.super.destroy();
     }
 
-    private void writeSuccessResponse(HttpServletRequest request, ServletResponse response) throws IOException {
-        Cookie cookie = attemptLogout(request);
+    private void writeSuccessResponse(ServletResponse response, Cookie cookie) throws IOException {
         CommonResponse commonResponse = new CommonResponse(HttpStatus.OK, "로그아웃에 성공하였습니다", null);
         String result = objectMapper.writeValueAsString(commonResponse);
         HttpServletResponse httpRes = (HttpServletResponse) response;
