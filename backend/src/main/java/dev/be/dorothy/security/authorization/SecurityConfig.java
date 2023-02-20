@@ -10,7 +10,7 @@ import org.springframework.core.annotation.Order;
 public class SecurityConfig {
 
     @Bean
-    @Order(4)
+    @Order(5)
     public AuthorizationFilter authorizationFilter(HttpSecurity httpSecurity){
         return httpSecurity
                 .authorizeRequest()

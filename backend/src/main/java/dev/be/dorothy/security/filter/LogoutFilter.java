@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.util.Arrays;
 
 @Component
-@Order(3)
+@Order(4)
 public class LogoutFilter implements Filter {
     private static final Logger logger = LoggerFactory.getLogger(LogoutFilter.class);
     private final ObjectMapper objectMapper = new ObjectMapper();
