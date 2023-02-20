@@ -29,7 +29,7 @@ public class PlaceReservationServiceImpl implements PlaceReservationService{
             LocalTime startTime = LocalTime.parse(startTimeStr.get("time"));
             String key = RedissonKeyUtils.keyBuilder(placeIdx, startTime);
             if(!placeReservationManagerImpl.reservePlace(key, memberIdx)){
-                resultList.add(ReservationResDto.of(placeIdx, startTime.toString()));
+                resultList.add(ReservationResDto.of(placeIdx, startTime, startTime.plusMinutes(15)));
             }else{
                 placeRepository.reservePlace(memberIdx, placeIdx, LocalDateTime.now(), startTime, startTime.plusMinutes(15), false);
             }
@@ -45,7 +45,25 @@ public class PlaceReservationServiceImpl implements PlaceReservationService{
 
     @Override
     public List<ReservationResDto> readMyReservations(Long memberIdx) {
-        return placeRepository.findReservationByMemberId(memberIdx);
+        List<ReservationResDto> reservations = placeRepository.findReservationByMemberId(memberIdx);
+        List<ReservationResDto> resultList = new ArrayList<>();
+
+        if(reservations.isEmpty())
+            return reservations;
+
+        ReservationResDto tempReservation = reservations.get(0);
+
+        for(int i = 1 ; i < reservations.size(); i++){
+            ReservationResDto reservation = reservations.get(i);
+            if(!reservation.getStartTime().equals(tempReservation.getEndTime()) || !reservation.getPlaceIdx().equals(tempReservation.getPlaceIdx()) ) {
+                resultList.add(tempReservation);
+                tempReservation = reservation;
+            }else{
+                tempReservation.setEndTime(reservation.getEndTime());
+            }
+        }
+        resultList.add(tempReservation);
+        return resultList;
     }
 
 }
