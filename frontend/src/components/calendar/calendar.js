@@ -1,6 +1,6 @@
 import { daysOfWeek } from './constants';
 import { getMonthAttendance } from '../../apis/attend';
-import { qs } from '../../utils/selector';
+import { qs, qsa } from '../../utils/selector';
 
 const monthTest = async (currentYear, currentMonth) => {
     const myMonthAttendance = await getMonthAttendance(3);

@@ -1,7 +1,5 @@
 import { http } from '../http.js';
 
-//const BASE_URL = 'https://dorothy-5z.site/api/v1';
-
 const AttendService = {
     //출석(지각, 결석) 요청
     postAttendance: async (x, y) => {
