@@ -145,7 +145,8 @@
 .rental-card-wrapper {
     display: flex;
     flex-direction: row;
-    width: 100%;
+    width: 55vw;
+    overflow-x: auto;
     margin: 2.5vh auto;
 }
 

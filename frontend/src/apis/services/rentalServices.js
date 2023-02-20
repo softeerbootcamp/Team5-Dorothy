@@ -20,6 +20,12 @@ const RentalService = {
         });
         return response.data;
     },
+
+    //나의 공간 대여 조회
+    getMyReservation: async () => {
+        const response = await http.get(`/api/place/reservation/`, {});
+        return response.data;
+    },
 };
 
 export { RentalService };

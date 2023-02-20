@@ -22,7 +22,10 @@ export default class trackPage extends AbstractView {
                     <section class="track-container">
                     ${trackInfo
                         .map((track) => {
-                            return trackCard(track.img, track.name);
+                            return trackCard(
+                                Math.floor(Math.random() * 20) + 1,
+                                track.name,
+                            );
                         })
                         .join('')}
                         ${userRole() === 'ADMIN' ? trackManager() : trackUser()}
