@@ -1,18 +1,16 @@
 package dev.be.dorothy.reservation.service;
 
-import java.time.LocalTime;
-
 public class ReservationResDto {
 
     private final Long placeIdx;
-    private final LocalTime startTime;
+    private final String startTime;
 
-    public ReservationResDto(Long placeIdx, LocalTime startTime) {
+    public ReservationResDto(Long placeIdx, String startTime) {
         this.placeIdx = placeIdx;
-        this.startTime = startTime;
+        this.startTime = startTime.substring(0, startTime.lastIndexOf(":"));
     }
 
-    public static ReservationResDto of(Long placeIdx, LocalTime time) {
+    public static ReservationResDto of(Long placeIdx, String time) {
         return new ReservationResDto(placeIdx, time);
     }
 
@@ -20,7 +18,7 @@ public class ReservationResDto {
         return placeIdx;
     }
 
-    public LocalTime getStartTime() {
+    public String getStartTime() {
         return startTime;
     }
 }
