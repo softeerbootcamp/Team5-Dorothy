@@ -10,8 +10,8 @@ export const userName = () => {
 };
 
 export const userRole = () => {
-    if (sessionStorage.getItem('user') == null) {
-        navigateTo('/');
+    if (sessionStorage.getItem('user') === null) {
+        // navigateTo('/');
         return;
     }
     const user = JSON.parse(sessionStorage.getItem('user'));
@@ -19,7 +19,7 @@ export const userRole = () => {
 };
 
 export const userIdx = () => {
-    if (sessionStorage.getItem('user') == null) {
+    if (sessionStorage.getItem('user') === null) {
         navigateTo('/');
         return;
     }

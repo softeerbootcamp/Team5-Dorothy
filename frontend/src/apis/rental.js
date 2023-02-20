@@ -38,7 +38,6 @@ export const PostReservation = async (placeIdx, reserveTimes) => {
         failReserve();
     }
 };
-
 export const getMyReserved = async () => {
     try {
         const response = await RentalService.getMyReservation();
@@ -67,7 +66,6 @@ const failReserve = () => {
     const message = '공간 예약 실패';
     setmodal(code, message);
 };
-
 const failInquire = () => {
     const code = 'fail';
     const message = '예약 내역 조회 실패';

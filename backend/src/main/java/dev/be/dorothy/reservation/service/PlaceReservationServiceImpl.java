@@ -29,7 +29,7 @@ public class PlaceReservationServiceImpl implements PlaceReservationService{
             LocalTime startTime = LocalTime.parse(startTimeStr.get("time"));
             String key = RedissonKeyUtils.keyBuilder(placeIdx, startTime);
             if(!placeReservationManagerImpl.reservePlace(key, memberIdx)){
-                resultList.add(ReservationResDto.of(placeIdx, startTime));
+                resultList.add(ReservationResDto.of(placeIdx, startTime.toString()));
             }else{
                 placeRepository.reservePlace(memberIdx, placeIdx, LocalDateTime.now(), startTime, startTime.plusMinutes(15), false);
             }

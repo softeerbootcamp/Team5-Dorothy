@@ -25,6 +25,7 @@ export default class rentalPage extends AbstractView {
                                 place.name,
                                 Math.floor(Math.random() * 20) + 1,
                             );
+                            return placeCard(place.idx, place.name, place.img);
                         })
                         .join('')}
                     </div>
