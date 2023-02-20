@@ -4,9 +4,15 @@ import { navigateTo } from '../router';
 import { qs } from '../utils/selector';
 
 // 로그아웃
-export const Logout = () => {
-    alert('로그아웃');
-    sessionStorage.removeItem('user');
+export const Logout = async () => {
+    try {
+        const response = await UserService.logout();
+        alert('로그아웃');
+        sessionStorage.removeItem('user');
+        console.log(response);
+    } catch (e) {
+        console.log(e);
+    }
 };
 
 // 로그인

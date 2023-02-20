@@ -2,8 +2,8 @@ import { http } from '../http.js';
 
 const AttendService = {
     //출석(지각, 결석) 요청
-    postAttendance: async (x, y) => {
-        const response = await http.get(`/attendance/${trackIdx}`, {
+    postAttendance: async (trackIdx, { x, y }) => {
+        const response = await http.post(`/attendance/${trackIdx}`, {
             x,
             y,
         });

@@ -32,9 +32,9 @@ const adminAttend = async () => {
     const admin = datas
         .map((data) => {
             return `
-            <div>
-            <span>${data.name}</span>
-            <span>${data.type}</span>
+            <div class='admin-attend-wrapper'>
+            <span class='admin-attend-name'>${data.name}</span>
+            <span class='admin-attend-type'>${data.type}</span>
             </div>
             `;
         })
