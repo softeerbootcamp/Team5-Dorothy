@@ -62,11 +62,13 @@ function setTrackEvent() {
         });
     }
 
-    qs('.big-content-container').addEventListener('click', (e) => {
-        const trackWrapper = e.target.closest('.track-wrapper');
-        if (trackWrapper) {
-            navigateTo('/main');
-        }
+    qs('.track-container').addEventListener('click', (e) => {
+        const target = e.target.closest('.track-wrapper');
+        if (target == null) return;
+        const targetDataSet = target.getAttribute('data-set');
+        console.log(targetDataSet);
+        userTrackID.trackID = targetDataSet;
+        navigateTo('/main');
     });
 }
 
