@@ -19,6 +19,11 @@ const weekAttendance = async () => {
     const weekAttendance = await getMonthAttendance(19);
     const length = weekAttendance.length;
     const week = weekAttendance.slice(length - 7, length);
+    while (week.length < 7) {
+        week.push(undefined);
+    }
+    week.reverse();
+    console.log(week);
     let i = 0;
     getCurrentWeek()
         .map((day) => {

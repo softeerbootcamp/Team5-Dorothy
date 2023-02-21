@@ -34,21 +34,23 @@ async function setMainEvent() {
     }
     if (userRole() === 'MEMBER') {
         const currentAttendance = await getDayAttendance(19);
-        const attendanceType = currentAttendance.type;
+        const attendanceType =
+            currentAttendance === null ? 'ABSENT' : currentAttendance.type;
         const nowTime = new Date();
         let showTimeStart = new Date();
         let showTimeEnd = new Date();
 
         showTimeStart.setHours(9);
         showTimeStart.setMinutes(30);
+        showTimeStart.setSeconds(0);
         showTimeEnd.setHours(10);
         showTimeEnd.setMinutes(30);
         showTimeEnd.setSeconds(0);
 
         if (
             attendanceType === 'ABSENT' &&
-            nowTime.getMilliseconds() >= showTimeStart.getMilliseconds() &&
-            nowTime.getMilliseconds() < showTimeEnd.getMilliseconds()
+            nowTime >= showTimeStart &&
+            nowTime < showTimeEnd
         ) {
             qs('.image-container').insertAdjacentHTML(
                 'afterbegin',
