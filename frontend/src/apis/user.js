@@ -9,7 +9,7 @@ export const Logout = async () => {
         const response = await UserService.logout();
         alert('로그아웃');
         sessionStorage.removeItem('user');
-        console.log(response);
+        sessionStorage.removeItem('location');
     } catch (e) {
         console.log(e);
     }

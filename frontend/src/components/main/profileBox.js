@@ -78,7 +78,6 @@ const profile = () => {
                         <div class="main-button-front" id="track-code-call">초대 코드 생성</div>
                     </figure>`
             }
-                
             </div>
         </section>`;
     return profileTemplate;

@@ -26,3 +26,15 @@ export const userIdx = () => {
     const user = JSON.parse(sessionStorage.getItem('user'));
     return user.idx;
 };
+
+export class userTrackID {
+    constructor(id) {
+        this.id = id;
+    }
+    get trackID() {
+        return this.id;
+    }
+    set trackID(value) {
+        this.id = value;
+    }
+}
