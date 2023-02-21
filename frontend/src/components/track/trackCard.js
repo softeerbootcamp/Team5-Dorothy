@@ -65,7 +65,7 @@ function setTrackEvent() {
     }
     qsa('.track-wrapper').forEach((trackWrapper) => {
         trackWrapper.addEventListener('click', (e) => {
-            userTrackID.trackID(e.target.getAttribute('data-set'));
+            userTrackID.trackID = e.target.getAttribute('data-set');
             navigateTo('/main');
         });
     });
