@@ -17,4 +17,7 @@ public class ContextHolder {
         context.set(authentication);
     }
 
+    public static void clearContext() {
+        context.remove();
+    }
 }
