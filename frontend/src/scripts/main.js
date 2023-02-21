@@ -42,7 +42,7 @@ async function setMainEvent() {
         const nowTime = new Date();
         if (
             attendanceType === 'ABSENT' &&
-            nowTime.getHours() < 18 &&
+            nowTime.getHours() < 20 &&
             nowTime.getMinutes() < 31
         ) {
             qs('.image-container').insertAdjacentHTML(
