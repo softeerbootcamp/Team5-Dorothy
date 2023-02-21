@@ -38,7 +38,7 @@ async function setMainEvent() {
     if (userRole() === 'MEMBER') {
         const currentAttendance = await getDayAttendance(userTrackID.trackID);
         const attendanceType = currentAttendance.type;
-        if (attendanceType == 'ABSENT' && hours < 11 && minutes < 30) {
+        if (attendanceType == 'ABSENT' && hours < 15 && minutes < 30) {
             qs('.image-container').insertAdjacentHTML(
                 'afterbegin',
                 timerForm(),
