@@ -93,7 +93,7 @@ td {
 .notice-content-wrapper {
     box-shadow: 0 5px 5px rgba(0, 0, 0, 0.5);
     width: 90%;
-    margin: 40px auto 20px;
+    margin: 10px auto 20px;
     height: 50%;
     display: flex;
     padding: 5% 5%;
@@ -139,6 +139,7 @@ td {
 }
 
 .notice-title-input-wrapper {
+    margin-top: 2vh;
     border: #9baec8 2px solid;
     height: 4vh;
     width: 100%;
@@ -150,10 +151,11 @@ td {
 
 .notice-content-input-wrapper {
     border: #9baec8 2px solid;
-    height: 75%;
-    width: 94%;
+    height: 60%;
+    width: 94.5%;
     padding: 3%;
-    margin-bottom: 1vh;
+    margin-top: 1vh;
+    margin-bottom: 5vh;
     border-radius: 0.5em;
     resize: none;
 }
@@ -175,9 +177,11 @@ td {
     background-color: #d9e1e8;
 }
 .notice-detail-wrapper {
-    margin: 3% 1%;
+    margin: 0% 1%;
     width: fit-content;
     float: right;
+    height: fit-content;
+    margin-left: auto;
     i {
         margin-right: 2px;
     }
@@ -199,11 +203,19 @@ td {
     font-size: 40px;
 }
 .notice-title-wrapper {
-    background: #0075de;
-    height: 40px;
-    color: white;
+    height: 50px;
     border-radius: 10px;
-    justify-content: center;
     display: flex;
     align-items: center;
+    font-size: 22px;
+    font-weight: 700;
+    width: fit-content;
+    text-indent: 20px;
+}
+
+.notice-title-detail-wrapper {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 0px;
 }

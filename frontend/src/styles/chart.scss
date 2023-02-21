@@ -37,12 +37,12 @@
 
 .attend {
     height: 100%;
-    background-color: blue;
+    background-color: #84b5ff;
     animation: stack 2s 1;
     transform-origin: 0% 100%;
 }
 .late {
-    background-color: orange;
+    background-color: rgb(245, 195, 122);
     animation: stack 2s 1;
     transform-origin: 0% 100%;
 }
@@ -71,6 +71,15 @@
 .legend li {
     padding: 0 1em;
     line-height: 1em;
+}
+.attend-block::before {
+    background-color: #84b5ff;
+}
+.late-block::before {
+    background-color: rgb(245, 195, 122);
+}
+.absent-block::before {
+    background-color: #ea907a;
 }
 .legend li:before {
     content: '';
@@ -206,7 +215,7 @@ li {
                     z-index: 2;
                 }
                 &.data3 {
-                    background: #fbc687;
+                    background: rgb(245, 195, 122);
                     z-index: 1;
                 }
             }

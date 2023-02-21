@@ -20,8 +20,8 @@ const getUserLocation = () => {
         id = navigator.geolocation.watchPosition(function (pos) {
             let latitude = pos.coords.latitude;
             let longitude = pos.coords.longitude;
-
-            console.log(latitude, longitude);
+            const location = { x: latitude, y: longitude };
+            sessionStorage.setItem('location', JSON.stringify(location));
             return latitude, longitude;
         });
     } else {
@@ -89,7 +89,10 @@ const makeTimer = () => {
     timer(wholeTime);
 
     playButton.addEventListener('click', () => {
-        console.log(getUserLocation());
+        const loc = JSON.parse(sessionStorage.getItem('location'));
+        const x = loc.x;
+        const y = loc.y;
+        postAttendance(3, { x, y });
         navigator.geolocation.clearWatch(id);
         clearInterval(intervalTimer);
         document.querySelector('#check-timer').style.opacity = '0';
