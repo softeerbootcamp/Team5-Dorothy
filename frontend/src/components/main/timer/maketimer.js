@@ -92,7 +92,7 @@ const makeTimer = () => {
         const loc = JSON.parse(sessionStorage.getItem('location'));
         const x = loc.x;
         const y = loc.y;
-        postAttendance(userTrackID.trackID, { x, y });
+        postAttendance(19, { x, y });
         navigator.geolocation.clearWatch(id);
         clearInterval(intervalTimer);
         document.querySelector('#check-timer').style.opacity = '0';

@@ -3,7 +3,7 @@ import { qs } from '../../../utils/selector';
 import { userTrackID } from '../../../store/user';
 
 const chartTest = async () => {
-    const members = await getDayAttendance(userTrackID.trackID);
+    const members = await getDayAttendance(19);
     const memberNum = members.length;
     const attend = members.filter((member) => {
         return member.type === 'PRESENT';

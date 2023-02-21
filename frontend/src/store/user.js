@@ -35,6 +35,7 @@ export class userTrackID {
         return this.id;
     }
     set trackID(value) {
+        console.log(value);
         this.id = value;
     }
 }

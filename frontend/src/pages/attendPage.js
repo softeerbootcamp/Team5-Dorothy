@@ -4,11 +4,11 @@ import { yearOption, makeCalendar } from '../components/calendar/calendar.js';
 import { getDayAttendance } from '../apis/attend.js';
 import { userRole } from '../store/user.js';
 import { qs } from '../utils/selector.js';
-import { userTrackID } from '../store/user.js';
 import { daysOfWeek } from '../components/calendar/constants.js';
+import { userTrackID } from '../store/user.js';
 
 const memberAttendance = async (attendType) => {
-    const datas = await getDayAttendance(3);
+    const datas = await getDayAttendance(userTrackID.trackID);
     const dataAvailable = datas.filter((data) => {
         return data.type.toString() === attendType;
     });
@@ -23,7 +23,6 @@ const memberAttendance = async (attendType) => {
         .join('');
     qs(`#attendance-${attendType}`).insertAdjacentHTML('beforeend', result);
 };
-
 const memberAttend = () => {
     const now = new Date();
     const memberCalendar = `
@@ -44,22 +43,11 @@ const memberAttend = () => {
     </div>`;
     return memberCalendar;
 };
-
-const adminAttend = async () => {
-    const datas = await getDayAttendance(userTrackID.trackID);
-    const admin = datas
-        .map((data) => {
-            return `
-            <div class='admin-attend-wrapper'>
-            <span class='admin-attend-name'>${data.name}</span>
-            <span class='admin-attend-type'>${data.type}</span>
-            </div>
-            `;
-        })
-        .join('');
-    qs('.big-attend-container').insertAdjacentHTML('beforeend', admin);
-};
-
+const adminAttend = () => {
+    const now = new Date();
+    const presentBody = memberAttendance('PRESENT');
+    const tardyBody = memberAttendance('TARDY');
+    const absentBody = memberAttendance('ABSENT');
     const adminAttendance = `
     <header class="attendance-header">
         <span class="header-date-wrapper">
@@ -86,7 +74,6 @@ const adminAttend = async () => {
     `;
     return adminAttendance;
 };
-
 export default class attendPage extends AbstractView {
     async getHtml() {
         return `
@@ -99,13 +86,12 @@ export default class attendPage extends AbstractView {
                         ? pageTitleTamplate('월간 출석체크')
                         : pageTitleTamplate('오늘 출석체크')
                 }
-
                 </div>
                 <div class="content-container">
                 </div>
                 <section class="big-content-container">
                     ${userRole() === 'MEMBER' ? memberAttend() : adminAttend()}
-                </section> 
+                </section>
             </div>
         </div>
         `;

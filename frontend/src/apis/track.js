@@ -8,6 +8,7 @@ import { trackCard } from '../components/track/trackCard';
 export const PostTrack = async (trackname) => {
     try {
         const response = await TrackService.postTrack(trackname);
+        console.log(response.data);
         qs('#track-make').insertAdjacentHTML(
             'beforebegin',
             trackCard(
@@ -47,6 +48,7 @@ export const GetTrack = async () => {
 export const PostTrackMember = async (trackIdx, joinCode) => {
     try {
         const response = await TrackService.postTrackMember(trackIdx, joinCode);
+        console.log(response);
         qs('#track-join').insertAdjacentHTML(
             'beforebegin',
             trackCard('/src/assets/soundless.svg', response.data.data.name),

@@ -36,9 +36,9 @@ async function setMainEvent() {
         });
     }
     if (userRole() === 'MEMBER') {
-        const currentAttendance = await getDayAttendance(userTrackID.trackID);
+        const currentAttendance = await getDayAttendance(3);
         const attendanceType = currentAttendance.type;
-        if (attendanceType == 'ABSENT' && hours < 11 && minutes < 30) {
+        if (attendanceType == 'ABSENT' && hours < 18 && minutes < 30) {
             qs('.image-container').insertAdjacentHTML(
                 'afterbegin',
                 timerForm(),
@@ -49,6 +49,7 @@ async function setMainEvent() {
             const parent = e.target.closest('table');
             const targetNode = parent.querySelector('.notice-wrapper');
             const targetID = targetNode.getAttribute('data-set');
+            console.log('trackID', trackID);
             navigateTo(`/notice/${targetID}`);
         });
         qs('#main-button-confirm').addEventListener('click', (e) => {
