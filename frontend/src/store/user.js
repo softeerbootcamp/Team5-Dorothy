@@ -32,9 +32,11 @@ export class userTrackID {
         this.id = id;
     }
     get trackID() {
-        return this.id;
+        const id = sessionStorage.getItem('trackId', value);
+        return id;
     }
     set trackID(value) {
+        sessionStorage.setItem('trackId', value);
         this.id = value;
     }
 }

@@ -6,7 +6,6 @@ import { GetTrackCode, PostTrackMembers } from '../apis/track.js';
 import { PostsTrack } from '../apis/track.js';
 import { getDayAttendance } from '../apis/attend.js';
 import { navigateTo } from '../router.js';
-import { userTrackID } from '../store/user.js';
 
 async function setMainEvent() {
     const date = new Date();
@@ -36,14 +35,13 @@ async function setMainEvent() {
         });
     }
     if (userRole() === 'MEMBER') {
-        const currentAttendance = await getDayAttendance(19);
+        const currentAttendance = await getDayAttendance(
+            sessionStorage.getItem('trackId'),
+        );
         const attendanceType = currentAttendance.type;
         console.log(attendanceType);
         const nowTime = new Date();
-        if (
-            attendanceType === 'ABSENT' &&
-            nowTime.getHours() < 20 
-        ) {
+        if (attendanceType === 'ABSENT' && nowTime.getHours() < 20) {
             qs('.image-container').insertAdjacentHTML(
                 'afterbegin',
                 timerForm(),

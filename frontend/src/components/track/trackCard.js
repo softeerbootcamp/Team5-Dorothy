@@ -1,5 +1,5 @@
 import { qs, qsa } from '../../utils/selector';
-import { userRole, userTrackID } from '../../store/user';
+import { userRole } from '../../store/user';
 import { PostTrack, PostTrackMember } from '../../apis/track';
 import { navigateTo } from '../../router';
 
@@ -22,11 +22,6 @@ function setTrackEvent() {
         trackMake.addEventListener('click', (e) => {
             const makeBtn = e.target.closest('.track-button');
             if (makeBtn) {
-                // trackMake.insertAdjacentHTML(
-                //     'beforebegin',
-                //     trackCard('soundless', trackMakeInput.value),
-                // );
-                // console.log(trackMakeInput.value);
                 PostTrack(trackMakeInput.value);
                 trackMake.classList.toggle('track-rotate');
                 trackMakeInput.value = '';
@@ -66,8 +61,7 @@ function setTrackEvent() {
         const target = e.target.closest('.track-wrapper');
         if (target == null) return;
         const targetDataSet = target.getAttribute('data-set');
-        console.log(targetDataSet);
-        userTrackID.trackID = targetDataSet;
+        sessionStorage.setItem('trackId', targetDataSet);
         navigateTo('/main');
     });
 }
