@@ -68,7 +68,6 @@ const MakeReservation = () => {
         ReserveTime.push(TimeBox.getAttribute('data-time'));
     });
 
-    console.log(ReserveTime);
     PostReservation(location.pathname.split('/')[2], ReserveTime);
 };
 

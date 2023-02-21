@@ -4,7 +4,6 @@ const UserService = {
     // 로그아웃
     logout: async () => {
         const response = await http.get('/member/logout', {});
-        console.log('로그아웃 되었습니다.');
     },
 
     //로그인

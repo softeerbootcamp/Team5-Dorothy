@@ -102,6 +102,11 @@ $breakpoint-mobile: 640px;
     height: 40px;
     margin: 10px auto;
 }
+.track-back-button {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
 .track-button {
     width: 100px;
     height: 36px;

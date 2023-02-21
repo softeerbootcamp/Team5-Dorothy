@@ -14,7 +14,6 @@ export const PostTrack = async (trackname) => {
         );
         succeedTrack(response.data);
     } catch (error) {
-        console.log(error.status);
         return Promise.reject(error.message, '트랙 생성 실패');
     }
 };
@@ -23,7 +22,6 @@ export const PostsTrack = async (trackname) => {
         const response = await TrackService.postTrack(trackname);
         succeedTrack(response.data);
     } catch (error) {
-        console.log(error.status);
         return Promise.reject(error.message, '트랙 생성 실패');
     }
 };
@@ -34,7 +32,6 @@ export const GetTrack = async () => {
         const response = await TrackService.getTrack();
         return response;
     } catch (error) {
-        console.log(error.response);
         navigateTo('/');
     }
 };
@@ -73,7 +70,6 @@ export const GetTrackCode = async (currentIdx) => {
         const response = await TrackService.getTrackCode(currentIdx);
         return response;
     } catch (error) {
-        console.log(error.response);
     }
 };
 

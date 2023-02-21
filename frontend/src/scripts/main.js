@@ -9,9 +9,6 @@ import { navigateTo } from '../router.js';
 import { weekAttendance } from '../components/main/userMain.js';
 
 async function setMainEvent() {
-    const date = new Date();
-    const hours = date.getHours();
-    const minutes = date.getMinutes();
     if (userRole() === 'ADMIN') {
         qs('.big-content-container').addEventListener('click', (e) => {
             toggleChart(e.target);
@@ -39,10 +36,24 @@ async function setMainEvent() {
         const currentAttendance = await getDayAttendance(
             sessionStorage.getItem('trackId'),
         );
-        const attendanceType = currentAttendance.type;
-
+        const attendanceType =
+            currentAttendance === null ? 'ABSENT' : currentAttendance.type;
         const nowTime = new Date();
-        if (attendanceType === 'ABSENT' && nowTime.getHours() < 20) {
+        let showTimeStart = new Date();
+        let showTimeEnd = new Date();
+
+        showTimeStart.setHours(9);
+        showTimeStart.setMinutes(30);
+        showTimeStart.setSeconds(0);
+        showTimeEnd.setHours(10);
+        showTimeEnd.setMinutes(30);
+        showTimeEnd.setSeconds(0);
+
+        if (
+            attendanceType === 'ABSENT' &&
+            nowTime >= showTimeStart &&
+            nowTime < showTimeEnd
+        ) {
             qs('.image-container').insertAdjacentHTML(
                 'afterbegin',
                 timerForm(),
