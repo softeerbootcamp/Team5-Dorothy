@@ -17,6 +17,7 @@ export default class noticeDetailPage extends AbstractView {
                 <div class="content-container">
                 </div>
                 <section class="big-content-container">
+                <div class='notice-title-detail-wrapper'>
                         <div class="notice-title-wrapper">${notice.title}</div>
                         <div class ="notice-detail-wrapper"><i class="fa-regular fa-clock"></i>  ${new Date(
                             notice.createdAt,
@@ -30,6 +31,7 @@ export default class noticeDetailPage extends AbstractView {
         ).slice(-2)} ｜ <i class="fa-regular fa-user"></i>  ${
             notice.views
         } </div>
+                        </div>
                         <div class="notice-content-wrapper">${
                             notice.content
                         }</div>

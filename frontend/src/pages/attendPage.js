@@ -44,11 +44,20 @@ const memberAttend = () => {
     return memberCalendar;
 };
 
-const adminAttend = () => {
-    const now = new Date();
-    const presentBody = memberAttendance('PRESENT');
-    const tardyBody = memberAttendance('TARDY');
-    const absentBody = memberAttendance('ABSENT');
+const adminAttend = async () => {
+    const datas = await getDayAttendance(3);
+    const admin = datas
+        .map((data) => {
+            return `
+            <div class='admin-attend-wrapper'>
+            <span class='admin-attend-name'>${data.name}</span>
+            <span class='admin-attend-type'>${data.type}</span>
+            </div>
+            `;
+        })
+        .join('');
+    qs('.big-attend-container').insertAdjacentHTML('beforeend', admin);
+};
 
     const adminAttendance = `
     <header class="attendance-header">

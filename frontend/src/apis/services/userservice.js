@@ -2,7 +2,8 @@ import { http } from '../http.js';
 
 const UserService = {
     // 로그아웃
-    logout: () => {
+    logout: async () => {
+        const response = await http.get('/member/logout', {});
         console.log('로그아웃 되었습니다.');
     },
 
