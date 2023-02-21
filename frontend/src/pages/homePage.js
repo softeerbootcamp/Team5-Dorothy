@@ -6,6 +6,8 @@ import { qs } from '../utils/selector';
 export default class homePage extends AbstractView {
     async getHtml() {
         qs('.hamburger').classList.add('hidden');
+        qs('.nav').classList.remove('menuon');
+        qs('.nav').classList.add('hidden');
         return `
         <div class="home-container">
           <div class="container">

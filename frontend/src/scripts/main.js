@@ -40,7 +40,7 @@ async function setMainEvent() {
             sessionStorage.getItem('trackId'),
         );
         const attendanceType = currentAttendance.type;
-        console.log(attendanceType);
+
         const nowTime = new Date();
         if (attendanceType === 'ABSENT' && nowTime.getHours() < 20) {
             qs('.image-container').insertAdjacentHTML(
