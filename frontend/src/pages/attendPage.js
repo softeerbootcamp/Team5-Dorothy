@@ -4,6 +4,7 @@ import { yearOption, makeCalendar } from '../components/calendar/calendar.js';
 import { getDayAttendance } from '../apis/attend.js';
 import { userRole } from '../store/user.js';
 import { qs } from '../utils/selector.js';
+import { userTrackID } from '../store/user.js';
 import { daysOfWeek } from '../components/calendar/constants.js';
 
 const memberAttendance = async (attendType) => {
@@ -45,7 +46,7 @@ const memberAttend = () => {
 };
 
 const adminAttend = async () => {
-    const datas = await getDayAttendance(3);
+    const datas = await getDayAttendance(userTrackID.trackID);
     const admin = datas
         .map((data) => {
             return `
