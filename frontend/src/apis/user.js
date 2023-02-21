@@ -11,7 +11,6 @@ export const Logout = async () => {
         sessionStorage.removeItem('user');
         sessionStorage.removeItem('location');
     } catch (e) {
-        console.log(e);
     }
 };
 

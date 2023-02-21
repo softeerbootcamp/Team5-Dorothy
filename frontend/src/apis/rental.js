@@ -9,7 +9,6 @@ export const GetRental = async () => {
         const response = await RentalService.getRentalSpace();
         return response;
     } catch (error) {
-        console.log(error.response);
     }
 };
 
@@ -19,7 +18,6 @@ export const GetHours = async (placeIdx) => {
         const response = await RentalService.getRentalHours(placeIdx);
         return response;
     } catch (error) {
-        console.log(error.response);
     }
 };
 
@@ -34,17 +32,14 @@ export const PostReservation = async (placeIdx, reserveTimes) => {
         succeedReserve(response);
         navigateTo('/rental');
     } catch (error) {
-        console.log(error.response);
         failReserve();
     }
 };
 export const getMyReserved = async () => {
     try {
         const response = await RentalService.getMyReservation();
-        console.log(response);
         return response;
     } catch (error) {
-        console.log(error.response);
     }
 };
 
@@ -63,10 +58,5 @@ const succeedReserve = (response) => {
 const failReserve = () => {
     const code = 'fail';
     const message = '공간 예약 실패';
-    setmodal(code, message);
-};
-const failInquire = () => {
-    const code = 'fail';
-    const message = '예약 내역 조회 실패';
     setmodal(code, message);
 };

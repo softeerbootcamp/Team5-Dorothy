@@ -38,7 +38,6 @@ async function setMainEvent() {
     if (userRole() === 'MEMBER') {
         const currentAttendance = await getDayAttendance(19);
         const attendanceType = currentAttendance.type;
-        console.log(attendanceType);
         const nowTime = new Date();
         if (
             attendanceType === 'ABSENT' &&

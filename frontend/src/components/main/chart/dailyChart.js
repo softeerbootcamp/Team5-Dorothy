@@ -25,7 +25,6 @@ const chartTest = async () => {
     <div class="absent" style="width: 100%;z-index:1;"></div>
     
     `;
-    console.log((attend / memberNum) * 100);
     const ratioDescription = `
     <div class='ratioDescription'>
         <div class='attend-description'> 출석 :${attend}</div>

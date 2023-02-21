@@ -22,11 +22,6 @@ function setTrackEvent() {
         trackMake.addEventListener('click', (e) => {
             const makeBtn = e.target.closest('.track-button');
             if (makeBtn) {
-                // trackMake.insertAdjacentHTML(
-                //     'beforebegin',
-                //     trackCard('soundless', trackMakeInput.value),
-                // );
-                // console.log(trackMakeInput.value);
                 PostTrack(trackMakeInput.value);
                 trackMake.classList.toggle('track-rotate');
                 trackMakeInput.value = '';
