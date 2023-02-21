@@ -25,54 +25,6 @@ export default class rentalPage extends AbstractView {
                                 return placeCard(place.idx, place.name);
                             })
                             .join('')}
-                            <figure class="place-wrapper" data-set="23">
-                                <img class="place-image" src='/src/assets/20.svg' draggable='false'></img>
-                                <figcaption class="place-name">
-                                    오리삑삑
-                                </figcaption>
-                            </figure>
-                            <figure class="place-wrapper" data-set="23">
-                                <img class="place-image" src='/src/assets/20.svg' draggable='false'></img>
-                                <figcaption class="place-name">
-                                    오리삑삑
-                                </figcaption>
-                            </figure>
-                            <figure class="place-wrapper" data-set="23">
-                                <img class="place-image" src='/src/assets/20.svg' draggable='false'></img>
-                                <figcaption class="place-name">
-                                    오리삑삑
-                                </figcaption>
-                            </figure>
-                            <figure class="place-wrapper" data-set="23">
-                                <img class="place-image" src='/src/assets/20.svg' draggable='false'></img>
-                                <figcaption class="place-name">
-                                    오리삑삑
-                                </figcaption>
-                            </figure>
-                            <figure class="place-wrapper" data-set="23">
-                                <img class="place-image" src='/src/assets/20.svg' draggable='false'></img>
-                                <figcaption class="place-name">
-                                    오리삑삑
-                                </figcaption>
-                            </figure>
-                            <figure class="place-wrapper" data-set="23">
-                                <img class="place-image" src='/src/assets/20.svg' draggable='false'></img>
-                                <figcaption class="place-name">
-                                    오리삑삑
-                                </figcaption>
-                            </figure>
-                            <figure class="place-wrapper" data-set="23">
-                                <img class="place-image" src='/src/assets/20.svg' draggable='false'></img>
-                                <figcaption class="place-name">
-                                    오리삑삑
-                                </figcaption>
-                            </figure>
-                            <figure class="place-wrapper" data-set="23">
-                                <img class="place-image" src='/src/assets/20.svg' draggable='false'></img>
-                                <figcaption class="place-name">
-                                    오리삑삑
-                                </figcaption>
-                            </figure>
                         </div>
                         <div class="scroll-right"><i class="fa-solid fa-circle-chevron-right"></i></div>
                     </section>
