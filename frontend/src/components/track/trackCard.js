@@ -22,13 +22,11 @@ function setTrackEvent() {
         trackMake.addEventListener('click', (e) => {
             const makeBtn = e.target.closest('.track-button');
             if (makeBtn) {
-                trackMake.insertAdjacentHTML(
-                    'beforebegin',
-                    trackCard(
-                        '/src/assets/soundless.svg',
-                        trackMakeInput.value,
-                    ),
-                );
+                // trackMake.insertAdjacentHTML(
+                //     'beforebegin',
+                //     trackCard('soundless', trackMakeInput.value),
+                // );
+                // console.log(trackMakeInput.value);
                 PostTrack(trackMakeInput.value);
                 trackMake.classList.toggle('track-rotate');
                 trackMakeInput.value = '';
@@ -63,11 +61,12 @@ function setTrackEvent() {
             }
         });
     }
-    qsa('.track-wrapper').forEach((trackWrapper) => {
-        trackWrapper.addEventListener('click', (e) => {
-            userTrackID.trackID = e.target.getAttribute('data-set');
+
+    qs('.big-content-container').addEventListener('click', (e) => {
+        const trackWrapper = e.target.closest('.track-wrapper');
+        if (trackWrapper) {
             navigateTo('/main');
-        });
+        }
     });
 }
 

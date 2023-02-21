@@ -36,9 +36,15 @@ async function setMainEvent() {
         });
     }
     if (userRole() === 'MEMBER') {
-        const currentAttendance = await getDayAttendance(userTrackID.trackID);
+        const currentAttendance = await getDayAttendance(19);
         const attendanceType = currentAttendance.type;
-        if (attendanceType == 'ABSENT' && hours < 15 && minutes < 30) {
+        console.log(attendanceType);
+        const nowTime = new Date();
+        if (
+            attendanceType === 'ABSENT' &&
+            nowTime.getHours() < 18 &&
+            nowTime.getMinutes() < 31
+        ) {
             qs('.image-container').insertAdjacentHTML(
                 'afterbegin',
                 timerForm(),
@@ -75,21 +81,6 @@ async function setMainEvent() {
                 .closest('.main-button')
                 .classList.toggle('input-available');
         }
-    });
-    qs('#track-code-call').addEventListener('click', async () => {
-        const inviteCode = await GetTrackCode(
-            qs('.track-select-container').value,
-        );
-        qs('#track-invite-code').innerHTML = inviteCode.data;
-    });
-    qs('#track-name-input').addEventListener('input', (e) => {
-        qs('#main-button-generate').disabled =
-            e.target.value.trim().length <= 0;
-    });
-    qs('#main-button-generate').addEventListener('click', async () => {
-        const newTrackName = qs('#track-name-input');
-        PostsTrack(newTrackName.value);
-        newTrackName.value = '';
     });
 }
 

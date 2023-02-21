@@ -4,7 +4,7 @@ import { qs } from '../../../utils/selector';
 import { userTrackID } from '../../../store/user';
 
 const chartTest = async (day) => {
-    const items = await getMonthAttendance(userTrackID.trackID);
+    const items = await getMonthAttendance(19);
     items.map((item) => {
         if (day.split('(')[0] === item.date.split('-')[2]) {
             const itemNum = item.present + item.tardy + item.absent;

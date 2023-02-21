@@ -5,8 +5,9 @@ import { getDayAttendance } from '../apis/attend.js';
 import { userRole } from '../store/user.js';
 import { qs } from '../utils/selector.js';
 import { daysOfWeek } from '../components/calendar/constants.js';
+
 const memberAttendance = async (attendType) => {
-    const datas = await getDayAttendance(3);
+    const datas = await getDayAttendance(19);
     const dataAvailable = datas.filter((data) => {
         return data.type.toString() === attendType;
     });
@@ -46,6 +47,7 @@ const adminAttend = () => {
     const presentBody = memberAttendance('PRESENT');
     const tardyBody = memberAttendance('TARDY');
     const absentBody = memberAttendance('ABSENT');
+
     const adminAttendance = `
     <header class="attendance-header">
         <span class="header-date-wrapper">
@@ -72,6 +74,7 @@ const adminAttend = () => {
     `;
     return adminAttendance;
 };
+
 export default class attendPage extends AbstractView {
     async getHtml() {
         return `
