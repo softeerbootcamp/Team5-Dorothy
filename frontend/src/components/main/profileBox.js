@@ -19,7 +19,7 @@ const profile = () => {
             <div class="image-container">
                 <img src="https://post-phinf.pstatic.net/MjAyMDExMTBfMjIg/MDAxNjA0OTk3NTY4NjM0.3A9-_lpgGOxNGW5aSaSThzIaHqJruwwgzExYBTL39Sgg.MVSuotrq69p-remDC1RaHefZ_Tt7uZ-W68MII7AKTd0g.JPEG/image_9055787501604997304426.jpg?type=w1200" alt="my-profile">
             </div>
-            <select class="track-select-container">
+            <select class="track-select-container" onchange='changeTrack()'>
                 ${profileOption()}
             </select>
             <div class="main-button-wrapper">
@@ -80,6 +80,7 @@ const profile = () => {
             }
             </div>
         </section>`;
+
     return profileTemplate;
 };
 

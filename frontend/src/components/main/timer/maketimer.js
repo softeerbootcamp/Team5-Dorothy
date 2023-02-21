@@ -1,6 +1,5 @@
 import { postAttendance } from '../../../apis/attend';
 import { qs } from '../../../utils/selector';
-import { userTrackID } from '../../../store/user';
 
 let intervalTimer;
 const WARNING_THRESHOLD = 10;
@@ -92,7 +91,7 @@ const makeTimer = () => {
         const loc = JSON.parse(sessionStorage.getItem('location'));
         const x = loc.x;
         const y = loc.y;
-        postAttendance(19, { x, y });
+        postAttendance(sessionStorage.getItem('trackId'), { x, y });
         navigator.geolocation.clearWatch(id);
         clearInterval(intervalTimer);
         document.querySelector('#check-timer').style.opacity = '0';

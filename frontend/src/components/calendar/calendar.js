@@ -1,10 +1,11 @@
 import { daysOfWeek } from './constants';
 import { getMonthAttendance } from '../../apis/attend';
 import { qs, qsa } from '../../utils/selector';
-import { userTrackID } from '../../store/user';
 
 const monthTest = async (currentYear, currentMonth) => {
-    const myMonthAttendance = await getMonthAttendance(userTrackID.trackID);
+    const myMonthAttendance = await getMonthAttendance(
+        sessionStorage.getItem('trackId'),
+    );
     const length = myMonthAttendance.length;
     if (currentYear !== 2023 || currentMonth !== 2) return;
     for (let i = 0; i <= length; i++) {

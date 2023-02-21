@@ -7,7 +7,7 @@ import { qs } from '../utils/selector.js';
 import { daysOfWeek } from '../components/calendar/constants.js';
 
 const memberAttendance = async (attendType) => {
-    const datas = await getDayAttendance(19);
+    const datas = await getDayAttendance(sessionStorage.getItem('trackId'));
     const dataAvailable = datas.filter((data) => {
         return data.type.toString() === attendType;
     });

@@ -5,7 +5,6 @@ import { GetAllNotices } from '../../apis/notice';
 import { noticePreview } from '../notice/noticeComponents';
 import { getMyReserved } from '../../apis/rental';
 import { qs } from '../../utils/selector';
-import { userTrackID } from '../../store/user';
 
 const latelyNotice = async () => {
     const notices = await GetAllNotices();
@@ -16,7 +15,9 @@ const latelyNotice = async () => {
     );
 };
 const weekAttendance = async () => {
-    const weekAttendance = await getMonthAttendance(19);
+    const weekAttendance = await getMonthAttendance(
+        sessionStorage.getItem('trackId'),
+    );
     const length = weekAttendance.length;
     const week = weekAttendance.slice(length - 7, length);
     while (week.length < 7) {
@@ -25,6 +26,7 @@ const weekAttendance = async () => {
     week.reverse();
     console.log(week);
     let i = 0;
+    qs('.calendar-wrapper').innerHTML = '';
     getCurrentWeek()
         .map((day) => {
             const temp = `
@@ -90,4 +92,4 @@ const userMain = () => {
     return userMainTemplate;
 };
 
-export { userMain };
+export { userMain, weekAttendance };

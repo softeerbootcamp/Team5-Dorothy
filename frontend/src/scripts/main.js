@@ -1,12 +1,12 @@
 import { makeTimer } from '../components/main/timer/maketimer.js';
-import { qs } from '../utils/selector.js';
+import { qs, qsa } from '../utils/selector.js';
 import { timerForm } from '../components/main/timer/timer.js';
 import { userRole } from '../store/user.js';
 import { GetTrackCode, PostTrackMembers } from '../apis/track.js';
 import { PostsTrack } from '../apis/track.js';
 import { getDayAttendance } from '../apis/attend.js';
 import { navigateTo } from '../router.js';
-import { userTrackID } from '../store/user.js';
+import { weekAttendance } from '../components/main/userMain.js';
 
 async function setMainEvent() {
     if (userRole() === 'ADMIN') {
@@ -33,7 +33,9 @@ async function setMainEvent() {
         });
     }
     if (userRole() === 'MEMBER') {
-        const currentAttendance = await getDayAttendance(19);
+        const currentAttendance = await getDayAttendance(
+            sessionStorage.getItem('trackId'),
+        );
         const attendanceType =
             currentAttendance === null ? 'ABSENT' : currentAttendance.type;
         const nowTime = new Date();
@@ -75,6 +77,10 @@ async function setMainEvent() {
                 .classList.toggle('input-available');
         });
     }
+    qs('.track-select-container').onchange = function () {
+        sessionStorage.setItem('trackId', this.value);
+        weekAttendance();
+    };
     qs('.main-button-wrapper').addEventListener('click', (e) => {
         const mainButton = e.target.closest('.main-button-front');
         if (mainButton) {

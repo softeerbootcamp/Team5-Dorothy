@@ -1,5 +1,5 @@
 import { qs, qsa } from '../../utils/selector';
-import { userRole, userTrackID } from '../../store/user';
+import { userRole } from '../../store/user';
 import { PostTrack, PostTrackMember } from '../../apis/track';
 import { navigateTo } from '../../router';
 
@@ -68,11 +68,12 @@ function setTrackEvent() {
         });
     }
 
-    qs('.big-content-container').addEventListener('click', (e) => {
-        const trackWrapper = e.target.closest('.track-wrapper');
-        if (trackWrapper) {
-            navigateTo('/main');
-        }
+    qs('.track-container').addEventListener('click', (e) => {
+        const target = e.target.closest('.track-wrapper');
+        if (target == null) return;
+        const targetDataSet = target.getAttribute('data-set');
+        sessionStorage.setItem('trackId', targetDataSet);
+        navigateTo('/main');
     });
 }
 
