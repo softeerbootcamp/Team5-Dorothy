@@ -48,10 +48,6 @@ const router = async () => {
     eventdelegator(match.event);
 };
 
-// document.addEventListener('DOMContentLoaded', () => {
-//     router(getParams(match));
-// });
-
 window.addEventListener('popstate', router);
 
 document.addEventListener('DOMContentLoaded', () => {
