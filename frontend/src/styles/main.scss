@@ -120,11 +120,6 @@
     background: linear-gradient(#84b5ff 25%, #fff 25% 100%);
 }
 
-.calendar:hover {
-    margin-top: -0.5vh;
-    margin-bottom: 0.5vh;
-}
-
 .calendar-head {
     display: flex;
     justify-content: center;
@@ -132,6 +127,11 @@
 
 .calendar-head .day {
     font-size: 65%;
+}
+
+.calendar-image {
+    margin: 20% auto;
+    width: 90%;
 }
 
 .contour {
@@ -146,6 +146,7 @@
     display: flex;
     flex-direction: row;
     width: 55vw;
+    padding: 5px 0;
     overflow-x: auto;
     margin: 2.5vh auto;
 }
@@ -163,10 +164,6 @@
     box-shadow: 0.25vh 0.25vh 0.25vh rgba(0, 0, 0, 0.25);
     align-items: center;
     transition: all 0.5s;
-}
-
-.rental:hover {
-    background-color: #ddffef;
 }
 
 .rental-icon {

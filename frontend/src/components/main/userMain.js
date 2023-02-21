@@ -27,7 +27,9 @@ const weekAttendance = async () => {
                 <div class="calendar-head">
                     <span class="day">${day}</span>
                 </div>
-                <div class="calendar-week-type">${week[i].type}</div>
+                <div class="calendar-week-type">
+                    <img class="calendar-image" src="src/assets/${week[i].type}.svg" />
+                </div>
             </article>`;
             qs('.calendar-wrapper').insertAdjacentHTML('beforeend', temp);
             i++;
@@ -36,105 +38,11 @@ const weekAttendance = async () => {
 };
 const myReservation = async () => {
     const myReserveLog = await getMyReserved();
-    let myReserveTime = [];
-
-    myReserveLog.data.forEach((myTime) => {
-        const myTimeParsed = myTime.startTime.split(':');
-        let startDateObj = new Date();
-        startDateObj.setHours(myTimeParsed[0]);
-        startDateObj.setMinutes(myTimeParsed[1]);
-        let endDateObj = new Date();
-        endDateObj.setHours(myTimeParsed[0]);
-        endDateObj.setMinutes(myTimeParsed[1]);
-        endDateObj.setMinutes(endDateObj.getMinutes() + 15);
-
-        if (myReserveTime.length === 0) {
-            myReserveTime.push({
-                idx: myTime.placeIdx,
-                startTime: `${
-                    startDateObj.getHours() < 10
-                        ? '0' + startDateObj.getHours()
-                        : startDateObj.getHours()
-                }:${
-                    startDateObj.getMinutes() < 10
-                        ? '0' + startDateObj.getMinutes()
-                        : startDateObj.getMinutes()
-                }`,
-                endTime: `${
-                    startDateObj.getHours() < 10
-                        ? '0' + startDateObj.getHours()
-                        : startDateObj.getHours()
-                }:${
-                    endDateObj.getMinutes() < 10
-                        ? '0' + endDateObj.getMinutes()
-                        : endDateObj.getMinutes()
-                }`,
-                endMinute: endDateObj,
-            });
-        } else {
-            let lastTime = myReserveTime.pop();
-            if (
-                myTime.placeIdx === lastTime.idx &&
-                `${
-                    startDateObj.getHours() < 10
-                        ? '0' + startDateObj.getHours()
-                        : startDateObj.getHours()
-                }:${
-                    startDateObj.getMinutes() < 10
-                        ? '0' + startDateObj.getMinutes()
-                        : startDateObj.getMinutes()
-                }` === lastTime.endTime
-            ) {
-                let newEndMinute = lastTime.endMinute;
-                newEndMinute.setMinutes(newEndMinute.getMinutes() + 15);
-                myReserveTime.push({
-                    idx: lastTime.placeIdx,
-                    startTime: lastTime.startTime,
-                    endTime: `${
-                        newEndMinute.getHours() < 10
-                            ? '0' + newEndMinute.getHours()
-                            : newEndMinute.getHours()
-                    }:${
-                        newEndMinute.getMinutes() < 10
-                            ? '0' + newEndMinute.getMinutes()
-                            : newEndMinute.getMinutes()
-                    }`,
-                    endMinute: newEndMinute,
-                });
-            } else {
-                myReserveTime.push(lastTime);
-                myReserveTime.push({
-                    idx: myTime.placeIdx,
-                    startTime: `${
-                        startDateObj.getHours() < 10
-                            ? '0' + startDateObj.getHours()
-                            : startDateObj.getHours()
-                    }:${
-                        startDateObj.getMinutes() < 10
-                            ? '0' + startDateObj.getMinutes()
-                            : startDateObj.getMinutes()
-                    }`,
-                    endTime: `${
-                        startDateObj.getHours() < 10
-                            ? '0' + startDateObj.getHours()
-                            : startDateObj.getHours()
-                    }:${
-                        endDateObj.getMinutes() < 10
-                            ? '0' + endDateObj.getMinutes()
-                            : endDateObj.getMinutes()
-                    }`,
-                    endMinute: endDateObj,
-                });
-            }
-        }
-    });
-
-    console.log(myReserveTime);
-    myReserveTime.map((rentalLog) => {
+    myReserveLog.data.map((rentalLog) => {
         const rentalCard = `
         <div class="rental">
             <div class="rental-icon">
-                <img class="place-icon" src="/src/assets/${rentalLog.idx}.svg" />
+                <img class="place-icon" src="/src/assets/${rentalLog.placeIdx}.svg" />
             </div>
             ${rentalLog.startTime}~${rentalLog.endTime}
         </div>
