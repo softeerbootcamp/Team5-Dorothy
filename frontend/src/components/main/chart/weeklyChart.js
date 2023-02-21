@@ -1,6 +1,7 @@
 import { getCurrentWeek } from './currentWeek';
 import { getMonthAttendance } from '../../../apis/attend';
 import { qs } from '../../../utils/selector';
+import { userTrackID } from '../../../store/user';
 
 const chartTest = async (day) => {
     const items = await getMonthAttendance(19);
@@ -34,20 +35,6 @@ const chartTest = async (day) => {
             qs('.axis_x').insertAdjacentHTML('beforeend', weeklyChart);
         }
     });
-
-    // items.map((item) => {
-    //     let num = 0;
-    //     for (let i = 0; i < 7; i++) {
-    //         console.log(
-    //             getCurrentWeek()[i].split('(')[0],
-    //             item.date.split('-')[2],
-    //         );
-    //         if ((getCurrentWeek()[i] = item.date.split('-')[2])) {
-    //             items.key()
-    //         }
-    //         console.log(num);
-    //     }
-    // });
 };
 
 const weeklyChart = () => {

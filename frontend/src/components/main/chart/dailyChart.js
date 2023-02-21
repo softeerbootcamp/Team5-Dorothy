@@ -1,8 +1,9 @@
 import { getDayAttendance } from '../../../apis/attend';
 import { qs } from '../../../utils/selector';
+import { userTrackID } from '../../../store/user';
 
 const chartTest = async () => {
-    const members = await getDayAttendance(3);
+    const members = await getDayAttendance(userTrackID.trackID);
     const memberNum = members.length;
     const attend = members.filter((member) => {
         return member.type === 'PRESENT';
@@ -14,15 +15,15 @@ const chartTest = async () => {
         return member.type === 'ABSENT';
     }).length;
     const ratio = `
+
+    <div class="late" style="width:${
+        ((attend + late) / memberNum) * 100
+    }%;z-index:100;"></div> 
     <div class="attend" style="width:${
         (attend / memberNum) * 100
-    }%; z-index:100-${attend};"></div> 
-    <div class="absent" style="width:${
-        (absent / memberNum) * 100
-    }%;z-index:100-${absent};"></div>
-    <div class="late" style="width:${
-        (late / memberNum) * 100
-    }%;z-index:100-${late};"></div> 
+    }%; z-index:500;"></div> 
+    <div class="absent" style="width: 100%;z-index:1;"></div>
+    
     `;
     console.log((attend / memberNum) * 100);
     const ratioDescription = `

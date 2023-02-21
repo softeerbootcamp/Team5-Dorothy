@@ -1,11 +1,12 @@
 import { postAttendance } from '../../../apis/attend';
 import { qs } from '../../../utils/selector';
+import { userTrackID } from '../../../store/user';
 
 let intervalTimer;
 const WARNING_THRESHOLD = 10;
 const ALERT_THRESHOLD = 0;
 
-const ATTEND_HOURS = 14;
+const ATTEND_HOURS = 9;
 const ATTEND_MINUTES = 60;
 const ATTEND_SECONDS = 60;
 
@@ -20,8 +21,8 @@ const getUserLocation = () => {
         id = navigator.geolocation.watchPosition(function (pos) {
             let latitude = pos.coords.latitude;
             let longitude = pos.coords.longitude;
-
-            console.log(latitude, longitude);
+            const location = { x: latitude, y: longitude };
+            sessionStorage.setItem('location', JSON.stringify(location));
             return latitude, longitude;
         });
     } else {
@@ -30,7 +31,6 @@ const getUserLocation = () => {
 };
 
 const makeTimer = () => {
-    //위치 정보 받아오기
     getUserLocation();
 
     let length = Math.PI * 2 * 100;
@@ -89,7 +89,10 @@ const makeTimer = () => {
     timer(wholeTime);
 
     playButton.addEventListener('click', () => {
-        console.log(getUserLocation());
+        const loc = JSON.parse(sessionStorage.getItem('location'));
+        const x = loc.x;
+        const y = loc.y;
+        postAttendance(userTrackID.trackID, { x, y });
         navigator.geolocation.clearWatch(id);
         clearInterval(intervalTimer);
         document.querySelector('#check-timer').style.opacity = '0';

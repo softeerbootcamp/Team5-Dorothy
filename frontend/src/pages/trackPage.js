@@ -23,6 +23,7 @@ export default class trackPage extends AbstractView {
                     ${trackInfo
                         .map((track) => {
                             return trackCard(
+                                track.idx,
                                 Math.floor(Math.random() * 20) + 1,
                                 track.name,
                             );

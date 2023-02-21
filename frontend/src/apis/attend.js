@@ -2,16 +2,15 @@ import { stateModal } from '../components/modal';
 import { AttendService } from './services/attendservices';
 import { navigateTo } from '../router';
 import { qs } from '../utils/selector';
-import { http } from './http';
 
-export const postAttendance = async (trackIdx) => {
+export const postAttendance = async (trackIdx, { x, y }) => {
     try {
-        const response = await AttendService.postAttendance(trackIdx);
+        const response = await AttendService.postAttendance(trackIdx, { x, y });
         succeedTrack('OK', '출석체크 성공');
         return response.data;
     } catch (error) {
         failTrack();
-        console.log(error.status);
+        console.log(error);
     }
 };
 
@@ -39,9 +38,7 @@ const setmodal = (code, message) =>
         stateModal(code, message),
     );
 
-const succeedTrack = (response) => {
-    const code = response.code;
-    const message = response.message;
+const succeedTrack = (code, message) => {
     setmodal(code, message);
 };
 

@@ -19,6 +19,14 @@ function registerValidationCheck() {
         'input',
     ).value;
 
+    navigator.geolocation.getCurrentPosition(function (pos) {
+        var latitude = pos.coords.latitude;
+        var longitude = pos.coords.longitude;
+        const location = { x: latitude, y: longitude };
+        sessionStorage.setItem('location', JSON.stringify(location));
+        return latitude, longitude;
+    });
+
     registerButton.disabled = !(
         idreq.test(registerId) &&
         passwordreq.test(registerPassword) &&

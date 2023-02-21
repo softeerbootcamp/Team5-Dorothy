@@ -32,12 +32,12 @@ public interface PlaceRepository extends CrudRepository<Place, Long> {
     @Query("delete from reservation")
     void deleteAllReservation();
 
-    @Query("select place_idx, start_time from reservation where place_idx = :placeIdx")
+    @Query("select place_idx, start_time, end_time from reservation where place_idx = :placeIdx")
     List<ReservationResDto> findReservationByPlaceId(@Param("placeIdx") Long placeIdx);
 
-    @Query("select place_idx, start_time from reservation where member_idx = :memberIdx")
+    @Query("select place_idx, start_time, end_time from reservation where member_idx = :memberIdx order by start_time")
     List<ReservationResDto> findReservationByMemberId(@Param("memberIdx") Long memberIdx);
 
-    @Query("select place_idx, start_time from reservation where idx = :idx")
+    @Query("select place_idx, start_time, end_time from reservation where idx = :idx order by start_time")
     Optional<ReservationResDto> findReservationById(@Param("idx") int idx);
 }

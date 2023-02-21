@@ -3,6 +3,7 @@ package dev.be.dorothy.security.filter;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import dev.be.dorothy.common.CommonResponse;
 import dev.be.dorothy.exception.BadRequestException;
+import dev.be.dorothy.security.context.ContextHolder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.annotation.Order;
@@ -61,9 +62,12 @@ public class LogoutFilter implements Filter {
     }
 
     private Cookie attemptLogout(HttpServletRequest request){
+        if(request.getSession(false) == null)
+            throw new BadRequestException("로그인 정보가 없습니다");
         Cookie cookie = Arrays.stream(request.getCookies()).findFirst().orElseThrow(() -> new BadRequestException("로그인 정보가 없습니다"));
         cookie.setMaxAge(0);
-        request.getSession().invalidate();
+        request.getSession(false).invalidate();
+        ContextHolder.clearContext();
         return cookie;
     }
 

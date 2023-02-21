@@ -1,11 +1,11 @@
 import { qs, qsa } from '../../utils/selector';
-import { userRole } from '../../store/user';
+import { userRole, userTrackID } from '../../store/user';
 import { PostTrack, PostTrackMember } from '../../apis/track';
 import { navigateTo } from '../../router';
 
-const trackCard = (img, tname) => {
+const trackCard = (idx, img, tname) => {
     return `
-    <figure class="track-wrapper">
+    <figure class="track-wrapper" data-set='${idx}'>
         <img class="track-image" src='/src/assets/${img}.svg'></img>
         <figcaption class="track-name">${tname}</figcaption>
     </figure>`;

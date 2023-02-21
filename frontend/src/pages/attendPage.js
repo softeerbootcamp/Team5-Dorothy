@@ -22,7 +22,6 @@ const memberAttendance = async (attendType) => {
         .join('');
     qs(`#attendance-${attendType}`).insertAdjacentHTML('beforeend', result);
 };
-
 const memberAttend = () => {
     const now = new Date();
     const memberCalendar = `
@@ -43,7 +42,6 @@ const memberAttend = () => {
     </div>`;
     return memberCalendar;
 };
-
 const adminAttend = () => {
     const now = new Date();
     const presentBody = memberAttendance('PRESENT');
@@ -89,13 +87,12 @@ export default class attendPage extends AbstractView {
                         ? pageTitleTamplate('월간 출석체크')
                         : pageTitleTamplate('오늘 출석체크')
                 }
-
                 </div>
                 <div class="content-container">
                 </div>
                 <section class="big-content-container">
                     ${userRole() === 'MEMBER' ? memberAttend() : adminAttend()}
-                </section> 
+                </section>
             </div>
         </div>
         `;
