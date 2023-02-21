@@ -4,6 +4,7 @@ import dev.be.dorothy.security.authentication.Authentication;
 import dev.be.dorothy.security.authentication.UsernameAndPasswordTokenProvider;
 import dev.be.dorothy.security.context.ContextHolder;
 import dev.be.dorothy.member.service.MemberResDto;
+import dev.be.dorothy.security.context.MemberDetail;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.annotation.Order;
@@ -34,6 +35,8 @@ public class AuthenticationFilter implements Filter {
             MemberResDto member = (MemberResDto) session.getAttribute("member");
             if(member != null){
                 Authentication authentication = usernameAndPasswordTokenProvider.getAuthentication(member.getMemberId());
+                MemberDetail principal = (MemberDetail) authentication.getPrincipal();
+                logger.info(principal.getMemberDto().getMemberId());
                 ContextHolder.setContext(authentication);
             }
         }
