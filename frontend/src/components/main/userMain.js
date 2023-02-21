@@ -21,6 +21,7 @@ const weekAttendance = async () => {
     const length = weekAttendance.length;
     const week = weekAttendance.slice(length - 7, length);
     let i = 0;
+    qs('.calendar-wrapper').innerHTML = '';
     getCurrentWeek()
         .map((day) => {
             const temp = `
@@ -86,4 +87,4 @@ const userMain = () => {
     return userMainTemplate;
 };
 
-export { userMain };
+export { userMain, weekAttendance };

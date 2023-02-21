@@ -19,7 +19,7 @@ const profile = () => {
             <div class="image-container">
                 <img src="https://ca.slack-edge.com/T04AE6CRWMB-U04GTQ0SHRT-badeda2b168f-512" alt="my-profile">
             </div>
-            <select class="track-select-container">
+            <select class="track-select-container" onchange='changeTrack()'>
                 ${profileOption()}
             </select>
             <div class="main-button-wrapper">
@@ -80,6 +80,7 @@ const profile = () => {
             }
             </div>
         </section>`;
+
     return profileTemplate;
 };
 
