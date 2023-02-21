@@ -16,7 +16,7 @@ const latelyNotice = async () => {
     );
 };
 const weekAttendance = async () => {
-    const weekAttendance = await getMonthAttendance(3);
+    const weekAttendance = await getMonthAttendance(19);
     const length = weekAttendance.length;
     const week = weekAttendance.slice(length - 7, length);
     let i = 0;
@@ -28,7 +28,11 @@ const weekAttendance = async () => {
                     <span class="day">${day}</span>
                 </div>
                 <div class="calendar-week-type">
-                    <img class="calendar-image" src="src/assets/${week[i].type}.svg" />
+                    ${
+                        week[i] !== undefined
+                            ? `<img class="calendar-image" src="src/assets/${week[i].type}.svg" />`
+                            : ``
+                    }
                 </div>
             </article>`;
             qs('.calendar-wrapper').insertAdjacentHTML('beforeend', temp);

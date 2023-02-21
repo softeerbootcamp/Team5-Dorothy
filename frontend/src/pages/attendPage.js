@@ -7,7 +7,7 @@ import { qs } from '../utils/selector.js';
 import { daysOfWeek } from '../components/calendar/constants.js';
 
 const memberAttendance = async (attendType) => {
-    const datas = await getDayAttendance(3);
+    const datas = await getDayAttendance(19);
     const dataAvailable = datas.filter((data) => {
         return data.type.toString() === attendType;
     });

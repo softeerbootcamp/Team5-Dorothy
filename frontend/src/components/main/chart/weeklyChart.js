@@ -3,7 +3,7 @@ import { getMonthAttendance } from '../../../apis/attend';
 import { qs } from '../../../utils/selector';
 
 const chartTest = async (day) => {
-    const items = await getMonthAttendance(3);
+    const items = await getMonthAttendance(19);
     items.map((item) => {
         if (day.split('(')[0] === item.date.split('-')[2]) {
             const itemNum = item.present + item.tardy + item.absent;
