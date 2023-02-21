@@ -2,6 +2,7 @@ import AbstractView from './pageTemplate';
 import { pageTitleTamplate } from '../components/pageTitle.js';
 import { hourCard } from '../components/rental/hourCard';
 import { navigateTo } from '../router';
+import { qsa } from '../utils/selector';
 
 const time = [10, 11, 12, 13, 14, 15, 16, 17, 18, 19];
 
@@ -25,7 +26,7 @@ export default class rentalDetailPage extends AbstractView {
                         <div class="schedule-wrapper">
                             <div class="rental-icon"><img class="place-icon" src="/src/assets/${param}.svg"></div>
                             현재 선택 가능한 시간대
-                            <div class="rental-left">48</div>
+                            <div class="rental-left"></div>
                         </div>
                     <header>
                     <section class="time-container">

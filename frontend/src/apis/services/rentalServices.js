@@ -23,7 +23,7 @@ const RentalService = {
 
     //나의 공간 대여 조회
     getMyReservation: async () => {
-        const response = await http.get(`/api/place/reservation/`, {});
+        const response = await http.get(`/place/reservation/`);
         return response.data;
     },
 };
