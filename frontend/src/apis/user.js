@@ -1,7 +1,7 @@
 import { stateModal } from '../components/modal';
 import { UserService } from './services/userservice';
 import { navigateTo } from '../router';
-import { qs } from '../utils/selector';
+import { qs, qsa } from '../utils/selector';
 
 // 로그아웃
 export const Logout = async () => {
@@ -10,6 +10,12 @@ export const Logout = async () => {
         alert('로그아웃');
         sessionStorage.removeItem('user');
         sessionStorage.removeItem('location');
+        qs('.hamburger').classList.add('hidden');
+        qs('.nav').classList.add('hidden');
+        const aTag = qsa('a');
+        for (var i = 0; i < qsa('a').length; i++) {
+            aTag[i].classList.add('hidden');
+        }
     } catch (e) {
     }
 };
@@ -19,6 +25,12 @@ export const GetUser = async (id, password) => {
     try {
         const response = await UserService.getUser(id, password);
         succeedLogin(response);
+        qs('.hamburger').classList.remove('hidden');
+        qs('.nav').classList.remove('hidden');
+        const aTag = qsa('a');
+        for (var i = 0; i < qsa('a').length; i++) {
+            aTag[i].classList.remove('hidden');
+        }
     } catch (e) {
         failLogin(e);
     }

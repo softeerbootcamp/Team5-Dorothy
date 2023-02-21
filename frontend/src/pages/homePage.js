@@ -1,13 +1,11 @@
 import AbstractView from './pageTemplate';
 import { loginForm } from '../components/home/loginForm.js';
 import { registerForm } from '../components/home/registerForm.js';
-import { qs } from '../utils/selector';
+import { qs, qsa } from '../utils/selector';
 
 export default class homePage extends AbstractView {
     async getHtml() {
-        qs('.hamburger').classList.add('hidden');
-        qs('.nav').classList.remove('menuon');
-        qs('.nav').classList.add('hidden');
+
         return `
         <div class="home-container">
           <div class="container">

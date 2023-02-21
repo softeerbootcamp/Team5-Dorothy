@@ -36,6 +36,7 @@ async function setMainEvent() {
         const currentAttendance = await getDayAttendance(
             sessionStorage.getItem('trackId'),
         );
+
         const attendanceType =
             currentAttendance === null ? 'ABSENT' : currentAttendance.type;
         const nowTime = new Date();
