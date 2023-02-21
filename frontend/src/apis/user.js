@@ -17,7 +17,6 @@ export const Logout = async () => {
             aTag[i].classList.add('hidden');
         }
     } catch (e) {
-        console.log(e);
     }
 };
 

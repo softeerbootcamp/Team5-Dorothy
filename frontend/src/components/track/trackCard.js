@@ -15,14 +15,19 @@ function setTrackEvent() {
     if (userRole() === 'ADMIN') {
         const trackMake = qs('#track-make');
         const trackMakeInput = trackMake.querySelector('.track-input');
-        const trackMakeBtn = trackMake.querySelector('.track-button');
+        const trackMakeBtn = trackMake.querySelector('#track-make-confirm');
         trackMakeInput.addEventListener('input', (e) => {
             trackMakeBtn.disabled = e.target.value.trim().length <= 0;
         });
         trackMake.addEventListener('click', (e) => {
-            const makeBtn = e.target.closest('.track-button');
+            const makeBtn = e.target.closest('#track-make-confirm');
+            const canlBtn = e.target.closest('#track-make-cancel');
             if (makeBtn) {
                 PostTrack(trackMakeInput.value);
+                trackMake.classList.toggle('track-rotate');
+                trackMakeInput.value = '';
+                trackMakeBtn.disabled = 'true';
+            } else if (canlBtn) {
                 trackMake.classList.toggle('track-rotate');
                 trackMakeInput.value = '';
                 trackMakeBtn.disabled = 'true';
@@ -42,9 +47,15 @@ function setTrackEvent() {
             trackJoinBtn.disabled = e.target.value.length <= 0;
         });
         trackJoin.addEventListener('click', (e) => {
-            const makeBtn = e.target.closest('.track-button');
+            const makeBtn = e.target.closest('#track-join-confirm');
+            const canlBtn = e.target.closest('#track-join-cancel');
             if (makeBtn) {
                 PostTrackMember(trackJoinID.value, trackJoinInput.value);
+                trackJoin.classList.toggle('track-rotate');
+                trackJoinInput.value = '';
+                trackJoinID.value = '';
+                trackJoinBtn.disabled = 'true';
+            } else if (canlBtn) {
                 trackJoin.classList.toggle('track-rotate');
                 trackJoinInput.value = '';
                 trackJoinID.value = '';

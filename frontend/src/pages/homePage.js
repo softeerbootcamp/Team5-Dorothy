@@ -5,6 +5,7 @@ import { qs, qsa } from '../utils/selector';
 
 export default class homePage extends AbstractView {
     async getHtml() {
+
         return `
         <div class="home-container">
           <div class="container">

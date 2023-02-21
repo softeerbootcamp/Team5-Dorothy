@@ -9,7 +9,6 @@ export const GetAllNotices = async () => {
         const response = await NoticeService.getAllNotices();
         return response;
     } catch (error) {
-        console.log(error);
         failNotice(error);
     }
 };
@@ -20,7 +19,6 @@ export const GetNotice = async (id) => {
         const response = await NoticeService.getNotice(id);
         return response;
     } catch (error) {
-        console.log(error);
         failNotice(error);
     }
 };
@@ -34,7 +32,6 @@ export const PostNotice = async (title, content) => {
         return response;
     } catch (error) {
         failNotice('fail', '공지사항 등록을 실패하였습니다.');
-        console.log(error);
     }
 };
 const setmodal = (code, message) =>

@@ -17,7 +17,7 @@ const profile = () => {
     const profileTemplate = `
         <section class="profile-container">
             <div class="image-container">
-                <img src="https://ca.slack-edge.com/T04AE6CRWMB-U04GTQ0SHRT-badeda2b168f-512" alt="my-profile">
+                <img src="https://post-phinf.pstatic.net/MjAyMDExMTBfMjIg/MDAxNjA0OTk3NTY4NjM0.3A9-_lpgGOxNGW5aSaSThzIaHqJruwwgzExYBTL39Sgg.MVSuotrq69p-remDC1RaHefZ_Tt7uZ-W68MII7AKTd0g.JPEG/image_9055787501604997304426.jpg?type=w1200" alt="my-profile">
             </div>
             <select class="track-select-container" onchange='changeTrack()'>
                 ${profileOption()}
