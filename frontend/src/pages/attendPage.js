@@ -5,10 +5,28 @@ import { getDayAttendance } from '../apis/attend.js';
 import { userRole } from '../store/user.js';
 import { qs } from '../utils/selector.js';
 import { userTrackID } from '../store/user.js';
+import { daysOfWeek } from '../components/calendar/constants.js';
+
+const memberAttendance = async (attendType) => {
+    const datas = await getDayAttendance(3);
+    const dataAvailable = datas.filter((data) => {
+        return data.type.toString() === attendType;
+    });
+    const result = dataAvailable
+        .map((data) => {
+            return `
+        <div class="attendance-name-card">
+            <span class="attendance-name">${data.name}</span>
+        </div>
+        `;
+        })
+        .join('');
+    qs(`#attendance-${attendType}`).insertAdjacentHTML('beforeend', result);
+};
 
 const memberAttend = () => {
     const now = new Date();
-    const member = `
+    const memberCalendar = `
     <header class="calendar-header">
         <i class="fa-solid fa-circle-left fa-2x prevDay"></i>
         <div class="month-container">
@@ -24,7 +42,7 @@ const memberAttend = () => {
     <div class='calendar-container'>
     ${makeCalendar(now)}
     </div>`;
-    return member;
+    return memberCalendar;
 };
 
 const adminAttend = async () => {
@@ -42,9 +60,32 @@ const adminAttend = async () => {
     qs('.big-attend-container').insertAdjacentHTML('beforeend', admin);
 };
 
-if (userRole() === 'ADMIN') {
-    adminAttend();
-}
+    const adminAttendance = `
+    <header class="attendance-header">
+        <span class="header-date-wrapper">
+            ${now.getMonth() + 1}월
+        </span>
+        <span class="header-date-wrapper">
+            ${now.getDate()}일
+        </span>
+        <span class="header-date-wrapper">
+            ${daysOfWeek[now.getDay()]}
+        </span>
+    </header>
+    <section class='attendance-container'>
+        <section class="attendance-today-wrapper" id="attendance-PRESENT">
+            <div class="attendance-wrapper-header">출석</div>
+        </section>
+        <section class="attendance-today-wrapper" id="attendance-TARDY">
+            <div class="attendance-wrapper-header">지각</div>
+        </section>
+        <section class="attendance-today-wrapper" id="attendance-ABSENT">
+            <div class="attendance-wrapper-header">결석</div>
+        </section>
+    </section>
+    `;
+    return adminAttendance;
+};
 
 export default class attendPage extends AbstractView {
     async getHtml() {
@@ -62,8 +103,8 @@ export default class attendPage extends AbstractView {
                 </div>
                 <div class="content-container">
                 </div>
-                <section class="big-content-container big-attend-container">
-                    ${userRole() === 'MEMBER' ? memberAttend() : ''}
+                <section class="big-content-container">
+                    ${userRole() === 'MEMBER' ? memberAttend() : adminAttend()}
                 </section> 
             </div>
         </div>

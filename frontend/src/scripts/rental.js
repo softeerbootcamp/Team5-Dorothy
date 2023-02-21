@@ -1,10 +1,29 @@
 import { navigateTo } from '../router';
-import { qs } from '../utils/selector';
-import { qsa } from '../utils/selector';
+import { qs, qsa } from '../utils/selector';
 
 const setRentalEvent = () => {
+    let scrollMoving;
+
     qs('.big-content-container').addEventListener('click', (e) => {
         linkToRentalDetail(e);
+    });
+
+    qs('.scroll-left').addEventListener('mouseover', (e) => {
+        scrollMoving = setInterval(() => {
+            qs('.places-container').scrollLeft -= 10;
+        }, 50);
+    });
+    qs('.scroll-left').addEventListener('mouseout', (e) => {
+        clearInterval(scrollMoving);
+    });
+
+    qs('.scroll-right').addEventListener('mouseover', (e) => {
+        scrollMoving = setInterval(() => {
+            qs('.places-container').scrollLeft += 10;
+        }, 50);
+    });
+    qs('.scroll-right').addEventListener('mouseout', (e) => {
+        clearInterval(scrollMoving);
     });
 };
 

@@ -50,8 +50,8 @@ const setPostNotice = (e) => {
 };
 
 const navigator = (e) => {
-    if (e.target.closest('tr') === null) return;
-    const cardID = e.target.closest('tr').getAttribute('data-set');
+    if (e.target.closest('.notice-wrapper') === null) return;
+    const cardID = e.target.closest('.notice-wrapper').getAttribute('data-set');
     navigateTo('/notice/' + cardID);
 };
 export { setNoticeEvent, setNoticeAddEvent, setNoticeDetailEvent };
