@@ -62,9 +62,11 @@ public class LogoutFilter implements Filter {
     }
 
     private Cookie attemptLogout(HttpServletRequest request){
+        if(request.getSession(false) == null)
+            throw new BadRequestException("로그인 정보가 없습니다");
         Cookie cookie = Arrays.stream(request.getCookies()).findFirst().orElseThrow(() -> new BadRequestException("로그인 정보가 없습니다"));
         cookie.setMaxAge(0);
-        request.getSession().invalidate();
+        request.getSession(false).invalidate();
         ContextHolder.clearContext();
         return cookie;
     }
