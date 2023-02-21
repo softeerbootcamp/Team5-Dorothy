@@ -9,7 +9,6 @@ export const Logout = async () => {
         const response = await UserService.logout();
         alert('로그아웃');
         sessionStorage.removeItem('user');
-        console.log(response);
     } catch (e) {
         console.log(e);
     }

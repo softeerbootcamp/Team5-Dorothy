@@ -30,7 +30,6 @@ const getUserLocation = () => {
 };
 
 const makeTimer = () => {
-    //위치 정보 받아오기
     getUserLocation();
 
     let length = Math.PI * 2 * 100;
