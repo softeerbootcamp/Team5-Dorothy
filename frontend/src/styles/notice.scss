@@ -59,7 +59,7 @@ $breakpoint-mobile: 640px;
     max-height: 50vh;
     overflow-y: scroll;
     &::-webkit-scrollbar {
-        width: 0vw;
+        width: 0;
     }
     &::-webkit-scrollbar-thumb {
         border-radius: 0.2vh 0 0 0.2vh;

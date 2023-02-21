@@ -54,6 +54,10 @@ const ReservedTime = async (placeId) => {
         });
         TargetTime.classList.add('unabled');
     });
+
+    qs('.rental-left').innerHTML = `${
+        qsa('.time-box').length - qsa('.unabled').length
+    }`;
 };
 
 const MakeReservation = () => {

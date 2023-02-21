@@ -41,11 +41,10 @@ export const PostReservation = async (placeIdx, reserveTimes) => {
 export const getMyReserved = async () => {
     try {
         const response = await RentalService.getMyReservation();
-        succeedReserve(response);
+        console.log(response);
         return response;
     } catch (error) {
         console.log(error.response);
-        failInquire();
     }
 };
 
