@@ -46,6 +46,7 @@ export const PostTrackMember = async (trackIdx, joinCode) => {
         qs('#track-join').insertAdjacentHTML(
             'beforebegin',
             trackCard(
+                response.data.data.idx,
                 Math.floor(Math.random() * 20) + 1,
                 response.data.data.name,
             ),
