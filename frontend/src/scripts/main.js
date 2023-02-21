@@ -8,6 +8,9 @@ import { getDayAttendance } from '../apis/attend.js';
 import { navigateTo } from '../router.js';
 
 async function setMainEvent() {
+    const date = new Date();
+    const hours = date.getHours();
+    const minutes = date.getMinutes();
     if (userRole() === 'ADMIN') {
         qs('.big-content-container').addEventListener('click', (e) => {
             toggleChart(e.target);
@@ -33,11 +36,8 @@ async function setMainEvent() {
     }
     if (userRole() === 'MEMBER') {
         const currentAttendance = await getDayAttendance(3);
-        console.log(currentAttendance);
-
         const attendanceType = currentAttendance.type;
-        console.log(attendanceType);
-        if (attendanceType !== 'PRESENT' && attendanceType !== 'TARDY') {
+        if (attendanceType == 'ABSENT' && hours < 11 && minutes < 30) {
             qs('.image-container').insertAdjacentHTML(
                 'afterbegin',
                 timerForm(),
@@ -107,22 +107,5 @@ const toggleChart = (target) => {
         qs('.weekly-ratio-wrapper').classList.remove('hidden');
     }
 };
-
-// const getUserLocation = (state) => {
-//     if (navigator.geolocation) {
-//         let id;
-//         if (state) {
-//             id = navigator.geolocation.watchPosition(function (pos) {
-//                 let latitude = pos.coords.latitude;
-//                 let longitude = pos.coords.longitude;
-//                 console.log(latitude, longitude);
-//             });
-//         } else {
-//             navigator.geolocation.clearWatch(id);
-//         }
-//     } else {
-//         alert('이 브라우저에서는 Geolocation이 지원되지 않습니다.');
-//     }
-// };
 
 export { setMainEvent };

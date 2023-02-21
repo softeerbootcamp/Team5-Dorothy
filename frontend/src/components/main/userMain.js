@@ -5,7 +5,6 @@ import { GetAllNotices } from '../../apis/notice';
 import { noticePreview } from '../notice/noticeComponents';
 import { getMyReserved } from '../../apis/rental';
 import { qs } from '../../utils/selector';
-import { isElementAccessExpression } from 'typescript';
 
 const latelyNotice = async () => {
     const notices = await GetAllNotices();
@@ -128,8 +127,6 @@ const myReservation = async () => {
             }
         }
     });
-
-    console.log(myReserveTime);
     myReserveTime.map((rentalLog) => {
         const rentalCard = `
         <div class="rental">
@@ -155,13 +152,11 @@ const userMain = () => {
             <section class="user-content-container">
                 <div class="attendance-wrapper"><i class="fa-solid fa-bell-concierge"></i> 나의 출석현황
                     <div class="calendar-wrapper">
-                        
                     </div>
                 </div>
                 <div class="contour"></div>
                 <div class="rental-wrapper"><i class="fa-solid fa-person-shelter"></i> 나의 공간대여
                     <div class="rental-card-wrapper">
-                    
                     </div>
                 </div>
                 <div class="contour"></div>

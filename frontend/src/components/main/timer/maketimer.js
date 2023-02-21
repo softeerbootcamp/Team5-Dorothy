@@ -5,7 +5,7 @@ let intervalTimer;
 const WARNING_THRESHOLD = 10;
 const ALERT_THRESHOLD = 0;
 
-const ATTEND_HOURS = 14;
+const ATTEND_HOURS = 9;
 const ATTEND_MINUTES = 60;
 const ATTEND_SECONDS = 60;
 
