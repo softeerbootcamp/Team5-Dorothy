@@ -10,7 +10,7 @@ export const PostTrack = async (trackname) => {
         const response = await TrackService.postTrack(trackname);
         qs('#track-make').insertAdjacentHTML(
             'beforebegin',
-            trackCard('/src/assets/soundless.svg', response.data.data.name),
+            trackCard(Math.floor(Math.random() * 20) + 1, trackname),
         );
         succeedTrack(response.data);
     } catch (error) {
@@ -45,7 +45,10 @@ export const PostTrackMember = async (trackIdx, joinCode) => {
         const response = await TrackService.postTrackMember(trackIdx, joinCode);
         qs('#track-join').insertAdjacentHTML(
             'beforebegin',
-            trackCard('/src/assets/soundless.svg', response.data.data.name),
+            trackCard(
+                Math.floor(Math.random() * 20) + 1,
+                response.data.data.name,
+            ),
         );
         succeedTrack(response.data);
     } catch (error) {
