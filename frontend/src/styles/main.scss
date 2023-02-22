@@ -248,6 +248,9 @@
     -moz-transform-origin: 50% 50% -7vmin;
     transform-origin: 50% 50% -7vmin;
     visibility: hidden;
+    p {
+        color: white;
+    }
 }
 .main-button.input-available > .main-button-front {
     box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, 0.5),

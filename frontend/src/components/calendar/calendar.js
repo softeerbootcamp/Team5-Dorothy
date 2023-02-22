@@ -17,11 +17,10 @@ const monthTest = async (currentYear, currentMonth) => {
     if (currentYear !== 2023 || currentMonth !== 2) return;
     for (let i = 0; i <= length; i++) {
         if (myMonthAttendance[i] === undefined) continue;
+        const type = myMonthAttendance[i].type.toLowerCase();
         qs(
             `.today-state-${i + 1}`,
-        ).innerHTML = `<img class="calendar-month-image" src="src/assets/${myMonthAttendance[
-            i
-        ].type.toLowerCase()}.svg" />`;
+        ).innerHTML = `<img class="calendar-month-image" src="src/assets/${type}.svg" />`;
     }
 };
 
