@@ -35,7 +35,9 @@ const weekAttendance = async () => {
                 <div class="calendar-week-type">
                     ${
                         week[i] !== undefined
-                            ? `<img class="calendar-image" src="src/assets/${week[i].type}.svg" />`
+                            ? `<img class="calendar-image" src="src/assets/${week[
+                                  i
+                              ].type.toLowerCase()}.svg" />`
                             : ``
                     }
                 </div>

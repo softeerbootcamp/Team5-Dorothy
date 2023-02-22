@@ -19,7 +19,9 @@ const monthTest = async (currentYear, currentMonth) => {
         if (myMonthAttendance[i] === undefined) continue;
         qs(
             `.today-state-${i + 1}`,
-        ).innerHTML = `<img class="calendar-month-image" src="src/assets/${myMonthAttendance[i].type}.svg" />`;
+        ).innerHTML = `<img class="calendar-month-image" src="src/assets/${myMonthAttendance[
+            i
+        ].type.toLowerCase()}.svg" />`;
     }
 };
 
