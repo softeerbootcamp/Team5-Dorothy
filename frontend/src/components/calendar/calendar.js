@@ -8,7 +8,7 @@ const monthTest = async (currentYear, currentMonth) => {
     );
     const length = myMonthAttendance.length;
     if (currentYear !== 2023 || currentMonth !== 2) return;
-    for (let i = 0; i <= length; i++) {
+    for (let i = length; i >= 0; i--) {
         qs(
             `.today-state-${i + 1}`,
         ).innerHTML = `<img class="calendar-month-image" src="src/assets/${myMonthAttendance[i].type}.svg" />`;
