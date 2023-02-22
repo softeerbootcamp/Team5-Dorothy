@@ -3,12 +3,20 @@ import { getMonthAttendance } from '../../apis/attend';
 import { qs, qsa } from '../../utils/selector';
 
 const monthTest = async (currentYear, currentMonth) => {
+    let today = new Date();
+
+    let date = today.getDate();
     const myMonthAttendance = await getMonthAttendance(
         sessionStorage.getItem('trackId'),
     );
+
+    while (myMonthAttendance.length < date) {
+        myMonthAttendance.unshift(undefined);
+    }
     const length = myMonthAttendance.length;
     if (currentYear !== 2023 || currentMonth !== 2) return;
-    for (let i = length; i >= 0; i--) {
+    for (let i = 0; i <= length; i++) {
+        if (myMonthAttendance[i] === undefined) continue;
         qs(
             `.today-state-${i + 1}`,
         ).innerHTML = `<img class="calendar-month-image" src="src/assets/${myMonthAttendance[i].type}.svg" />`;
