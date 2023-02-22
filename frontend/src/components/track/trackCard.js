@@ -42,7 +42,7 @@ function setTrackEvent() {
         const trackJoin = qs('#track-join');
         const trackJoinInput = trackJoin.querySelector('.track-input');
         const trackJoinID = trackJoin.querySelector('.track-index-input');
-        const trackJoinBtn = trackJoin.querySelector('.track-button');
+        const trackJoinBtn = trackJoin.querySelector('#track-join-confirm');
         trackJoinInput.addEventListener('input', (e) => {
             trackJoinBtn.disabled = e.target.value.length <= 0;
         });
