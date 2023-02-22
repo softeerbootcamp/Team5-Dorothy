@@ -82,11 +82,13 @@
 
 .user-content-container {
     flex-grow: 1;
+    width: 65%;
 }
 
 .attendance-wrapper {
     font-weight: 700;
     font-size: 1.5em;
+    width: 100%;
 }
 
 .rental-wrapper {
@@ -102,6 +104,7 @@
 .calendar-wrapper {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     width: 100%;
     height: 100%;
     margin: 2.5vh auto;
@@ -111,7 +114,8 @@
 
 .calendar {
     transition: 0.5s;
-    width: 12vmin;
+    width: 14%;
+    min-width: 50px;
     height: 15vmin;
     border-radius: 1vmin;
     box-sizing: border-box;
@@ -130,22 +134,23 @@
 }
 
 .calendar-image {
-    margin: 20% auto;
-    width: 90%;
+    margin: 20px auto;
+    width: 70%;
+    display: block;
 }
 
 .contour {
-    width: 55vw;
+    width: 100%;
     height: 3px;
     background-color: lightgray;
-    margin: 4vh 0;
+    margin: 30px auto;
     border-radius: 1.5px;
 }
 
 .rental-card-wrapper {
     display: flex;
     flex-direction: row;
-    width: 55vw;
+    width: 100%;
     padding: 5px 0;
     overflow-x: auto;
     margin: 2.5vh auto;
@@ -155,7 +160,7 @@
     display: flex;
     flex-direction: row;
     width: 30vmin;
-    height: 8vmin;
+    height: 7vmin;
     background-color: #fff;
     border-radius: 1vw;
     box-sizing: border-box;
@@ -317,7 +322,7 @@
 }
 
 .news-content-wrapper {
-    width: 90%;
+    width: 100%;
     margin-top: 20px;
 }
 .news-content-wrapper:hover {

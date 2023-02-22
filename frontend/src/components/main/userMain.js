@@ -23,7 +23,6 @@ const weekAttendance = async () => {
     while (week.length < 7) {
         week.unshift(undefined);
     }
-    console.log(week);
     let i = 0;
     qs('.calendar-wrapper').innerHTML = '';
     getCurrentWeek()
