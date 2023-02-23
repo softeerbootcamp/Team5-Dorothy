@@ -118,26 +118,26 @@ BackEnd</br>
     </tr>
     <tr width="100%">
         <td  align="center"><img src = "https://avatars.githubusercontent.com/u/64524916?v=4" width="100px"/></td>
-        <td  align="center"><img src = "https://avatars.githubusercontent.com/u/97172766?v=4" width="100px" /></td>
+        <td  align="center"><img src = "https://user-images.githubusercontent.com/97172766/220890944-e95c8f45-c296-4e56-a10e-269fd0d6e972.png" width="100px" /></td>
         <td  align="center"><img src = "https://avatars.githubusercontent.com/u/33286894?v=4" width="100px"/></td>
         <td  align="center"><img src = "https://avatars.githubusercontent.com/u/45064913?v=4" width="100px" /></td>
         <td  align="center"><img src = "https://avatars.githubusercontent.com/u/77906386?v=4" width="100px"/></td>
     </tr>
     <tr width="100%">
-      <td align="felx-start">
-        역할
+      <td align="center">
+        BE
       </td>
-      <td align="flex-start">
-        역할
+      <td align="center">
+        FE
       </td>
-      <td align="flex-start">
-         역할
+      <td align="center">
+         BE
       </td>
-      <td align="flex-start">
-        역할
+      <td align="center">
+        FE
       </td>
-      <td align="flex-start">
-         역할
+      <td align="center">
+         BE
       </td>
    </tr>
 </table>
