@@ -126,7 +126,7 @@ BackEnd</br>
         <td  align="center"><img src = "https://user-images.githubusercontent.com/97172766/220890944-e95c8f45-c296-4e56-a10e-269fd0d6e972.png" width="100px" /></td>
         <td  align="center"><img src = "https://avatars.githubusercontent.com/u/33286894?v=4" width="100px"/></td>
         <td  align="center"><img src = "https://avatars.githubusercontent.com/u/45064913?v=4" width="100px" /></td>
-        <td  align="center"><img src = "https://avatars.githubusercontent.com/u/77906386?v=4" width="100px"/></td>
+        <td  align="center"><img src = "https://user-images.githubusercontent.com/97172766/220899825-c515be94-893f-4282-8a20-9a6007000d39.png" width="100px"/></td>
     </tr>
     <tr width="100%">
       <td align="center">
