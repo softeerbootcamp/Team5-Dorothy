@@ -10,7 +10,11 @@ export const PostTrack = async (trackname) => {
         const response = await TrackService.postTrack(trackname);
         qs('#track-make').insertAdjacentHTML(
             'beforebegin',
-            trackCard(Math.floor(Math.random() * 20) + 1, trackname),
+            trackCard(
+                response.idx,
+                Math.floor(Math.random() * 20) + 1,
+                trackname,
+            ),
         );
         succeedTrack(response.data);
     } catch (error) {
