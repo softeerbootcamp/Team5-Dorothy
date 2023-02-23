@@ -14,6 +14,9 @@ Dorothy는 위치기반 출석부, 실시간 공간대여 관리 기능을 탑�
 ### 출석 버튼
 ![ezgif-5-5d00f4a3fd](https://user-images.githubusercontent.com/45064913/220898950-1910ef60-7a22-48c7-aa42-e844f032ae90.gif)
 
+### 공간 대여 
+![ezgif-2-f12328d2d5](https://user-images.githubusercontent.com/45064913/220899965-e562a458-0930-40f1-ba72-a077daa54be7.gif)
+
 ## 기술 스택
 FrontEnd</br>
 - dev</br>
