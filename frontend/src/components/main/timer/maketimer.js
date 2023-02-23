@@ -96,7 +96,6 @@ const makeTimer = () => {
         navigator.geolocation.clearWatch(id);
         clearInterval(intervalTimer);
         document.querySelector('#check-timer').style.opacity = '0';
-        console.log('click');
         setTimeout(() => {
             weekAttendance();
         }, 1000);

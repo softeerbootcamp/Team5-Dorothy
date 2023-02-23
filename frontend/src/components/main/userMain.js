@@ -25,7 +25,6 @@ const weekAttendance = async () => {
     }
     let i = 0;
     qs('.calendar-wrapper').innerHTML = '';
-    console.log(week);
     getCurrentWeek()
         .map((day) => {
             const temp = `
