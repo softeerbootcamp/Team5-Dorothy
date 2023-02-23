@@ -1,5 +1,6 @@
 import { postAttendance } from '../../../apis/attend';
 import { qs } from '../../../utils/selector';
+import { weekAttendance } from '../userMain';
 
 let intervalTimer;
 const WARNING_THRESHOLD = 10;
@@ -98,6 +99,7 @@ const makeTimer = () => {
         setTimeout(() => {
             document.querySelector('#check-timer').remove();
         }, 1000);
+        weekAttendance();
     });
 };
 
