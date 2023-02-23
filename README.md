@@ -112,7 +112,7 @@ BackEnd</br>
 │    ├─ 📂 security ▶️ Security Filter 관련 클래스 모음
 │    ├─ 📂 track ▶️ 트랙 선택, 조회 기능
 │    └── DorothyApplication.java ▶️ main 함수  
-└─ 📂 test ▶️ (설명)
+└─ 📂 test 
 ```
 
 ## Documnetation
